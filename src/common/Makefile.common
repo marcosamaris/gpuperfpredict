@@ -1,0 +1,10 @@
+CC=nvcc
+#CFLAGS=-I/usr/local/cuda/include -L/usr/local/cuda/lib64 -lm -O3 -arch sm_35
+CFLAGS=-lm -O3 -arch sm_21
+NVPROF=nvprof
+N=131072
+DEVICE_ID=0
+METRICS=achieved_occupancy,gld_transactions,gld_transactions_per_request,gld_efficiency,gld_throughput,gld_requested_throughput,gst_transactions,gst_transactions_per_request,gst_efficiency,gst_throughput,gst_requested_throughput
+
+common.o: common.cu common.h
+	$(CC) $(CFLAGS) -c common.cu
