@@ -6,9 +6,10 @@ import os
 import statistics
 import subprocess
 
+gpu = "Tesla"
 
 def run_traces(programs, parameters):
-    subprocess.check_output("rm -f *.csv",  shell = True)
+
     traces = [" ", "--metrics all", "--events all"]
     for trace in traces:
         for program in programs:
@@ -28,11 +29,11 @@ def run_traces(programs, parameters):
                 cmd += program
                 cmd += " " + param  
                 if trace == " ":
-                    cmd += " 2> Temp; cat Temp | tail -n4 >>  ./traces.csv"
+                    cmd += " 2> Temp; cat Temp | tail -n4 >>  ./" + program + "-traces.csv"
                 elif trace == "--metrics all":
-                    cmd += " 2> Temp; cat Temp | grep 'Tesla' >> ./metrics.csv"
+                    cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ./" + program + "-metrics.csv"
                 elif trace == "--events all":
-                    cmd += " 2> Temp; cat Temp | grep 'Tesla' >> ./events.csv"
+                    cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ./" + program + "-events.csv"
 
                 output = subprocess.check_output(cmd,  shell = True)#, stderr=subprocess.STDOUT)
                 #print("Primeiro{}".format(output))

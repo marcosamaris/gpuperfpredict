@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 
 import imp
+import subprocess
+
 common = imp.load_source("common", "../common/common.py")
+
+subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["Subseqmax"]
 

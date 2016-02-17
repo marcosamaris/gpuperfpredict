@@ -155,7 +155,7 @@ cudaError_t checkCuda(cudaError_t result)
   	int CacheConfL1 = atoi(argv[2]);
 	size_t size = N * sizeof(long int);
 	
-	printf("./bitonic_sort starting with %d numbers...\n", N);
+	printf("./quicksort_sort starting with %d numbers...\n", N);
 	srand( time(NULL) );
 
 	int devId = 0;

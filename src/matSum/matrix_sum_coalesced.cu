@@ -1,122 +1,112 @@
-#include <assert.h>
-#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include "common.h"
+#include <sys/time.h>
+#include <cuda_profiler_api.h>
 
-// See more at: http://docs.nvidia.com/cuda/cuda-c-programming-guide/#sthash.7QeV8b7J.dpuf
-
-// Forward declaration of the matrix sum kernel
-__global__ void MatSumKernel(const Matrix, const Matrix, Matrix);
-
-// Matrix sum - Host code
-// Matrix dimensions are assumed to be multiples of BLOCK_SIZE
-void MatSum(const Matrix A, const Matrix B, Matrix C)
+// Convenience function for checking CUDA runtime API results
+// can be wrapped around any runtime API call. No-op in release builds.
+inline
+cudaError_t checkCuda(cudaError_t result)
 {
-  Matrix d_A, d_B, d_C;
-
-  // Load A and B to device memory
-  d_A.width = A.width; d_A.height = A.height;
-  size_t size = A.width * A.height * sizeof(double);
-  checkCuda(cudaMalloc(&d_A.elements, size));
-  checkCuda(cudaMemcpy(d_A.elements, A.elements, size, cudaMemcpyHostToDevice));
-
-  d_B.width = B.width; d_B.height = B.height;
-  size = B.width * B.height * sizeof(double);
-  checkCuda(cudaMalloc(&d_B.elements, size));
-  checkCuda(cudaMemcpy(d_B.elements, B.elements, size, cudaMemcpyHostToDevice));
-
-  // Allocate C in device memory
-  d_C.width = C.width; d_C.height = C.height;
-  size = C.width * C.height * sizeof(double);
-  cudaMalloc(&d_C.elements, size);
-
-  // Invoke kernel
-  dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
-  dim3 dimGrid(B.width / dimBlock.x, A.height / dimBlock.y);
-  MatSumKernel<<<dimGrid, dimBlock>>>(d_A, d_B, d_C);
-
-  // Read C from device memory
-  cudaMemcpy(C.elements, d_C.elements, size, cudaMemcpyDeviceToHost);
-
-  // Free device memory
-  cudaFree(d_A.elements);
-  cudaFree(d_B.elements);
-  cudaFree(d_C.elements);
+#if defined(DEBUG) || defined(_DEBUG)
+  if (result != cudaSuccess) {
+    fprintf(stderr, "CUDA Runtime Error: %s\n", cudaGetErrorString(result));
+    assert(result == cudaSuccess);
+  }
+#endif
+  return result;
 }
 
-// Matrix sum kernel called by MatSum()
-__global__ void MatSumKernel(Matrix A, Matrix B, Matrix C)
-{
-  int row = blockIdx.y * blockDim.y + threadIdx.y;
-  int col = blockIdx.x * blockDim.x + threadIdx.x;
 
-  C.elements[row * C.width + col] =
-    A.elements[row * A.width + col] + B.elements[row * B.width + col];
+__global__ void matSum(float* S, float* A, float* B, int N) {
+  int i = blockIdx.y*blockDim.y + threadIdx.y;
+  int j = blockIdx.x*blockDim.x + threadIdx.x;
+  int tid = i*N + j;
+  if (tid < N*N) {
+    S[tid] = A[tid] + B[tid];
+  }
 }
+
+
+// Fills a vector with random float entries.
+void randomInit(float* data, int N) {
+  for (int i = 0; i < N; ++i) {
+    for (int j = 0; j < N; ++j) {
+      int tid = i*N+j;
+      data[tid] = (float)drand48();
+    }
+  }
+}
+
 
 int main(int argc, char* argv[])
 {
-  if (argc != 3) {
-    fprintf(stderr, "Syntax: %s <vector size N> <device id>\n", argv[0]);
+
+  if (argc != 4) {
+    fprintf(stderr, "Syntax: %s <matrix size N> <block size> <device id>\n", argv[0]);
     return EXIT_FAILURE;
   }
 
-  const int N = atoi(argv[1]);
-  const int devId = atoi(argv[2]);
-  size_t size = N * N * sizeof(double);
-  struct timespec start, finish;
-  double elapsed;
-  double mul = 5.0;
+  int N = atoi(argv[1]);
+  int BlockSize = atoi(argv[2]);
+  int devId = atoi(argv[3]);
 
-  checkCuda(cudaSetDevice(devId));
+  checkCuda( cudaSetDevice(devId) );
+  cudaDeviceReset();
 
-  Matrix a, b, c;
+  // set seed for drand48()
+  srand48(42);
 
-  // allocate matrices on the CPU side
-  a.width = N;
-  a.height = N;
-  a.elements = (double *) malloc(size);
+  // allocate host memory for matrices A and B
+  printf("Allocate host memory for matrices A and B...\n");
+  float* A = (float*) malloc(N * N * sizeof(float));
+  float* B = (float*) malloc(N * N * sizeof(float));
+  float* S = (float*) malloc(N * N * sizeof(float));
 
-  b.width = N;
-  b.height = N;
-  b.elements = (double *) malloc(size);
+  // initialize host matrices
+  printf("Initialize host matrices...\n");
+  randomInit(A, N);
+  randomInit(B, N);
 
-  c.width = N;
-  c.height = N;
-  c.elements = (double *) malloc(size);
+  // allocate device matrices (linearized)
+  printf("Allocate device matrices (linearized)...\n");
+  float* dev_A = NULL; 
+  float* dev_B = NULL;
+  float* dev_S = NULL;
+  checkCuda( cudaMalloc((void**) &dev_A, N * N * sizeof(float)) );
+  checkCuda( cudaMalloc((void**) &dev_B, N * N * sizeof(float)) );
+  checkCuda( cudaMalloc((void**) &dev_S, N * N * sizeof(float)) );
 
-  // fill in the host memory with data
-  for (int i = 0; i < N; ++i) {
-    for (int j = 0; j < N; ++j) {
-      a.elements[i * N + j] = i * mul;
-      b.elements[i * N + j] = i;
-    }
-  }
+  // copy host memory to device
+  checkCuda( cudaMemcpy(dev_A, A, N*N*sizeof(float), cudaMemcpyHostToDevice) );
+  checkCuda( cudaMemcpy(dev_B, B, N*N*sizeof(float), cudaMemcpyHostToDevice) );
 
-  clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+  // execute the kernel
+  printf("Execute the kernel...\n");
 
-  MatSum(a, b, c);
+  int GridSize = (N + BlockSize-1) / BlockSize;
+  dim3 gridDim(GridSize, GridSize);
+  dim3 blockDim(BlockSize, BlockSize);
+  
+  cudaProfilerStart();   
+  matSum<<< gridDim, blockDim >>>(dev_S, dev_A, dev_B, N);
+  cudaProfilerStop();
 
-  clock_gettime(CLOCK_MONOTONIC_RAW, &finish);
-  elapsed = calculate_elapsed_time(start, finish);
+  // copy result from device to host
+  checkCuda( cudaMemcpy( S, dev_S, N * N * sizeof(float),cudaMemcpyDeviceToHost) );
 
-  printf("Total elapsed time: %lf\n", elapsed);
+  cudaDeviceProp prop;
+  checkCuda( cudaGetDeviceProperties(&prop, devId) );
+  printf("Device: %s\n", prop.name);
 
-  // finish up on the CPU side
-  for (int i = 0; i < N; ++i) {
-    for (int j = 0; j < N; ++j) {
-      assert(compare_doubles(
-             c.elements[i * N + j],
-             a.elements[i * N + j] + b.elements[i * N + j],
-             0.1));
-    }
-  }
-  printf("Matrix check successful!\n");
+  // clean up memory
+  free(A);
+  free(B);
+  free(S);
+  checkCuda( cudaFree(dev_A) );
+  checkCuda( cudaFree(dev_B) );
+  checkCuda( cudaFree(dev_S) );
 
-  // free memory on the cpu side
-  free(a.elements);
-  free(b.elements);
-  free(c.elements);
+  return 0;
 }
+
