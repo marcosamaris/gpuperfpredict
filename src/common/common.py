@@ -15,7 +15,7 @@ def run_traces(programs, parameters):
         for program in programs:
             for param in parameters:
                 cmd = "nvprof"
-                cmd += " --normalized-time-unit " + "s"
+                cmd += " --normalized-time-unit s"
                 cmd += " --print-gpu-trace "
                 if trace == " ":
                     cmd += trace
@@ -29,7 +29,7 @@ def run_traces(programs, parameters):
                 cmd += program
                 cmd += " " + param  
                 if trace == " ":
-                    cmd += " 2> Temp; cat Temp | tail -n4 >>  ./" + program + "-traces.csv"
+                    cmd += " 2> Temp; cat Temp | tail -n +4 >>  ./" + program + "-traces.csv"
                 elif trace == "--metrics all":
                     cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ./" + program + "-metrics.csv"
                 elif trace == "--events all":
