@@ -12,4 +12,6 @@ programs = ["Subseqmax"]
 parameters = ["131072 0", "262144 0", "524288 0" ,"1048576 0" ,"2097152 0" ,"4194304 0" ,"8388608 0" ,
         "16777216 0" ,"33554432 0" ,"67108864 0" ,"134217728 0" ,"268435456 0" ]
 
-common.run_traces(programs, parameters)
+kernel = "subSeqMax"
+
+common.run_traces(programs, parameters, kernel)

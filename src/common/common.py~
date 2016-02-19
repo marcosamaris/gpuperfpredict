@@ -8,14 +8,14 @@ import subprocess
 
 gpu = "Tesla"
 
-def run_traces(programs, parameters):
+def run_traces(programs, parameters, kernel):
 
-    traces = [" ", "--metrics all", "--events all"]
+    traces = [" "]
     for trace in traces:
         for program in programs:
             for param in parameters:
                 cmd = "nvprof"
-                cmd += " --normalized-time-unit " + "s"
+                cmd += " --normalized-time-unit s"
                 cmd += " --print-gpu-trace "
                 if trace == " ":
                     cmd += trace
@@ -29,14 +29,16 @@ def run_traces(programs, parameters):
                 cmd += program
                 cmd += " " + param  
                 if trace == " ":
-                    cmd += " 2> Temp; cat Temp | tail -n4 >>  ./" + program + "-traces.csv"
+                    cmd += " 2> Temp; cat Temp | tail -n +4 >>  ./" + program + "-traces.csv"
                 elif trace == "--metrics all":
                     cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ./" + program + "-metrics.csv"
                 elif trace == "--events all":
                     cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ./" + program + "-events.csv"
 
                 output = subprocess.check_output(cmd,  shell = True)#, stderr=subprocess.STDOUT)
-                #print("Primeiro{}".format(output))
+
+            if trace == " ":
+                output = subprocess.check_output("cat " + program + "-traces.csv | grep " + kernel + " > " + program + "-kernel-traces.csv", shell = True)
 
 
 #TODO Grep Tesla K40 y PArametros fijos

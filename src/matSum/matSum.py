@@ -9,6 +9,8 @@ subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["matrix_sum_normal", "matrix_sum_coalesced"]
 
-parameters = ["256 16 0", "512 16 0", "1024 16 0","2048 16 0","4096 16 0","8192 16 0","16384 16 0"]
+parameters = ["256 16 0", "512 16 0", "1024 16 0","2048 16 0","4096 16 0","8192 16 0"]
 
-common.run_traces(programs, parameters)
+kernel = "matSum"
+
+common.run_traces(programs, parameters, kernel)

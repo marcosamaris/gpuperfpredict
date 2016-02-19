@@ -8,9 +8,9 @@ import subprocess
 
 gpu = "Tesla"
 
-def run_traces(programs, parameters):
+def run_traces(programs, parameters, kernel):
 
-    traces = [" ", "--metrics all", "--events all"]
+    traces = [" "]
     for trace in traces:
         for program in programs:
             for param in parameters:
@@ -29,16 +29,16 @@ def run_traces(programs, parameters):
                 cmd += program
                 cmd += " " + param  
                 if trace == " ":
-                    cmd += " 2> Temp; cat Temp | tail -n +4 >>  ./" + program + "-traces.csv"
+                    cmd += " 2> Temp; cat Temp | tail -n +4 >>  ../logs/" + program + "-traces.csv"
                 elif trace == "--metrics all":
-                    cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ./" + program + "-metrics.csv"
+                    cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ../logs/" + program + "-metrics.csv"
                 elif trace == "--events all":
-                    cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ./" + program + "-events.csv"
+                    cmd += " 2> Temp; cat Temp | grep '" + gpu + "' >> ../logs/" + program + "-events.csv"
 
                 output = subprocess.check_output(cmd,  shell = True)#, stderr=subprocess.STDOUT)
-                #print("Primeiro{}".format(output))
-
-
-#TODO Grep Tesla K40 y PArametros fijos
+            if trace == " ":
+                output = subprocess.check_output("cat ../logs/" + program + "-traces.csv | grep " + kernel + " > ../logs/" + program + "-kernel-traces.csv", shell = True)            
+                output = subprocess.check_output("cat ../logs/" + program + "-traces.csv | grep HtoD > ../logs/" + program + "-HtoD-traces.csv", shell = True)
+                #output = subprocess.check_output("cat ../logs/" + program + "-traces.csv | grep DtoH > ../logs/" + program + "-DtoH-traces.csv", shell = True)
 
 

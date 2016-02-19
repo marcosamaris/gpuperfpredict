@@ -12,4 +12,6 @@ programs = ["matMul_gpu", "matMul_gpu_uncoalesced",
 
 parameters = ["256 16 0", "512 16 0","1024 16 0","2048 16 0","4096 16 0","8192 16 0"]
 
-common.run_traces(programs, parameters)
+kernel = "matMul"
+
+common.run_traces(programs, parameters, kernel)

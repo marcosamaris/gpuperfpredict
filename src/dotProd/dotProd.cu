@@ -36,7 +36,7 @@ cudaError_t checkCuda(cudaError_t result)
 
 const int BlockSize = 256;
 
-__global__ void dot( float *a, float *b, float *c, int N ) {
+__global__ void dotProd( float *a, float *b, float *c, int N ) {
     __shared__ float cache[BlockSize];
     int tid = threadIdx.x + blockIdx.x * blockDim.x;
     int cacheIndex = threadIdx.x;
@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
     checkCuda( cudaMemcpy( dev_a, a, N*sizeof(float), cudaMemcpyHostToDevice ) );
     checkCuda( cudaMemcpy( dev_b, b, N*sizeof(float), cudaMemcpyHostToDevice ) ); 
 
-    dot<<<GridSize,BlockSize>>>( dev_a, dev_b, dev_partial_c, N );
+    dotProd<<<GridSize,BlockSize>>>( dev_a, dev_b, dev_partial_c, N );
 
     // copy the array 'c' back from the GPU to the CPU
     checkCuda( cudaMemcpy( partial_c, dev_partial_c, GridSize*sizeof(float), cudaMemcpyDeviceToHost ) );

@@ -1,0 +1,52 @@
+make: Warning: File `Makefile' has modification time 1,8e+02 s in the future
+cd matMul; make tests
+make[1]: Entering directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/matMul'
+make[1]: Warning: File `../common/Makefile.common' has modification time 2,2e+02 s in the future
+python3 -u ./matMul.py
+make[1]: *** [tests] Killed
+make[1]: Leaving directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/matMul'
+make: *** [tests] Error 2
+cd matMul; make tests
+make[1]: Entering directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/matMul'
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu_uncoalesced.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu_uncoalesced.o -o matMul_gpu_uncoalesced
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu.o -o matMul_gpu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu_sharedmem_uncoalesced.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu_sharedmem_uncoalesced.o -o matMul_gpu_sharedmem_uncoalesced
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu_sharedmem.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu_sharedmem.o -o matMul_gpu_sharedmem
+python3 -u ./matMul.py
+make[1]: Leaving directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/matMul'
+cd matSum; make tests
+make[1]: Entering directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/matSum'
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matrix_sum_normal.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matrix_sum_normal.o -o matrix_sum_normal
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matrix_sum_coalesced.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matrix_sum_coalesced.o -o matrix_sum_coalesced
+python3 -u ./matSum.py
+make[1]: Leaving directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/matSum'
+cd Subseqmax; make tests
+make[1]: Entering directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/Subseqmax'
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c Subseqmax.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 Subseqmax.o -o Subseqmax
+python3 -u ./Subseqmax.py
+make[1]: Leaving directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/Subseqmax'
+cd dotProd; make tests
+make[1]: Entering directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/dotProd'
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c dotProd.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 dotProd.o -o dotProd
+python3 -u ./dotProd.py
+make[1]: Leaving directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/dotProd'
+cd sorting; make tests
+make[1]: Entering directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/sorting'
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c quicksort.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 quicksort.o -o quicksort
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c bitonic_sort.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 bitonic_sort.o -o bitonic
+python3 -u ./sorting.py
+make[1]: Leaving directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/sorting'
+cd Subseqmax; make tests
+make[1]: Entering directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/Subseqmax'
+python3 -u ./Subseqmax.py
+make[1]: Leaving directory `/home/marcos/Dropbox/Doctorate/Results/2016/svm-gpuperf/src/Subseqmax'
