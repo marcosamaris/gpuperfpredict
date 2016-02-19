@@ -10,6 +10,15 @@ quicksort: quicksort.o
 
 tests: quicksort
 	python3 -u ./quicksort.py
+	
+traces: quicksort
+	python3 -u ./quicksort.py --Traces True
 
+metrics: quicksort
+	python3 -u ./quicksort.py  --Metrics True
+
+events: quicksort
+	python3 -u ./quicksort.py  --Events True
+	
 clean:
 	rm -rf *.o quicksort

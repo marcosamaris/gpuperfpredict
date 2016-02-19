@@ -3,14 +3,13 @@
 import csv
 import re
 import os
-import statistics
 import subprocess
+import argparse
 
-gpu = "Tesla"
+gpu = "Tesla"                    
 
-def run_traces(programs, parameters, kernel):
-
-    traces = [" "]
+def run_traces(programs, parameters, kernel, traces):
+    
     for trace in traces:
         for program in programs:
             for param in parameters:

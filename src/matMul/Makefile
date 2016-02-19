@@ -29,5 +29,14 @@ matMul_gpu_sharedmem: matMul_gpu_sharedmem.o
 tests: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
 		python3 -u ./matMul.py
 
+traces: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
+		python3 -u ./matMul.py --Traces True
+
+metrics: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
+		python3 -u ./matMul.py  --Metrics True
+
+events: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
+		python3 -u ./matMul.py  --Events True
+	
 clean:
 		rm -rf *.o matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem

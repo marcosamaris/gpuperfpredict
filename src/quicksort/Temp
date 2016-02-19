@@ -1,7 +1,7 @@
-==12569== NVPROF is profiling process 12569, command: ./quicksort 65536 0
-==12569== Profiling application: ./quicksort 65536 0
-==12569== Profiling result:
+==16294== NVPROF is profiling process 16294, command: ./quicksort 65536 0
+==16294== Profiling application: ./quicksort 65536 0
+==16294== Profiling result:
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,KB,GB/s,,,,
-2.004267,5.241600e-05,,,,,,,,,,512.000000,9.315500,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.004543,7.003540,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"
+2.005179,5.251200e-05,,,,,,,,,,512.000000,9.298470,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.005454,6.997963,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"

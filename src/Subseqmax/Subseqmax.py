@@ -2,6 +2,24 @@
 
 import imp
 import subprocess
+import argparse
+
+argparser = argparse.ArgumentParser()
+
+argparser.add_argument( "--Traces", type = bool, default=False, help = "Run Traces of the Benchmarks.")
+argparser.add_argument( "--Metrics", type = bool, default=False, help = "Runs Metrics of the Benchmarks.")
+argparser.add_argument( "--Events", type = bool, default=False, help  = "Runs Eents of the Benchmarks.")
+
+args = argparser.parse_args()
+
+if args.Traces == True:
+	traces = [" "]
+if args.Metrics == True:
+	traces = ["--metrics all"]
+if args.Events == True:
+	traces = ["--events all"]
+if args.Traces == True  and args.Metrics == True and args.Events == False:
+	traces = [" ", "--metrics all", "--events all"]
 
 common = imp.load_source("common", "../common/common.py")
 
@@ -14,4 +32,4 @@ parameters = ["131072 0", "262144 0", "524288 0" ,"1048576 0" ,"2097152 0" ,"419
 
 kernel = "subSeqMax"
 
-common.run_traces(programs, parameters, kernel)
+common.run_traces(programs, parameters, kernel, traces)

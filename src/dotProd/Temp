@@ -1,9 +1,9 @@
-==13234== NVPROF is profiling process 13234, command: ./dotProd 268435456 0
-==13234== Profiling application: ./dotProd 268435456 0
-==13234== Profiling result:
+==17041== NVPROF is profiling process 17041, command: ./dotProd 268435456 0
+==17041== Profiling application: ./dotProd 268435456 0
+==17041== Profiling result:
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,GB,GB/s,,,,
-2.282404,0.169657,,,,,,,,,,1.000000,5.894231,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.452185,0.169813,,,,,,,,,,1.000000,5.888819,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.622004,0.019470,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.641477,2.336000e-06,,,,,,,,,,1.192093e-07,0.051031,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+2.293069,0.169634,,,,,,,,,,1.000000,5.895033,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.462826,0.167960,,,,,,,,,,1.000000,5.953788,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.630792,0.019519,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+2.650315,2.400000e-06,,,,,,,,,,1.192093e-07,0.049671,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"

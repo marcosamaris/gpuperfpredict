@@ -15,7 +15,34 @@ tests:
 	cd dotProd; make tests
 	cd Subseqmax; make tests
 	cd matMul; make tests
+	
+traces: 
+	cd bitonic; make traces
+	cd quicksort; make traces
+	cd matSum; make traces
+	cd Subseqmax; make traces
+	cd dotProd; make traces
+	cd Subseqmax; make traces
+	cd matMul; make traces
 
+metrics: 
+	cd bitonic; make metrics
+	cd quicksort; make metrics
+	cd matSum; make metrics
+	cd Subseqmax; make metrics
+	cd dotProd; make metrics
+	cd Subseqmax; make metrics
+	cd matMul; make metrics
+
+events: 
+	cd bitonic; make events
+	cd quicksort; make events
+	cd matSum; make events
+	cd Subseqmax; make events
+	cd dotProd; make events
+	cd Subseqmax; make events
+	cd matMul; make events
+	
 clean:
 	cd bitonic; make clean
 	cd quicksort; make clean

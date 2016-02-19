@@ -1,8 +1,8 @@
-==12806== NVPROF is profiling process 12806, command: ./matrix_sum_coalesced 8192 16 0
-==12806== Profiling application: ./matrix_sum_coalesced 8192 16 0
-==12806== Profiling result:
+==16557== NVPROF is profiling process 16557, command: ./matrix_sum_coalesced 8192 16 0
+==16557== Profiling application: ./matrix_sum_coalesced 8192 16 0
+==16557== Profiling result:
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,MB,GB/s,,,,
-2.811940,0.043951,,,,,,,,,,256.000000,5.688114,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.856017,0.043052,,,,,,,,,,256.000000,5.806960,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.899075,4.686661e-03,512,512,1,16,16,1,10,0,0,,,"Tesla K40c (0)","1","7","matSum(float*, float*, float*, int) [103]"
+2.819448,0.042070,,,,,,,,,,256.000000,5.942481,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.861639,0.041820,,,,,,,,,,256.000000,5.978030,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.903465,4.686917e-03,512,512,1,16,16,1,10,0,0,,,"Tesla K40c (0)","1","7","matSum(float*, float*, float*, int) [103]"

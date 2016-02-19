@@ -10,6 +10,15 @@ bitonic: bitonic.o
 
 tests: bitonic
 	python3 -u ./bitonic.py
+	
+traces: bitonic
+	python3 -u ./bitonic.py --Traces True
+
+metrics: bitonic
+	python3 -u ./bitonic.py  --Metrics True
+
+events: bitonic
+	python3 -u ./bitonic.pyEvents True
 
 clean:
-	rm -rf *.o bitonic_sort
+	rm -rf *.o bitonic
