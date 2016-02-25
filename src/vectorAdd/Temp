@@ -1,9 +1,7 @@
-==8300== NVPROF is profiling process 8300, command: ./vectorAdd 8388608
-==8300== Profiling application: ./vectorAdd 8388608
-==8300== Profiling result:
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,MB,GB/s,,,,
-2.006345,5.484705e-03,,,,,,,,,,32.000000,5.697663,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.011952,5.186306e-03,,,,,,,,,,32.000000,6.025483,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.017145,5.949120e-04,32768,1,1,256,1,1,11,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-2.017744,7.321379e-03,,,,,,,,,,32.000000,4.268322,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+==1020== NVPROF is profiling process 1020, command: ./vectorAdd 268435456
+vectorAdd: vectorAdd.cu:111: int main(int, char**): Assertion `i == N' failed.
+==1020== Profiling application: ./vectorAdd 268435456
+==1020== Profiling result:
+No kernels were profiled.
+==1020== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.
+======== Error: Application received signal 134
