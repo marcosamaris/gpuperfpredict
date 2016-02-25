@@ -122,6 +122,7 @@ cudaError_t checkCuda(cudaError_t result)
 		fprintf(stderr, "Syntax: %s <Vector size Width>  <CacheConfL1> \n", argv[0]);
     		return EXIT_FAILURE;
 	}
+    cudaProfilerStart();
 
  	
 	int N = atoi(argv[1]);
@@ -180,7 +181,7 @@ cudaError_t checkCuda(cudaError_t result)
  		
  		cudaThreadSynchronize() ;
 		// execute kernel
-       		cudaProfilerStart(); 
+       		 
 		for (int k = 2; k <= N; k <<= 1) {
 			for (int j = k >> 1; j > 0; j = j >> 1) {
 				if (N < MAX_THREADS)
@@ -189,7 +190,7 @@ cudaError_t checkCuda(cudaError_t result)
 					Bitonic_Sort <<< N / MAX_THREADS, MAX_THREADS >>> (d_values, j, k, N);
 			}
 		}
-        	cudaProfilerStop(); 		
+        	 		
  
 		cudaThreadSynchronize() ;
  
@@ -208,5 +209,6 @@ cudaError_t checkCuda(cudaError_t result)
  	free(r_values);	
  	
  	cudaThreadExit();
+cudaProfilerStop();
   
 }

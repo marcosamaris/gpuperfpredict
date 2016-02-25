@@ -244,6 +244,7 @@ void subSeqMaxFinal(int *vet, int n){
 }
 
 int main(int argc, char** argv){
+	cudaProfilerStart(); 
 
 	float elapsedTime;    // Tempo
 	cudaEvent_t start, stop; // Tempo
@@ -277,7 +278,7 @@ int main(int argc, char** argv){
   	int CacheConfL1 = atoi(argv[2]);
 
 	checkCuda( cudaSetDevice(devId) );
-    	cudaDeviceReset();
+    cudaDeviceReset();
 
 	cudaDeviceProp prop;
 	checkCuda( cudaGetDeviceProperties(&prop, devId) );
@@ -310,13 +311,8 @@ int main(int argc, char** argv){
 	cudaEventCreate(&stop);
 	cudaEventRecord(start, 0);
     
-	cudaProfilerStart(); 
-	subSeqMax<<<BLOCK_SIZE, nThreadsPerBlock>>>(vet_d, vetFinal_d, ElemPorThread,N / BLOCK_SIZE);
-	cudaProfilerStop();
 
-	cudaEventRecord(stop, 0);
-	cudaEventSynchronize(stop);
-	cudaEventElapsedTime(&elapsedTime, start, stop);
+	subSeqMax<<<BLOCK_SIZE, nThreadsPerBlock>>>(vet_d, vetFinal_d, ElemPorThread,N / BLOCK_SIZE);
 
 	printf("Primeiro kernel (ms) = \%f\n\n", elapsedTime);
 
@@ -335,5 +331,6 @@ int main(int argc, char** argv){
     	subSeqMaxFinal(vetFinal_h, NFinal);
 
 	return 0;
+    cudaProfilerStop();
 }
 

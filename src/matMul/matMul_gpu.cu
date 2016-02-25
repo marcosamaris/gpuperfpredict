@@ -48,6 +48,8 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
   }
 
+  cudaProfilerStart();
+
   int Width = atoi(argv[1]);
   int BlockSize = atoi(argv[2]);
   int devId = 0;
@@ -103,11 +105,8 @@ int main(int argc, char* argv[])
   dim3 gridDim(GridSize, GridSize);
   dim3 blockDim(BlockSize, BlockSize);
   
-
-  cudaProfilerStart(); 
   matMul<<< gridDim, blockDim >>>(Pd, Md, Nd, Width, BlockSize);
-  cudaProfilerStop();
-
+  
   // copy result from device to host
   checkCuda( cudaMemcpy( P, Pd, Width * Width * sizeof(float),cudaMemcpyDeviceToHost) );
 
@@ -149,5 +148,6 @@ int main(int argc, char* argv[])
   checkCuda( cudaFree(Pd) );
 
   return 0;
+  cudaProfilerStop();
 }
 

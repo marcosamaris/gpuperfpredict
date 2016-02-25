@@ -38,6 +38,6 @@ def run_traces(programs, parameters, kernel, traces):
             if trace == " ":
                 output = subprocess.check_output("cat ../logs/" + program + "-traces.csv | grep " + kernel + " > ../logs/" + program + "-kernel-traces.csv", shell = True)            
                 output = subprocess.check_output("cat ../logs/" + program + "-traces.csv | grep HtoD > ../logs/" + program + "-HtoD-traces.csv", shell = True)
-                #output = subprocess.check_output("cat ../logs/" + program + "-traces.csv | grep DtoH > ../logs/" + program + "-DtoH-traces.csv", shell = True)
+                output = subprocess.check_output("cat ../logs/" + program + "-traces.csv | grep DtoH > ../logs/" + program + "-DtoH-traces.csv", shell = True)
 
 

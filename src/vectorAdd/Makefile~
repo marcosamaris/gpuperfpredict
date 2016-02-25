@@ -11,6 +11,14 @@ vectorAdd: vectorAdd.o
 tests: vectorAdd
 	python3 -u ./vectorAdd.py
 				 
+traces: vectorAdd
+	python3 -u ./vectorAdd.py --Traces True
+
+metrics: Subseqmax
+	python3 -u ./vectorAdd.py  --Metrics True
+
+events: Subseqmax
+	python3 -u ./vectorAdd.py  --Events True				 
 
 clean:
 	rm -rf *.o vectorAdd

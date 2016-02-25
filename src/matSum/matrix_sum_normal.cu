@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
     fprintf(stderr, "Syntax: %s <matrix size N> <block size> <device id>\n", argv[0]);
     return EXIT_FAILURE;
   }
+  cudaProfilerStart(); 
 
   int N = atoi(argv[1]);
   int BlockSize = atoi(argv[2]);
@@ -88,9 +89,9 @@ int main(int argc, char* argv[])
   dim3 gridDim(GridSize, GridSize);
   dim3 blockDim(BlockSize, BlockSize);
 
-  cudaProfilerStart(); 
+
   matSum<<< gridDim, blockDim >>>(dev_S, dev_A, dev_B, N);
-  cudaProfilerStop();
+
 
   // copy result from device to host
   checkCuda( cudaMemcpy( S, dev_S, N * N * sizeof(float),cudaMemcpyDeviceToHost) );
@@ -108,5 +109,6 @@ int main(int argc, char* argv[])
   checkCuda( cudaFree(dev_S) );
 
   return 0;
+  cudaProfilerStop();
 }
 

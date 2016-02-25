@@ -61,6 +61,7 @@ int main(int argc, char* argv[])
     fprintf(stderr, "Syntax: %s <matrix size Width> < Block_size> <CacheConfL1> \n", argv[0]);
     return EXIT_FAILURE;
   }
+cudaProfilerStart();
 
   int Width = atoi(argv[1]);
   int BlockSize = atoi(argv[2]);
@@ -119,9 +120,9 @@ int main(int argc, char* argv[])
   dim3 gridDim(GridSize, GridSize);
   dim3 blockDim(Tile_Width, Tile_Width);
 
-  cudaProfilerStart();
+
   matMul<<< gridDim, blockDim >>>(Pd, Md, Nd, Width);
-  cudaProfilerStop();
+
 
   // copy result from device to host
   checkCuda( cudaMemcpy( P, Pd, Width * Width * sizeof(float),cudaMemcpyDeviceToHost) );
@@ -166,5 +167,6 @@ int main(int argc, char* argv[])
   checkCuda( cudaFree(Pd) );
 
   return 0;
+  cudaProfilerStop();
 }
 

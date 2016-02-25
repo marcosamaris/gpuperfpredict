@@ -18,7 +18,7 @@ if args.Metrics == True:
 	traces = ["--metrics all"]
 if args.Events == True:
 	traces = ["--events all"]
-if args.Traces == True  and args.Metrics == True and args.Events == False:
+if args.Traces == False  and args.Metrics == False and args.Events == False:
 	traces = [" ", "--metrics all", "--events all"]
     
 common = imp.load_source("common", "../common/common.py")
