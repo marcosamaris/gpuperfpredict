@@ -1,9 +1,0 @@
-==25190== NVPROF is profiling process 25190, command: ./vectorAdd 268435456 0 0
-==25190== Profiling application: ./vectorAdd 268435456 0 0
-==25190== Profiling result:
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,GB,GB/s,,,,
-9.757467,0.168863,,,,,,,,,,1.000000,5.921954,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
-9.926454,0.168781,,,,,,,,,,1.000000,5.924836,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
-10.095241,0.017780,1048576,1,1,256,1,1,10,0,0,,,"Tesla K40c (0)","2","14","vectorAdd(float const *, float const *, float*, int) [104]"
-10.113025,0.248614,,,,,,,,,,1.000000,4.022302,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"

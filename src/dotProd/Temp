@@ -1,9 +1,0 @@
-==26950== NVPROF is profiling process 26950, command: ./dotProd 268435456 0
-==26950== Profiling application: ./dotProd 268435456 0
-==26950== Profiling result:
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,KB,GB,GB/s,,,,
-2.303094,0.168788,,,,,,,,,,1.000000,5.924585,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.472003,0.172691,,,,,,,,,,1.000000,5.790682,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.644701,0.019517,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.664220,2.464000e-06,,,,,,,,,,1.192093e-07,0.048380,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"

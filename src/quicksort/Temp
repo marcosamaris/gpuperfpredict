@@ -1,8 +1,0 @@
-==26202== NVPROF is profiling process 26202, command: ./quicksort 65536 0 0
-==26202== Profiling application: ./quicksort 65536 0 0
-==26202== Profiling result:
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,KB,GB/s,,,,
-2.122769,5.244800e-05,,,,,,,,,,512.000000,9.309816,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
-2.123037,6.990385,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","2","14","quicksort(int*, int) [101]"
-9.113465,5.187100e-05,,,,,,,,,,512.000000,9.413376,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
