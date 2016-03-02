@@ -1,0 +1,8 @@
+==27186== NVPROF is profiling process 27186, command: ./Subseqmax 268435456 0 0
+==27186== Profiling application: ./Subseqmax 268435456 0 0
+==27186== Profiling result:
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,GB,GB/s,,,,
+2.226878,0.170586,,,,,,,,,,1.000000,5.862139,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.397470,0.154471,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","2","14","subSeqMax(int*, int*, int, int) [103]"
+2.551945,2.592000e-06,,,,,,,,,,2.384186e-06,0.919825,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"

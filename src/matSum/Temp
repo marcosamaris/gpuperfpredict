@@ -1,0 +1,9 @@
+==1601== NVPROF is profiling process 1601, command: ./matrix_sum_coalesced 8192 16 0 0
+==1601== Profiling application: ./matrix_sum_coalesced 8192 16 0 0
+==1601== Profiling result:
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.320960,0.082365,,,,,,,,,,256.000000,3.035269,"GeForce GTX 750 (0)","2","14","[CUDA memcpy HtoD]"
+2.403561,0.082704,,,,,,,,,,256.000000,3.022828,"GeForce GTX 750 (0)","2","14","[CUDA memcpy HtoD]"
+2.486319,0.011892,512,512,1,16,16,1,8,0,0,,,"GeForce GTX 750 (0)","2","14","matSum(float*, float*, float*, int) [104]"
+2.498213,0.145107,,,,,,,,,,256.000000,1.722866,"GeForce GTX 750 (0)","2","14","[CUDA memcpy DtoH]"
