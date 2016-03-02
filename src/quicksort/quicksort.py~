@@ -18,7 +18,7 @@ if args.Metrics == True:
 	traces = ["--metrics all"]
 if args.Events == True:
 	traces = ["--events all"]
-if args.Traces == True  and args.Metrics == True and args.Events == False:
+if args.Traces == False  and args.Metrics == False and args.Events == False:
 	traces = [" ", "--metrics all", "--events all"]
 
 common = imp.load_source("common", "../common/common.py")
@@ -27,7 +27,7 @@ subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["quicksort"]
 
-parameters = ["2048 0","4096 0","8192 0","16384 0","32768 0","65536 0"]
+parameters = ["2048 16 0 " + str(args.Device),"4096 16 0 " + str(args.Device),"8192 16 0 " + str(args.Device),"16384 0 " + str(args.Device),"32768 0 " + str(args.Device),"65536 0 " + str(args.Device)]
 
 kernel = "quicksort"
 

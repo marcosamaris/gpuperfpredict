@@ -42,15 +42,17 @@ void randomInit(float* data, int N) {
 int main(int argc, char* argv[])
 {
 
-  if (argc != 4) {
-    fprintf(stderr, "Syntax: %s <matrix size N> <block size> <device id>\n", argv[0]);
+  if (argc != 5) {
+    fprintf(stderr, "Syntax: %s <matrix size> < Block_size> <CacheConfL1>  <device> \n", argv[0]);
     return EXIT_FAILURE;
   }
-cudaProfilerStart();
+
+  cudaProfilerStart();
 
   int N = atoi(argv[1]);
   int BlockSize = atoi(argv[2]);
-  int devId = atoi(argv[3]);
+  int CacheConfL1 = atoi(argv[3]);
+  int devId = atoi(argv[4]);
 
   checkCuda( cudaSetDevice(devId) );
   cudaDeviceReset();
@@ -84,6 +86,19 @@ cudaProfilerStart();
 
   // execute the kernel
   printf("Execute the kernel...\n");
+
+  if (CacheConfL1 == 1){
+    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferShared);
+  }
+  else if (CacheConfL1 == 2){
+    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferEqual);
+  }
+  else if (CacheConfL1 == 3){
+    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferL1);
+  }
+  else {
+    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferNone);
+  }
 
   int GridSize = (N + BlockSize-1) / BlockSize;
   dim3 gridDim(GridSize, GridSize);

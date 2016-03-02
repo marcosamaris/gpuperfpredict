@@ -17,5 +17,14 @@ matrix_sum_coalesced: matrix_sum_coalesced.o
 tests: matrix_sum_normal matrix_sum_coalesced
 	python3 -u ./matSum.py
 
+traces: matrix_sum_normal matrix_sum_coalesced
+	python3 -u ./matSum.py --Traces True
+
+metrics: matrix_sum_normal matrix_sum_coalesced
+	python3 -u ./matSum.py  --Metrics True
+
+events: matrix_sum_normal matrix_sum_coalesced
+	python3 -u ./matSum.py  --Events True
+
 clean:
 	rm -rf *.o matrix_sum_normal matrix_sum_coalesced

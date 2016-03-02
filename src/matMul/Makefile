@@ -27,16 +27,16 @@ matMul_gpu_sharedmem: matMul_gpu_sharedmem.o
 		$(CC) $(CFLAGS) matMul_gpu_sharedmem.o -o matMul_gpu_sharedmem
 
 tests: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
-		python3 -u ./matMul.py
+		python3 -u ./matMul.py --Device $(DEVICE_ID)
 
 traces: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
-		python3 -u ./matMul.py --Traces True
+		python3 -u ./matMul.py --Traces True --Device $(DEVICE_ID)
 
 metrics: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
-		python3 -u ./matMul.py  --Metrics True
+		python3 -u ./matMul.py  --Metrics True  --Device $(DEVICE_ID)
 
 events: matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem 
-		python3 -u ./matMul.py  --Events True
+		python3 -u ./matMul.py  --Events True --Device $(DEVICE_ID)
 	
 clean:
 		rm -rf *.o matMul_gpu_uncoalesced matMul_gpu matMul_gpu_sharedmem_uncoalesced matMul_gpu_sharedmem

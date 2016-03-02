@@ -9,6 +9,7 @@ argparser = argparse.ArgumentParser()
 argparser.add_argument( "--Traces", type = bool, default=False, help = "Run Traces of the Benchmarks.")
 argparser.add_argument( "--Metrics", type = bool, default=False, help = "Runs Metrics of the Benchmarks.")
 argparser.add_argument( "--Events", type = bool, default=False, help  = "Runs Eents of the Benchmarks.")
+argparser.add_argument( "--Device", type = int, default=0, help  = "Device where the experiment will be executed.")
 
 args = argparser.parse_args()
 
@@ -28,7 +29,7 @@ subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["matrix_sum_normal", "matrix_sum_coalesced"]
 
-parameters = ["256 16 0", "512 16 0", "1024 16 0","2048 16 0","4096 16 0","8192 16 0"]
+parameters = ["128 16 0 " + str(args.Device), "256 16 0 " + str(args.Device), "512 16 0 " + str(args.Device),"1024 16 0 " + str(args.Device),"2048 16 0 " + str(args.Device),"4096 16 0 " + str(args.Device),"8192 16 0 " + str(args.Device)]
 
 kernel = "matSum"
 

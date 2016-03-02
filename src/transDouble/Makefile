@@ -1,25 +1,25 @@
-all: TransDouble
+all: transDouble
 
 include ../common/Makefile.common
 
-TransDouble.o: TransDouble.cu
-	$(CC) $(CFLAGS) -c TransDouble.cu
+transDouble.o: transDouble.cu
+	$(CC) $(CFLAGS) -c transDouble.cu
 
-TransDouble: TransDouble.o
-	$(CC) $(CFLAGS) TransDouble.o -o TransDouble
+transDouble: transDouble.o
+	$(CC) $(CFLAGS) transDouble.o -o transDouble
 
-tests: TransDouble
-	python3 -u ./TransDouble.py
+tests: transDouble
+	python3 -u ./transDouble.py --Device $(DEVICE_ID)
 				 
-traces: TransDouble
-	python3 -u ./TransDouble.py --Traces True
+traces: transDouble
+	python3 -u ./transDouble.py --Traces True  --Device $(DEVICE_ID)
 
 metrics: Subseqmax
-	python3 -u ./TransDouble.py  --Metrics True
+	python3 -u ./transDouble.py  --Metrics True --Device $(DEVICE_ID)
 
 events: Subseqmax
-	python3 -u ./TransDouble.py  --Events True				 
+	python3 -u ./transDouble.py  --Events True --Device $(DEVICE_ID)				 
 
 clean:
-	rm -rf *.o TransDouble
+	rm -rf *.o transDouble
 

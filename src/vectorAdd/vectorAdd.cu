@@ -23,8 +23,21 @@
 //#include <prof.cu>
 // Includes
 #include <stdio.h>
-#include <assert.h>     
+#include <assert.h>    
+#include <cuda_profiler_api.h> 
 //#include <cutil_inline.h>
+
+inline
+cudaError_t checkCuda(cudaError_t result)
+{
+#if defined(DEBUG) || defined(_DEBUG)
+  if (result != cudaSuccess) {
+    fprintf(stderr, "CUDA Runtime Error: %s\n", cudaGetErrorString(result));
+    assert(result == cudaSuccess);
+  }
+#endif
+  return result;
+}
 
 // Variables
 float* h_A;
@@ -41,7 +54,7 @@ void RandomInit(float*, int);
 void ParseArguments(int, char**);
 
 // Device code
-__global__ void VecAdd(const float* A, const float* B, float* C, int N)
+__global__ void vectorAdd(const float* A, const float* B, float* C, int N)
 {
     int i = blockDim.x * blockIdx.x + threadIdx.x;
     if (i < N)
@@ -51,17 +64,26 @@ __global__ void VecAdd(const float* A, const float* B, float* C, int N)
 // Host code
 int main(int argc, char** argv)
 {
-//  GpuProfiling::initProf();
+
+    if (argc != 4 ) {
+		fprintf(stderr, "Syntax: %s <Vector size>  <CacheConfL1>  <device>\n", argv[0]);
+    		return EXIT_FAILURE;
+	}
+    cudaProfilerStart();
+    
+    int N = atoi(argv[1]);
+    int CacheConfL1 = atoi(argv[2]);    
+    int devId = atoi(argv[2]);
+
+    size_t size = N * sizeof(float);
+    
+    checkCuda( cudaSetDevice(devId) );
+    cudaDeviceReset();
+    
+    ParseArguments(argc, argv);
+
     printf("Vector addition\n");
     
-    if (argc != 2 ) {
-        fprintf(stderr, "Syntax: %s <Vector size Width>  \n", argv[0]);
-            return EXIT_FAILURE;
-    }
-    
-    int N = atoi(argv[1]);    
-    size_t size = N * sizeof(float);
-    ParseArguments(argc, argv);
 
     // Allocate input vectors h_A and h_B in host memory
     h_A = (float*)malloc(size);
@@ -76,19 +98,32 @@ int main(int argc, char** argv)
     RandomInit(h_B, N);
 
     // Allocate vectors in device memory
-    cudaMalloc((void**)&d_A, size) ;
-    cudaMalloc((void**)&d_B, size) ;
-    cudaMalloc((void**)&d_C, size) ;
+    checkCuda(cudaMalloc((void**)&d_A, size)) ;
+    checkCuda(cudaMalloc((void**)&d_B, size)) ;
+    checkCuda(cudaMalloc((void**)&d_C, size)) ;
 
     // Copy vectors from host memory to device memory
-    cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice) ;
-    cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice) ;
+    checkCuda(cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice)) ;
+    checkCuda(cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice)) ;
+
+	if (CacheConfL1 == 1){
+	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferShared);
+	}
+	else if (CacheConfL1 == 2){
+	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferEqual);
+	}
+	else if (CacheConfL1 == 3){
+	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferL1);
+	}
+	else {
+	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferNone);
+	}
 
     // Invoke kernel
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
 //  GpuProfiling::prepareProfiling( blocksPerGrid, threadsPerBlock );
-    VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
+    vectorAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
 //  GpuProfiling::addResults("VecAdd");
 //    cutilCheckMsg("kernel launch failure");
 #ifdef _DEBUG
@@ -97,7 +132,7 @@ int main(int argc, char** argv)
 
     // Copy result from device memory to host memory
     // h_C contains the result in host memory
-    cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost) ;
+    checkCuda(cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost)) ;
 
     // Verify result
     int i;
@@ -110,9 +145,10 @@ int main(int argc, char** argv)
     printf("%s \n", (i == N) ? "PASSED" : "FAILED");    
     assert(i == N);
     printf("Assertion Finished");
-//  GpuProfiling::printResults();
 
     Cleanup();
+    return 0;
+    cudaProfilerStop();
 }
 
 void Cleanup(void)

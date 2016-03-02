@@ -9,6 +9,7 @@ argparser = argparse.ArgumentParser()
 argparser.add_argument( "--Traces", type = bool, default=False, help = "Run Traces of the Benchmarks.")
 argparser.add_argument( "--Metrics", type = bool, default=False, help = "Runs Metrics of the Benchmarks.")
 argparser.add_argument( "--Events", type = bool, default=False, help  = "Runs Eents of the Benchmarks.")
+argparser.add_argument( "--Device", type = int, default=0, help  = "Device where the experiment will be executed.")
 
 args = argparser.parse_args()
 
@@ -27,9 +28,9 @@ subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["vectorAdd"]
 
-parameters = ["131072", "262144", "524288" ,"1048576" ,"2097152" ,"4194304" ,"8388608" ,
-        "16777216" ,"33554432" ,"67108864" ,"134217728" ,"268435456" ]
+parameters = ["65536 0 " + str(args.Device),"131072 0 " + str(args.Device), "262144 0 " + str(args.Device), "524288 0 " + str(args.Device),"1048576 0 " + str(args.Device),"2097152 0 " + str(args.Device),"4194304 0 " + str(args.Device),"8388608 0 " + str(args.Device),
+        "16777216 0 " + str(args.Device),"33554432 0 " + str(args.Device),"67108864 0 " + str(args.Device),"134217728 0 " + str(args.Device),"268435456 0 " + str(args.Device)]
 
-kernel = "VecAdd"
+kernel = "vectorAdd"
 
 common.run_traces(programs, parameters, kernel, traces)

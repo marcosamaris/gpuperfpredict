@@ -14,10 +14,10 @@ tests: transComplexFloat
 traces: transComplexFloat
 	python3 -u ./transComplexFloat.py --Traces True
 
-metrics: Subseqmax
+metrics: transComplexFloat
 	python3 -u ./transComplexFloat.py  --Metrics True
 
-events: Subseqmax
+events: transComplexFloat
 	python3 -u ./transComplexFloat.py  --Events True				 
 
 clean:

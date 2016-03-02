@@ -28,7 +28,8 @@ subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["transFloat"]
 
-parameters = ["131072 " + str(args.Traces) ]
+parameters = ["65536 " + str(args.Device),"131072 " + str(args.Device), "262144 " + str(args.Device), "524288 " + str(args.Device),"1048576 " + str(args.Device),"2097152 " + str(args.Device),"4194304 " + str(args.Device),"8388608 " + str(args.Device),
+        "16777216 " + str(args.Device),"33554432 " + str(args.Device),"67108864 " + str(args.Device),"134217728 " + str(args.Device),"268435456 " + str(args.Device)]
 
 kernel = "transFloat"
 

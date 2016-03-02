@@ -24,10 +24,10 @@ traces:
 	cd dotProd; make traces
 	cd Subseqmax; make traces
 	cd matMul; make traces
-    cd transFloat; make traces
-    cd transDouble; make traces
-    cd transComplexFloat; make traces
-    cd transComplexDouble; make traces
+	cd transFloat; make traces
+	cd transDouble; make traces
+	cd transComplexFloat; make traces
+	cd transComplexDouble; make traces
 
 metrics: 
 	cd bitonic; make metrics

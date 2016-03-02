@@ -118,29 +118,27 @@ cudaError_t checkCuda(cudaError_t result)
  // program main
  int main(int argc, char** argv) {
 
-	if (argc != 3) {
-		fprintf(stderr, "Syntax: %s <Vector size Width>  <CacheConfL1> \n", argv[0]);
+	if (argc != 4) {
+		fprintf(stderr, "Syntax: %s <Vector size Width> <CacheConfL1> <Device>\n", argv[0]);
     		return EXIT_FAILURE;
 	}
     cudaProfilerStart();
 
- 	
 	int N = atoi(argv[1]);
   	int CacheConfL1 = atoi(argv[2]);
+    int devId = atoi(argv[3]);
 	size_t size = N * sizeof(long int);
-	
-	printf("./bitonic_sort starting with %d numbers...\n", N);
-	srand( time(NULL) );
 
-	int devId = 0;
 	checkCuda( cudaSetDevice(devId) );
-    	cudaDeviceReset();
+    cudaDeviceReset();
 	
 	cudaDeviceProp prop;
 	checkCuda( cudaGetDeviceProperties(&prop, devId) );
   	printf("Device: %s\n", prop.name);
 
- 	//unsigned int hTimer;
+	
+	printf("./bitonic_sort starting with %d numbers...\n", N);
+	srand( time(NULL) );
 
  	
  	// allocate host memory

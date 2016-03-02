@@ -1,25 +1,25 @@
-all: vectorTrans
+all: TransDouble
 
 include ../common/Makefile.common
 
-vectorTrans.o: vectorTrans.cu
-	$(CC) $(CFLAGS) -c vectorTrans.cu
+TransDouble.o: TransDouble.cu
+	$(CC) $(CFLAGS) -c TransDouble.cu
 
-vectorTrans: vectorTrans.o
-	$(CC) $(CFLAGS) vectorTrans.o -o vectorTrans
+TransDouble: TransDouble.o
+	$(CC) $(CFLAGS) TransDouble.o -o TransDouble
 
-tests: vectorTrans
-	python3 -u ./vectorTrans.py
+tests: TransDouble
+	python3 -u ./TransDouble.py --Device $(DEVICE_ID)
 				 
-traces: vectorTrans
-	python3 -u ./vectorTrans.py --Traces True
+traces: TransDouble
+	python3 -u ./TransDouble.py --Traces True  --Device $(DEVICE_ID)
 
 metrics: Subseqmax
-	python3 -u ./vectorTrans.py  --Metrics True
+	python3 -u ./TransDouble.py  --Metrics True --Device $(DEVICE_ID)
 
 events: Subseqmax
-	python3 -u ./vectorTrans.py  --Events True				 
+	python3 -u ./TransDouble.py  --Events True --Device $(DEVICE_ID)				 
 
 clean:
-	rm -rf *.o vectorTrans
+	rm -rf *.o TransDouble
 

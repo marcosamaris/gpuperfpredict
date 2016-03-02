@@ -1,0 +1,60 @@
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,KB,GB/s,,,,
+2.124064,5.228800e-05,,,,,,,,,,512.000000,9.338304,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.124268,2.528000e-06,256,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.124273,5.184000e-05,,,,,,,,,,512.000000,9.419006,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.125846,1.018550e-04,,,,,,,,,,1.000000,9.587772,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.126050,3.520000e-06,512,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.126056,1.014080e-04,,,,,,,,,,1.000000,9.630034,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.129563,3.162880e-04,,,,,,,,,,2.000000,6.175147,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.129984,5.600000e-06,1024,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.129994,3.314870e-04,,,,,,,,,,2.000000,5.892011,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.143072,7.334070e-04,,,,,,,,,,4.000000,5.326170,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.143911,9.664000e-06,2048,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.143924,6.910700e-04,,,,,,,,,,4.000000,5.652466,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.156951,1.488765e-03,,,,,,,,,,8.000000,5.247638,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.158552,1.779200e-05,4096,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.158574,1.315806e-03,,,,,,,,,,8.000000,5.937425,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.196556,2.851577e-03,,,,,,,,,,16.000000,5.479424,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.199538,3.411200e-05,8192,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.199574,3.619863e-03,,,,,,,,,,16.000000,4.316462,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.247813,5.497808e-03,,,,,,,,,,32.000000,5.684084,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.253448,6.659100e-05,16384,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.253518,7.052812e-03,,,,,,,,,,32.000000,4.430857,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.418856,0.011266,,,,,,,,,,64.000000,5.547898,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.430347,1.318070e-04,32768,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.430482,0.014738,,,,,,,,,,64.000000,4.240610,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.607175,0.021223,,,,,,,,,,128.000000,5.889928,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+2.628537,2.615350e-04,65536,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+2.628802,0.028695,,,,,,,,,,128.000000,4.356093,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+3.107409,0.042213,,,,,,,,,,256.000000,5.922328,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+3.149760,5.225580e-04,131072,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+3.150286,0.062551,,,,,,,,,,256.000000,3.996714,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+4.080109,0.085987,,,,,,,,,,512.000000,5.814838,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+4.166253,1.044604e-03,262144,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+4.167301,0.125874,,,,,,,,,,512.000000,3.972225,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,GB,GB/s,,,,
+6.013605,0.167580,,,,,,,,,,1.000000,5.967284,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+6.181324,2.088310e-03,524288,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+6.183416,0.241379,,,,,,,,,,1.000000,4.142864,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"

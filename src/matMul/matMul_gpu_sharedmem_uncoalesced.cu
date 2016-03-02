@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 {
 
   if (argc != 5) {
-    fprintf(stderr, "Syntax: %s <matrix size> < Block_size> <device> <CacheConfL1>  \n", argv[0]);
+    fprintf(stderr, "Syntax: %s <matrix size> < Block_size> <CacheConfL1>  <device> \n", argv[0]);
     return EXIT_FAILURE;
   }
 
@@ -67,8 +67,8 @@ int main(int argc, char* argv[])
 
   int Width = atoi(argv[1]);
   int BlockSize = atoi(argv[2]);
-  int devId = atoi(argv[3]);;
-  int CacheConfL1 = atoi(argv[4]);
+  int CacheConfL1 = atoi(argv[3]);
+  int devId = atoi(argv[4]);
 
   checkCuda( cudaSetDevice(devId) );
   cudaDeviceReset();
