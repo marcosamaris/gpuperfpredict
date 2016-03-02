@@ -1,0 +1,60 @@
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,KB,GB/s,,,,
+1.997989,5.251200e-05,,,,,,,,,,512.000000,9.298470,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1.998047,3.520000e-06,512,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+1.998054,5.203200e-05,,,,,,,,,,512.000000,9.384249,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+1.998605,1.018560e-04,,,,,,,,,,1.000000,9.587678,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1.998712,5.569000e-06,1024,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+1.998722,1.018560e-04,,,,,,,,,,1.000000,9.587678,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+1.994995,2.877770e-04,,,,,,,,,,2.000000,6.786939,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1.995289,9.696000e-06,2048,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+1.995302,2.961920e-04,,,,,,,,,,2.000000,6.594118,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+1.998548,7.496010e-04,,,,,,,,,,4.000000,5.211106,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1.999304,1.763200e-05,4096,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+1.999325,6.810250e-04,,,,,,,,,,4.000000,5.735839,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.002878,1.490849e-03,,,,,,,,,,8.000000,5.240303,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.004375,3.404800e-05,8192,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.004413,1.323777e-03,,,,,,,,,,8.000000,5.901674,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.000443,2.831618e-03,,,,,,,,,,16.000000,5.518047,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.003280,6.656000e-05,16384,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.003351,2.678178e-03,,,,,,,,,,16.000000,5.834190,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+1.995430,5.464004e-03,,,,,,,,,,32.000000,5.719249,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.000900,1.316160e-04,32768,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.001035,5.369923e-03,,,,,,,,,,32.000000,5.819450,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+1.994554,0.010671,,,,,,,,,,64.000000,5.856801,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.005232,2.573750e-04,65536,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.005493,0.010631,,,,,,,,,,64.000000,5.879244,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+1.999926,0.022629,,,,,,,,,,128.000000,5.523846,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.022561,5.216310e-04,131072,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.023087,0.022013,,,,,,,,,,128.000000,5.678529,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+2.001341,0.042659,,,,,,,,,,256.000000,5.860411,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.044006,1.043645e-03,262144,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.045053,0.043430,,,,,,,,,,256.000000,5.756393,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+1.996448,0.084337,,,,,,,,,,512.000000,5.928609,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.080791,2.081592e-03,524288,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.082877,0.087873,,,,,,,,,,512.000000,5.690005,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,B,GB,GB/s,,,,
+2.005655,0.170298,,,,,,,,,,1.000000,5.872060,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2.175959,4.168267e-03,1048576,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
+2.180131,0.175211,,,,,,,,,,1.000000,5.707401,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"

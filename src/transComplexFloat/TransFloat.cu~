@@ -41,11 +41,11 @@ void RandomInit(float*, int);
 void ParseArguments(int, char**);
 
 // Device code
-__global__ void VecAdd(const float* A, const float* B, float* C, int N)
+__global__ void VecAdd(float* A, float* B, int N)
 {
     int i = blockDim.x * blockIdx.x + threadIdx.x;
     if (i < N)
-        C[i] = A[i] + B[i];
+        i++;
 }
 
 // Host code
@@ -55,9 +55,9 @@ int main(int argc, char** argv)
     printf("Vector addition\n");
     
     if (argc != 2 ) {
-        fprintf(stderr, "Syntax: %s <Vector size Width>  \n", argv[0]);
-            return EXIT_FAILURE;
-    }
+		fprintf(stderr, "Syntax: %s <Vector size Width>  \n", argv[0]);
+    		return EXIT_FAILURE;
+	}
     
     int N = atoi(argv[1]);    
     size_t size = N * sizeof(float);
@@ -68,8 +68,6 @@ int main(int argc, char** argv)
     if (h_A == 0) Cleanup();
     h_B = (float*)malloc(size);
     if (h_B == 0) Cleanup();
-    h_C = (float*)malloc(size);
-    if (h_C == 0) Cleanup();
 
     // Initialize input vectors
     RandomInit(h_A, N);
@@ -78,18 +76,18 @@ int main(int argc, char** argv)
     // Allocate vectors in device memory
     cudaMalloc((void**)&d_A, size) ;
     cudaMalloc((void**)&d_B, size) ;
-    cudaMalloc((void**)&d_C, size) ;
+
 
     // Copy vectors from host memory to device memory
     cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice) ;
-    cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice) ;
+
 
     // Invoke kernel
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
-//  GpuProfiling::prepareProfiling( blocksPerGrid, threadsPerBlock );
-    VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
-//  GpuProfiling::addResults("VecAdd");
+//	GpuProfiling::prepareProfiling( blocksPerGrid, threadsPerBlock );
+    VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, N);
+//	GpuProfiling::addResults("VecAdd");
 //    cutilCheckMsg("kernel launch failure");
 #ifdef _DEBUG
     cutilSafeCall( cudaThreadSynchronize() );
@@ -97,20 +95,7 @@ int main(int argc, char** argv)
 
     // Copy result from device memory to host memory
     // h_C contains the result in host memory
-    cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost) ;
-
-    // Verify result
-    int i;
-    for (i = 0; i < N; ++i) {
-        float sum = h_A[i] + h_B[i];
-        if (fabs(h_C[i] - sum) > 1e-5)
-            break;
-    }
-    printf("Assertion started\n");
-    printf("%s \n", (i == N) ? "PASSED" : "FAILED");    
-    assert(i == N);
-    printf("Assertion Finished");
-//  GpuProfiling::printResults();
+    cudaMemcpy(h_B, d_B, size, cudaMemcpyDeviceToHost) ;
 
     Cleanup();
 }
@@ -157,8 +142,8 @@ void ParseArguments(int argc, char** argv)
 {
     for (int i = 0; i < argc; ++i)
         if (strcmp(argv[i], "--noprompt") == 0 ||
-            strcmp(argv[i], "-noprompt") == 0)
-        {
+			strcmp(argv[i], "-noprompt") == 0)
+		{
             noprompt = true;
             break;
         }

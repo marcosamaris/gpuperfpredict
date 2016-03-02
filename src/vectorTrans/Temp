@@ -1,8 +1,0 @@
-==32186== NVPROF is profiling process 32186, command: ./vectorTrans 268435456
-==32186== Profiling application: ./vectorTrans 268435456
-==32186== Profiling result:
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,GB,GB/s,,,,
-2.005655,0.170298,,,,,,,,,,1.000000,5.872060,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.175959,4.168267e-03,1048576,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","1","7","VecAdd(float*, float*, int) [97]"
-2.180131,0.175211,,,,,,,,,,1.000000,5.707401,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"

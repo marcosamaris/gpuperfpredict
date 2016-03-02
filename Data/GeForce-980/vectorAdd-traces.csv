@@ -1,62 +1,42 @@
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,KB,GB/s,,,,
-0.301120,9.216300e-05,,,,,,,,,,512.000000,5.298018,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.301343,9.145800e-05,,,,,,,,,,512.000000,5.338858,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.301456,5.152000e-06,512,1,1,256,1,1,8,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-0.301508,8.902700e-05,,,,,,,,,,512.000000,5.484642,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
+0.744283,9.353200e-05,,,,,,,,,,512.000000,5.220473,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.744511,9.113200e-05,,,,,,,,,,512.000000,5.357956,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.744607,2.950300e-05,512,1,1,256,1,1,12,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
+0.744638,8.719600e-05,,,,,,,,,,512.000000,5.599812,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,MB,GB/s,,,,
-0.272593,1.812850e-04,,,,,,,,,,1.000000,5.386891,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.273011,1.803250e-04,,,,,,,,,,1.000000,5.415569,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.273197,1.238500e-05,1024,1,1,256,1,1,8,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-0.273226,1.511720e-04,,,,,,,,,,1.000000,6.459943,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
+0.727222,1.816250e-04,,,,,,,,,,1.000000,5.376807,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.727645,1.800890e-04,,,,,,,,,,1.000000,5.422666,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.727830,5.372600e-05,1024,1,1,256,1,1,12,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
+0.727886,1.958960e-04,,,,,,,,,,1.000000,4.985107,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,MB,GB/s,,,,
-0.265822,5.008140e-04,,,,,,,,,,2.000000,3.899901,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.266548,4.854220e-04,,,,,,,,,,2.000000,4.023561,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.267039,3.840100e-05,2048,1,1,256,1,1,8,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-0.267080,3.098650e-04,,,,,,,,,,2.000000,6.303148,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
+0.729623,5.156600e-04,,,,,,,,,,2.000000,3.787622,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.730463,4.945090e-04,,,,,,,,,,2.000000,3.949625,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.730963,1.021080e-04,2048,1,1,256,1,1,12,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
+0.731067,3.126280e-04,,,,,,,,,,2.000000,6.247441,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,MB,GB/s,,,,
-0.265951,1.165887e-03,,,,,,,,,,4.000000,3.350453,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.267358,1.203456e-03,,,,,,,,,,4.000000,3.245860,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.268608,7.478600e-05,4096,1,1,256,1,1,8,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-0.268685,1.987316e-03,,,,,,,,,,4.000000,1.965591,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
+0.701984,1.270891e-03,,,,,,,,,,4.000000,3.073631,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.703481,1.139984e-03,,,,,,,,,,4.000000,3.426583,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.704641,1.989030e-04,4096,1,1,256,1,1,12,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
+0.704842,1.412741e-03,,,,,,,,,,4.000000,2.765015,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,MB,GB/s,,,,
-0.265227,2.501635e-03,,,,,,,,,,8.000000,3.122958,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.267970,2.517379e-03,,,,,,,,,,8.000000,3.103426,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.270554,1.473960e-04,8192,1,1,256,1,1,8,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-0.270704,4.361780e-03,,,,,,,,,,8.000000,1.791127,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
+0.751787,2.545779e-03,,,,,,,,,,8.000000,3.068805,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.754578,2.437047e-03,,,,,,,,,,8.000000,3.205724,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.757052,3.921430e-04,8192,1,1,256,1,1,12,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
+0.757446,4.442049e-03,,,,,,,,,,8.000000,1.758760,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,MB,GB/s,,,,
-0.271579,5.149285e-03,,,,,,,,,,16.000000,3.034402,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.276983,5.054626e-03,,,,,,,,,,16.000000,3.091228,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.282077,2.945680e-04,16384,1,1,256,1,1,8,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-0.282374,8.776483e-03,,,,,,,,,,16.000000,1.780326,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
+0.719337,4.963180e-03,,,,,,,,,,16.000000,3.148183,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.724532,4.915310e-03,,,,,,,,,,16.000000,3.178843,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.729483,7.791990e-04,16384,1,1,256,1,1,12,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
+0.730264,8.909092e-03,,,,,,,,,,16.000000,1.753826,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,MB,GB/s,,,,
-0.265717,0.010303,,,,,,,,,,32.000000,3.032992,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.276248,0.010258,,,,,,,,,,32.000000,3.046286,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
-0.286572,5.873740e-04,32768,1,1,256,1,1,8,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
-0.287161,0.018268,,,,,,,,,,32.000000,1.710630,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
-==31221== Profiling result:
-No kernels were profiled.
-==31221== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.
-======== Error: Application received signal 134
-==31234== Profiling result:
-No kernels were profiled.
-==31234== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.
-======== Error: Application received signal 134
-==31247== Profiling result:
-No kernels were profiled.
-==31247== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.
-======== Error: Application received signal 134
-==31260== Profiling result:
-No kernels were profiled.
-==31260== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.
-======== Error: Application received signal 134
-==31273== Profiling result:
-No kernels were profiled.
-==31273== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.
-======== Error: Application received signal 134
+0.751981,0.010150,,,,,,,,,,32.000000,3.078780,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.762356,0.010075,,,,,,,,,,32.000000,3.101720,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+0.772468,1.553886e-03,32768,1,1,256,1,1,12,0,0,,,"GeForce GTX 980 (0)","1","7","VecAdd(float const *, float const *, float*, int) [100]"
+0.774024,0.017366,,,,,,,,,,32.000000,1.799443,"GeForce GTX 980 (0)","1","7","[CUDA memcpy DtoH]"
