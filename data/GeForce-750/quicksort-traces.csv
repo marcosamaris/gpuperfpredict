@@ -1,42 +1,15 @@
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,KB,GB/s,,,,
-1.994918,3.520000e-06,,,,,,,,,,16.000000,4.334883,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.995132,0.015572,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"
+0.382222,2.271700e-05,,,,,,,,,,128.000000,5.373523,"GeForce GTX 750 (0)","2","14","[CUDA memcpy HtoD]"
+0.382674,0.286745,1,1,1,1,1,1,24,0,128,,,"GeForce GTX 750 (0)","2","14","quicksort(int*, int) [101]"
+0.669444,2.358100e-05,,,,,,,,,,128.000000,5.176639,"GeForce GTX 750 (0)","2","14","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,KB,GB/s,,,,
-1.999786,6.272000e-06,,,,,,,,,,32.000000,4.865685,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.000006,0.045606,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"
+0.374162,4.265100e-05,,,,,,,,,,256.000000,5.724148,"GeForce GTX 750 (0)","2","14","[CUDA memcpy HtoD]"
+0.374545,0.976643,1,1,1,1,1,1,24,0,128,,,"GeForce GTX 750 (0)","2","14","quicksort(int*, int) [101]"
+1.351206,4.722600e-05,,,,,,,,,,256.000000,5.169623,"GeForce GTX 750 (0)","2","14","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,KB,GB/s,,,,
-1.995365,1.177600e-05,,,,,,,,,,64.000000,5.183013,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.995586,0.146688,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,KB,GB/s,,,,
-2.003569,1.526400e-05,,,,,,,,,,128.000000,7.997269,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.003805,0.492176,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,KB,GB/s,,,,
-2.000391,2.768000e-05,,,,,,,,,,256.000000,8.820109,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.000632,1.825509,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,KB,GB/s,,,,
-2.005179,5.251200e-05,,,,,,,,,,512.000000,9.298470,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.005454,6.997963,1,1,1,1,1,1,23,0,128,,,"Tesla K40c (0)","1","7","quicksort(int*, int) [101]"
-==3891== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==4087== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==4282== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==4484== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==4705== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==4904== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
+0.379258,8.667700e-05,,,,,,,,,,512.000000,5.633343,"GeForce GTX 750 (0)","2","14","[CUDA memcpy HtoD]"
+0.379663,3.731245,1,1,1,1,1,1,24,0,128,,,"GeForce GTX 750 (0)","2","14","quicksort(int*, int) [101]"
+4.111006,9.381200e-05,,,,,,,,,,512.000000,5.204891,"GeForce GTX 750 (0)","2","14","[CUDA memcpy DtoH]"

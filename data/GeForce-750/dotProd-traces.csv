@@ -1,84 +1,68 @@
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,KB,GB/s,,,,
-1.995687,5.228800e-05,,,,,,,,,,512.000000,9.338304,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.995775,5.200000e-05,,,,,,,,,,512.000000,9.390024,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.995832,1.100800e-05,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-1.995847,2.176000e-06,,,,,,,,,,0.125000,0.054784,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.223478,8.226200e-05,,,,,,,,,,512.000000,5.935684,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.223671,9.070900e-05,,,,,,,,,,512.000000,5.382942,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.223766,1.097500e-05,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.223793,2.208000e-06,,,,,,,,,,0.125000,0.053990,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-1.995382,1.018880e-04,,,,,,,,,,1.000000,9.584666,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.995546,1.017930e-04,,,,,,,,,,1.000000,9.593612,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.995654,2.240000e-05,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-1.995680,1.824000e-06,,,,,,,,,,1.220703e-04,0.065356,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.219460,1.631800e-04,,,,,,,,,,1.000000,5.984572,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.219887,1.797860e-04,,,,,,,,,,1.000000,5.431805,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.220072,1.900600e-05,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.220093,2.208000e-06,,,,,,,,,,1.220703e-04,0.053990,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-1.997356,2.098890e-04,,,,,,,,,,2.000000,9.305514,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.997650,2.126410e-04,,,,,,,,,,2.000000,9.185082,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-1.997869,4.403200e-05,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-1.997917,1.824000e-06,,,,,,,,,,1.220703e-04,0.065356,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.218312,5.653070e-04,,,,,,,,,,2.000000,3.454981,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.219159,5.980390e-04,,,,,,,,,,2.000000,3.265882,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.219763,7.218300e-05,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.219837,2.048000e-06,,,,,,,,,,1.220703e-04,0.058208,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.001184,4.973770e-04,,,,,,,,,,4.000000,7.853701,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.001818,5.126090e-04,,,,,,,,,,4.000000,7.620331,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.002337,8.172800e-05,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.002422,1.824000e-06,,,,,,,,,,1.220703e-04,0.065356,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.221692,1.326428e-03,,,,,,,,,,4.000000,2.944939,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.223264,1.105720e-03,,,,,,,,,,4.000000,3.532766,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.224375,1.392470e-04,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.224516,1.951000e-06,,,,,,,,,,1.220703e-04,0.061102,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.000080,1.419362e-03,,,,,,,,,,8.000000,5.504234,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.001643,1.334018e-03,,,,,,,,,,8.000000,5.856368,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.002984,1.579210e-04,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.003145,1.824000e-06,,,,,,,,,,1.220703e-04,0.065356,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.228003,2.539877e-03,,,,,,,,,,8.000000,3.075936,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.230784,2.415796e-03,,,,,,,,,,8.000000,3.233924,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.233230,2.508810e-04,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.233482,1.855000e-06,,,,,,,,,,1.220703e-04,0.064264,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.001778,2.992645e-03,,,,,,,,,,16.000000,5.221134,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.004893,2.583555e-03,,,,,,,,,,16.000000,6.047868,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.007483,3.080330e-04,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.007795,2.176000e-06,,,,,,,,,,1.220703e-04,0.054784,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.234890,5.072516e-03,,,,,,,,,,16.000000,3.080325,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.240187,4.985903e-03,,,,,,,,,,16.000000,3.133836,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.245203,4.958410e-04,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.245701,1.888000e-06,,,,,,,,,,1.220703e-04,0.063141,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.006848,5.624516e-03,,,,,,,,,,32.000000,5.556034,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.012593,5.182724e-03,,,,,,,,,,32.000000,6.029648,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.017782,6.151040e-04,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.018401,2.176000e-06,,,,,,,,,,1.220703e-04,0.054784,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.250075,0.010272,,,,,,,,,,32.000000,3.042397,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.260589,0.010032,,,,,,,,,,32.000000,3.115036,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.270656,9.334820e-04,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.271592,1.824000e-06,,,,,,,,,,1.220703e-04,0.065356,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.014063,0.010874,,,,,,,,,,64.000000,5.747615,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.025059,0.010345,,,,,,,,,,64.000000,6.041294,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.035410,1.207520e-03,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.036622,2.176000e-06,,,,,,,,,,1.220703e-04,0.054784,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.280218,0.020354,,,,,,,,,,64.000000,3.070601,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.300797,0.020501,,,,,,,,,,64.000000,3.048615,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.321333,1.862420e-03,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.323197,1.856000e-06,,,,,,,,,,1.220703e-04,0.064229,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.034827,0.021302,,,,,,,,,,128.000000,5.868095,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.056250,0.020858,,,,,,,,,,128.000000,5.992937,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.077114,2.467773e-03,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.079585,2.208000e-06,,,,,,,,,,1.220703e-04,0.053990,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.342748,0.040845,,,,,,,,,,128.000000,3.060358,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.383817,0.041430,,,,,,,,,,128.000000,3.017106,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.425282,3.701127e-03,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.428985,1.824000e-06,,,,,,,,,,1.220703e-04,0.065356,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.067381,0.042224,,,,,,,,,,256.000000,5.920791,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.109726,0.042344,,,,,,,,,,256.000000,5.904092,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.152075,4.878737e-03,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.156957,2.336000e-06,,,,,,,,,,1.220703e-04,0.051031,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+0.455106,0.081833,,,,,,,,,,256.000000,3.055013,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.537206,0.082078,,,,,,,,,,256.000000,3.045892,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+0.619330,7.326705e-03,32,1,1,256,1,1,11,1.024000e+03,0.000000,,,"GeForce GTX 750 (0)","1","7","dotProd(float*, float*, float*, int) [101]"
+0.626659,1.824000e-06,,,,,,,,,,1.220703e-04,0.065356,"GeForce GTX 750 (0)","1","7","[CUDA memcpy DtoH]"
+==3991== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==3991== Profiling result:
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.144548,0.084527,,,,,,,,,,512.000000,5.915236,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.229197,0.084708,,,,,,,,,,512.000000,5.902622,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.313911,9.904214e-03,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.323818,2.432000e-06,,,,,,,,,,1.220703e-04,0.049017,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,KB,GB,GB/s,,,,
-2.293069,0.169634,,,,,,,,,,1.000000,5.895033,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.462826,0.167960,,,,,,,,,,1.000000,5.953788,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.630792,0.019519,32,1,1,256,1,1,13,1.024000e+03,0.000000,,,"Tesla K40c (0)","1","7","dotProd(float*, float*, float*, int) [101]"
-2.650315,2.400000e-06,,,,,,,,,,1.192093e-07,0.049671,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
-No kernels were profiled.
+s,s,,,,,,,,B,B,MB,GB/s,,,,
+0.685500,0.164298,,,,,,,,,,512.000000,3.043256,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+==4003== Warning: This can happen if device ran out of memory or if a device kernel was stopped due to an assertion.
+==4003== Profiling result:
 No kernels were profiled.

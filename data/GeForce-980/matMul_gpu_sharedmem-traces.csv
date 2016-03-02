@@ -1,48 +1,42 @@
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,KB,GB/s,,,,
-2.005584,2.764800e-05,,,,,,,,,,256.000000,8.830318,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.005658,2.720000e-05,,,,,,,,,,256.000000,8.975758,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.005690,1.278090e-04,16,16,1,16,16,1,23,2.048000e+03,0.000000,,,"Tesla K40c (0)","1","7","matMul(float*, float*, float*, int) [104]"
+0.457299,9.697000e-06,,,,,,,,,,64.000000,6.294231,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.457334,9.664000e-06,,,,,,,,,,64.000000,6.315724,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.457377,9.696000e-06,8,8,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 980 (0)","2","14","matMul(float*, float*, float*, int) [104]"
+0.457390,1.308900e-05,,,,,,,,,,64.000000,4.663088,"GeForce GTX 980 (0)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,KB,GB/s,,,,
+0.450622,4.736100e-05,,,,,,,,,,256.000000,5.154887,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.450736,4.732900e-05,,,,,,,,,,256.000000,5.158373,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.450813,5.238500e-05,16,16,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 980 (0)","2","14","matMul(float*, float*, float*, int) [104]"
+0.450867,4.454500e-05,,,,,,,,,,256.000000,5.480764,"GeForce GTX 980 (0)","2","14","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.002873,1.018560e-04,,,,,,,,,,1.000000,9.587678,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.003146,1.021450e-04,,,,,,,,,,1.000000,9.560551,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.003254,9.466260e-04,32,32,1,16,16,1,23,2.048000e+03,0.000000,,,"Tesla K40c (0)","1","7","matMul(float*, float*, float*, int) [104]"
+0.456497,1.600360e-04,,,,,,,,,,1.000000,6.102143,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.456926,1.756200e-04,,,,,,,,,,1.000000,5.560657,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.457107,3.942800e-04,32,32,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 980 (0)","2","14","matMul(float*, float*, float*, int) [104]"
+0.457503,1.420510e-04,,,,,,,,,,1.000000,6.874732,"GeForce GTX 980 (0)","2","14","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.010888,7.444490e-04,,,,,,,,,,4.000000,5.247169,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.011789,6.560330e-04,,,,,,,,,,4.000000,5.954350,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.012451,7.597451e-03,64,64,1,16,16,1,23,2.048000e+03,0.000000,,,"Tesla K40c (0)","1","7","matMul(float*, float*, float*, int) [104]"
+0.483350,1.190425e-03,,,,,,,,,,4.000000,3.281391,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.484806,1.143480e-03,,,,,,,,,,4.000000,3.416107,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.486001,3.280516e-03,64,64,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 980 (0)","2","14","matMul(float*, float*, float*, int) [104]"
+0.489283,9.749320e-04,,,,,,,,,,4.000000,4.006690,"GeForce GTX 980 (0)","2","14","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.055853,2.832384e-03,,,,,,,,,,16.000000,5.516554,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.058809,2.562368e-03,,,,,,,,,,16.000000,6.097875,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.061378,0.060590,128,128,1,16,16,1,23,2.048000e+03,0.000000,,,"Tesla K40c (0)","1","7","matMul(float*, float*, float*, int) [104]"
+0.555868,5.207368e-03,,,,,,,,,,16.000000,3.000556,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.561331,5.297641e-03,,,,,,,,,,16.000000,2.949426,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.566683,0.026090,128,128,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 980 (0)","2","14","matMul(float*, float*, float*, int) [104]"
+0.592776,8.287717e-03,,,,,,,,,,16.000000,1.885320,"GeForce GTX 980 (0)","2","14","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.215217,0.010674,,,,,,,,,,64.000000,5.855322,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.226011,0.010751,,,,,,,,,,64.000000,5.813389,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.236769,0.483687,256,256,1,16,16,1,23,2.048000e+03,0.000000,,,"Tesla K40c (0)","1","7","matMul(float*, float*, float*, int) [104]"
+0.875316,0.021156,,,,,,,,,,64.000000,2.954235,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.896710,0.020632,,,,,,,,,,64.000000,3.029313,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+0.917409,0.208008,256,256,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 980 (0)","2","14","matMul(float*, float*, float*, int) [104]"
+1.125419,0.036216,,,,,,,,,,64.000000,1.725758,"GeForce GTX 980 (0)","2","14","[CUDA memcpy DtoH]"
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,KB,MB,GB/s,,,,
-2.837209,0.041929,,,,,,,,,,256.000000,5.962409,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.879260,0.041637,,,,,,,,,,256.000000,6.004250,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
-2.920904,3.856486,512,512,1,16,16,1,23,2.048000e+03,0.000000,,,"Tesla K40c (0)","1","7","matMul(float*, float*, float*, int) [104]"
-==23468== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==23674== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==23867== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==24060== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==24314== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
-==24757== Profiling result:
-No kernels were profiled.
-======== Error: Application received signal 134
+2.159619,0.083971,,,,,,,,,,256.000000,2.977218,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+2.243833,0.082620,,,,,,,,,,256.000000,3.025896,"GeForce GTX 980 (0)","2","14","[CUDA memcpy HtoD]"
+2.326542,1.694855,512,512,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 980 (0)","2","14","matMul(float*, float*, float*, int) [104]"
+4.021399,0.145894,,,,,,,,,,256.000000,1.713567,"GeForce GTX 980 (0)","2","14","[CUDA memcpy DtoH]"
