@@ -1,11 +1,14 @@
 all:
 	cd bitonic; make all
-	cd dotProd; make all
-	cd matSum; make all
 	cd quicksort; make all
-	cd Subseqmax; make all
-	cd Subseqmax; make all
+	cd matSum; make all
+	cd subseqmax; make all
+	cd dotProd; make all
 	cd matMul; make all
+	cd transFloat; make all
+	cd transDouble; make all
+	cd transComplexFloat; make all
+	cd transComplexDouble; make clean
 
 tests:
 	cd bitonic; make tests
@@ -15,6 +18,7 @@ tests:
 	cd dotProd; make tests
 	cd Subseqmax; make tests
 	cd matMul; make tests
+	cd vectorAdd; make tests
 	
 traces: 
 	cd bitonic; make traces
@@ -24,6 +28,7 @@ traces:
 	cd dotProd; make traces
 	cd subseqmax; make traces
 	cd matMul; make traces
+	cd vectorAdd; make traces
 	cd transFloat; make traces
 	cd transDouble; make traces
 	cd transComplexFloat; make traces
@@ -37,6 +42,7 @@ metrics:
 	cd dotProd; make metrics
 	cd subseqmax; make metrics
 	cd matMul; make metrics
+	cd vectorAdd; make metrics
 
 events: 
 	cd bitonic; make events
@@ -46,6 +52,7 @@ events:
 	cd dotProd; make events
 	cd subseqmax; make events
 	cd matMul; make events
+	cd vectorAdd; make events
 	
 clean:
 	cd bitonic; make clean
@@ -54,6 +61,7 @@ clean:
 	cd subseqmax; make clean
 	cd dotProd; make clean
 	cd matMul; make clean
+	cd vectorAdd; make clean
 	cd transFloat; make clean
 	cd transDouble; make clean
 	cd transComplexFloat; make clean
