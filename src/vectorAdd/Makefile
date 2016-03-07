@@ -14,10 +14,10 @@ tests: vectorAdd
 traces: vectorAdd
 	python3 -u ./vectorAdd.py --Traces True
 
-metrics: Subseqmax
+metrics: vectorAdd
 	python3 -u ./vectorAdd.py  --Metrics True
 
-events: Subseqmax
+events: vectorAdd
 	python3 -u ./vectorAdd.py  --Events True				 
 
 clean:
