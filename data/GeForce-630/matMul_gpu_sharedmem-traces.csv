@@ -1,0 +1,39 @@
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,KB,GB/s,,,,
+0.250969,1.436700e-05,,,,,,,,,,65.536000,4.561565,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.251006,1.436700e-05,,,,,,,,,,65.536000,4.561565,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.251038,1.258590e-04,8,8,1,16,16,1,20,2.048000e+03,0.000000,,,"GeForce GT 630 (1)","2","14","matMul(float*, float*, float*, int) [191]"
+0.251167,1.267100e-05,,,,,,,,,,65.536000,5.172125,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,KB,GB/s,,,,
+0.247625,4.492500e-05,,,,,,,,,,262.144000,5.835147,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.247727,4.550100e-05,,,,,,,,,,262.144000,5.761280,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.247775,9.794710e-04,16,16,1,16,16,1,20,2.048000e+03,0.000000,,,"GeForce GT 630 (1)","2","14","matMul(float*, float*, float*, int) [191]"
+0.248758,4.233300e-05,,,,,,,,,,262.144000,6.192427,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,MB,GB/s,,,,
+0.244476,1.735570e-04,,,,,,,,,,1.048576,6.041681,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.244824,1.739740e-04,,,,,,,,,,1.048576,6.027199,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.245000,7.677478e-03,32,32,1,16,16,1,20,2.048000e+03,0.000000,,,"GeForce GT 630 (1)","2","14","matMul(float*, float*, float*, int) [191]"
+0.252682,1.597990e-04,,,,,,,,,,1.048576,6.561843,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,MB,GB/s,,,,
+0.257555,7.039880e-04,,,,,,,,,,4.194304,5.957920,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.258430,7.017800e-04,,,,,,,,,,4.194304,5.976665,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.259135,0.062029,64,64,1,16,16,1,20,2.048000e+03,0.000000,,,"GeForce GT 630 (1)","2","14","matMul(float*, float*, float*, int) [191]"
+0.321167,8.545700e-04,,,,,,,,,,4.194304,4.908087,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,MB,GB/s,,,,
+0.309161,2.817832e-03,,,,,,,,,,16.777216,5.953945,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.312142,2.793610e-03,,,,,,,,,,16.777216,6.005568,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.314938,0.497836,128,128,1,16,16,1,20,2.048000e+03,0.000000,,,"GeForce GT 630 (1)","2","14","matMul(float*, float*, float*, int) [191]"
+0.812778,4.139378e-03,,,,,,,,,,16.777216,4.053077,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,MB,GB/s,,,,
+0.507429,0.011209,,,,,,,,,,67.108864,5.986991,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.518803,0.011201,,,,,,,,,,67.108864,5.991199,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+0.530006,3.979155,256,256,1,16,16,1,20,2.048000e+03,0.000000,,,"GeForce GT 630 (1)","2","14","matMul(float*, float*, float*, int) [191]"
+4.509165,0.015397,,,,,,,,,,67.108864,4.358533,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+==9094== Profiling result:
+No kernels were profiled.
+======== Error: Application received signal 134
