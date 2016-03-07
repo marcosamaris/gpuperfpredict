@@ -24,7 +24,7 @@ def run_traces(programs, parameters, kernel, traces):
                     if trace == " ":
                         cmd += trace 
                         cmd += " ./" + program + " " + param 
-                        cmd += " 2> Temp; cat Temp | awk '{print "+ param + "\",\" $0}'" | tail -n +4 >>  ../logs/run_" + str(i) + "/"  + program + "-traces.csv"
+                        cmd += " 2> Temp; cat Temp | awk '{print "+ str(param) + "\",\" $0}'" | tail -n +4 >>  ../logs/run_" + str(i) + "/"  + program + "-traces.csv"
                         output = subprocess.check_output(cmd,  shell = True)
                         output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep " + kernel + " > ../logs/run_" + str(i) + "/" + program + "-kernel-traces.csv", shell = True)
                         output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep HtoD > ../logs/run_" + str(i) + "/" + program + "-HtoD-traces.csv", shell = True)
@@ -32,11 +32,11 @@ def run_traces(programs, parameters, kernel, traces):
                     elif trace == "--metrics all":
                         cmd += trace 
                         cmd += " ./" + program + " " + param 
-                        cmd += " 2> Temp; cat Temp | awk '{print "+ param + "\",\" $0}'" | grep '" + gpu + "' >> ../logs/run_" + str(i) + "/" + program + "-metrics.csv"
+                        cmd += " 2> Temp; cat Temp | awk '{print "+ str(param) + "\",\" $0}'" | grep '" + gpu + "' >> ../logs/run_" + str(i) + "/" + program + "-metrics.csv"
                         output = subprocess.check_output(cmd,  shell = True)#, stderr=subprocess.STDOUT)
                     elif trace == "--events all":
                         cmd += trace
                         cmd += " ./" + program + " " + param 
-                        cmd += " 2> Temp; cat Temp | awk '{print "+ param + "\",\" $0}'" | grep '" + gpu + "' >> ../logs/run_" + str(i) + "/" + program + "-events.csv"
+                        cmd += " 2> Temp; cat Temp | awk '{print "+ str(param) + "\",\" $0}'" | grep '" + gpu + "' >> ../logs/run_" + str(i) + "/" + program + "-events.csv"
                         output = subprocess.check_output(cmd,  shell = True)
 
