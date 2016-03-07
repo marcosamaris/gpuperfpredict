@@ -44,8 +44,8 @@ for (j in 1:length(apps)){
         geom_line(size=2,aes(linetype=Device)) + geom_point(size=3) + 
         scale_y_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),
                       labels = scales::trans_format("log10", scales::math_format(10^.x)))  + 
-        annotation_logticks(sides = right)  + 
-        xlab("Size (Bytes)") + ylab("Time (ms)") + ggtitle(Title)    +
+        annotation_logticks(sides = "l")  + 
+        xlab("Size (Bytes)") + ylab("Time (sec)") + ggtitle(Title)    +
         theme(plot.title = element_text(family = "Trebuchet MS", face="bold", size=32)) +
         theme(axis.title = element_text(family = "Trebuchet MS", face="bold", size=22)) +
         theme(legend.title  = element_text(family = "Trebuchet MS", face="bold", size=14)) +
@@ -85,8 +85,8 @@ for (j in 1:length(apps)){
         geom_line(size=2,aes(linetype=Device)) + geom_point(size=3) + 
         scale_y_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),
                       labels = scales::trans_format("log10", scales::math_format(10^.x))) + 
-        annotation_logticks() + 
-        xlab("Size (Bytes)") + ylab("Time (ms)") + ggtitle(Title)    +
+        annotation_logticks(sides = "l") + 
+        xlab("Size (Bytes)") + ylab("Time (sec)") + ggtitle(Title)    +
         theme(plot.title = element_text(family = "Trebuchet MS", face="bold", size=32)) +
         theme(axis.title = element_text(family = "Trebuchet MS", face="bold", size=22)) +
         theme(legend.title  = element_text(family = "Trebuchet MS", face="bold", size=14)) +
