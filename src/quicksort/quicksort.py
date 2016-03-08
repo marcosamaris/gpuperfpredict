@@ -28,7 +28,7 @@ subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["quicksort"]
 
-parameters = ["2048 16 0 " + str(args.Device),"4096 16 0 " + str(args.Device),"8192 16 0 " + str(args.Device),"16384 0 " + str(args.Device),"32768 0 " + str(args.Device),"65536 0 " + str(args.Device)]
+parameters = ["2048 0 " + str(args.Device),"4096 0 " + str(args.Device),"8192 0 " + str(args.Device),"16384 0 " + str(args.Device),"32768 0 " + str(args.Device),"65536 0 " + str(args.Device)]
 
 kernel = "quicksort"
 
