@@ -1,8 +1,8 @@
-==28006== NVPROF is profiling process 28006, command: ./transFloat 268435456 0
-==28006== Profiling application: ./transFloat 268435456 0
-==28006== Profiling result:
+==24484== NVPROF is profiling process 24484, command: ./transFloat 268435456 0
+==24484== Profiling application: ./transFloat 268435456 0
+==24484== Profiling result:
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,GB,GB/s,,,,
-9.599625,0.167383,,,,,,,,,,1.000000,5.974325,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
-9.767014,4.174348e-03,1048576,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transFloat(float*, int) [99]"
-9.771192,0.239767,,,,,,,,,,1.000000,4.170711,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+9.558891,0.172266,,,,,,,,,,1.000000,5.804983,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+9.731163,4.169318e-03,1048576,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transFloat(float*, int) [99]"
+9.735336,0.258718,,,,,,,,,,1.000000,3.865209,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"

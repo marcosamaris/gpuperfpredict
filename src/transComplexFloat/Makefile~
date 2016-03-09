@@ -9,16 +9,16 @@ transComplexFloat: transComplexFloat.o
 	$(CC) $(CFLAGS) transComplexFloat.o -o transComplexFloat
 
 tests: transComplexFloat
-	python3 -u ./transComplexFloat.py
+	python3 -u ./transComplexFloat.py --Device $(DEVICE_ID)
 				 
 traces: transComplexFloat
-	python3 -u ./transComplexFloat.py --Traces True
+	python3 -u ./transComplexFloat.py --Traces True --Device $(DEVICE_ID)
 
 metrics: transComplexFloat
-	python3 -u ./transComplexFloat.py  --Metrics True
+	python3 -u ./transComplexFloat.py  --Metrics True --Device $(DEVICE_ID)
 
 events: transComplexFloat
-	python3 -u ./transComplexFloat.py  --Events True				 
+	python3 -u ./transComplexFloat.py  --Events True --Device $(DEVICE_ID)				 
 
 clean:
 	rm -rf *.o transComplexFloat

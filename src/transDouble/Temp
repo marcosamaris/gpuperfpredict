@@ -1,8 +1,8 @@
-==28252== NVPROF is profiling process 28252, command: ./transDouble 134217728 0
-==28252== Profiling application: ./transDouble 134217728 0
-==28252== Profiling result:
+==24989== NVPROF is profiling process 24989, command: ./transDouble 134217728 0
+==24989== Profiling application: ./transDouble 134217728 0
+==24989== Profiling result:
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,GB,GB/s,,,,
-6.013605,0.167580,,,,,,,,,,1.000000,5.967284,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
-6.181324,2.088310e-03,524288,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
-6.183416,0.241379,,,,,,,,,,1.000000,4.142864,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+6.011430,0.173076,,,,,,,,,,1.000000,5.777814,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+6.184647,2.085844e-03,524288,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transDouble(double*, int) [99]"
+6.186737,0.244924,,,,,,,,,,1.000000,4.082895,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"

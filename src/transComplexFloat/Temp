@@ -1,8 +1,8 @@
-==28567== NVPROF is profiling process 28567, command: ./transComplexFloat 268435456 0
-==28567== Profiling application: ./transComplexFloat 268435456 0
-==28567== Profiling result:
+==25521== NVPROF is profiling process 25521, command: ./transComplexFloat 268435456 0
+==25521== Profiling application: ./transComplexFloat 268435456 0
+==25521== Profiling result:
 "Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 s,s,,,,,,,,B,B,GB,GB/s,,,,
-17.508064,0.334330,,,,,,,,,,2.000000,5.982116,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
-17.842403,4.177260e-03,1048576,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transComplexFloat(float2*, int) [99]"
-17.846583,0.350736,,,,,,,,,,2.000000,5.702293,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
+17.488094,0.345374,,,,,,,,,,2.000000,5.790831,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
+17.833477,4.167271e-03,1048576,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transComplexFloat(float2*, int) [99]"
+17.837647,0.362948,,,,,,,,,,2.000000,5.510430,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"

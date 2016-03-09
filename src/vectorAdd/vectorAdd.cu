@@ -119,6 +119,7 @@ int main(int argc, char** argv)
 	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferNone);
 	}
 
+
     // Invoke kernel
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
