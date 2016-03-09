@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
+<entry>
+    <name>Template</name>
+    <description><![CDATA[A trivial template project that can be used as a starting point to create new CUDA projects.]]></description>
+    <whitepaper></whitepaper>
+    <minspec>SM 1.1</minspec>
+    <keywords></keywords>
+    <scope>1:CUDA Basic Topics</scope>
+    <files>
+    </files>
+    <cudaapi>cudaMalloc</cudaapi>
+    <cudaapi>cudaFree</cudaapi>
+    <cudaapi>cudaDeviceSynchronize</cudaapi>
+    <cudaapi>cudaMemcpy</cudaapi>
+    <keyconcepts level="basic">Device Memory Allocation</keyconcepts>
+    <include-path>./</include-path>
+    <include-path>../</include-path>
+    <include-path>../../common/inc</include-path>
+    <devicecompilation>whole</devicecompilation>
+    <sm-arch>sm11</sm-arch>
+    <sm-arch>sm20</sm-arch>
+    <sm-arch>sm30</sm-arch>
+    <sm-arch>sm32</sm-arch>
+    <sm-arch>sm35</sm-arch>
+    <sm-arch>sm37</sm-arch>
+    <sm-arch>sm50</sm-arch>
+    <type>exe</type>
+    <primary-file>template.cu</primary-file>
+    <supported-env>linux:x86_64, linux:i686, windows7, macosx:x86_64, macosx:i686, :arm, linux:aarch64</supported-env>
+</entry>

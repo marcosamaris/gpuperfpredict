@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
+<entry>
+    <name>Scalar Product</name>
+    <description><![CDATA[This sample calculates scalar products of a given set of input vector pairs.]]></description>
+    <whitepaper></whitepaper>
+    <minspec>SM 1.1</minspec>
+    <keywords>CUDA,Linear Algebra,scalar product</keywords>
+    <scope>1:CUDA Basic Topics,3:Linear Algebra</scope>
+    <files>
+    </files>
+    <cudaapi></cudaapi>
+    <keyconcepts level="advanced">Linear Algebra</keyconcepts>
+    <include-path>./</include-path>
+    <include-path>../</include-path>
+    <include-path>../../common/inc</include-path>
+    <devicecompilation>whole</devicecompilation>
+    <sm-arch>sm11</sm-arch>
+    <sm-arch>sm20</sm-arch>
+    <sm-arch>sm30</sm-arch>
+    <sm-arch>sm32</sm-arch>
+    <sm-arch>sm35</sm-arch>
+    <sm-arch>sm37</sm-arch>
+    <sm-arch>sm50</sm-arch>
+    <type>exe</type>
+    <primary-file>scalarProd.cu</primary-file>
+    <supported-env>linux:x86_64, linux:i686, windows7, macosx:x86_64, macosx:i686, :arm, linux:aarch64</supported-env>
+</entry>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
+<entry>
+    <name>Simple Vote Intrinsics</name>
+    <description><![CDATA[Simple program which demonstrates how to use the Vote (any, all) intrinsic instruction in a CUDA kernel.  Requires Compute Capability 1.2 or higher.]]></description>
+    <whitepaper></whitepaper>
+    <minspec>SM 1.2</minspec>
+    <keywords>CUDA,GPGPU,vote</keywords>
+    <scope>1:CUDA Basic Topics</scope>
+    <files>
+    </files>
+    <cudaapi>cudaMallco</cudaapi>
+    <cudaapi>cudaFree</cudaapi>
+    <cudaapi>cudaMemcpy</cudaapi>
+    <cudaapi>cudaFreeHost</cudaapi>
+    <keyconcepts level="basic">Vote Intrinsics</keyconcepts>
+    <include-path>./</include-path>
+    <include-path>../</include-path>
+    <include-path>../../common/inc</include-path>
+    <devicecompilation>whole</devicecompilation>
+    <sm-arch>sm12</sm-arch>
+    <sm-arch>sm20</sm-arch>
+    <sm-arch>sm30</sm-arch>
+    <sm-arch>sm32</sm-arch>
+    <sm-arch>sm35</sm-arch>
+    <sm-arch>sm37</sm-arch>
+    <sm-arch>sm50</sm-arch>
+    <type>exe</type>
+    <primary-file>simpleVoteIntrinsics.cu</primary-file>
+    <supported-env>linux:x86_64, linux:i686, windows7, macosx:x86_64, macosx:i686, :arm, linux:aarch64</supported-env>
+</entry>

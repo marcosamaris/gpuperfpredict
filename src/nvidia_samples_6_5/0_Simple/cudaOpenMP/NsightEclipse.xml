@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
+<entry>
+    <name>cudaOpenMP</name>
+    <description><![CDATA[This sample demonstrates how to use OpenMP API to write an application for multiple GPUs.]]></description>
+    <whitepaper></whitepaper>
+    <minspec>SM 1.1</minspec>
+    <keywords>CUDA,OpenMP,cluster,multi-GPU Support,openMP</keywords>
+    <scope>1:CUDA Basic Topics,1:CUDA Systems Integration</scope>
+    <files>
+    </files>
+    <cudaapi>cudaMalloc</cudaapi>
+    <cudaapi>cudaFree</cudaapi>
+    <cudaapi>cudaMemcpy</cudaapi>
+    <keyconcepts level="basic">CUDA Systems Integration</keyconcepts>
+    <keyconcepts level="basic">OpenMP</keyconcepts>
+    <keyconcepts level="basic">Multithreading</keyconcepts>
+    <include-path>./</include-path>
+    <include-path>../</include-path>
+    <include-path>../../common/inc</include-path>
+    <devicecompilation>whole</devicecompilation>
+    <sm-arch>sm11</sm-arch>
+    <sm-arch>sm20</sm-arch>
+    <sm-arch>sm30</sm-arch>
+    <sm-arch>sm32</sm-arch>
+    <sm-arch>sm35</sm-arch>
+    <sm-arch>sm37</sm-arch>
+    <sm-arch>sm50</sm-arch>
+    <type>exe</type>
+    <primary-file>cudaOpenMP.cu</primary-file>
+    <supported-env>linux:x86_64, linux:i686, windows7, macosx:x86_64, macosx:i686, :arm, linux:aarch64</supported-env>
+    <no-nsight-eclipse/>
+</entry>

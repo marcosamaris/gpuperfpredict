@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
+<entry>
+    <name>Simple Templates</name>
+    <description><![CDATA[This sample is a templatized version of the template project. It also shows how to correctly templatize dynamically allocated shared memory arrays.]]></description>
+    <whitepaper></whitepaper>
+    <minspec>SM 1.1</minspec>
+    <keywords></keywords>
+    <scope>1:CUDA Basic Topics</scope>
+    <files>
+    </files>
+    <cudaapi></cudaapi>
+    <keyconcepts level="basic">C++ Templates</keyconcepts>
+    <include-path>./</include-path>
+    <include-path>../</include-path>
+    <include-path>../../common/inc</include-path>
+    <devicecompilation>whole</devicecompilation>
+    <sm-arch>sm11</sm-arch>
+    <sm-arch>sm20</sm-arch>
+    <sm-arch>sm30</sm-arch>
+    <sm-arch>sm32</sm-arch>
+    <sm-arch>sm35</sm-arch>
+    <sm-arch>sm37</sm-arch>
+    <sm-arch>sm50</sm-arch>
+    <type>exe</type>
+    <primary-file>simpleTemplates.cu</primary-file>
+    <supported-env>linux:x86_64, linux:i686, windows7, macosx:x86_64, macosx:i686, :arm, linux:aarch64</supported-env>
+</entry>

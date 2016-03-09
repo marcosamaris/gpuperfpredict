@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
+<entry>
+    <name>simpleMPI</name>
+    <description><![CDATA[Simple example demonstrating how to use MPI in combination with CUDA.  This executable is not pre-built with the SDK installer.]]></description>
+    <whitepaper></whitepaper>
+    <minspec>SM 1.1</minspec>
+    <keywords>CUDA,MPI,cluster</keywords>
+    <scope>3:Linear Algebra,1:CUDA Systems Integration</scope>
+    <files>
+    </files>
+    <cudaapi>cudaMallco</cudaapi>
+    <cudaapi>cudaFree</cudaapi>
+    <cudaapi>cudaMemcpy</cudaapi>
+    <keyconcepts level="basic">CUDA Systems Integration</keyconcepts>
+    <keyconcepts level="basic">MPI</keyconcepts>
+    <keyconcepts level="basic">Multithreading</keyconcepts>
+    <library>cudart</library>
+    <library-path>$(CUDA_PATH)/lib$(LIBSIZE)</library-path>
+    <include-path>./</include-path>
+    <include-path>../</include-path>
+    <include-path>../../common/inc</include-path>
+    <devicecompilation>whole</devicecompilation>
+    <sm-arch>sm11</sm-arch>
+    <sm-arch>sm20</sm-arch>
+    <sm-arch>sm30</sm-arch>
+    <sm-arch>sm32</sm-arch>
+    <sm-arch>sm35</sm-arch>
+    <sm-arch>sm37</sm-arch>
+    <sm-arch>sm50</sm-arch>
+    <type>exe</type>
+    <primary-file>simpleMPI.cpp</primary-file>
+    <supported-env>linux:x86_64, linux:i686, windows7, macosx:x86_64, macosx:i686, :arm, linux:aarch64</supported-env>
+    <no-nsight-eclipse/>
+</entry>
