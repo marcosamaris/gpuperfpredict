@@ -18,7 +18,7 @@ tests:
 	cd subSeqMax; make tests
 	cd dotProd; make tests
 	cd vectorAdd; make tests
-	cd matMul; make tests
+#	cd matMul; make tests
 
 metrics: 
 	cd bitonic; make metrics
