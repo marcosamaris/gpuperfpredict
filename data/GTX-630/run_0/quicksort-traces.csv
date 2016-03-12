@@ -1,0 +1,30 @@
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,B,KB,GB/s,,,,
+2048,0.245130,3.040000e-06,,,,,,,,,,16.384000,5.389474,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+2048,0.245327,7.194883e-03,1,1,1,1,1,1,20,0,128,,,"GeForce GT 630 (1)","2","14","quicksort(int*, int) [188]"
+2048,0.252538,4.672000e-06,,,,,,,,,,16.384000,3.506849,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,B,KB,GB/s,,,,
+4096,0.243620,6.752000e-06,,,,,,,,,,32.768000,4.853081,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+4096,0.243815,0.019005,1,1,1,1,1,1,20,0,128,,,"GeForce GT 630 (1)","2","14","quicksort(int*, int) [188]"
+4096,0.262838,7.104000e-06,,,,,,,,,,32.768000,4.612613,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,B,KB,GB/s,,,,
+8192,0.239813,1.433500e-05,,,,,,,,,,65.536000,4.571747,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+8192,0.240018,0.052636,1,1,1,1,1,1,20,0,128,,,"GeForce GT 630 (1)","2","14","quicksort(int*, int) [188]"
+8192,0.292671,1.203100e-05,,,,,,,,,,65.536000,5.447261,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+16384,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+16384,s,s,,,,,,,,B,B,KB,GB/s,,,,
+16384,0.243850,2.396700e-05,,,,,,,,,,131.072000,5.468853,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+16384,0.244066,0.166906,1,1,1,1,1,1,20,0,128,,,"GeForce GT 630 (1)","2","14","quicksort(int*, int) [188]"
+16384,0.410994,2.211100e-05,,,,,,,,,,131.072000,5.927909,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+32768,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+32768,s,s,,,,,,,,B,B,KB,GB/s,,,,
+32768,0.247892,4.582100e-05,,,,,,,,,,262.144000,5.721045,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+32768,0.248131,0.578943,1,1,1,1,1,1,20,0,128,,,"GeForce GT 630 (1)","2","14","quicksort(int*, int) [188]"
+32768,0.827096,4.204600e-05,,,,,,,,,,262.144000,6.234695,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+65536,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+65536,s,s,,,,,,,,B,B,KB,GB/s,,,,
+65536,0.241987,8.869900e-05,,,,,,,,,,524.288000,5.910867,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+65536,0.242269,2.138427,1,1,1,1,1,1,20,0,128,,,"GeForce GT 630 (1)","2","14","quicksort(int*, int) [188]"
+65536,2.380766,8.137200e-05,,,,,,,,,,524.288000,6.443101,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"

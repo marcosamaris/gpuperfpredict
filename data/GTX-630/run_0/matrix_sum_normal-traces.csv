@@ -1,0 +1,42 @@
+128,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+128,s,s,,,,,,,,B,B,KB,GB/s,,,,
+128,0.277356,1.427100e-05,,,,,,,,,,65.536000,4.592250,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+128,0.277393,1.430300e-05,,,,,,,,,,65.536000,4.581976,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+128,0.277422,2.583800e-05,8,8,1,16,16,1,8,0,0,,,"GeForce GT 630 (1)","2","14","matSum(float*, float*, float*, int) [191]"
+128,0.277451,1.263900e-05,,,,,,,,,,65.536000,5.185220,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+256,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+256,s,s,,,,,,,,B,B,KB,GB/s,,,,
+256,0.243727,4.530900e-05,,,,,,,,,,262.144000,5.785694,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+256,0.243826,4.566200e-05,,,,,,,,,,262.144000,5.740966,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+256,0.243874,1.042600e-04,16,16,1,16,16,1,8,0,0,,,"GeForce GT 630 (1)","2","14","matSum(float*, float*, float*, int) [191]"
+256,0.243982,4.217400e-05,,,,,,,,,,262.144000,6.215773,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,B,MB,GB/s,,,,
+512,0.245681,1.731100e-04,,,,,,,,,,1.048576,6.057281,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+512,0.246027,1.737820e-04,,,,,,,,,,1.048576,6.033859,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+512,0.246203,4.060740e-04,32,32,1,16,16,1,8,0,0,,,"GeForce GT 630 (1)","2","14","matSum(float*, float*, float*, int) [191]"
+512,0.246613,1.594790e-04,,,,,,,,,,1.048576,6.575010,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,B,MB,GB/s,,,,
+1024,0.256621,6.970180e-04,,,,,,,,,,4.194304,6.017497,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+1024,0.257513,6.943940e-04,,,,,,,,,,4.194304,6.040237,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+1024,0.258209,1.711235e-03,64,64,1,16,16,1,8,0,0,,,"GeForce GT 630 (1)","2","14","matSum(float*, float*, float*, int) [191]"
+1024,0.259924,9.009750e-04,,,,,,,,,,4.194304,4.655295,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,B,MB,GB/s,,,,
+2048,0.309179,2.805347e-03,,,,,,,,,,16.777216,5.980442,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+2048,0.312148,2.782116e-03,,,,,,,,,,16.777216,6.030380,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+2048,0.314932,6.433568e-03,128,128,1,16,16,1,8,0,0,,,"GeForce GT 630 (1)","2","14","matSum(float*, float*, float*, int) [191]"
+2048,0.321369,4.256817e-03,,,,,,,,,,16.777216,3.941258,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,B,MB,GB/s,,,,
+4096,0.497053,0.011162,,,,,,,,,,67.108864,6.012496,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+4096,0.508484,0.011198,,,,,,,,,,67.108864,5.993098,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+4096,0.519684,0.028224,256,256,1,16,16,1,8,0,0,,,"GeForce GT 630 (1)","2","14","matSum(float*, float*, float*, int) [191]"
+4096,0.547913,0.017143,,,,,,,,,,67.108864,3.914546,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,B,MB,GB/s,,,,
+8192,1.263888,0.044734,,,,,,,,,,268.435456,6.000655,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+8192,1.308887,0.044593,,,,,,,,,,268.435456,6.019700,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+8192,1.353482,0.154422,512,512,1,16,16,1,8,0,0,,,"GeForce GT 630 (1)","2","14","matSum(float*, float*, float*, int) [191]"
+8192,1.507908,0.069426,,,,,,,,,,268.435456,3.866493,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
