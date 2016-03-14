@@ -1,6 +1,6 @@
 CC=nvcc
-#CFLAGS=-I/usr/local/cuda/include -L/usr/local/cuda/lib64 -lm -O3 -arch sm_35
-CFLAGS=-lm -O3 -arch sm_35 -w -ccbin g++-4.8
+# -Xptxas -dlcm=cg
+CFLAGS=-lm -O3 -arch sm_35 -w -ccbin g++-4.8 -Xptxas -dlcm=ca
 NVPROF=nvprof
 DEVICE_ID=0
 

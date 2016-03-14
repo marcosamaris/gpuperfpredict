@@ -9,7 +9,7 @@ transComplexDouble: transComplexDouble.o
 	$(CC) $(CFLAGS) transComplexDouble.o -o transComplexDouble
 				 
 traces: transComplexDouble
-	python3 -u ./transComplexDouble.py --Traces True --Device $(DEVICE_ID)
+	python ./transComplexDouble.py --Traces True --Device $(DEVICE_ID)
 
 clean:
 	rm -rf *.o transComplexDouble

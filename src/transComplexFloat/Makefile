@@ -9,7 +9,7 @@ transComplexFloat: transComplexFloat.o
 	$(CC) $(CFLAGS) transComplexFloat.o -o transComplexFloat
 				 
 traces: transComplexFloat
-	python3 -u ./transComplexFloat.py --Traces True --Device $(DEVICE_ID)		 
+	python ./transComplexFloat.py --Traces True --Device $(DEVICE_ID)		 
 
 clean:
 	rm -rf *.o transComplexFloat

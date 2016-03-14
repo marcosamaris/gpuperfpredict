@@ -9,7 +9,7 @@ transDouble: transDouble.o
 	$(CC) $(CFLAGS) transDouble.o -o transDouble
 
 traces: transDouble
-	python3 -u ./transDouble.py --Traces True  --Device $(DEVICE_ID)
+	python ./transDouble.py --Traces True  --Device $(DEVICE_ID)
 
 clean:
 	rm -rf *.o transDouble

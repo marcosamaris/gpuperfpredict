@@ -9,16 +9,16 @@ subSeqMax: subSeqMax.o
 	$(CC) $(CFLAGS) subSeqMax.o -o subSeqMax
 
 tests: subSeqMax
-	python3 -u ./subSeqMax.py
+	python ./subSeqMax.py
 	
 traces: subSeqMax
-	python3 -u ./subSeqMax.py --Traces True
+	python ./subSeqMax.py --Traces True
 
 metrics: subSeqMax
-	python3 -u ./subSeqMax.py  --Metrics True
+	python ./subSeqMax.py  --Metrics True
 
 events: subSeqMax
-	python3 -u ./subSeqMax.py  --Events True				 
+	python ./subSeqMax.py  --Events True				 
 
 clean:
 	rm -rf *.o subSeqMax

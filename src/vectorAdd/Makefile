@@ -9,16 +9,16 @@ vectorAdd: vectorAdd.o
 	$(CC) $(CFLAGS) vectorAdd.o -o vectorAdd
 
 tests: vectorAdd
-	python3 -u ./vectorAdd.py
+	python ./vectorAdd.py
 				 
 traces: vectorAdd
-	python3 -u ./vectorAdd.py --Traces True
+	python ./vectorAdd.py --Traces True
 
 metrics: vectorAdd
-	python3 -u ./vectorAdd.py  --Metrics True
+	python ./vectorAdd.py  --Metrics True
 
 events: vectorAdd
-	python3 -u ./vectorAdd.py  --Events True				 
+	python ./vectorAdd.py  --Events True				 
 
 clean:
 	rm -rf *.o vectorAdd

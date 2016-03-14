@@ -9,7 +9,7 @@ transFloat: transFloat.o
 	$(CC) $(CFLAGS) transFloat.o -o transFloat
 
 traces: transFloat
-	python3 -u ./transFloat.py --Traces True --Device $(DEVICE_ID)
+	python ./transFloat.py --Traces True --Device $(DEVICE_ID)
 
 clean:
 	rm -rf *.o transFloat
