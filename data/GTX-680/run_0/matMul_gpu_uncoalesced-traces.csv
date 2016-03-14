@@ -1,0 +1,39 @@
+128,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+128,s,s,,,,,,,,B,B,KB,GB/s,,,,
+128,0.246807,1.107200e-05,,,,,,,,,,64.000000,5.512568,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+128,0.246840,9.760000e-06,,,,,,,,,,64.000000,6.253602,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+128,0.246896,2.721600e-04,8,8,1,16,16,1,17,0,0,,,"GeForce GTX 680 (0)","2","14","matMul(float*, float*, float*, int, int) [192]"
+128,0.247171,1.177600e-05,,,,,,,,,,64.000000,5.183013,"GeForce GTX 680 (0)","2","14","[CUDA memcpy DtoH]"
+256,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+256,s,s,,,,,,,,B,B,KB,GB/s,,,,
+256,0.249754,4.595100e-05,,,,,,,,,,256.000000,5.313064,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+256,0.249851,4.512000e-05,,,,,,,,,,256.000000,5.410918,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+256,0.249914,2.152349e-03,16,16,1,16,16,1,17,0,0,,,"GeForce GTX 680 (0)","2","14","matMul(float*, float*, float*, int, int) [192]"
+256,0.252069,4.108800e-05,,,,,,,,,,256.000000,5.941896,"GeForce GTX 680 (0)","2","14","[CUDA memcpy DtoH]"
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,B,MB,GB/s,,,,
+512,0.253288,1.783360e-04,,,,,,,,,,1.000000,5.475970,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+512,0.253637,1.737270e-04,,,,,,,,,,1.000000,5.621248,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+512,0.253815,0.017204,32,32,1,16,16,1,17,0,0,,,"GeForce GTX 680 (0)","2","14","matMul(float*, float*, float*, int, int) [192]"
+512,0.271023,1.580800e-04,,,,,,,,,,1.000000,6.177647,"GeForce GTX 680 (0)","2","14","[CUDA memcpy DtoH]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,B,MB,GB/s,,,,
+1024,0.267405,7.016910e-04,,,,,,,,,,4.000000,5.566909,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+1024,0.268275,7.033230e-04,,,,,,,,,,4.000000,5.553992,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+1024,0.268982,0.136772,64,64,1,16,16,1,17,0,0,,,"GeForce GTX 680 (0)","2","14","matMul(float*, float*, float*, int, int) [192]"
+1024,0.405758,6.514840e-04,,,,,,,,,,4.000000,5.995926,"GeForce GTX 680 (0)","2","14","[CUDA memcpy DtoH]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,B,MB,GB/s,,,,
+2048,0.315732,2.823043e-03,,,,,,,,,,16.000000,5.534808,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+2048,0.318722,2.811748e-03,,,,,,,,,,16.000000,5.557041,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+2048,0.321538,1.155645,128,128,1,16,16,1,17,0,0,,,"GeForce GTX 680 (0)","2","14","matMul(float*, float*, float*, int, int) [192]"
+2048,1.477186,4.125783e-03,,,,,,,,,,16.000000,3.787160,"GeForce GTX 680 (0)","2","14","[CUDA memcpy DtoH]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,B,MB,GB/s,,,,
+4096,0.530975,0.011308,,,,,,,,,,64.000000,5.526839,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+4096,0.542446,0.011244,,,,,,,,,,64.000000,5.558485,"GeForce GTX 680 (0)","2","14","[CUDA memcpy HtoD]"
+4096,0.553695,10.136112,256,256,1,16,16,1,17,0,0,,,"GeForce GTX 680 (0)","2","14","matMul(float*, float*, float*, int, int) [192]"
+4096,10.689834,0.017077,,,,,,,,,,64.000000,3.659859,"GeForce GTX 680 (0)","2","14","[CUDA memcpy DtoH]"
+8192,==30070== Profiling result:
+8192,No kernels were profiled.
+8192,======== Error: Application received signal 134
