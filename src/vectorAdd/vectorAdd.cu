@@ -73,7 +73,7 @@ int main(int argc, char** argv)
     
     int N = atoi(argv[1]);
     int CacheConfL1 = atoi(argv[2]);    
-    int devId = atoi(argv[2]);
+    int devId = atoi(argv[3]);
 
     size_t size = N * sizeof(float);
     
