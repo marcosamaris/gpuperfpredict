@@ -12,7 +12,7 @@ from pandas import DataFrame
 computeVersion = 3
 
 # to control which GPU data to use
-gpus = pd.Series(["Tesla-K40","Tesla-k40-UsingL1"]);
+gpus = pd.Series(["Tesla-K40","Tesla-k40-UsingL1"]); # I can also use "titan" and "gtx 680"
 
 #List of applications( to be continued)
 applications = pd.Series(["bitonic","dotProd","matMul_gpu","matMul_gpu_sharedmem","matMul_gpu_sharedmem_uncoalesced",
@@ -53,9 +53,18 @@ for i in range(0,gpus.size):
 			tempDF = pd.read_csv(fullPath,header=None, names = tracesHeaderDF.columns );
 			tracesHeaderDF = tracesHeaderDF.append(tempDF);
 
+			### must add events and metrics at that moment!!
+
+			### also add gpu data in a same or separate dataframe
+
 #Select only duration
 tracesHeaderDF = tracesHeaderDF[['Duration']];
-#tracesHeaderDF = tracesHeaderDF.ix[:,'Duration':'Duration']
+
+#reset the index
+tracesHeaderDF = tracesHeaderDF.reset_index();
+tracesHeaderDF = tracesHeaderDF.drop('index', 1)
+
+#write to csv file
 tracesHeaderDF.to_csv("traces.csv");
 #about 6000 samples, due to bitonic samples
 
@@ -71,7 +80,12 @@ for i in range(0,gpus.size):
 			tempDF = pd.read_csv(fullPath,header=None, names = eventsHeaderDF.columns );
 			#print(tempDF);
 			eventsHeaderDF = eventsHeaderDF.append(tempDF);
-			
+
+#reset the index
+eventsHeaderDF = eventsHeaderDF.reset_index();
+eventsHeaderDF = eventsHeaderDF.drop('index', 1)
+
+#write to csv file
 eventsHeaderDF.to_csv("events.csv");
 
 
@@ -85,17 +99,53 @@ for i in range(0,gpus.size):
 			fullPath = gpuPath[i] + file;
         		print(fullPath);
 			tempDF = pd.read_csv(fullPath,header=None, names = metricsHeaderDF.columns );
-			#print(tempDF);
 			metricsHeaderDF = metricsHeaderDF.append(tempDF);
-			
+
+#reset the index
+metricsHeaderDF = metricsHeaderDF.reset_index();
+metricsHeaderDF = metricsHeaderDF.drop('index', 1)
+
+#Write to csv file			
 metricsHeaderDF.to_csv("metrics.csv");
 
 #Metrics.csv, events.csv and traces.csv are different in number of samples ... should be equal
-# exclude bitonic for now ?
-#How to get number of threads ? is it from traces.csv ? gridX * gridY * gridZ * blockX * blockY * blockZ ?
+# exclude bitonic for now ? YES
 
 ##################################################
 # To create dummy last dataframe
 ##################################################
+#TAKE CARE OF FILE ORDER ??! I can't depend on the current order
+
+#Take care of number of samples for the same application in metrics and events
+#VERIFY
+
+#Take subset of events
+eventsubsetDF = eventsHeaderDF[['threads_launched']];
+
+#Take subset of metrics( may change in other compute capabilities)
+metricsubset = metricsubset[['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']];
+
+
+eventsubsetDF = eventsubsetDF.join(tracesHeaderDF);
+eventsubsetDF.to_csv("threadsl.csv");
+
+L1 Global Hit Rate
+#DONE  t: number of threads for a kernel
+#DONE  R: clock rate, extracted from GPU specs.
+#DONE  P: number of cores, extracted from GPU specs.
+#DONE  L1cacheused: L1 cache is used or not.
+#DONE ld0 and st0: loads and stores in shared memory.
+#DONE ld1 and st1: loads and stores in global memory.
+#DONE L1 and L2: cache hits for L1 and L2 cache
+
+
+#To include later as features:
+#=================================
+#Executed IPC
+#Achieved Occupancy
+#Global load transactions per request
+#Global store transactions per request
+#same for shared mem
+#in events: gld_inst_8bit	gld_inst_16bit	gld_inst_32bit	gld_inst_64bit	gld_inst_128bit
 
 
