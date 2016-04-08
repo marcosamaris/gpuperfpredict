@@ -12,6 +12,7 @@ logging.basicConfig(filename='logfile.log',level=logging.WARNING)
 #TODO: Check OVERFLOWS
 #TODO: Add more compute versions
 #TODO: Append gpu data
+#TODO: parametrize for events and traces
 
 #Compute Version
 computeVersion = 3
@@ -21,6 +22,15 @@ gpus = pd.Series(["Tesla-K40","Tesla-k40-UsingL1","GTX-680","Titan"]);
 
 #Explicitly exclude apps that won't work for us 
 appExcludeList = pd.Series(["bitonic","trans"]);
+
+# Metrics features to extract
+metricsFeatures = pd.Series(['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']);
+
+#Events features to extract
+eventsFeatures = pd.Series(['threads_launched']);
+
+#Traces features to extract
+tracesFeatures = pd.Series(['Duration']);
 
 deviceQueryDF = pd.DataFrame({ 'gpu_name' : gpus,
 			       'compute_version': np.array([computeVersion,computeVersion,computeVersion,computeVersion]),
@@ -34,7 +44,8 @@ deviceQueryDF.to_csv('deviceData.csv');
 eventsHeaderDF = pd.read_csv("../data/eventsNames-3X.csv");
 
 metricsHeaderDF = pd.read_csv("../data/metricsNames-3X.csv");
-
+metricsHeaderDF = metricsHeaderDF [metricsFeatures] ;
+print metricsHeaderDF
 tracesHeaderDF = pd.read_csv("../data/tracesNames-3X.csv");
 
 #Contians folder paths for GPUs
@@ -70,7 +81,8 @@ for i in range(0,gpus.size):
 				#Read traces,events and metrics of that app in dataframe
 				tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF.columns );
 				tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns );
-				tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names = metricsHeaderDF.columns );
+				#tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names = metricsHeaderDF.columns );
+				tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsFeatures);
 
 				#Check that events, metrics and traces files have the same sample size
 				if(len(tempDF.index) == len(tempEventsDF.index) == len(tempMetricsDF.index) ):
@@ -101,7 +113,7 @@ for i in range(0,gpus.size):
 		processFile=True;
 
 #Select only duration
-tracesHeaderDF = tracesHeaderDF[['Duration']];
+tracesHeaderDF = tracesHeaderDF[tracesFeatures];
 
 #reset the index
 tracesHeaderDF = tracesHeaderDF.reset_index();
@@ -115,7 +127,7 @@ eventsHeaderDF = eventsHeaderDF.drop('index', 1)
 #write to csv file
 eventsHeaderDF.to_csv("events.csv");
 #Take subset of events
-eventsHeaderDF = eventsHeaderDF[['threads_launched']];
+eventsHeaderDF = eventsHeaderDF[eventsFeatures];
 
 #reset the index
 metricsHeaderDF = metricsHeaderDF.reset_index();
@@ -123,7 +135,7 @@ metricsHeaderDF = metricsHeaderDF.drop('index', 1)
 #Write to csv file			
 metricsHeaderDF.to_csv("metrics.csv");
 #Take subset of metrics( may change in other compute capabilities)
-metricsHeaderDF = metricsHeaderDF[['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']];
+#metricsHeaderDF = metricsHeaderDF[metricsFeatures];
 
 #Create dataset
 datasetDF= eventsHeaderDF.join(metricsHeaderDF);
