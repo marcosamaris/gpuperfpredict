@@ -6,21 +6,23 @@ from sklearn import linear_model
 #f = open("filename.txt")
 #f.readline()  # skip the header
 
-dataset = np.loadtxt('dummy.csv', delimiter=',')
+dataset = np.genfromtxt('datasetDF.csv', dtype=float, delimiter=',', skip_header =1);# names=True)
 #print dataset
-print dataset.shape
+print dataset.shape;
+#print dataset;
 
 # separate the data from the target attributes
-X = dataset[0:10,0:114]
-y = dataset[0:10,115]
+X = dataset[0:170,0:10]; # last one not included
+y = dataset[0:170,10];
 
-print y
+print X;
+print y;
 
-lr = linear_model.LinearRegression()
+lr = linear_model.LinearRegression();
 
-lr.fit(X,y)
+lr.fit(X,y);
 
-X_val = dataset[11,0:114]
+X_val = dataset[171:178,0:10];
 print X_val.shape
 print X_val
-print lr.predict(X_val.reshape(1, -1))
+print lr.predict(X_val)
