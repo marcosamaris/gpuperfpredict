@@ -11,8 +11,8 @@ logging.basicConfig(filename='logfile.log',level=logging.WARNING)
 #TODO: Must validata data first!
 #TODO: Check OVERFLOWS
 #TODO: Add more compute versions
-#TODO: Append gpu data
 #TODO: parametrize for events and traces
+#TODO: change to floats
 
 #Compute Version
 computeVersion = 3
@@ -32,21 +32,23 @@ eventsFeatures = pd.Series(['threads_launched']);
 #Traces features to extract
 tracesFeatures = pd.Series(['Duration']);
 
+#Device features
+deviceFeatures = pd.Series(['num_of_cores','max_clock_rate','l1_cache_used']);
+
 deviceQueryDF = pd.DataFrame({ 'gpu_name' : gpus,
 			       'compute_version': np.array([computeVersion,computeVersion,computeVersion,computeVersion]),
 			       'num_of_cores': np.array([2880,2880,1536,2688],dtype='int32'),
 	                       'max_clock_rate' : np.array([745,745,1058,876],dtype='int32'), #in Mhz
 			       'l1_cache_used': np.array([0,1,1,1])}) # check again
 
-deviceQueryDF.to_csv('deviceData.csv');
 
 #create a dataframe with zero rows, just the colums labels
 eventsHeaderDF = pd.read_csv("../data/eventsNames-3X.csv");
 
 metricsHeaderDF = pd.read_csv("../data/metricsNames-3X.csv");
 metricsHeaderDF = metricsHeaderDF [metricsFeatures] ;
-print metricsHeaderDF
 tracesHeaderDF = pd.read_csv("../data/tracesNames-3X.csv");
+deviceDataDF = pd.DataFrame(columns = deviceFeatures);
 
 #Contians folder paths for GPUs
 gpuPath=pd.Series([""]);
@@ -98,6 +100,11 @@ for i in range(0,gpus.size):
 
 					#Add metrics of that app
 					metricsHeaderDF = metricsHeaderDF.append(tempMetricsDF);
+
+					for k in range (0,len(tempDF.index)):
+						deviceDataDF = deviceDataDF.append(deviceQueryDF[(deviceQueryDF['gpu_name']==gpus[i])][deviceFeatures]);
+					#deviceDataDF = deviceDataDF[];
+
 					
 				# Else: log that they don't have the same size!
 				else:
@@ -124,24 +131,29 @@ tracesHeaderDF.to_csv("traces.csv");
 #reset the index
 eventsHeaderDF = eventsHeaderDF.reset_index();
 eventsHeaderDF = eventsHeaderDF.drop('index', 1)
-#write to csv file
-eventsHeaderDF.to_csv("events.csv");
 #Take subset of events
 eventsHeaderDF = eventsHeaderDF[eventsFeatures];
+#write to csv file
+eventsHeaderDF.to_csv("events.csv");
 
 #reset the index
 metricsHeaderDF = metricsHeaderDF.reset_index();
 metricsHeaderDF = metricsHeaderDF.drop('index', 1)
 #Write to csv file			
 metricsHeaderDF.to_csv("metrics.csv");
-#Take subset of metrics( may change in other compute capabilities)
-#metricsHeaderDF = metricsHeaderDF[metricsFeatures];
+
+deviceDataDF = deviceDataDF.reset_index();
+deviceDataDF = deviceDataDF.drop('index', 1)
+#Write to csv file
+deviceDataDF.to_csv("device.csv");
 
 #Create dataset
-datasetDF= eventsHeaderDF.join(metricsHeaderDF);
+datasetDF = deviceDataDF.join(eventsHeaderDF);
+datasetDF= datasetDF.join(metricsHeaderDF);
 datasetDF = datasetDF.join(tracesHeaderDF);
 datasetDF.to_csv("datasetDF.csv");
 
+print datasetDF.info()
 print "Terminated: " + str(counter) + " apps processed, "+ str(len(datasetDF.index)) + " samples collected";
 
 #L1 Global Hit Rate
