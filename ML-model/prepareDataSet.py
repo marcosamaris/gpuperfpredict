@@ -9,10 +9,8 @@ from pandas import DataFrame
 logging.basicConfig(filename='logfile.log',level=logging.WARNING)
 
 #TODO: Must validata data first!
-#TODO: Check OVERFLOWS
 #TODO: Add more compute versions
-#TODO: parametrize for events and traces
-#TODO: change to floats
+#TODO: parametrize testset
 
 #Compute Version
 computeVersion = 3
@@ -22,6 +20,7 @@ gpus = pd.Series(["Tesla-K40","Tesla-k40-UsingL1","GTX-680","Titan"]);
 
 #Explicitly exclude apps that won't work for us 
 appExcludeList = pd.Series(["bitonic","trans"]);
+
 
 # Metrics features to extract
 metricsFeatures = pd.Series(['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']);
@@ -43,7 +42,7 @@ deviceQueryDF = pd.DataFrame({ 'gpu_name' : gpus,
 
 
 #create a dataframe with zero rows, just the colums labels
-eventsHeaderDF = pd.read_csv("../data/eventsNames-3X.csv");
+eventsHeaderDF = pd.read_csv("../data/eventsNames-3X.csv" );
 
 metricsHeaderDF = pd.read_csv("../data/metricsNames-3X.csv");
 metricsHeaderDF = metricsHeaderDF [metricsFeatures] ;
@@ -82,8 +81,8 @@ for i in range(0,gpus.size):
 	
 				#Read traces,events and metrics of that app in dataframe
 				tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF.columns );
-				tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns );
-				#tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names = metricsHeaderDF.columns );
+				tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns);
+				#Select metrics features when reading
 				tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsFeatures);
 
 				#Check that events, metrics and traces files have the same sample size
@@ -131,11 +130,12 @@ tracesHeaderDF.to_csv("traces.csv");
 #reset the index
 eventsHeaderDF = eventsHeaderDF.reset_index();
 eventsHeaderDF = eventsHeaderDF.drop('index', 1)
-#Take subset of events
+#Select only wanted events
 eventsHeaderDF = eventsHeaderDF[eventsFeatures];
 #write to csv file
 eventsHeaderDF.to_csv("events.csv");
 
+#Metrics features already selected
 #reset the index
 metricsHeaderDF = metricsHeaderDF.reset_index();
 metricsHeaderDF = metricsHeaderDF.drop('index', 1)
@@ -151,7 +151,12 @@ deviceDataDF.to_csv("device.csv");
 datasetDF = deviceDataDF.join(eventsHeaderDF);
 datasetDF= datasetDF.join(metricsHeaderDF);
 datasetDF = datasetDF.join(tracesHeaderDF);
-datasetDF.to_csv("datasetDF.csv");
+
+datasetDF.to_csv("datasetDFbefore.csv");
+
+#to remove any non numeric value
+datasetDF = datasetDF.convert_objects(convert_numeric=True).dropna();
+datasetDF.to_csv("datasetDF.csv",index=False);
 
 print datasetDF.info()
 print "Terminated: " + str(counter) + " apps processed, "+ str(len(datasetDF.index)) + " samples collected";
