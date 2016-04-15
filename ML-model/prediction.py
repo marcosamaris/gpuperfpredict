@@ -1,28 +1,43 @@
 import numpy as np
 from sklearn import datasets
 from sklearn import linear_model
+from sklearn import preprocessing
 
-# To skip the header if need be
-#f = open("filename.txt")
-#f.readline()  # skip the header
+#TODO: feature normalization
+#TODO: negative predicted values ?
 
-dataset = np.genfromtxt('datasetDF.csv', dtype=float, delimiter=',', skip_header =1);# names=True)
-#print dataset
+#Import all dataset
+dataset = np.genfromtxt('datasetDF.csv', dtype=float, delimiter=',', skip_header =1);
 print dataset.shape;
-#print dataset;
 
-# separate the data from the target attributes
-X = dataset[0:170,0:10]; # last one not included
-y = dataset[0:170,10];
+#Calculate: number of samples,features, output index, training set size ..
+samplesCount = dataset.shape[0];
+columnsCount = dataset.shape[1];
+featuresCount = dataset.shape[1]-1;
+outputIndex = dataset.shape[1]-1;
 
-print X;
-print y;
+trainingSetCount = int(80 * samplesCount /100);
 
+#For training set: separate the feature set from the target attributes
+X = dataset[0:trainingSetCount,0:featuresCount]; # last one not included
+y = dataset[0:trainingSetCount,outputIndex];
+
+#Scale values with mean = zero and standard deviation =1
+std_scale = preprocessing.StandardScaler().fit(X)
+X_std = std_scale.transform(X)
+print X_std;
+
+
+#Training phase
 lr = linear_model.LinearRegression();
+lr.fit(X_std,y);
 
-lr.fit(X,y);
+#Scale test set
+X_val = dataset[trainingSetCount+1:samplesCount,0:featuresCount];
+X_val_std = std_scale.transform(X_val)
+print X_val_std;
 
-X_val = dataset[171:178,0:10];
-print X_val.shape
-print X_val
-print lr.predict(X_val)
+#Prediction for test set
+print lr.predict(X_val_std)
+
+
