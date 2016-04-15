@@ -21,12 +21,14 @@ gpus = pd.Series(["Tesla-K40","Tesla-k40-UsingL1","GTX-680","Titan"]);
 #Explicitly exclude apps that won't work for us 
 appExcludeList = pd.Series(["bitonic","trans"]);
 
+appIncludeList = pd.Series(["matMul"]);
 
 # Metrics features to extract
 metricsFeatures = pd.Series(['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']);
 
 #Events features to extract
-eventsFeatures = pd.Series(['threads_launched']);
+eventsFeatures = pd.Series(['threads_launched','l1_global_load_hit', 'l1_global_load_miss']);
+
 
 #Traces features to extract
 tracesFeatures = pd.Series(['Duration']);
@@ -45,7 +47,8 @@ deviceQueryDF = pd.DataFrame({ 'gpu_name' : gpus,
 eventsHeaderDF = pd.read_csv("../data/eventsNames-3X.csv" );
 
 metricsHeaderDF = pd.read_csv("../data/metricsNames-3X.csv");
-metricsHeaderDF = metricsHeaderDF [metricsFeatures] ;
+#metricsHeaderDF = metricsHeaderDF [metricsFeatures] ;
+
 tracesHeaderDF = pd.read_csv("../data/tracesNames-3X.csv");
 deviceDataDF = pd.DataFrame(columns = deviceFeatures);
 
@@ -61,9 +64,9 @@ for i in range(0,gpus.size):
 
 	for file in os.listdir(gpuPath[i]):
 	
-		for j in range(0,appExcludeList.size):
+		for j in range(0,appIncludeList.size):
 
-			if (file.startswith(appExcludeList[j])):
+			if (not file.startswith(appIncludeList[j])):
 				processFile=False;
 
 		if (processFile == True) and file.endswith("-kernel-traces.csv"): 
@@ -71,7 +74,6 @@ for i in range(0,gpus.size):
 			#get app name
 		        appNameEnd = file.find('-kernel-traces.csv');
 			appName = file[0:appNameEnd];
-			#print appName;
 			fullTracesName = gpuPath[i] + file;
 			fullEventsName = gpuPath[i] + appName + "-events.csv";
 			fullMetricsName = gpuPath[i] + appName + "-metrics.csv";
@@ -82,13 +84,12 @@ for i in range(0,gpus.size):
 				#Read traces,events and metrics of that app in dataframe
 				tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF.columns );
 				tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns);
-				#Select metrics features when reading
-				tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsFeatures);
+				tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsHeaderDF.columns);
 
 				#Check that events, metrics and traces files have the same sample size
 				if(len(tempDF.index) == len(tempEventsDF.index) == len(tempMetricsDF.index) ):
 
-					logging.info( "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ...");
+					print "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ...";
 					counter=counter+1;
 
 					#Add traces of that app
@@ -102,7 +103,6 @@ for i in range(0,gpus.size):
 
 					for k in range (0,len(tempDF.index)):
 						deviceDataDF = deviceDataDF.append(deviceQueryDF[(deviceQueryDF['gpu_name']==gpus[i])][deviceFeatures]);
-					#deviceDataDF = deviceDataDF[];
 
 					
 				# Else: log that they don't have the same size!
@@ -123,22 +123,24 @@ tracesHeaderDF = tracesHeaderDF[tracesFeatures];
 
 #reset the index
 tracesHeaderDF = tracesHeaderDF.reset_index();
-tracesHeaderDF = tracesHeaderDF.drop('index', 1)
+tracesHeaderDF = tracesHeaderDF.drop('index', 1);
 #write to csv file
 tracesHeaderDF.to_csv("traces.csv");
 
 #reset the index
 eventsHeaderDF = eventsHeaderDF.reset_index();
-eventsHeaderDF = eventsHeaderDF.drop('index', 1)
+eventsHeaderDF = eventsHeaderDF.drop('index', 1);
 #Select only wanted events
 eventsHeaderDF = eventsHeaderDF[eventsFeatures];
 #write to csv file
 eventsHeaderDF.to_csv("events.csv");
 
-#Metrics features already selected
+
 #reset the index
 metricsHeaderDF = metricsHeaderDF.reset_index();
-metricsHeaderDF = metricsHeaderDF.drop('index', 1)
+metricsHeaderDF = metricsHeaderDF.drop('index', 1);
+#Select metrics features 
+metricsHeaderDF = metricsHeaderDF[metricsFeatures];
 #Write to csv file			
 metricsHeaderDF.to_csv("metrics.csv");
 
@@ -158,7 +160,7 @@ datasetDF.to_csv("datasetDFbefore.csv");
 datasetDF = datasetDF.convert_objects(convert_numeric=True).dropna();
 datasetDF.to_csv("datasetDF.csv",index=False);
 
-print datasetDF.info()
+#print datasetDF.info()
 print "Terminated: " + str(counter) + " apps processed, "+ str(len(datasetDF.index)) + " samples collected";
 
 #L1 Global Hit Rate
