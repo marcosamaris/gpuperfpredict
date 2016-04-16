@@ -18,7 +18,7 @@ metrics: bitonic
 	python ./bitonic.py  --Metrics True --Device $(DEVICE_ID)
 
 events: bitonic
-	python ./bitonic.pyEvents True --Device $(DEVICE_ID)
+	python ./bitonic.py  --Events True --Device $(DEVICE_ID)
 
 clean:
 	rm -rf *.o bitonic
