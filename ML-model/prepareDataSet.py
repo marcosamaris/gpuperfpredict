@@ -15,10 +15,11 @@ logging.basicConfig(filename='logfile.log',filemode='w',level=logging.WARNING)
 #File Paths:
 deviceInfo = "deviceInfo.csv";
 
-#Explicitly exclude apps that won't work for us 
-appExcludeList = pd.Series(["bitonic","trans"]);
-
+#Explicitly include apps that we need to collect data from 
 appIncludeList = pd.Series(["matMul"]);
+
+#Explicitly exclude apps that won't work for us, not used currently 
+appExcludeList = pd.Series(["bitonic","trans"]);
 
 # Metrics features to extract
 metricsFeatures = pd.Series(['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']);
@@ -104,7 +105,6 @@ for i in range(0,gpus.size):
 						
 			# Else: Log that metrics or events are missing			
 			else:
-				print "..........................."
 				if not os.path.isfile(fullEventsName):
 					logging.warning(" "+ gpus[i]+"\\" + appName + ": Events data is missing.");
 				if not os.path.isfile(fullMetricsName):
