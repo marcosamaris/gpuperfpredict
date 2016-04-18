@@ -40,7 +40,7 @@ deviceQueryDF = pd.DataFrame({ 'gpu_name' : gpus,
 			       'compute_version': np.array([computeVersion,computeVersion,computeVersion,computeVersion]),
 			       'num_of_cores': np.array([2880,2880,1536,2688],dtype='int32'),
 	                       'max_clock_rate' : np.array([745,745,1058,876],dtype='int32'), #in Mhz
-			       'l1_cache_used': np.array([0,1,1,1])}) # check again
+			       'l1_cache_used': np.array([0,1,0,0])})
 
 
 #create a dataframe with zero rows, just the colums labels
