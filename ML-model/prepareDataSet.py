@@ -6,17 +6,14 @@ import logging
 
 from pandas import DataFrame
 
-logging.basicConfig(filename='logfile.log',level=logging.WARNING)
+logging.basicConfig(filename='logfile.log',filemode='w',level=logging.WARNING)
 
 #TODO: Must validata data first!
 #TODO: Add more compute versions
-#TODO: parametrize testset
+#TODO: format float fraction
 
-#Compute Version
-computeVersion = 3
-
-# to control which GPU data to use
-gpus = pd.Series(["Tesla-K40","Tesla-k40-UsingL1","GTX-680","Titan"]);
+#File Paths:
+deviceInfo = "deviceInfo.csv";
 
 #Explicitly exclude apps that won't work for us 
 appExcludeList = pd.Series(["bitonic","trans"]);
@@ -36,12 +33,9 @@ tracesFeatures = pd.Series(['Duration']);
 #Device features
 deviceFeatures = pd.Series(['num_of_cores','max_clock_rate','l1_cache_used']);
 
-deviceQueryDF = pd.DataFrame({ 'gpu_name' : gpus,
-			       'compute_version': np.array([computeVersion,computeVersion,computeVersion,computeVersion]),
-			       'num_of_cores': np.array([2880,2880,1536,2688],dtype='int32'),
-	                       'max_clock_rate' : np.array([745,745,1058,876],dtype='int32'), #in Mhz
-			       'l1_cache_used': np.array([0,1,0,0])})
-
+#Get device data from CSV file, easier than hardcoding it
+deviceQueryDF = pd.read_csv(deviceInfo);
+gpus = deviceQueryDF['gpu_name'];
 
 #create a dataframe with zero rows, just the colums labels
 eventsHeaderDF = pd.read_csv("../data/eventsNames-3X.csv" );
@@ -103,7 +97,6 @@ for i in range(0,gpus.size):
 
 					for k in range (0,len(tempDF.index)):
 						deviceDataDF = deviceDataDF.append(deviceQueryDF[(deviceQueryDF['gpu_name']==gpus[i])][deviceFeatures]);
-
 					
 				# Else: log that they don't have the same size!
 				else:
@@ -111,6 +104,7 @@ for i in range(0,gpus.size):
 						
 			# Else: Log that metrics or events are missing			
 			else:
+				print "..........................."
 				if not os.path.isfile(fullEventsName):
 					logging.warning(" "+ gpus[i]+"\\" + appName + ": Events data is missing.");
 				if not os.path.isfile(fullMetricsName):
@@ -147,7 +141,7 @@ metricsHeaderDF.to_csv("metrics.csv");
 deviceDataDF = deviceDataDF.reset_index();
 deviceDataDF = deviceDataDF.drop('index', 1)
 #Write to csv file
-deviceDataDF.to_csv("device.csv");
+#deviceDataDF.to_csv("device.csv");
 
 #Create dataset
 datasetDF = deviceDataDF.join(eventsHeaderDF);
