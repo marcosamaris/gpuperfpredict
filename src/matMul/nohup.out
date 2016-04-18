@@ -1,0 +1,452 @@
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu_uncoalesced.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu_uncoalesced.o -o matMul_gpu_uncoalesced
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu.o -o matMul_gpu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu_sharedmem_uncoalesced.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu_sharedmem_uncoalesced.o -o matMul_gpu_sharedmem_uncoalesced
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 -c matMul_gpu_sharedmem.cu
+nvcc -lm -O3 -arch sm_35 -w -ccbin g++-4.8 matMul_gpu_sharedmem.o -o matMul_gpu_sharedmem
+python3 -u ./matMul.py --Traces True --Device 0
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+python3 -u ./matMul.py --Device 0
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu_sharedmem 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-events.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --events all ./matMul_gpu_sharedmem 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu_sharedmem-events.csv
+make: Warning: File `matMul_gpu_uncoalesced.cu' has modification time 1,9e+02 s in the future
+nvcc  -c matMul_gpu_uncoalesced.cu
+matMul_gpu_uncoalesced.cu(129): warning: statement is unreachable
+
+matMul_gpu_uncoalesced.cu(129): warning: statement is unreachable
+
+nvcc  matMul_gpu_uncoalesced.o -o matMul_gpu_uncoalesced
+nvcc  -c matMul_gpu.cu
+matMul_gpu.cu(127): warning: statement is unreachable
+
+matMul_gpu.cu(127): warning: statement is unreachable
+
+nvcc  matMul_gpu.o -o matMul_gpu
+nvcc  -c matMul_gpu_sharedmem_uncoalesced.cu
+matMul_gpu_sharedmem_uncoalesced.cu(145): warning: statement is unreachable
+
+matMul_gpu_sharedmem_uncoalesced.cu(145): warning: statement is unreachable
+
+nvcc  matMul_gpu_sharedmem_uncoalesced.o -o matMul_gpu_sharedmem_uncoalesced
+nvcc  -c matMul_gpu_sharedmem.cu
+matMul_gpu_sharedmem.cu(146): warning: statement is unreachable
+
+matMul_gpu_sharedmem.cu(146): warning: statement is unreachable
+
+nvcc  matMul_gpu_sharedmem.o -o matMul_gpu_sharedmem
+python ./matMul.py --Device 0
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 384 16 0 0 2> Temp; cat Temp | awk '{print 384"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 640 16 0 0 2> Temp; cat Temp | awk '{print 640"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 768 16 0 0 2> Temp; cat Temp | awk '{print 768"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 896 16 0 0 2> Temp; cat Temp | awk '{print 896"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1152 16 0 0 2> Temp; cat Temp | awk '{print 1152"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1280 16 0 0 2> Temp; cat Temp | awk '{print 1280"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1408 16 0 0 2> Temp; cat Temp | awk '{print 1408"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1536 16 0 0 2> Temp; cat Temp | awk '{print 1536"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1664 16 0 0 2> Temp; cat Temp | awk '{print 1664"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1792 16 0 0 2> Temp; cat Temp | awk '{print 1792"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 1920 16 0 0 2> Temp; cat Temp | awk '{print 1920"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2176 16 0 0 2> Temp; cat Temp | awk '{print 2176"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2304 16 0 0 2> Temp; cat Temp | awk '{print 2304"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2432 16 0 0 2> Temp; cat Temp | awk '{print 2432"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2560 16 0 0 2> Temp; cat Temp | awk '{print 2560"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2688 16 0 0 2> Temp; cat Temp | awk '{print 2688"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2816 16 0 0 2> Temp; cat Temp | awk '{print 2816"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 2944 16 0 0 2> Temp; cat Temp | awk '{print 2944"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3072 16 0 0 2> Temp; cat Temp | awk '{print 3072"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3200 16 0 0 2> Temp; cat Temp | awk '{print 3200"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3328 16 0 0 2> Temp; cat Temp | awk '{print 3328"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3456 16 0 0 2> Temp; cat Temp | awk '{print 3456"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3584 16 0 0 2> Temp; cat Temp | awk '{print 3584"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3712 16 0 0 2> Temp; cat Temp | awk '{print 3712"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3840 16 0 0 2> Temp; cat Temp | awk '{print 3840"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 3968 16 0 0 2> Temp; cat Temp | awk '{print 3968"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4224 16 0 0 2> Temp; cat Temp | awk '{print 4224"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4352 16 0 0 2> Temp; cat Temp | awk '{print 4352"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4480 16 0 0 2> Temp; cat Temp | awk '{print 4480"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4608 16 0 0 2> Temp; cat Temp | awk '{print 4608"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4736 16 0 0 2> Temp; cat Temp | awk '{print 4736"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4864 16 0 0 2> Temp; cat Temp | awk '{print 4864"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 4992 16 0 0 2> Temp; cat Temp | awk '{print 4992"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 5120 16 0 0 2> Temp; cat Temp | awk '{print 5120"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 5248 16 0 0 2> Temp; cat Temp | awk '{print 5248"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 5376 16 0 0 2> Temp; cat Temp | awk '{print 5376"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 5504 16 0 0 2> Temp; cat Temp | awk '{print 5504"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 5632 16 0 0 2> Temp; cat Temp | awk '{print 5632"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 5760 16 0 0 2> Temp; cat Temp | awk '{print 5760"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 5888 16 0 0 2> Temp; cat Temp | awk '{print 5888"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6016 16 0 0 2> Temp; cat Temp | awk '{print 6016"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6144 16 0 0 2> Temp; cat Temp | awk '{print 6144"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6272 16 0 0 2> Temp; cat Temp | awk '{print 6272"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6400 16 0 0 2> Temp; cat Temp | awk '{print 6400"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6528 16 0 0 2> Temp; cat Temp | awk '{print 6528"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6656 16 0 0 2> Temp; cat Temp | awk '{print 6656"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6784 16 0 0 2> Temp; cat Temp | awk '{print 6784"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 6912 16 0 0 2> Temp; cat Temp | awk '{print 6912"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7040 16 0 0 2> Temp; cat Temp | awk '{print 7040"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7168 16 0 0 2> Temp; cat Temp | awk '{print 7168"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7296 16 0 0 2> Temp; cat Temp | awk '{print 7296"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7424 16 0 0 2> Temp; cat Temp | awk '{print 7424"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7552 16 0 0 2> Temp; cat Temp | awk '{print 7552"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7680 16 0 0 2> Temp; cat Temp | awk '{print 7680"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7808 16 0 0 2> Temp; cat Temp | awk '{print 7808"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 7936 16 0 0 2> Temp; cat Temp | awk '{print 7936"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 8064 16 0 0 2> Temp; cat Temp | awk '{print 8064"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 384 16 0 0 2> Temp; cat Temp | awk '{print 384"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 640 16 0 0 2> Temp; cat Temp | awk '{print 640"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 768 16 0 0 2> Temp; cat Temp | awk '{print 768"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 896 16 0 0 2> Temp; cat Temp | awk '{print 896"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1152 16 0 0 2> Temp; cat Temp | awk '{print 1152"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1280 16 0 0 2> Temp; cat Temp | awk '{print 1280"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1408 16 0 0 2> Temp; cat Temp | awk '{print 1408"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1536 16 0 0 2> Temp; cat Temp | awk '{print 1536"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1664 16 0 0 2> Temp; cat Temp | awk '{print 1664"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1792 16 0 0 2> Temp; cat Temp | awk '{print 1792"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 1920 16 0 0 2> Temp; cat Temp | awk '{print 1920"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2176 16 0 0 2> Temp; cat Temp | awk '{print 2176"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2304 16 0 0 2> Temp; cat Temp | awk '{print 2304"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2432 16 0 0 2> Temp; cat Temp | awk '{print 2432"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2560 16 0 0 2> Temp; cat Temp | awk '{print 2560"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2688 16 0 0 2> Temp; cat Temp | awk '{print 2688"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2816 16 0 0 2> Temp; cat Temp | awk '{print 2816"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 2944 16 0 0 2> Temp; cat Temp | awk '{print 2944"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3072 16 0 0 2> Temp; cat Temp | awk '{print 3072"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3200 16 0 0 2> Temp; cat Temp | awk '{print 3200"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3328 16 0 0 2> Temp; cat Temp | awk '{print 3328"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3456 16 0 0 2> Temp; cat Temp | awk '{print 3456"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3584 16 0 0 2> Temp; cat Temp | awk '{print 3584"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3712 16 0 0 2> Temp; cat Temp | awk '{print 3712"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3840 16 0 0 2> Temp; cat Temp | awk '{print 3840"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 3968 16 0 0 2> Temp; cat Temp | awk '{print 3968"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4224 16 0 0 2> Temp; cat Temp | awk '{print 4224"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4352 16 0 0 2> Temp; cat Temp | awk '{print 4352"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4480 16 0 0 2> Temp; cat Temp | awk '{print 4480"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4608 16 0 0 2> Temp; cat Temp | awk '{print 4608"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4736 16 0 0 2> Temp; cat Temp | awk '{print 4736"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4864 16 0 0 2> Temp; cat Temp | awk '{print 4864"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 4992 16 0 0 2> Temp; cat Temp | awk '{print 4992"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 5120 16 0 0 2> Temp; cat Temp | awk '{print 5120"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 5248 16 0 0 2> Temp; cat Temp | awk '{print 5248"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 5376 16 0 0 2> Temp; cat Temp | awk '{print 5376"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 5504 16 0 0 2> Temp; cat Temp | awk '{print 5504"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 5632 16 0 0 2> Temp; cat Temp | awk '{print 5632"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 5760 16 0 0 2> Temp; cat Temp | awk '{print 5760"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 5888 16 0 0 2> Temp; cat Temp | awk '{print 5888"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6016 16 0 0 2> Temp; cat Temp | awk '{print 6016"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6144 16 0 0 2> Temp; cat Temp | awk '{print 6144"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6272 16 0 0 2> Temp; cat Temp | awk '{print 6272"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6400 16 0 0 2> Temp; cat Temp | awk '{print 6400"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6528 16 0 0 2> Temp; cat Temp | awk '{print 6528"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6656 16 0 0 2> Temp; cat Temp | awk '{print 6656"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6784 16 0 0 2> Temp; cat Temp | awk '{print 6784"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 6912 16 0 0 2> Temp; cat Temp | awk '{print 6912"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7040 16 0 0 2> Temp; cat Temp | awk '{print 7040"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7168 16 0 0 2> Temp; cat Temp | awk '{print 7168"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7296 16 0 0 2> Temp; cat Temp | awk '{print 7296"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7424 16 0 0 2> Temp; cat Temp | awk '{print 7424"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7552 16 0 0 2> Temp; cat Temp | awk '{print 7552"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7680 16 0 0 2> Temp; cat Temp | awk '{print 7680"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7808 16 0 0 2> Temp; cat Temp | awk '{print 7808"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 7936 16 0 0 2> Temp; cat Temp | awk '{print 7936"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 8064 16 0 0 2> Temp; cat Temp | awk '{print 8064"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 384 16 0 0 2> Temp; cat Temp | awk '{print 384"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 640 16 0 0 2> Temp; cat Temp | awk '{print 640"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 768 16 0 0 2> Temp; cat Temp | awk '{print 768"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 896 16 0 0 2> Temp; cat Temp | awk '{print 896"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1152 16 0 0 2> Temp; cat Temp | awk '{print 1152"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1280 16 0 0 2> Temp; cat Temp | awk '{print 1280"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1408 16 0 0 2> Temp; cat Temp | awk '{print 1408"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1536 16 0 0 2> Temp; cat Temp | awk '{print 1536"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1664 16 0 0 2> Temp; cat Temp | awk '{print 1664"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1792 16 0 0 2> Temp; cat Temp | awk '{print 1792"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 1920 16 0 0 2> Temp; cat Temp | awk '{print 1920"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2176 16 0 0 2> Temp; cat Temp | awk '{print 2176"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2304 16 0 0 2> Temp; cat Temp | awk '{print 2304"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2432 16 0 0 2> Temp; cat Temp | awk '{print 2432"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2560 16 0 0 2> Temp; cat Temp | awk '{print 2560"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2688 16 0 0 2> Temp; cat Temp | awk '{print 2688"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2816 16 0 0 2> Temp; cat Temp | awk '{print 2816"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 2944 16 0 0 2> Temp; cat Temp | awk '{print 2944"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3072 16 0 0 2> Temp; cat Temp | awk '{print 3072"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3200 16 0 0 2> Temp; cat Temp | awk '{print 3200"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3328 16 0 0 2> Temp; cat Temp | awk '{print 3328"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3456 16 0 0 2> Temp; cat Temp | awk '{print 3456"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3584 16 0 0 2> Temp; cat Temp | awk '{print 3584"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3712 16 0 0 2> Temp; cat Temp | awk '{print 3712"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3840 16 0 0 2> Temp; cat Temp | awk '{print 3840"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 3968 16 0 0 2> Temp; cat Temp | awk '{print 3968"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4224 16 0 0 2> Temp; cat Temp | awk '{print 4224"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4352 16 0 0 2> Temp; cat Temp | awk '{print 4352"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4480 16 0 0 2> Temp; cat Temp | awk '{print 4480"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4608 16 0 0 2> Temp; cat Temp | awk '{print 4608"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4736 16 0 0 2> Temp; cat Temp | awk '{print 4736"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4864 16 0 0 2> Temp; cat Temp | awk '{print 4864"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 4992 16 0 0 2> Temp; cat Temp | awk '{print 4992"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 5120 16 0 0 2> Temp; cat Temp | awk '{print 5120"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 5248 16 0 0 2> Temp; cat Temp | awk '{print 5248"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 5376 16 0 0 2> Temp; cat Temp | awk '{print 5376"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 5504 16 0 0 2> Temp; cat Temp | awk '{print 5504"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 5632 16 0 0 2> Temp; cat Temp | awk '{print 5632"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 5760 16 0 0 2> Temp; cat Temp | awk '{print 5760"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 5888 16 0 0 2> Temp; cat Temp | awk '{print 5888"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6016 16 0 0 2> Temp; cat Temp | awk '{print 6016"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6144 16 0 0 2> Temp; cat Temp | awk '{print 6144"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6272 16 0 0 2> Temp; cat Temp | awk '{print 6272"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6400 16 0 0 2> Temp; cat Temp | awk '{print 6400"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6528 16 0 0 2> Temp; cat Temp | awk '{print 6528"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6656 16 0 0 2> Temp; cat Temp | awk '{print 6656"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6784 16 0 0 2> Temp; cat Temp | awk '{print 6784"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 6912 16 0 0 2> Temp; cat Temp | awk '{print 6912"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7040 16 0 0 2> Temp; cat Temp | awk '{print 7040"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7168 16 0 0 2> Temp; cat Temp | awk '{print 7168"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7296 16 0 0 2> Temp; cat Temp | awk '{print 7296"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7424 16 0 0 2> Temp; cat Temp | awk '{print 7424"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7552 16 0 0 2> Temp; cat Temp | awk '{print 7552"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7680 16 0 0 2> Temp; cat Temp | awk '{print 7680"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7808 16 0 0 2> Temp; cat Temp | awk '{print 7808"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 7936 16 0 0 2> Temp; cat Temp | awk '{print 7936"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 8064 16 0 0 2> Temp; cat Temp | awk '{print 8064"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem_uncoalesced 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem_uncoalesced-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 384 16 0 0 2> Temp; cat Temp | awk '{print 384"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 640 16 0 0 2> Temp; cat Temp | awk '{print 640"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 768 16 0 0 2> Temp; cat Temp | awk '{print 768"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 896 16 0 0 2> Temp; cat Temp | awk '{print 896"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1152 16 0 0 2> Temp; cat Temp | awk '{print 1152"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1280 16 0 0 2> Temp; cat Temp | awk '{print 1280"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1408 16 0 0 2> Temp; cat Temp | awk '{print 1408"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1536 16 0 0 2> Temp; cat Temp | awk '{print 1536"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1664 16 0 0 2> Temp; cat Temp | awk '{print 1664"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1792 16 0 0 2> Temp; cat Temp | awk '{print 1792"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 1920 16 0 0 2> Temp; cat Temp | awk '{print 1920"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2176 16 0 0 2> Temp; cat Temp | awk '{print 2176"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2304 16 0 0 2> Temp; cat Temp | awk '{print 2304"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2432 16 0 0 2> Temp; cat Temp | awk '{print 2432"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2560 16 0 0 2> Temp; cat Temp | awk '{print 2560"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2688 16 0 0 2> Temp; cat Temp | awk '{print 2688"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2816 16 0 0 2> Temp; cat Temp | awk '{print 2816"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 2944 16 0 0 2> Temp; cat Temp | awk '{print 2944"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3072 16 0 0 2> Temp; cat Temp | awk '{print 3072"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3200 16 0 0 2> Temp; cat Temp | awk '{print 3200"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3328 16 0 0 2> Temp; cat Temp | awk '{print 3328"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3456 16 0 0 2> Temp; cat Temp | awk '{print 3456"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3584 16 0 0 2> Temp; cat Temp | awk '{print 3584"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3712 16 0 0 2> Temp; cat Temp | awk '{print 3712"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3840 16 0 0 2> Temp; cat Temp | awk '{print 3840"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 3968 16 0 0 2> Temp; cat Temp | awk '{print 3968"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4224 16 0 0 2> Temp; cat Temp | awk '{print 4224"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4352 16 0 0 2> Temp; cat Temp | awk '{print 4352"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4480 16 0 0 2> Temp; cat Temp | awk '{print 4480"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4608 16 0 0 2> Temp; cat Temp | awk '{print 4608"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4736 16 0 0 2> Temp; cat Temp | awk '{print 4736"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4864 16 0 0 2> Temp; cat Temp | awk '{print 4864"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 4992 16 0 0 2> Temp; cat Temp | awk '{print 4992"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 5120 16 0 0 2> Temp; cat Temp | awk '{print 5120"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 5248 16 0 0 2> Temp; cat Temp | awk '{print 5248"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 5376 16 0 0 2> Temp; cat Temp | awk '{print 5376"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 5504 16 0 0 2> Temp; cat Temp | awk '{print 5504"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 5632 16 0 0 2> Temp; cat Temp | awk '{print 5632"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 5760 16 0 0 2> Temp; cat Temp | awk '{print 5760"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 5888 16 0 0 2> Temp; cat Temp | awk '{print 5888"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6016 16 0 0 2> Temp; cat Temp | awk '{print 6016"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6144 16 0 0 2> Temp; cat Temp | awk '{print 6144"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6272 16 0 0 2> Temp; cat Temp | awk '{print 6272"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6400 16 0 0 2> Temp; cat Temp | awk '{print 6400"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6528 16 0 0 2> Temp; cat Temp | awk '{print 6528"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6656 16 0 0 2> Temp; cat Temp | awk '{print 6656"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6784 16 0 0 2> Temp; cat Temp | awk '{print 6784"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 6912 16 0 0 2> Temp; cat Temp | awk '{print 6912"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7040 16 0 0 2> Temp; cat Temp | awk '{print 7040"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7168 16 0 0 2> Temp; cat Temp | awk '{print 7168"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7296 16 0 0 2> Temp; cat Temp | awk '{print 7296"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7424 16 0 0 2> Temp; cat Temp | awk '{print 7424"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7552 16 0 0 2> Temp; cat Temp | awk '{print 7552"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7680 16 0 0 2> Temp; cat Temp | awk '{print 7680"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7808 16 0 0 2> Temp; cat Temp | awk '{print 7808"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 7936 16 0 0 2> Temp; cat Temp | awk '{print 7936"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 8064 16 0 0 2> Temp; cat Temp | awk '{print 8064"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv   ./matMul_gpu_sharedmem 8192 16 0 0 2> Temp; cat Temp | awk '{print 8192"," $0}' | tail -n +4 >>  ../logs/run_0/matMul_gpu_sharedmem-traces.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 128 16 0 0 2> Temp; cat Temp | awk '{print 128"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 256 16 0 0 2> Temp; cat Temp | awk '{print 256"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 384 16 0 0 2> Temp; cat Temp | awk '{print 384"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 512 16 0 0 2> Temp; cat Temp | awk '{print 512"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 640 16 0 0 2> Temp; cat Temp | awk '{print 640"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 768 16 0 0 2> Temp; cat Temp | awk '{print 768"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 896 16 0 0 2> Temp; cat Temp | awk '{print 896"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1024 16 0 0 2> Temp; cat Temp | awk '{print 1024"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1152 16 0 0 2> Temp; cat Temp | awk '{print 1152"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1280 16 0 0 2> Temp; cat Temp | awk '{print 1280"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1408 16 0 0 2> Temp; cat Temp | awk '{print 1408"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1536 16 0 0 2> Temp; cat Temp | awk '{print 1536"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1664 16 0 0 2> Temp; cat Temp | awk '{print 1664"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1792 16 0 0 2> Temp; cat Temp | awk '{print 1792"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 1920 16 0 0 2> Temp; cat Temp | awk '{print 1920"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2048 16 0 0 2> Temp; cat Temp | awk '{print 2048"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2176 16 0 0 2> Temp; cat Temp | awk '{print 2176"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2304 16 0 0 2> Temp; cat Temp | awk '{print 2304"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2432 16 0 0 2> Temp; cat Temp | awk '{print 2432"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2560 16 0 0 2> Temp; cat Temp | awk '{print 2560"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2688 16 0 0 2> Temp; cat Temp | awk '{print 2688"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2816 16 0 0 2> Temp; cat Temp | awk '{print 2816"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 2944 16 0 0 2> Temp; cat Temp | awk '{print 2944"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3072 16 0 0 2> Temp; cat Temp | awk '{print 3072"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3200 16 0 0 2> Temp; cat Temp | awk '{print 3200"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3328 16 0 0 2> Temp; cat Temp | awk '{print 3328"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3456 16 0 0 2> Temp; cat Temp | awk '{print 3456"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3584 16 0 0 2> Temp; cat Temp | awk '{print 3584"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3712 16 0 0 2> Temp; cat Temp | awk '{print 3712"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3840 16 0 0 2> Temp; cat Temp | awk '{print 3840"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 3968 16 0 0 2> Temp; cat Temp | awk '{print 3968"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4096 16 0 0 2> Temp; cat Temp | awk '{print 4096"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4224 16 0 0 2> Temp; cat Temp | awk '{print 4224"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4352 16 0 0 2> Temp; cat Temp | awk '{print 4352"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4480 16 0 0 2> Temp; cat Temp | awk '{print 4480"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4608 16 0 0 2> Temp; cat Temp | awk '{print 4608"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4736 16 0 0 2> Temp; cat Temp | awk '{print 4736"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4864 16 0 0 2> Temp; cat Temp | awk '{print 4864"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 4992 16 0 0 2> Temp; cat Temp | awk '{print 4992"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 5120 16 0 0 2> Temp; cat Temp | awk '{print 5120"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 5248 16 0 0 2> Temp; cat Temp | awk '{print 5248"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 5376 16 0 0 2> Temp; cat Temp | awk '{print 5376"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 5504 16 0 0 2> Temp; cat Temp | awk '{print 5504"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 5632 16 0 0 2> Temp; cat Temp | awk '{print 5632"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 5760 16 0 0 2> Temp; cat Temp | awk '{print 5760"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 5888 16 0 0 2> Temp; cat Temp | awk '{print 5888"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./matMul_gpu 6016 16 0 0 2> Temp; cat Temp | awk '{print 6016"," $0}' | grep 'Tesla' >> ../logs/run_0/matMul_gpu-metrics.csv
+nvprof --normalized-time-unit s --print-gpu-trace  --csv --metrics all ./m

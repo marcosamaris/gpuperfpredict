@@ -114,35 +114,11 @@ int main(int argc, char* argv[])
   checkCuda( cudaGetDeviceProperties(&prop, devId) );
   printf("Device: %s\n", prop.name);
   
-    float* Pt = (float*) malloc(Width * sizeof(float));
-
-      //Assert Process
-  char fileName[20] = "../matMul/matMul_";
-  char bufferWidth[5] = " ";
-  sprintf(bufferWidth, "%d", Width);
-  strcat(fileName, bufferWidth);
-  strcat(fileName, ".out");
-  
-  FILE *ptr_file;
-  ptr_file =fopen(fileName, "r");
-
-  assert(ptr_file); 
-    
-  for (int i=0; i < Width; i++){
-    fscanf(ptr_file, "%f", &Pt[i]);
-  }  
-
-  fclose(ptr_file); 
-   printf("Assertion started\n");
-   for(int i=0 ;i<Width; i++) {
-     assert(fabs(P[i * Width + i] - Pt[i]) < 0.1);
-   }
-    printf("Assertion Finished");
   // clean up memory
   free(M);
   free(N);
   free(P);
-  free(Pt);
+
   checkCuda( cudaFree(Md) );
   checkCuda( cudaFree(Nd) );
   checkCuda( cudaFree(Pd) );
