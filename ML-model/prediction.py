@@ -9,14 +9,16 @@ from sklearn import svm
 
 #TODO: check negatively predicted values
 #TODO: use different linear models
+#TODO: for comparison between different ML models use mean square error, for comparison with analytical model use accuracy: mean(predicted/true value * 100)
 
 #========================Preparing the data===================================#
 
 #Import all dataset
-dataset = np.genfromtxt('datasetDF.csv', dtype=float, delimiter=',', skip_header =1);
+dataset = np.genfromtxt('dataset_matMul.csv', dtype=float, delimiter=',', skip_header =1);
 print dataset.shape;
 
 #Calculate: number of samples,features, output index, training set size ..
+featureStart = 1;
 samplesCount = dataset.shape[0];
 columnsCount = dataset.shape[1];
 featuresCount = dataset.shape[1]-1;
@@ -25,8 +27,8 @@ outputIndex = dataset.shape[1]-1;
 trainingSetCount = int(80 * samplesCount /100);
 
 #For training set: separate the feature set from the target attributes
-X = dataset[0:trainingSetCount,0:featuresCount]; # last one not included
-y = dataset[0:trainingSetCount,outputIndex];
+X = dataset[featureStart:trainingSetCount,featureStart:featuresCount]; # last one not included
+y = dataset[featureStart:trainingSetCount,outputIndex];
 
 #True Output values that will be used in calcuating the accuracy of prediction
 y_true = dataset[trainingSetCount+1:samplesCount,outputIndex]
@@ -38,7 +40,7 @@ X_std = std_scale.transform(X)
 #print X_std;
 
 #Scale test set
-X_val = dataset[trainingSetCount+1:samplesCount,0:featuresCount];
+X_val = dataset[trainingSetCount+1:samplesCount,featureStart:featuresCount];
 X_val_std = std_scale.transform(X_val)
 #print X_val_std;
 
