@@ -13,6 +13,7 @@ logging.basicConfig(filename='logfile.log',filemode='w',level=logging.WARNING)
 #TODO: format float fraction
 #TODO: you can use dataset for each application
 #TODO: Possibility for features: input size, "bandwidth" and "L2 cache size" from device info
+#TODO: Fit compute 5 metrics on compute 3 ones !!
 
 #In metrics: L1 Global Hit Rate','L2 Hit Rate (L1 Reads) don't exist in compute 5 !!
 
@@ -23,7 +24,7 @@ logging.basicConfig(filename='logfile.log',filemode='w',level=logging.WARNING)
 # put = zero
 
 #File Paths:
-deviceInfo = "deviceInfo.csv";
+deviceInfo = "deviceInfo_extended.csv"; #"deviceInfo.csv";
 
 #Explicitly include apps that we need to collect data from 
 appIncludeList = pd.Series(["matMul"]);
@@ -54,7 +55,7 @@ calculatedDataDF = pd.DataFrame( columns = pd.Series(['threads_number']) );
 metricsFeatures = pd.Series(['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']);
 
 #Events features to extract
-eventsFeatures = pd.Series(['l1_global_load_hit', 'l1_global_load_miss']); #what about store ?
+eventsFeatures = pd.Series(['l1_global_load_hit', 'l1_global_load_miss']);
 
 #Traces features to extract
 tracesFeatures = pd.Series(['Duration']);
@@ -87,7 +88,10 @@ for i in range(0,gpus.size):
 		
 			#Check that events and metrics files exist for that app
 			if (os.path.isfile(fullEventsName) and os.path.isfile(fullMetricsName)):
-	
+				
+				if( deviceQueryDF['compute_version'][i]==3 ):
+				print true;
+
 				#Read traces,events and metrics of that app in dataframe
 				tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF.columns );
 				tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns);
@@ -152,7 +156,6 @@ eventsHeaderDF = eventsHeaderDF.reset_index().drop('index', 1);
 eventsHeaderDF = eventsHeaderDF[eventsFeatures];
 #write to csv file
 eventsHeaderDF.to_csv("events.csv");
-
 
 #reset the index
 metricsHeaderDF = metricsHeaderDF.reset_index().drop('index', 1);
