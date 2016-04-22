@@ -1,69 +1,231 @@
-65536,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-65536,s,s,,,,,,,,B,B,KB,GB/s,,,,
-65536,0.362968,2.480100e-05,,,,,,,,,,262.144000,10.569896,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-65536,0.363044,2.489700e-05,,,,,,,,,,262.144000,10.529140,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-65536,0.363082,4.064000e-06,256,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-65536,0.363091,2.438500e-05,,,,,,,,,,262.144000,10.750215,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
 131072,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 131072,s,s,,,,,,,,B,B,KB,GB/s,,,,
-131072,0.339207,4.716900e-05,,,,,,,,,,524.288000,11.115097,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-131072,0.339347,4.659300e-05,,,,,,,,,,524.288000,11.252506,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-131072,0.339399,6.400000e-06,512,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-131072,0.339409,4.646500e-05,,,,,,,,,,524.288000,11.283504,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
+131072,0.294103,8.796300e-05,,,,,,,,,,524.288000,5.960324,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+131072,0.294280,8.815500e-05,,,,,,,,,,524.288000,5.947343,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+131072,0.294370,9.101200e-05,512,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+131072,0.294464,8.156300e-05,,,,,,,,,,524.288000,6.428013,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
 262144,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 262144,s,s,,,,,,,,B,B,MB,GB/s,,,,
-262144,0.346039,9.123400e-05,,,,,,,,,,1.048576,11.493259,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-262144,0.346310,9.081700e-05,,,,,,,,,,1.048576,11.546032,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-262144,0.346406,1.561600e-05,1024,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-262144,0.346426,9.033800e-05,,,,,,,,,,1.048576,11.607253,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
+262144,0.257922,1.728550e-04,,,,,,,,,,1.048576,6.066217,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+262144,0.258271,1.730140e-04,,,,,,,,,,1.048576,6.060642,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+262144,0.258446,1.786660e-04,1024,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+262144,0.258628,1.604710e-04,,,,,,,,,,1.048576,6.534364,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
 524288,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 524288,s,s,,,,,,,,B,B,MB,GB/s,,,,
-524288,0.359443,2.661480e-04,,,,,,,,,,2.097152,7.879646,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-524288,0.359887,2.927730e-04,,,,,,,,,,2.097152,7.163065,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-524288,0.360185,3.020800e-05,2048,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-524288,0.360219,1.814430e-04,,,,,,,,,,2.097152,11.558186,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
+524288,0.260775,3.484290e-04,,,,,,,,,,2.097152,6.018879,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+524288,0.261300,3.473730e-04,,,,,,,,,,2.097152,6.037176,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+524288,0.261649,3.543380e-04,2048,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+524288,0.262007,3.227660e-04,,,,,,,,,,2.097152,6.497438,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
 1048576,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 1048576,s,s,,,,,,,,B,B,MB,GB/s,,,,
-1048576,0.371902,6.146970e-04,,,,,,,,,,4.194304,6.823368,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-1048576,0.372692,6.088090e-04,,,,,,,,,,4.194304,6.889359,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-1048576,0.373306,5.878500e-05,4096,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-1048576,0.373369,5.208720e-04,,,,,,,,,,4.194304,8.052466,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
+1048576,0.279955,6.958330e-04,,,,,,,,,,4.194304,6.027745,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+1048576,0.280839,6.972410e-04,,,,,,,,,,4.194304,6.015573,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+1048576,0.281538,7.051090e-04,4096,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+1048576,0.282247,8.140350e-04,,,,,,,,,,4.194304,5.152486,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
 2097152,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 2097152,s,s,,,,,,,,B,B,MB,GB/s,,,,
-2097152,0.401675,1.317939e-03,,,,,,,,,,8.388608,6.364944,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-2097152,0.403166,1.280851e-03,,,,,,,,,,8.388608,6.549246,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-2097152,0.404453,1.149450e-04,8192,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-2097152,0.404571,1.108689e-03,,,,,,,,,,8.388608,7.566241,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
+2097152,0.322150,1.392817e-03,,,,,,,,,,8.388608,6.022764,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+2097152,0.323713,1.391026e-03,,,,,,,,,,8.388608,6.030518,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+2097152,0.325106,1.416022e-03,8192,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+2097152,0.326526,1.916852e-03,,,,,,,,,,8.388608,4.376242,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
 4194304,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 4194304,s,s,,,,,,,,B,B,MB,GB/s,,,,
-4194304,0.489194,2.704199e-03,,,,,,,,,,16.777216,6.204135,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-4194304,0.492066,2.527684e-03,,,,,,,,,,16.777216,6.637387,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-4194304,0.494599,2.263400e-04,16384,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-4194304,0.494829,4.018425e-03,,,,,,,,,,16.777216,4.175073,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
+4194304,0.396245,2.786431e-03,,,,,,,,,,16.777216,6.021041,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+4194304,0.399196,2.783007e-03,,,,,,,,,,16.777216,6.028449,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+4194304,0.401981,2.825741e-03,16384,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+4194304,0.404811,4.100692e-03,,,,,,,,,,16.777216,4.091313,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
 8388608,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
 8388608,s,s,,,,,,,,B,B,MB,GB/s,,,,
-8388608,0.634924,5.229928e-03,,,,,,,,,,33.554432,6.415850,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-8388608,0.640318,5.090119e-03,,,,,,,,,,33.554432,6.592072,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-8388608,0.645414,4.524540e-04,32768,1,1,256,1,1,10,0,0,,,"GeForce GTX TITAN (0)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
-8388608,0.645870,8.336371e-03,,,,,,,,,,33.554432,4.025065,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
-16777216,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-16777216,s,s,,,,,,,,B,B,MB,GB/s,,,,
-16777216,0.928083,0.010420,,,,,,,,,,67.108864,6.440126,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-16777216,0.938671,0.010264,,,,,,,,,,67.108864,6.538067,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-16777216,0.948937,0.017047,,,,,,,,,,67.108864,3.936790,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
-33554432,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-33554432,s,s,,,,,,,,B,B,MB,GB/s,,,,
-33554432,1.517685,0.020912,,,,,,,,,,134.217728,6.418152,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-33554432,1.538765,0.020757,,,,,,,,,,134.217728,6.466171,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-33554432,1.559524,0.034576,,,,,,,,,,134.217728,3.881814,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
-67108864,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-67108864,s,s,,,,,,,,B,B,MB,GB/s,,,,
-67108864,2.581727,0.037870,,,,,,,,,,268.435456,7.088330,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-67108864,2.619955,0.037556,,,,,,,,,,268.435456,7.147623,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy HtoD]"
-67108864,2.657513,0.062374,,,,,,,,,,268.435456,4.303627,"GeForce GTX TITAN (0)","2","14","[CUDA memcpy DtoH]"
-134217728,==9732== Profiling result:
+8388608,0.544356,5.592440e-03,,,,,,,,,,33.554432,5.999963,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+8388608,0.550114,5.573817e-03,,,,,,,,,,33.554432,6.020010,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+8388608,0.555690,5.653841e-03,32768,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+8388608,0.561347,8.536428e-03,,,,,,,,,,33.554432,3.930734,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+12582912,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+12582912,s,s,,,,,,,,B,B,MB,GB/s,,,,
+12582912,0.690001,8.374130e-03,,,,,,,,,,50.331648,6.010373,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+12582912,0.698541,8.363475e-03,,,,,,,,,,50.331648,6.018031,"GeForce GT 630 (1)","2","14","[CUDA memcpy HtoD]"
+12582912,0.706907,8.426869e-03,49152,1,1,256,1,1,8,0,0,,,"GeForce GT 630 (1)","2","14","vectorAdd(float const *, float const *, float*, int) [191]"
+12582912,0.715337,0.012809,,,,,,,,,,50.331648,3.929376,"GeForce GT 630 (1)","2","14","[CUDA memcpy DtoH]"
+16777216,==7662== Profiling result:
+16777216,No kernels were profiled.
+16777216,======== Error: Application received signal 134
+20971520,==7685== Profiling result:
+20971520,No kernels were profiled.
+20971520,======== Error: Application received signal 134
+25165824,==7708== Profiling result:
+25165824,No kernels were profiled.
+25165824,======== Error: Application received signal 134
+29360128,==7731== Profiling result:
+29360128,No kernels were profiled.
+29360128,======== Error: Application received signal 134
+33554432,==7755== Profiling result:
+33554432,No kernels were profiled.
+33554432,======== Error: Application received signal 134
+37748736,==7778== Profiling result:
+37748736,No kernels were profiled.
+37748736,======== Error: Application received signal 134
+41943040,==7801== Profiling result:
+41943040,No kernels were profiled.
+41943040,======== Error: Application received signal 134
+46137344,==7824== Profiling result:
+46137344,No kernels were profiled.
+46137344,======== Error: Application received signal 134
+50331648,==7847== Profiling result:
+50331648,No kernels were profiled.
+50331648,======== Error: Application received signal 134
+54525952,==7870== Profiling result:
+54525952,No kernels were profiled.
+54525952,======== Error: Application received signal 134
+58720256,==7894== Profiling result:
+58720256,No kernels were profiled.
+58720256,======== Error: Application received signal 134
+62914560,==7917== Profiling result:
+62914560,No kernels were profiled.
+62914560,======== Error: Application received signal 134
+67108864,==7940== Profiling result:
+67108864,No kernels were profiled.
+67108864,======== Error: Application received signal 134
+71303168,==7963== Profiling result:
+71303168,No kernels were profiled.
+71303168,======== Error: Application received signal 134
+75497472,==7986== Profiling result:
+75497472,No kernels were profiled.
+75497472,======== Error: Application received signal 134
+79691776,==8009== Profiling result:
+79691776,No kernels were profiled.
+79691776,======== Error: Application received signal 134
+83886080,==8032== Profiling result:
+83886080,No kernels were profiled.
+83886080,======== Error: Application received signal 134
+88080384,==8055== Profiling result:
+88080384,No kernels were profiled.
+88080384,======== Error: Application received signal 134
+92274688,==8078== Profiling result:
+92274688,No kernels were profiled.
+92274688,======== Error: Application received signal 134
+96468992,==8101== Profiling result:
+96468992,No kernels were profiled.
+96468992,======== Error: Application received signal 134
+100663296,==8124== Profiling result:
+100663296,No kernels were profiled.
+100663296,======== Error: Application received signal 134
+104857600,==8147== Profiling result:
+104857600,No kernels were profiled.
+104857600,======== Error: Application received signal 134
+109051904,==8170== Profiling result:
+109051904,No kernels were profiled.
+109051904,======== Error: Application received signal 134
+113246208,==8193== Profiling result:
+113246208,No kernels were profiled.
+113246208,======== Error: Application received signal 134
+117440512,==8216== Profiling result:
+117440512,No kernels were profiled.
+117440512,======== Error: Application received signal 134
+121634816,==8239== Profiling result:
+121634816,No kernels were profiled.
+121634816,======== Error: Application received signal 134
+125829120,==8262== Profiling result:
+125829120,No kernels were profiled.
+125829120,======== Error: Application received signal 134
+130023424,==8286== Profiling result:
+130023424,No kernels were profiled.
+130023424,======== Error: Application received signal 134
+134217728,==8309== Profiling result:
 134217728,No kernels were profiled.
 134217728,======== Error: Application received signal 134
-268435456,==9755== Profiling result:
+138412032,==8332== Profiling result:
+138412032,No kernels were profiled.
+138412032,======== Error: Application received signal 134
+142606336,==8355== Profiling result:
+142606336,No kernels were profiled.
+142606336,======== Error: Application received signal 134
+146800640,==8378== Profiling result:
+146800640,No kernels were profiled.
+146800640,======== Error: Application received signal 134
+150994944,==8401== Profiling result:
+150994944,No kernels were profiled.
+150994944,======== Error: Application received signal 134
+155189248,==8424== Profiling result:
+155189248,No kernels were profiled.
+155189248,======== Error: Application received signal 134
+159383552,==8447== Profiling result:
+159383552,No kernels were profiled.
+159383552,======== Error: Application received signal 134
+163577856,==8470== Profiling result:
+163577856,No kernels were profiled.
+163577856,======== Error: Application received signal 134
+167772160,==8493== Profiling result:
+167772160,No kernels were profiled.
+167772160,======== Error: Application received signal 134
+171966464,==8518== Profiling result:
+171966464,No kernels were profiled.
+171966464,======== Error: Application received signal 134
+176160768,==8541== Profiling result:
+176160768,No kernels were profiled.
+176160768,======== Error: Application received signal 134
+180355072,==8564== Profiling result:
+180355072,No kernels were profiled.
+180355072,======== Error: Application received signal 134
+184549376,==8587== Profiling result:
+184549376,No kernels were profiled.
+184549376,======== Error: Application received signal 134
+188743680,==8610== Profiling result:
+188743680,No kernels were profiled.
+188743680,======== Error: Application received signal 134
+192937984,==8633== Profiling result:
+192937984,No kernels were profiled.
+192937984,======== Error: Application received signal 134
+197132288,==8656== Profiling result:
+197132288,No kernels were profiled.
+197132288,======== Error: Application received signal 134
+201326592,==8679== Profiling result:
+201326592,No kernels were profiled.
+201326592,======== Error: Application received signal 134
+205520896,==8702== Profiling result:
+205520896,No kernels were profiled.
+205520896,======== Error: Application received signal 134
+209715200,==8726== Profiling result:
+209715200,No kernels were profiled.
+209715200,======== Error: Application received signal 134
+213909504,==8749== Profiling result:
+213909504,No kernels were profiled.
+213909504,======== Error: Application received signal 134
+218103808,==8772== Profiling result:
+218103808,No kernels were profiled.
+218103808,======== Error: Application received signal 134
+222298112,==8795== Profiling result:
+222298112,No kernels were profiled.
+222298112,======== Error: Application received signal 134
+226492416,==8818== Profiling result:
+226492416,No kernels were profiled.
+226492416,======== Error: Application received signal 134
+230686720,==8842== Profiling result:
+230686720,No kernels were profiled.
+230686720,======== Error: Application received signal 134
+234881024,==8870== Profiling result:
+234881024,No kernels were profiled.
+234881024,======== Error: Application received signal 134
+239075328,==8893== Profiling result:
+239075328,No kernels were profiled.
+239075328,======== Error: Application received signal 134
+243269632,==8917== Profiling result:
+243269632,No kernels were profiled.
+243269632,======== Error: Application received signal 134
+247463936,==8940== Profiling result:
+247463936,No kernels were profiled.
+247463936,======== Error: Application received signal 134
+251658240,==8963== Profiling result:
+251658240,No kernels were profiled.
+251658240,======== Error: Application received signal 134
+255852544,==8986== Profiling result:
+255852544,No kernels were profiled.
+255852544,======== Error: Application received signal 134
+260046848,==9009== Profiling result:
+260046848,No kernels were profiled.
+260046848,======== Error: Application received signal 134
+264241152,==9032== Profiling result:
+264241152,No kernels were profiled.
+264241152,======== Error: Application received signal 134
+268435456,==9056== Profiling result:
 268435456,No kernels were profiled.
 268435456,======== Error: Application received signal 134
