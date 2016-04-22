@@ -13,9 +13,9 @@ logging.basicConfig(filename='logfile.log',filemode='w',level=logging.WARNING)
 #TODO: you can use dataset for each application
 #TODO: Possibility for features: input size, "bandwidth" and "L2 cache size" from device info
 #TODO: format float fraction
-#TODO: ADD input size, appname,gpu name
 
-#NOTE:L1 Global Hit Rate is not zero ?
+#NOTE:L1 Global Hit Rate is not zero ? use global load hit and miss instead!
+#Check application matmul coalased
 
 #File Paths:
 deviceInfo = "deviceInfo.csv";
@@ -73,118 +73,124 @@ counter=0;
 for i in range(0,gpus.size):
 	gpuPath[i] = "../data/"+gpus[i]+"/run_0/";
 
-	for file in os.listdir(gpuPath[i]):
+	#Check if the above folder exists or not, report if not
+	if (not os.path.exists(gpuPath[i])):
+		logging.warning(gpuPath[i] + " doesn't exist");
+
+	else:
+		
+		for file in os.listdir(gpuPath[i]):
 	
-		for j in range(0,appIncludeList.size):
+			for j in range(0,appIncludeList.size):
 
-			if (not file.startswith(appIncludeList[j])):
-				processFile=False;
+				if (not file.startswith(appIncludeList[j])):
+					processFile=False;
 
-		if (processFile == True) and file.endswith("-kernel-traces.csv"): 
+			if (processFile == True) and file.endswith("-kernel-traces.csv"): 
 		
-			#get app name
-		        appNameEnd = file.find('-kernel-traces.csv');
-			appName = file[0:appNameEnd];
-			fullTracesName = gpuPath[i] + file;
-			fullEventsName = gpuPath[i] + appName + "-events.csv";
-			fullMetricsName = gpuPath[i] + appName + "-metrics.csv";
+				#get app name
+				appNameEnd = file.find('-kernel-traces.csv');
+				appName = file[0:appNameEnd];
+				fullTracesName = gpuPath[i] + file;
+				fullEventsName = gpuPath[i] + appName + "-events.csv";
+				fullMetricsName = gpuPath[i] + appName + "-metrics.csv";
 		
-			#Check that events and metrics files exist for that app
-			if (os.path.isfile(fullEventsName) and os.path.isfile(fullMetricsName)):
+				#Check that events and metrics files exist for that app
+				if (os.path.isfile(fullEventsName) and os.path.isfile(fullMetricsName)):
 
-				if( deviceQueryDF['compute_version'][i] == 3 ):
+					if( deviceQueryDF['compute_version'][i] == 3 ):
 					
-					#Read traces,events and metrics of that app in dataframe
-					tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF.columns );
-					tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns);
-					tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsHeaderDF.columns);
+						#Read traces,events and metrics of that app in dataframe
+						tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF.columns );
+						tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns);
+						tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsHeaderDF.columns);
 
-					#Check that events, metrics and traces files have the same sample size
-					if(len(tempDF.index) == len(tempEventsDF.index) == len(tempMetricsDF.index) ):
+						#Check that events, metrics and traces files have the same sample size
+						if(len(tempDF.index) == len(tempEventsDF.index) == len(tempMetricsDF.index) ):
 
-						print "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ...";
-						logging.warning( "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ..." );
+							print "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ...";
+							logging.warning( "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ..." );
 
-						#To count number of apps processed
-						counter=counter+1;
+							#To count number of apps processed
+							counter=counter+1;
 
-						#Device info to be appended to each sample					
-						deviceQuerytoAppend = deviceQueryDF[(deviceQueryDF['gpu_name']==gpus[i])][deviceFeatures];
+							#Device info to be appended to each sample					
+							deviceQuerytoAppend = deviceQueryDF[(deviceQueryDF['gpu_name']==gpus[i])][deviceFeatures];
 					
-						#Handle cases related to individual samples
-						for k in range (0,len(tempDF.index)):
+							#Handle cases related to individual samples
+							for k in range (0,len(tempDF.index)):
 
-							#Add GPU info for each sample
-							deviceDataDF = deviceDataDF.append(deviceQuerytoAppend);
+								#Add GPU info for each sample
+								deviceDataDF = deviceDataDF.append(deviceQuerytoAppend);
 						
-							#Calculate number of threads using traces data
-							threads_number = tempDF['Grid X'][k] * tempDF['Grid Y'][k] *  tempDF['Grid Z'][k] * tempDF['Block X'][k] * tempDF['Block Y'][k] *  tempDF['Block Z'][k];
-							#Add to each entry the number of threads calculated as above
-							calculatedDataDF.loc[len(calculatedDataDF)] = threads_number;
+								#Calculate number of threads using traces data
+								threads_number = tempDF['Grid X'][k] * tempDF['Grid Y'][k] *  tempDF['Grid Z'][k] * tempDF['Block X'][k] * tempDF['Block Y'][k] *  tempDF['Block Z'][k];
+								#Add to each entry the number of threads calculated as above
+								calculatedDataDF.loc[len(calculatedDataDF)] = threads_number;
 
-						#Add traces of that app
-						tracesHeaderDF = tracesHeaderDF.append(tempDF);
+							#Add traces of that app
+							tracesHeaderDF = tracesHeaderDF.append(tempDF);
 
-						#Add events of that app
-						eventsHeaderDF = eventsHeaderDF.append(tempEventsDF);
+							#Add events of that app
+							eventsHeaderDF = eventsHeaderDF.append(tempEventsDF);
 
-						#Add metrics of that app
-						metricsHeaderDF = metricsHeaderDF.append(tempMetricsDF);
+							#Add metrics of that app
+							metricsHeaderDF = metricsHeaderDF.append(tempMetricsDF);
 
 				
-				elif( deviceQueryDF['compute_version'][i] == 5 ):
+					elif( deviceQueryDF['compute_version'][i] == 5 ):
 						
-					#Read traces,events and metrics of that app in dataframe
-					tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF_5X.columns );
-					#explicitly set it to compute level 3
-					tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns);
-					tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsHeaderDF_5X.columns);
+						#Read traces,events and metrics of that app in dataframe
+						tempDF = pd.read_csv(fullTracesName,header=None, names = tracesHeaderDF_5X.columns );
+						#explicitly set it to compute level 3
+						tempEventsDF = pd.read_csv(fullEventsName,header=None, names = eventsHeaderDF.columns);
+						tempMetricsDF = pd.read_csv(fullMetricsName,header=None, names =metricsHeaderDF_5X.columns);
 
-					#Check that events, metrics and traces files have the same sample size
-					if(len(tempDF.index) == len(tempEventsDF.index) == len(tempMetricsDF.index) ):
+						#Check that events, metrics and traces files have the same sample size
+						if(len(tempDF.index) == len(tempEventsDF.index) == len(tempMetricsDF.index) ):
 
-						print "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ...";
-						logging.warning( "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ..." );
+							print "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ...";
+							logging.warning( "Processing traces, metrics and events for: "+gpus[i]+"\\" + appName + " ..." );
 
-						#To count number of apps processed
-						counter=counter+1;
+							#To count number of apps processed
+							counter=counter+1;
 
-						#Device info to be appended to each sample					
-						deviceQuerytoAppend = deviceQueryDF[(deviceQueryDF['gpu_name']==gpus[i])][deviceFeatures];
+							#Device info to be appended to each sample					
+							deviceQuerytoAppend = deviceQueryDF[(deviceQueryDF['gpu_name']==gpus[i])][deviceFeatures];
 					
-						#Handle cases related to individual samples
-						for k in range (0,len(tempDF.index)):
+							#Handle cases related to individual samples
+							for k in range (0,len(tempDF.index)):
 
-							#Add GPU info for each sample
-							deviceDataDF = deviceDataDF.append(deviceQuerytoAppend);
+								#Add GPU info for each sample
+								deviceDataDF = deviceDataDF.append(deviceQuerytoAppend);
 						
-							#Calculate number of threads using traces data
-							threads_number = tempDF['Grid X'][k] * tempDF['Grid Y'][k] *  tempDF['Grid Z'][k] * tempDF['Block X'][k] * tempDF['Block Y'][k] *  tempDF['Block Z'][k];
-							#Add to each entry the number of threads calculated as above
-							calculatedDataDF.loc[len(calculatedDataDF)] = threads_number;
+								#Calculate number of threads using traces data
+								threads_number = tempDF['Grid X'][k] * tempDF['Grid Y'][k] *  tempDF['Grid Z'][k] * tempDF['Block X'][k] * tempDF['Block Y'][k] *  tempDF['Block Z'][k];
+								#Add to each entry the number of threads calculated as above
+								calculatedDataDF.loc[len(calculatedDataDF)] = threads_number;
 
-						#Add traces of that app
-						tracesHeaderDF_5X = tracesHeaderDF_5X.append(tempDF);
+							#Add traces of that app
+							tracesHeaderDF_5X = tracesHeaderDF_5X.append(tempDF);
 
-						#Add events of that app, Excplicitly use the ones of compute level 3 and set it to zeros, since cache is disabled
-						#eventsHeaderDF_5X = eventsHeaderDF_5X.append(tempEventsDF);
-						eventsHeaderDF = eventsHeaderDF.append(tempEventsDF);
+							#Add events of that app, Excplicitly use the ones of compute level 3 and set it to zeros, since cache is disabled
+							#eventsHeaderDF_5X = eventsHeaderDF_5X.append(tempEventsDF);
+							eventsHeaderDF = eventsHeaderDF.append(tempEventsDF);
 						
-						#Add metrics of that app
-						metricsHeaderDF_5X = metricsHeaderDF_5X.append(tempMetricsDF);
+							#Add metrics of that app
+							metricsHeaderDF_5X = metricsHeaderDF_5X.append(tempMetricsDF);
 
-				# Else: log that they don't have the same size!
+					# Else: log that they don't have the same size!
+					else:
+						logging.warning(" "+ gpus[i]+"\\" + appName + ": Metrics, traces and events data are not equal in size.");
+						
+				# Else: Log that metrics or events are missing			
 				else:
-					logging.warning(" "+ gpus[i]+"\\" + appName + ": Metrics, traces and events data are not equal in size.");
-						
-			# Else: Log that metrics or events are missing			
-			else:
-				if not os.path.isfile(fullEventsName):
-					logging.warning(" "+ gpus[i]+"\\" + appName + ": Events data is missing.");
-				if not os.path.isfile(fullMetricsName):
-					logging.warning(" "+ gpus[i]+"\\" + appName +": Metrics data is missing.") ;
+					if not os.path.isfile(fullEventsName):
+						logging.warning(" "+ gpus[i]+"\\" + appName + ": Events data is missing.");
+					if not os.path.isfile(fullMetricsName):
+						logging.warning(" "+ gpus[i]+"\\" + appName +": Metrics data is missing.") ;
 
-		processFile=True;
+			processFile=True;
 
 #=======================PROCESS TRACES==========================
 #Select only duration
@@ -247,6 +253,10 @@ datasetDF.to_csv("dataset"+appIncludeList[0]+"Before.csv",index=False);
 
 #to remove any non numeric value
 datasetDF = datasetDF.convert_objects(convert_numeric=True).dropna();
+
+#Drop "L1 Global Hit Rate"
+datasetDF.drop('L1 Global Hit Rate', 1,inplace=True);
+
 datasetDF.to_csv("dataset_"+appIncludeList[0]+".csv",index=False);
 
 print "Terminated: " + str(counter) + " apps processed, "+ str(len(datasetDF.index)) + " samples collected";
