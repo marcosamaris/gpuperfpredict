@@ -14,11 +14,11 @@ all:
 tests:
 	cd bitonic; make tests
 	cd quicksort; make tests
-	cd matSum; make tests
-	cd subSeqMax; make tests
-	cd dotProd; make tests
-	cd vectorAdd; make tests
-#	cd matMul; make tests
+#	cd matSum; make tests
+#	cd subSeqMax; make tests
+#	cd dotProd; make tests
+#	cd vectorAdd; make tests
+	cd matMul; make tests
 
 metrics: 
 	cd bitonic; make metrics
@@ -39,17 +39,12 @@ events:
 	cd vectorAdd; make events   
 	
 traces: 
-	cd bitonic; make traces
-	cd quicksort; make traces
 	cd matSum; make traces
 	cd dotProd; make traces
 	cd subSeqMax; make traces
 	cd matMul; make traces
 	cd vectorAdd; make traces
-	cd transFloat; make traces
-	cd transDouble; make traces
-	cd transComplexFloat; make traces
-	cd transComplexDouble; make traces
+
 	
 clean:
 	cd bitonic; make clean
