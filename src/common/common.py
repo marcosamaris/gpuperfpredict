@@ -5,11 +5,11 @@ import subprocess
 import argparse
 
 gpu = "Tesla"
-experiment = 1                    
+experiment = 9                    
 
 def run_traces(programs, parameters, kernel, traces):
 
-    for i in range(0, experiment):
+    for i in range(1, experiment):
         os.system("mkdir -p ../logs/run_" + str(i))    
         for trace in traces:
             for program in programs:
