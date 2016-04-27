@@ -2,10 +2,10 @@ library(ggplot2)
 library(reshape2)
 
 cbbPalette <- gray(1:9/ 12)#c("red", "blue", "darkgray", "orange","black","brown", "lightblue","violet")
-dirpath <- "~/Dropbox/Doctorate/Results/2016/svm-gpuperf/Analytical-model/"
+dirpath <- "./Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))
 
-gpus <- read.table("../ML-model/deviceInfo.csv", sep=",", header=T)
+gpus <- read.table("./ML-model/deviceInfo.csv", sep=",", header=T)
 NoGPU <- dim(gpus)[1]
 
 apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
@@ -15,31 +15,54 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
 flopsTheoreticalPeak <- gpus['max_clock_rate']*gpus['num_of_cores']
 lambda <- matrix(nrow = NoGPU,ncol = length(apps), 0)
 
-lambdaK40 <- c(4.30, 20, 19.00, 65.00,  2.50,  9.50,  9.00, 10.00,  0.48)
+lambdaK40 <- c(4.30, 20, 19, 65 ,  2.50,  9.50,  9 , 10,  0.48)
 lambdaK40L1 <- c(3.5,   20, 19,   65, 2.75,  9.5,    9,   10, 0.48)
-
-lambdaTitan <- c(4.25,  21,   17,  50, 2.50, 10.0,  9.5,   12, 0.48)
-lambdaK20 <- c(4.50,   21,   18,   52, 2.50,  9.0,  9.5,   10, 0.50)
+lambdaGTX680 <- c(3.5,   18,   22,   65, 1.5,  8.25, 13.0, 11.0, 0.65)
+lambdaTitan <- c(4.25,  21,   17,  50, 2.5, 10,  9.5,   12, 0.48)
+lambdaK20 <- c(4.5,   21,   18,   52, 2.5,  9,  9.5,   10, 0.5)
+lambdaQ <- c(4.5,   20,   20,   64, 1.75,  8.25, 11,  9.5, 0.55)
+lambdaQL1 <- c(3.35, 20 , 25 , 64,  1.75,  8.5, 11 ,  9.50,  0.5)
+lambdaTitanX <- c(10 ,   35,   35,  110, 3,  9.50,  8,  9.5, 0.95)
+lambdaTitanBlack <- c(3.5,   17,   17,   52, 2,  7.5,  7.25,  8.5, 0.35)
+lambdaTitanBlackL1 <- c(2.25,   17,   18,   52, 2,  7.5,  7.25,  8.5, 0.35)
+lambdaGTX980 <- c(6,   26,   24,   76, 1.75,  5.5,  7.5,  5.5, 1.15)
+lambdaGTX970 <- c(13,  40,  37, 120,   3,   9,  11,   8.5,   1.6)
+lambdaGTX750 <- c(10,   42,   40,  138, 3.5, 14, 22, 15, 2.17)
 
 lambda[1,] <- lambdaK40
 lambda[2,] <- lambdaK40L1
-
+lambda[3,] <- lambdaGTX680
 lambda[4,] <- lambdaTitan
 lambda[5,] <- lambdaK20
+lambda[6,] <- lambdaQ
+lambda[7,] <- lambdaQL1
+lambda[8,] <- lambdaTitanX
+lambda[9,] <- lambdaTitanBlack
+lambda[10,] <- lambdaTitanBlackL1
+lambda[11,] <- lambdaGTX980
+lambda[12,] <- lambdaGTX970
+lambda[13,] <- lambdaGTX750
+
+library(xtable)
+dflambda <- data.frame(lambda)
+xtable(lambda[1:10,])
+
+fm1 <- aov(tlimth ~ gpus[k,'gpu_name'], data = dflambda)
 
 
 dataGPUsApps <- data.frame()
 
-for (k in 1:3){
+for (k in 1:9){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
-        if (gpus[k,'gpu_name'] == "Tesla-K40-UsingL1" | gpus[k,'gpu_name'] == "GTX-680"){
-            print("Run 1")
-            data <- read.table(paste("../data/", gpus[k,'gpu_name'],"/run_1/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
-        } else {
-            data <- read.table(paste("../data/", gpus[k,'gpu_name'],"/run_0/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
-            print("Run 0")
+        if (gpus[k,'gpu_name'] == "Tesla-K40-UsingL1" | gpus[k,'gpu_name'] == "GTX-680" | gpus[k,'gpu_name'] == "Quadro"){
+            print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], "/Run_1 ", sep=""))
+            data <- read.table(paste("./data/", gpus[k,'gpu_name'],"/run_1/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
+        } 
+        else {
+            data <- read.table(paste("./data/", gpus[k,'gpu_name'],"/run_0/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
+            print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], "/Run_0 ", sep=""))
         }
       TimeApp[apps[i]] <- data['V3']
     }
@@ -51,9 +74,14 @@ for (k in 1:3){
     latencyL2 <- latencyGlobalMemory*0.5; #Cycles per processor
     
     SpeedupMatMul <- list()
+    timeKernelMatMul <- list()
     for (i in 1:4){
-        N <- seq(from = 256, to = 8192, length.out = 32)
-        
+        if (gpus[k,'gpu_name'] == "GTX-680"){
+            N <- seq(from = 256, to = 4096, length.out = 16)
+        }
+        else {
+            N <- seq(from = 256, to = 8192, length.out = 32)
+        }
         numberMultiplication <- N;
         
         tileWidth <- 16;
@@ -71,24 +99,26 @@ for (k in 1:3){
         
         CommGM <- ((numberthreads*N*2 - L1Effect - L2Effect + numberthreads)*latencyGlobalMemory + L1Effect*latencyL1 + L2Effect*latencyL2);
         if (apps[i] == "matMul_gpu_uncoalesced" | lambda[k,i] == 0 ){
-            lambda[k,i] <- 4.5
+            lambda[k,i] <- 10
         }
         if (apps[i] == "matMul_gpu" | lambda[k,i] == 0 ){
-            lambda[k,i] <- 21
+            lambda[k,i] <- 42
         }
         if (apps[i] == "matMul_gpu_sharedmem_uncoalesced" | lambda[k,i] == 0 ){
-            lambda[k,i] <- 18
+            lambda[k,i] <- 40
         }
         if (apps[i] == "matMul_gpu_sharedmem" | lambda[k,i] == 0 ){
-            lambda[k,i] <- 52
+            lambda[k,i] <- 138
         }
 
         timeKernel <- ( lambda[k,i]^-1*(timeComputationKernel + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
+        timeKernelMatMul[[apps[i]]] <- timeKernel
         SpeedupMatMul[[apps[i]]] <- timeKernel[1:length(TimeApp[[apps[i]]])]/TimeApp[[apps[i]]];
     }
     SpeedupMatMul
     
     SpeedupMatSum <- list()
+    timeKernelMatSum <- list()
     for (i in 5:6){
         
         N <- seq(from = 256, to = 8192, length.out = 63)
@@ -103,20 +133,29 @@ for (k in 1:3){
         CommGM <- ((numberthreads*2 - L1Effect - L2Effect + numberthreads)*latencyGlobalMemory + L1Effect*latencyL1 + L2Effect*latencyL2);
         
         if(apps[i] == "matrix_sum_normal" | lambda[k,i] == 0 ){
-            lambda[k,i] <- 2.5
+            lambda[k,i] <- 3.5
         }
         if(apps[i] ==  "matrix_sum_coalesced" | lambda[k,i] == 0 ){
-            lambda[k,i] <- 9
+            lambda[k,i] <- 14
         }
+        
         timeKernel <- ( lambda[k,i]^-1*(tempOperationcycles + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
-        SpeedupMatSum[[apps[i]]] <- timeKernel[1:63]/TimeApp[[apps[i]]];
+        timeKernelMatSum[[apps[i]]] <- timeKernel
+        SpeedupMatSum[[apps[i]]] <- timeKernel[1:length(TimeApp[[apps[i]]])]/TimeApp[[apps[i]]];
     }
     SpeedupMatSum
     
     SpeedupVecOp <- list()
+    timeKernelVecOp <- list()
     for (i in 7:9){
-        if (apps[i] != "subSeqMax"){
+        if (gpus[k,'gpu_name'] == "GTX-680"){
+            N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 167772160, length.out = 40))
+        }
+        else {
             N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 268435456, length.out = 64))
+        }
+        if (apps[i] != "subSeqMax"){
+            
             BlockSize <- tileWidth*tileWidth
             blocknumber <- (N+BlockSize-1) / BlockSize ;
             
@@ -129,15 +168,14 @@ for (k in 1:3){
             CommGM <- ((numberthreads*2 - L1Effect - L2Effect + numberthreads)*latencyGlobalMemory + L1Effect*latencyL1 + L2Effect*latencyL2);
             
             if(apps[i] == "dotProd" | lambda[k,i] == 0 ){
-                lambda[k,i] <- 9.5
+                lambda[k,i] <- 22
             }
             if(apps[i] == "vectorAdd" | lambda[k,i] == 0 ){
-                lambda[k,i] <- 10
+                lambda[k,i] <- 15
             }
-            timeKernel <- ( lambda[k,i]^-1*(tempOperationcycles + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
-            SpeedupVecOp[[apps[i]]] <- timeKernel[1:69]/TimeApp[[apps[i]]];
+            
         } else {
-            N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 268435456, length.out = 64))
+            
             gridsize <- 32;
             blocksize <- 128
             
@@ -154,34 +192,49 @@ for (k in 1:3){
             CommSM <- (numberthreads*N_perThread + numberthreads*5)*latencySharedMemory
             
             if(apps[i] == "subSeqMax" | lambda[k,i] == 0 ){
-                lambda[k,i] <- .50
+                lambda[k,i] <- 2.17
             }
-            timeKernel <- ( lambda[k,i]^-1*(tempOperationcycles + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
-            SpeedupVecOp[[apps[i]]] <- timeKernel[1:69]/TimeApp[[apps[i]]];
         }
+        timeKernel <- ( lambda[k,i]^-1*(tempOperationcycles + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
+        timeKernelVecOp[[apps[i]]] <- timeKernel
+        SpeedupVecOp[[apps[i]]] <- timeKernel[1:length(TimeApp[[apps[i]]])]/TimeApp[[apps[i]]];
+        
     }
     SpeedupVecOp
     
     matMul <- array(unlist(SpeedupMatMul,use.names = T))
-    namesMatMul <- c(rep("matMul_gpu",32), rep("matMul_gpu_uncoalesced",32),rep("matMul_gpu_sharedmem_uncoalesced",32), rep("matMul_gpu_sharedmem",32))
-    N <- seq(from = 256, to = 8192, length.out = 32)
-    dfmatMul <- cbind(matMul, namesMatMul, N)
+    TkmatMul <- array(unlist(timeKernelMatMul,use.names = T))
+    
+    if (gpus[k,'gpu_name'] == "GTX-680"){
+        N <- seq(from = 256, to = 4096, length.out = 16)
+    } else {
+        N <- seq(from = 256, to = 8192, length.out = 32)
+    }
+    namesMatMul <- c(rep("matMul_gpu",length(N)), rep("matMul_gpu_uncoalesced",length(N)),
+                     rep("matMul_gpu_sharedmem_uncoalesced",length(N)), rep("matMul_gpu_sharedmem",length(N)))
+    
+    dfmatMul <- cbind(matMul, TkmatMul, namesMatMul, N)
 
     matSum <- array(unlist(SpeedupMatSum,use.names = T))
-    namesmatSum <- c(rep("matrix_sum_normal",63), rep("matrix_sum_coalesced",63))
+    TkmatSum <- array(unlist(timeKernelMatSum,use.names = T))
     N <- seq(from = 256, to = 8192, length.out = 63)
-    dfmatSum <- cbind(matSum, namesmatSum,N)
+    namesmatSum <- c(rep("matrix_sum_normal",length(N)), rep("matrix_sum_coalesced",length(N)))
+    
+    dfmatSum <- cbind(matSum, TkmatSum, namesmatSum, N)
     
     matVecOp <- array(unlist(SpeedupVecOp,use.names = T))
-    namesVecOp <-c(rep("dotProd",69), rep("vectorAdd",69),  rep("subSeqMax",69))
-    N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 268435456, length.out = 64))
-    dfVecOp <- cbind(matVecOp, namesVecOp,N)
+    TkVecop <- array(unlist(timeKernelVecOp,use.names = T))
+    if (gpus[k,'gpu_name'] == "GTX-680"){
+        N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 167772160, length.out = 40))
+    } else {
+        N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 268435456, length.out = 64))
+    }
+    namesVecOp <-c(rep("dotProd",length(N)), rep("vectorAdd",length(N)),  rep("subSeqMax",length(N)))
+    dfVecOp <- cbind(matVecOp, TkVecop, namesVecOp,N)
     
     allApp = rbind(dfmatMul,dfmatSum,dfVecOp)
     
-    dfAllApp <- data.frame(Accuracy=allApp[,1], Apps=allApp[,2], Apps=allApp[,3], gpu=gpus[k,'gpu_name'])
-    
-    
+    dfAllApp <- data.frame(Accuracy=allApp[,1], Tk=allApp[,2], Duration= array(unlist(TimeApp,use.names = F)), Apps=allApp[,3], Size=allApp[,4], GPUs=gpus[k,'gpu_name'])
     
     dataGPUsApps <- rbind(dfAllApp, dataGPUsApps)
     
