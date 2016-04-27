@@ -1,178 +1,223 @@
+import pandas as pd
 import numpy as np
 from sklearn import datasets
 from sklearn import linear_model
 from sklearn import preprocessing
+from sklearn.ensemble.forest import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn import svm
 import logging
+from pandas import DataFrame
 
 #TODO: check negatively predicted values
 #TODO: use different linear models
-#TODO: for comparison between different ML models use mean square error, for comparison with analytical model use accuracy: mean(predicted/true value * 100)
 
-logging.basicConfig(filename='prediction_results.log',filemode='w',level=logging.WARNING)
+#Gradient tree boosting 
+#http://scikit-learn.org/stable/modules/classes.html#module-sklearn.ensemble
 
-#add matmul gpu uncoalased ..
+logging.basicConfig(filename='prediction_results.log',filemode='w',level=logging.INFO)
+
 #========================Preparing the data===================================#
 
 #Import all dataset
-dataset = np.genfromtxt('dataset_matMul.csv', dtype=float, delimiter=',', skip_header =1);
-print dataset.shape;
+roundNumber = 5;
+architecuteList = pd.Series(["Kepler","Maxwell"]);
+appIncludeList = pd.Series(["matMul","dotProd","matrix_sum","subSeqMax","vectorAdd"]);
 
-#Calculate: number of samples,features, output index, training set size ..
-featureStart = 1;
-samplesCount = dataset.shape[0];
-columnsCount = dataset.shape[1];
-featuresCount = dataset.shape[1]-1;
-outputIndex = dataset.shape[1]-1;
+for i in range(0,appIncludeList.size):
+	
+	dataset = np.genfromtxt('dataset_'+appIncludeList[i]+'.csv', dtype=float, delimiter=',', skip_header =1);
+	print dataset.shape;
 
-trainingSetCount = int(80 * samplesCount /100);
-#If I needed to overwrite it
-trainingSetCount = 530;
+	#Calculate: number of samples,features, output index, training set size ..
+	featureStart = 1;
+	samplesStart = 0;
+	samplesCount = dataset.shape[0];
+	columnsCount = dataset.shape[1];
+	featuresCount = dataset.shape[1]-1;
+	outputIndex = dataset.shape[1]-1;
 
-print trainingSetCount
-#For training set: separate the feature set from the target attributes
-X = dataset[featureStart:trainingSetCount,featureStart:featuresCount]; # last one not included
-y = dataset[featureStart:trainingSetCount,outputIndex];
+	trainingSetCount = int(80 * samplesCount /100);
+	
+	for j in range(0,architecuteList.size):	
+		
+		shape = pd.read_csv("result_shape.csv");
+		shape=shape.set_index('Type');
 
-#True Output values that will be used in calcuating the accuracy of prediction
-y_true = dataset[trainingSetCount+1:samplesCount,outputIndex]
-print y_true
+		if (appIncludeList[i] == "matMul" and architecuteList[j]== "Kepler"):
+			samplesStart = 0; 
+			trainingSetCount =375;
+			samplesCount = 439;
 
-#Scale values with mean = zero and standard deviation =1
-std_scale = preprocessing.StandardScaler().fit(X)
-X_std = std_scale.transform(X)
-#print X_std;
+		if (appIncludeList[i] == "matMul" and architecuteList[j]== "Maxwell"):
+			samplesStart = 440; 
+			trainingSetCount =870;
+			samplesCount = 967;
 
-#Scale test set
-X_val = dataset[trainingSetCount+1:samplesCount,featureStart:featuresCount];
-X_val_std = std_scale.transform(X_val)
-#print X_val_std;
+		if (appIncludeList[i] == "dotProd" and architecuteList[j]== "Kepler"):
+			samplesStart = 0; 
+			trainingSetCount =274;
+			samplesCount = 342;
 
-#=====================Ordinary Least Squares Linear model======================================
-print "=====================Ordinary Least Squares================"
-#Training phase
-lr = linear_model.LinearRegression();
-lr.fit(X_std,y);
+		if (appIncludeList[i] == "dotProd" and architecuteList[j]== "Maxwell"):
+			samplesStart = 343; 
+			trainingSetCount =619;
+			samplesCount = 652;
 
-training_error = lr.score(X_std,y);
-print "Training error = " + str(training_error) + ", best is 1.0";
+		if (appIncludeList[i] == "matrix_sum" and architecuteList[j]== "Kepler"):
+			samplesStart = 0; 
+			trainingSetCount =505;
+			samplesCount = 630;
 
-test_error = lr.score(X_val_std,y_true );
-print "Test error = " + str(test_error) + ", best is 1.0";
+		if (appIncludeList[i] == "matrix_sum" and architecuteList[j]== "Maxwell"):
+			samplesStart = 631; 
+			trainingSetCount =1135;
+			samplesCount = 1260;
 
-#Prediction for test set
-y_pred = lr.predict(X_val_std)
-#print y_pred
+		if (appIncludeList[i] == "subSeqMax" and architecuteList[j]== "Kepler"):
+			samplesStart = 0; 
+			trainingSetCount =277;
+			samplesCount = 345;
 
-#Calculating prediction error
-error = mean_absolute_error(y_true,y_pred);
-print "Mean absolute error: " + str(error) + ", best is zero";
+		if (appIncludeList[i] == "subSeqMax" and architecuteList[j]== "Maxwell"):
+			samplesStart = 346; 
+			trainingSetCount =622;
+			samplesCount = 684;
 
-error = mean_squared_error(y_true, y_pred) 
-print "Mean squared error: " + str(error) + ", best is zero";
+		if (appIncludeList[i] == "vectorAdd" and architecuteList[j]== "Kepler"):
+			samplesStart = 0; 
+			trainingSetCount =253;
+			samplesCount = 321;
 
-#accuracy = np.mean( np.divide(y_pred,y_true) )
-#print accuracy
-#===================Ridge Regression==========================================
-print "=======================Ridge Regression=================="
-#Try different regularization parameters
-ridgeCV = linear_model.RidgeCV(alphas=[0.01,0.1,0.3,0.6, 1.0,3.0,6.0, 10.0])
+		if (appIncludeList[i] == "vectorAdd" and architecuteList[j]== "Maxwell"):
+			samplesStart = 322; 
+			trainingSetCount =598;
+			samplesCount = 621;
 
-ridgeCV.fit(X_std,y);
-print "Used alpha: " + str(ridgeCV.alpha_);
+		print trainingSetCount
+		#For training set: separate the feature set from the target attributes
+		X = dataset[samplesStart:trainingSetCount,featureStart:featuresCount]; # last one not included
+		y = dataset[samplesStart:trainingSetCount,outputIndex];
 
-training_error = ridgeCV.score(X_std,y);
-print "Training error = " + str(training_error) + ", best is 1.0";
+		#True Output values that will be used in calcuating the accuracy of prediction
+		y_true = dataset[trainingSetCount+1:samplesCount,outputIndex]
+		print y_true
 
-test_error = ridgeCV.score(X_val_std,y_true );
-print "Test error = " + str(test_error) + ", best is 1.0";
+		#Scale values with mean = zero and standard deviation =1
+		std_scale = preprocessing.StandardScaler().fit(X)
+		X_std = std_scale.transform(X)
+		#print X_std;
 
-y_pred = ridgeCV.predict(X_val_std);
+		#Scale test set
+		X_val = dataset[trainingSetCount+1:samplesCount,featureStart:featuresCount];
+		X_val_std = std_scale.transform(X_val)
+		#print X_val_std;
 
-#Calculating prediction error
-error = mean_absolute_error(y_true,y_pred);
-print "Mean absolute error: " + str(error) + ", best is zero";
+		def printErrors(lr,modelType):
+			training_error = lr.score(X_std,y);
+			training_error = round(training_error,roundNumber)
+			print "Training error = " + str(training_error) + ", best is 1.0";
+			shape['Training error'][modelType] = training_error
 
-error = mean_squared_error(y_true, y_pred) 
-print "Mean squared error: " + str(error) + ", best is zero";
+			test_error = lr.score(X_val_std,y_true );
+			test_error = round(test_error,roundNumber)
+			print "Test error = " + str(test_error) + ", best is 1.0";
+			shape['Test error'][modelType] = test_error
 
-#accuracy = np.mean( np.divide(y_pred,y_true) )
-#print accuracy
+			#Calculating prediction error
+			error = mean_absolute_error(y_true,y_pred);
+			error = round(error,roundNumber)
+			print "Mean absolute error: " + str(error) + ", best is zero";
+			shape['Mean absolute error'][modelType] = error;
 
+			error = mean_squared_error(y_true, y_pred) 
+			error = round(error,roundNumber)
+			print "Mean squared error: " + str(error) + ", best is zero";
+			shape['Mean squared error'][modelType] = error;
 
-#=========================LASSO ==============================
+			accuracy = np.mean( np.divide(y_pred,y_true) ) * 100
+			print accuracy
+			shape['Accuracy'][modelType] = accuracy 
 
-print "=======================LASSO Regression=================="
-#Try different regularization parameters
-lassoCV = linear_model.LassoCV(alphas=[0.01,0.1,0.3,0.6, 1.0,3.0,6.0, 10.0])
+			#print y_pred;
+		   	
+			return
 
-lassoCV.fit(X_std,y);
-print "Used alpha: " + str(lassoCV.alpha_);
+		print "======================Application: "+appIncludeList[i];
+		logging.info("======================Application: "+appIncludeList[i]);
+		#=====================Ordinary Least Squares Linear model======================================
+		print "=====================Ordinary Least Squares================"
+		logging.info("=====================Ordinary Least Squares================" );
+		#Training phase
+		lr = linear_model.LinearRegression();
+		lr.fit(X_std,y);
 
-training_error = lassoCV.score(X_std,y);
-print "Training error = " + str(training_error) + ", best is 1.0";
+		#Prediction for test set
+		y_pred = lr.predict(X_val_std)
 
-test_error = lassoCV.score(X_val_std,y_true );
-print "Test error = " + str(test_error) + ", best is 1.0";
+		printErrors(lr,"ordinary");
 
-y_pred = lassoCV.predict(X_val_std);
+		#===================Ridge Regression==========================================
+		print "=======================Ridge Regression=================="
+		logging.info("=======================Ridge Regression==================");
+		#Try different regularization parameters
+		ridgeCV = linear_model.RidgeCV(alphas=[0.01,0.1,0.3,0.6, 1.0,3.0,6.0, 10.0])
 
-#Calculating prediction error
-error = mean_absolute_error(y_true,y_pred);
-print "Mean absolute error: " + str(error) + ", best is zero";
+		ridgeCV.fit(X_std,y);
+		print "Used alpha: " + str(ridgeCV.alpha_);
 
-error = mean_squared_error(y_true, y_pred) 
-print "Mean squared error: " + str(error) + ", best is zero";
+		y_pred = ridgeCV.predict(X_val_std);
 
-#=========================Elastic Net ====================================
-print "================Elastic Net ===================="	
+		printErrors(ridgeCV,"ridge");
 
-enet = linear_model.ElasticNetCV(l1_ratio = [.1, .5, .7, .9, .95, .99, 1] ,alphas=[0.01,0.1,0.3,0.6, 1.0,3.0,6.0, 10.0] );
+		#=========================LASSO ==============================
 
-enet.fit(X_std,y);
-print "Used alpha: " + str(enet.alpha_);
-print "Used l1_ratio: " + str(enet.l1_ratio_);
+		print "=======================LASSO Regression=================="
+		logging.info("=======================LASSO Regression==================");
+		#Try different regularization parameters
+		lassoCV = linear_model.LassoCV(alphas=[0.01,0.1,0.3,0.6, 1.0,3.0,6.0, 10.0])
 
-training_error = enet.score(X_std,y);
-print "Training error = " + str(training_error) + ", best is 1.0";
+		lassoCV.fit(X_std,y);
+		print "Used alpha: " + str(lassoCV.alpha_);
 
-test_error = enet.score(X_val_std,y_true );
-print "Test error = " + str(test_error) + ", best is 1.0";
+		y_pred = lassoCV.predict(X_val_std);
 
-y_pred = enet.predict(X_val_std);
+		printErrors(lassoCV,"lasso");
+		#=========================Elastic Net ====================================
+		print "================Elastic Net ===================="	
+		logging.info("================Elastic Net ====================");
+		enet = linear_model.ElasticNetCV(l1_ratio = [.1, .5, .7, .9, .95, .99, 1] ,alphas=[0.01,0.1,0.3,0.6, 1.0,3.0,6.0, 10.0] );
 
-#Calculating prediction error
-error = mean_absolute_error(y_true,y_pred);
-print "Mean absolute error: " + str(error) + ", best is zero";
+		enet.fit(X_std,y);
+		print "Used alpha: " + str(enet.alpha_);
+		print "Used l1_ratio: " + str(enet.l1_ratio_);
 
-error = mean_squared_error(y_true, y_pred) 
-print "Mean squared error: " + str(error) + ", best is zero";
+		y_pred = enet.predict(X_val_std);
 
+		printErrors(enet,"elastic_net");
+		#=======================Support Vector Regression=============================
+		print "================Support Vector Regression===================="
+		logging.info("================Support Vector Regression===================="); 
+		svmR = svm.SVR();
 
-#=======================Support Vector Regression=============================
-print "================Support Vector Regression===================="
-svmR = svm.SVR();
+		svmR.fit(X_std,y);
 
-svmR.fit(X_std,y);
+		y_pred = svmR.predict(X_val_std);
 
-training_error = svmR.score(X_std,y);
-print "Training error = " + str(training_error) + ", best is 1.0";
+		printErrors(svmR,"support_vector_regression");
 
-test_error = svmR.score(X_val_std,y_true );
-print "Test error = " + str(test_error) + ", best is 1.0";
+		#====================Random Forest Regressor==========================
+		print "=========Random Forest Regressor==========="
+		logging.info("=========Random Forest Regressor===========");
+		randomForest = RandomForestRegressor(n_estimators=10);
 
-y_pred = svmR.predict(X_val_std);
-#print y_pred
-#Calculating prediction error
-error = mean_absolute_error(y_true,y_pred);
-print "Mean absolute error: " + str(error) + ", best is zero";
+		randomForest.fit(X_std,y);
 
-error = mean_squared_error(y_true, y_pred) 
-print "Mean squared error: " + str(error) + ", best is zero";
+		y_pred = randomForest.predict(X_val_std);
 
-#accuracy = np.mean( np.divide(y_pred,y_true) )
-#print accuracy
+		printErrors(randomForest,"random_forest_regressor");
+
+		shape.to_csv("results_"+appIncludeList[i]+"_"+architecuteList[j]+".csv");
 
