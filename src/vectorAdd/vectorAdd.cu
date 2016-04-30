@@ -69,7 +69,6 @@ int main(int argc, char** argv)
 		fprintf(stderr, "Syntax: %s <Vector size>  <CacheConfL1>  <device>\n", argv[0]);
     		return EXIT_FAILURE;
 	}
-    cudaProfilerStart();
     
     int N = atoi(argv[1]);
     int CacheConfL1 = atoi(argv[2]);    
@@ -149,7 +148,6 @@ int main(int argc, char** argv)
 
     Cleanup();
     return 0;
-    cudaProfilerStop();
 }
 
 void Cleanup(void)
