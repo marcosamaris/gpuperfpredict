@@ -48,7 +48,6 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
   }
 
-  cudaProfilerStart();
 
   int Width = atoi(argv[1]);
   int BlockSize = atoi(argv[2]);
@@ -124,6 +123,5 @@ int main(int argc, char* argv[])
   checkCuda( cudaFree(Pd) );
 
   return 0;
-  cudaProfilerStop();
 }
 

@@ -250,7 +250,6 @@ int main(int argc, char** argv){
     		return EXIT_FAILURE;
 	}
 
-	cudaProfilerStart();
 
   	int CacheConfL1 = atoi(argv[2]);
   	int devId = atoi(argv[3]);
@@ -261,9 +260,6 @@ int main(int argc, char** argv){
 	cudaDeviceProp prop;
 	checkCuda( cudaGetDeviceProperties(&prop, devId) );
   	printf("Device: %s\n", prop.name); 
-
-	float elapsedTime;    // Tempo
-	cudaEvent_t start, stop; // Tempo
 
 	//Vetor aux
 	int *vet_d; int *vetFinal_d;
@@ -311,7 +307,6 @@ int main(int argc, char** argv){
 
 	subSeqMax<<<BLOCK_SIZE, nThreadsPerBlock>>>(vet_d, vetFinal_d, ElemPorThread,N / BLOCK_SIZE);
 
-	printf("Primeiro kernel (ms) = \%f\n\n", elapsedTime);
 
 	cudaMemcpy(vetFinal_h, vetFinal_d, NFinal * sizeof(int), cudaMemcpyDeviceToHost); //Resposta Final
 
@@ -328,6 +323,5 @@ int main(int argc, char** argv){
     	subSeqMaxFinal(vetFinal_h, NFinal);
 
 	return 0;
-    cudaProfilerStop();
 }
 
