@@ -5,7 +5,7 @@ import subprocess
 import argparse
 
 gpu = "Tesla"
-experiment = 9                    
+experiment = 11                    
 
 def run_traces(programs, parameters, kernel, traces):
 
@@ -28,8 +28,8 @@ def run_traces(programs, parameters, kernel, traces):
                         print(cmd)
                         output = subprocess.check_output(cmd,  shell = True)
                         output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep " + kernel + " > ../logs/run_" + str(i) + "/" + program + "-kernel-traces.csv", shell = True)
-                        output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep HtoD > ../logs/run_" + str(i) + "/" + program + "-HtoD-traces.csv", shell = True)
-                        output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep DtoH > ../logs/run_" + str(i) + "/" + program + "-DtoH-traces.csv", shell = True)
+                        #output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep HtoD > ../logs/run_" + str(i) + "/" + program + "-HtoD-traces.csv", shell = True)
+                        #output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep DtoH > ../logs/run_" + str(i) + "/" + program + "-DtoH-traces.csv", shell = True)
                     elif trace == "--metrics all":
                         cmd += trace 
                         cmd += " ./" + program + " " + param 
