@@ -1,0 +1,25 @@
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+512,1.335981,8.668700e-05,,,,,,,,,,1.000000,11.265386,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+512,1.336202,8.687800e-05,,,,,,,,,,1.000000,11.240619,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+512,1.336294,1.782468e-03,32,32,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 970 (1)","1","7","matMul(float*, float*, float*, int) [191]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+1024,1.391382,5.892710e-04,,,,,,,,,,4.000000,6.628953,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+1024,1.392144,5.924390e-04,,,,,,,,,,4.000000,6.593506,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+1024,1.392742,0.014248,64,64,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 970 (1)","1","7","matMul(float*, float*, float*, int) [191]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+2048,1.421836,1.857281e-03,,,,,,,,,,16.000000,8.412836,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+2048,1.423808,1.776195e-03,,,,,,,,,,16.000000,8.796894,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+2048,1.425589,0.112747,128,128,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 970 (1)","1","7","matMul(float*, float*, float*, int) [191]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+4096,1.594600,6.564749e-03,,,,,,,,,,64.000000,9.520547,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+4096,1.601272,6.325713e-03,,,,,,,,,,64.000000,9.880309,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+4096,1.607603,0.785786,256,256,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 970 (1)","1","7","matMul(float*, float*, float*, int) [191]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+8192,2.170893,0.024928,,,,,,,,,,256.000000,10.028862,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+8192,2.195916,0.024607,,,,,,,,,,256.000000,10.159881,"GeForce GTX 970 (1)","1","7","[CUDA memcpy HtoD]"
+8192,2.220527,5.907366,512,512,1,16,16,1,24,2.048000e+03,0.000000,,,"GeForce GTX 970 (1)","1","7","matMul(float*, float*, float*, int) [191]"
