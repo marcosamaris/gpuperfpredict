@@ -1,0 +1,30 @@
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,B,MB,GB/s,,,,
+512,0.209332,9.977800e-05,,,,,,,,,,1.048576,10.509090,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+512,0.209591,9.120200e-05,,,,,,,,,,1.048576,11.497292,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+512,0.209688,6.473800e-05,32,32,1,16,16,1,10,0,0,,,"GeForce GTX TITAN (0)","1","7","matSum(float*, float*, float*, int) [190]"
+512,0.209757,9.075400e-05,,,,,,,,,,1.048576,11.554047,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy DtoH]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,B,MB,GB/s,,,,
+1024,0.218233,5.811640e-04,,,,,,,,,,4.194304,7.217075,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+1024,0.218974,5.732280e-04,,,,,,,,,,4.194304,7.316991,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+1024,0.219553,2.523250e-04,64,64,1,16,16,1,10,0,0,,,"GeForce GTX TITAN (0)","1","7","matSum(float*, float*, float*, int) [190]"
+1024,0.219809,7.059670e-04,,,,,,,,,,4.194304,5.941218,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy DtoH]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,B,MB,GB/s,,,,
+2048,0.262509,2.517069e-03,,,,,,,,,,16.777216,6.665378,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+2048,0.265180,2.304746e-03,,,,,,,,,,16.777216,7.279421,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+2048,0.267490,9.955060e-04,128,128,1,16,16,1,10,0,0,,,"GeForce GTX TITAN (0)","1","7","matSum(float*, float*, float*, int) [190]"
+2048,0.268490,3.566177e-03,,,,,,,,,,16.777216,4.704538,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy DtoH]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,B,MB,GB/s,,,,
+4096,0.435480,9.544528e-03,,,,,,,,,,67.108864,7.031135,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+4096,0.445174,9.375246e-03,,,,,,,,,,67.108864,7.158091,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+4096,0.454555,4.009372e-03,256,256,1,16,16,1,10,0,0,,,"GeForce GTX TITAN (0)","1","7","matSum(float*, float*, float*, int) [190]"
+4096,0.458568,0.015527,,,,,,,,,,67.108864,4.321936,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy DtoH]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,B,MB,GB/s,,,,
+8192,1.140111,0.039077,,,,,,,,,,268.435456,6.869459,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+8192,1.179342,0.039111,,,,,,,,,,268.435456,6.863372,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy HtoD]"
+8192,1.218459,0.016952,512,512,1,16,16,1,10,0,0,,,"GeForce GTX TITAN (0)","1","7","matSum(float*, float*, float*, int) [190]"
+8192,1.235414,0.062626,,,,,,,,,,268.435456,4.286311,"GeForce GTX TITAN (0)","1","7","[CUDA memcpy DtoH]"
