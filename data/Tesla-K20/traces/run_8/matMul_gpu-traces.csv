@@ -1,0 +1,25 @@
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,B,MB,GB/s,,,,
+512,5.898697,1.714600e-04,,,,,,,,,,1.000000,5.695570,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+512,5.899245,1.689000e-04,,,,,,,,,,1.000000,5.781898,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+512,5.899420,3.361592e-03,32,32,1,16,16,1,17,0,0,,,"Tesla K20c (0)","1","7","matMul(float*, float*, float*, int, int) [366]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,B,MB,GB/s,,,,
+1024,6.175738,1.200543e-03,,,,,,,,,,4.000000,3.253736,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+1024,6.177292,1.186911e-03,,,,,,,,,,4.000000,3.291106,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+1024,6.178486,0.026323,64,64,1,16,16,1,17,0,0,,,"Tesla K20c (0)","1","7","matMul(float*, float*, float*, int, int) [366]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,B,MB,GB/s,,,,
+2048,5.907585,5.058463e-03,,,,,,,,,,16.000000,3.088883,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+2048,5.912973,5.047359e-03,,,,,,,,,,16.000000,3.095678,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+2048,5.918027,0.209693,128,128,1,16,16,1,17,0,0,,,"Tesla K20c (0)","1","7","matMul(float*, float*, float*, int, int) [366]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,B,MB,GB/s,,,,
+4096,6.190433,0.036007,,,,,,,,,,64.000000,1.735762,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+4096,6.226757,0.036030,,,,,,,,,,64.000000,1.734650,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+4096,6.262794,1.676702,256,256,1,16,16,1,17,0,0,,,"Tesla K20c (0)","1","7","matMul(float*, float*, float*, int, int) [366]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,B,MB,GB/s,,,,
+8192,6.710511,0.082498,,,,,,,,,,256.000000,3.030367,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+8192,6.793346,0.082328,,,,,,,,,,256.000000,3.036633,"Tesla K20c (0)","1","7","[CUDA memcpy HtoD]"
+8192,6.875680,13.437524,512,512,1,16,16,1,17,0,0,,,"Tesla K20c (0)","1","7","matMul(float*, float*, float*, int, int) [366]"
