@@ -1,0 +1,25 @@
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,B,MB,GB/s,,,,
+512,0.242960,1.627450e-04,,,,,,,,,,1.000000,6.000568,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+512,0.243436,1.806330e-04,,,,,,,,,,1.000000,5.406335,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+512,0.243622,1.110388e-03,32,32,1,16,16,1,27,0,0,,,"GeForce GTX 980 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,B,MB,GB/s,,,,
+1024,0.261185,1.258124e-03,,,,,,,,,,4.000000,3.104821,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+1024,0.262697,1.138577e-03,,,,,,,,,,4.000000,3.430818,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+1024,0.263854,8.760248e-03,64,64,1,16,16,1,27,0,0,,,"GeForce GTX 980 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,B,MB,GB/s,,,,
+2048,0.336995,4.944492e-03,,,,,,,,,,16.000000,3.160082,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+2048,0.342160,4.881806e-03,,,,,,,,,,16.000000,3.200660,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+2048,0.347079,0.069721,128,128,1,16,16,1,27,0,0,,,"GeForce GTX 980 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,B,MB,GB/s,,,,
+4096,0.660171,0.020618,,,,,,,,,,64.000000,3.031287,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+4096,0.681047,0.020493,,,,,,,,,,64.000000,3.049836,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+4096,0.701577,0.641643,256,256,1,16,16,1,27,0,0,,,"GeForce GTX 980 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,B,MB,GB/s,,,,
+8192,1.915599,0.081766,,,,,,,,,,256.000000,3.057496,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+8192,1.997589,0.080913,,,,,,,,,,256.000000,3.089728,"GeForce GTX 980 (0)","1","7","[CUDA memcpy HtoD]"
+8192,2.078546,5.564216,512,512,1,16,16,1,27,0,0,,,"GeForce GTX 980 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
