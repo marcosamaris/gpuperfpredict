@@ -38,8 +38,7 @@ parameters = [
                 "16777216 0 " + str(args.Device),
                 "33554432 0 " + str(args.Device),
                 "67108864 0 " + str(args.Device),
-                "134217728 0 " + str(args.Device),
-                "268435456 0 " + str(args.Device)]
+                "134217728 0 " + str(args.Device)]
 
 kernel = "vectorAdd"
 

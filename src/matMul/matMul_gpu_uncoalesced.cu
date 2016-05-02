@@ -104,9 +104,9 @@ int main(int argc, char* argv[])
   dim3 gridDim(GridSize, GridSize);
   dim3 blockDim(BlockSize, BlockSize);
 
-
+  cudaProfilerStart(); 
   matMul<<< gridDim, blockDim >>>(Pd, Md, Nd, Width, BlockSize);
-
+  cudaProfilerStop();
 
   // copy result from device to host
   checkCuda( cudaMemcpy( P, Pd, Width * Width * sizeof(float),cudaMemcpyDeviceToHost) );

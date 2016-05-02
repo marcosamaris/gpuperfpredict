@@ -31,16 +31,15 @@ programs = ["dotProd"]
 kernel = "dotProd"
 
 parameters = [
-                "262144 0 " + str(args.Device),
-                "524288 0 " + str(args.Device),
-                "1048576 0 " + str(args.Device),
-                "2097152 0 " + str(args.Device),
-                "4194304 0 " + str(args.Device),
-                "8388608 0 " + str(args.Device),
-                "16777216 0 " + str(args.Device),
-                "33554432 0 " + str(args.Device),
-                "67108864 0 " + str(args.Device),
-                "134217728 0 " + str(args.Device),
-                "268435456 0 " + str(args.Device)]
+                "262144 " + str(args.Device),
+                "524288 " + str(args.Device),
+                "1048576 " + str(args.Device),
+                "2097152 " + str(args.Device),
+                "4194304 " + str(args.Device),
+                "8388608 " + str(args.Device),
+                "16777216 " + str(args.Device),
+                "33554432 " + str(args.Device),
+                "67108864 " + str(args.Device),
+                "134217728 " + str(args.Device)]
 
 common.run_traces(programs, parameters, kernel, traces)

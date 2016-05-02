@@ -120,7 +120,10 @@ int main(int argc, char* argv[])
   dim3 blockDim(Tile_Width, Tile_Width);
 
 
+  cudaProfilerStart(); 
   matMul<<< gridDim, blockDim >>>(Pd, Md, Nd, Width);
+  cudaProfilerStop();
+
 
 
   // copy result from device to host

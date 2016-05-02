@@ -33,8 +33,7 @@ parameters = [	"512 16 0 " + str(args.Device),
                 "1024 16 0 " + str(args.Device),
                 "2048 16 0 " + str(args.Device),
                 "4096 16 0 " + str(args.Device),
-                "8192 16 0 " + str(args.Device),
-	        "16384 16 0 " + str(args.Device)]
+                "8192 16 0 " + str(args.Device)]
 
 kernel = "matSum"
 
