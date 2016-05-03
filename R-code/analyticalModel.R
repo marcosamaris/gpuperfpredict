@@ -42,23 +42,29 @@ lambda[10,] <- lambdaGTX750
 
 #library(xtable)
 #dflambda <- data.frame(lambda)
-#xtable(lambda[1:13,])
+#xtable(lambda[1:10,])
 
 dataGPUsApps <- data.frame()
 
-for (k in 1:10){
+noSamples <- 10
+for (k in 2:2){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
+        data <- 0; Temp <- 0
+        print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], sep=""))
         if (gpus[k,'gpu_name'] == "Tesla-K40-UsingL1" | gpus[k,'gpu_name'] == "GTX-680" | gpus[k,'gpu_name'] == "Quadro" | gpus[k,'gpu_name'] == "GTX-750"){
-            print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], "/Run_1 ", sep=""))
-            data <- read.table(paste("./data/", gpus[k,'gpu_name'],"/run_1/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
+            
+            for (j in 1:noSamples){
+                temp <- read.table(paste("./data/", gpus[k,'gpu_name'],"/traces/run_", j, "/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                data <- data + temp
+            }
         } 
         else {
             data <- read.table(paste("./data/", gpus[k,'gpu_name'],"/run_0/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
             print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], "/Run_0 ", sep=""))
         }
-      TimeApp[apps[i]] <- data['V3']
+      TimeApp[apps[i]] <- data/noSamples
     }
     
     latencySharedMemory <- 5; #Cycles per processor
@@ -71,10 +77,12 @@ for (k in 1:10){
     timeKernelMatMul <- list()
     for (i in 1:4){
         if (gpus[k,'gpu_name'] == "GTX-680"){
-            N <- seq(from = 256, to = 4096, length.out = 16)
+            nN <- 8:13
+            N <- 2^nN
         }
         else {
-            N <- seq(from = 256, to = 8192, length.out = 32)
+            nN <- 8:13
+            N <- 2^nN
         }
         numberMultiplication <- N;
         
@@ -115,7 +123,14 @@ for (k in 1:10){
     timeKernelMatSum <- list()
     for (i in 5:6){
         
-        N <- seq(from = 256, to = 8192, length.out = 63)
+        if (gpus[k,'gpu_name'] == "GTX-680"){
+            nN <- 8:13
+            N <- 2^nN
+        }
+        else {
+            nN <- 8:13
+            N <- 2^nN
+        }
         
         gridsizes <- as.integer((N +  tileWidth -1)/tileWidth);
         blocknumber <- gridsizes*gridsizes
@@ -143,11 +158,12 @@ for (k in 1:10){
     timeKernelVecOp <- list()
     for (i in 7:9){
         if (gpus[k,'gpu_name'] == "GTX-680"){
-            N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 167772160, length.out = 40))
-        } else if (gpus[k,'gpu_name'] == "GTX-750"){
-            N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 79691776, length.out = 19))
-        } else {
-            N <- c(131072, 262144, 524288, 1048576, 2097152, seq(from = 4194304, to = 268435456, length.out = 64))
+            nN <- 18:27
+            N <- 2^nN
+        }
+        else {
+            nN <- 8:13
+            N <- 2^nN
         }
         if (apps[i] != "subSeqMax"){
             
@@ -270,8 +286,6 @@ Graph <- ggplot(data=dataTemp, aes(x=Size, y=Accuracy, group=GPUs, color = GPUs)
 
 Graph
 ggsave(paste("./images/Graph-No-GTX680-Quadro.png",sep=""), Graph,height=10, width=16)
-
-
 
 
 dataTemp <- dataGPUsApps
