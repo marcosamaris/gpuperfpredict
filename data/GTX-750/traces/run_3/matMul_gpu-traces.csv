@@ -1,0 +1,25 @@
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,B,MB,GB/s,,,,
+512,0.225251,1.646560e-04,,,,,,,,,,1.000000,5.930926,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+512,0.225794,1.795660e-04,,,,,,,,,,1.000000,5.438460,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+512,0.225979,4.554525e-03,32,32,1,16,16,1,27,0,0,,,"GeForce GTX 750 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,B,MB,GB/s,,,,
+1024,0.243577,1.138317e-03,,,,,,,,,,4.000000,3.431601,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+1024,0.244941,1.060596e-03,,,,,,,,,,4.000000,3.683071,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+1024,0.246021,0.036415,64,64,1,16,16,1,27,0,0,,,"GeForce GTX 750 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,B,MB,GB/s,,,,
+2048,0.324923,5.110959e-03,,,,,,,,,,16.000000,3.057156,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+2048,0.330250,4.749268e-03,,,,,,,,,,16.000000,3.289981,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+2048,0.335037,0.300314,128,128,1,16,16,1,27,0,0,,,"GeForce GTX 750 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,B,MB,GB/s,,,,
+4096,0.638179,0.020193,,,,,,,,,,64.000000,3.095180,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+4096,0.658586,0.019953,,,,,,,,,,64.000000,3.132406,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+4096,0.678578,2.414735,256,256,1,16,16,1,27,0,0,,,"GeForce GTX 750 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,B,MB,GB/s,,,,
+8192,1.897327,0.080611,,,,,,,,,,256.000000,3.101315,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+8192,1.978152,0.078535,,,,,,,,,,256.000000,3.183278,"GeForce GTX 750 (0)","1","7","[CUDA memcpy HtoD]"
+8192,2.056740,20.109908,512,512,1,16,16,1,27,0,0,,,"GeForce GTX 750 (0)","1","7","matMul(float*, float*, float*, int, int) [105]"
