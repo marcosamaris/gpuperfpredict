@@ -7,7 +7,7 @@ all:
 
 tests:
 	cd matSum; make tests
-	cd subSeqMax; make tests
+#	cd subSeqMax; make tests
 	cd dotProd; make tests
 	cd vectorAdd; make tests
 	cd matMul; make tests
@@ -15,14 +15,14 @@ tests:
 metrics: 
 	cd matSum; make metrics
 	cd dotProd; make metrics
-	cd subSeqMax; make metrics
+#	cd subSeqMax; make metrics
 	cd matMul; make metrics
 	cd vectorAdd; make metrics
 
 events: 
 	cd matSum; make events
 	cd dotProd; make events
-	cd subseqmax; make events
+#	cd subseqmax; make events
 	cd matMul; make events
 	cd vectorAdd; make events   
 	
