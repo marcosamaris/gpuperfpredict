@@ -7,13 +7,25 @@ import logging
 from pandas import DataFrame
 
 #TODO: Must validata data first!
-#TODO: Possibility for features: input size, "bandwidth" and "L2 cache size" from device info
 #TODO: format float fraction
 
-logging.basicConfig(filename='logfile.log',filemode='w',level=logging.WARNING)
+experiment_type = "compute"
+#options: "compute","classical"
 
-#File Paths:
-deviceInfo = "deviceInfo.csv";
+#Device Info Path:
+deviceInfo = "deviceInfo_L1disabled.csv";
+#Options: "deviceInfo_L1disabled.csv", "deviceInfo_all.csv"
+
+#Output folder name
+outputFolder = ""
+
+#Output folder name is set according to experiment type
+if experiment_type == "compute":
+	outputFolder = "datasets/with_compute_features/"
+elif experiment_type == "classical":
+	outputFolder = "datasets/classical/"
+
+logging.basicConfig(filename=outputFolder+'logfile.log',filemode='w',level=logging.WARNING)
 
 #Explicitly include apps that we need to collect data from 
 appIncludeList = pd.Series(["matMul","dotProd","matrix_sum","subSeqMax","vectorAdd"]);
@@ -49,6 +61,12 @@ for j in range(0,appIncludeList.size):
 	metricsFeatures = pd.Series(['L1 Global Hit Rate','L2 Hit Rate (L1 Reads)','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']);
 	metricsFeatures_5X =  pd.Series(['Global Hit Rate','Shared Load Transactions','Shared Store Transactions','Global Load Transactions','Global Store Transactions']);
 
+	#If experiment is "compute" add compute features"
+	if experiment_type == "compute":
+		tempSeries = pd.Series(['Instructions Executed','Instructions Issued','Executed IPC','Achieved Occupancy']);
+		metricsFeatures = metricsFeatures.append(tempSeries);
+       		metricsFeatures_5X = metricsFeatures_5X.append(tempSeries);
+		
 	#Events features to extract
 	eventsFeatures = pd.Series(['l1_global_load_hit', 'l1_global_load_miss']);
 	eventsFeatures_5X = "";
@@ -196,7 +214,7 @@ for j in range(0,appIncludeList.size):
 	#reset the index
 	tracesHeaderDF = tracesHeaderDF.reset_index().drop('index', 1);
 	#write to csv file
-	tracesHeaderDF.to_csv("traces.csv");
+	#tracesHeaderDF.to_csv("traces.csv");
 
 	#=======================PROCESS EVENTS==========================
 	#Select only wanted events
@@ -206,7 +224,7 @@ for j in range(0,appIncludeList.size):
 	eventsHeaderDF = eventsHeaderDF.reset_index().drop('index', 1);
 
 	#write to csv file
-	eventsHeaderDF.to_csv("events.csv");
+	#eventsHeaderDF.to_csv("events.csv");
 
 	#=======================PROCESS METRICS==========================
 	#Select metrics features 
@@ -225,7 +243,7 @@ for j in range(0,appIncludeList.size):
 	#reset the index
 	metricsHeaderDF = metricsHeaderDF.reset_index().drop('index', 1);
 	#Write to csv file			
-	metricsHeaderDF.to_csv("metrics.csv");
+	#metricsHeaderDF.to_csv("metrics.csv");
 
 	#===============================Process DEVICE DATA================
 	deviceDataDF = deviceDataDF.reset_index().drop('index', 1);
@@ -243,7 +261,7 @@ for j in range(0,appIncludeList.size):
 	datasetDF.ix[datasetDF['l1_cache_used']==0, 'l1_global_load_hit'] = 0;
 	datasetDF.ix[datasetDF['l1_cache_used']==0, 'l1_global_load_miss'] = 0;
 
-	datasetDF.to_csv("dataset"+appIncludeList[0]+"Before.csv",index=False);
+	#datasetDF.to_csv("dataset"+appIncludeList[0]+"Before.csv",index=False);
 
 	#to remove any non numeric value
 	datasetDF = datasetDF.convert_objects(convert_numeric=True).dropna();
@@ -251,7 +269,11 @@ for j in range(0,appIncludeList.size):
 	#Drop "L2 Hit Rate (L1 Reads)" TEMPORARILY
 	#datasetDF.drop('L2 Hit Rate (L1 Reads)', 1,inplace=True);
 
-	datasetDF.to_csv("dataset_"+appIncludeList[j]+".csv",index=False);
+	#Drop l1_global_load_hit, l1_global_load_miss, L1 Global Hit Rate since we don't use L1 cache now
+	datasetDF.drop({"l1_global_load_hit","l1_global_load_miss","L1 Global Hit Rate" } , 1,inplace=True);
+		
+
+	datasetDF.to_csv(outputFolder+"dataset_"+appIncludeList[j]+".csv",index=False);
 
 	print appIncludeList[j]+"Terminated: " + str(counter) + " apps processed, "+ str(len(datasetDF.index)) + " samples collected";
 	logging.warning("Terminated: " + str(counter) + " apps processed, "+ str(len(datasetDF.index)) + " samples collected\n" );
@@ -264,7 +286,7 @@ for j in range(0,appIncludeList.size):
 #In events: l1_global_load_hit', 'l1_global_load_miss don't exist in compute 5
 # put = zero
 
-#L1 Global Hit Rate
+#DONE  L1 Global Hit Rate
 #DONE  t: number of threads for a kernel
 #DONE  R: clock rate, extracted from GPU specs.
 #DONE  P: number of cores, extracted from GPU specs.
@@ -273,13 +295,11 @@ for j in range(0,appIncludeList.size):
 #DONE ld1 and st1: loads and stores in global memory.
 #DONE L1 and L2: cache hits for L1 and L2 cache
 
-#To include later as features:
+#Compute features to include:
 #=================================
+#Instructions Executed (metrics) 
+#Instructions Issued   (metrics)
 #Executed IPC
-#Achieved Occupancy
-#Global load transactions per request
-#Global store transactions per request
-#same for shared mem
-#in events: gld_inst_8bit	gld_inst_16bit	gld_inst_32bit	gld_inst_64bit	gld_inst_128bit
+#Achieved Occupancy: VERY IMPORTANT TO ADD metrics
 
 
