@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <cuda_profiler_api.h>
-#include <assert.h>
 
-#define Tile_Width 16
+
 
 // Convenience function for checking CUDA runtime API results
 // can be wrapped around any runtime API call. No-op in release builds.
@@ -58,19 +57,16 @@ void randomInit(float* data, int size) {
 int main(int argc, char* argv[])
 {
 
-  if (argc != 5) {
-    fprintf(stderr, "Syntax: %s <matrix size> < Block_size> <CacheConfL1>  <device> \n", argv[0]);
+  if (argc != 3) {
+    fprintf(stderr, "Syntax: %s <matrix size Width> <device id>\n", argv[0]);
     return EXIT_FAILURE;
   }
 
-
   int Width = atoi(argv[1]);
-  int BlockSize = atoi(argv[2]);
-  int CacheConfL1 = atoi(argv[3]);
-  int devId = atoi(argv[4]);
+  int devId = atoi(argv[2]);
 
   checkCuda( cudaSetDevice(devId) );
-  cudaDeviceReset();
+    cudaDeviceReset();
 
   // allocate host memory for matrices M and N
   printf("Allocate host memory for matrices M and N...\n");
@@ -102,29 +98,13 @@ int main(int argc, char* argv[])
   // execute the kernel
   printf("Execute the kernel...\n");
 
-  if (CacheConfL1 == 1){
-    cudaFuncSetCacheConfig(matMul, cudaFuncCachePreferShared);
-  }
-  else if (CacheConfL1 == 2){
-    cudaFuncSetCacheConfig(matMul, cudaFuncCachePreferEqual);
-  }
-  else if (CacheConfL1 == 3){
-    cudaFuncSetCacheConfig(matMul, cudaFuncCachePreferL1);
-  }
-  else {
-    cudaFuncSetCacheConfig(matMul, cudaFuncCachePreferNone);
-  }
-
   int GridSize = (Width + Tile_Width-1) / Tile_Width;
   dim3 gridDim(GridSize, GridSize);
   dim3 blockDim(Tile_Width, Tile_Width);
 
-
-  cudaProfilerStart(); 
+  cudaProfilerStart();
   matMul<<< gridDim, blockDim >>>(Pd, Md, Nd, Width);
   cudaProfilerStop();
-
-
 
   // copy result from device to host
   checkCuda( cudaMemcpy( P, Pd, Width * Width * sizeof(float),cudaMemcpyDeviceToHost) );
@@ -133,12 +113,22 @@ int main(int argc, char* argv[])
   checkCuda( cudaGetDeviceProperties(&prop, devId) );
   printf("Device: %s\n", prop.name);
 
+  /* print result
+  FILE *ptr_file;
+  ptr_file =fopen("matMul_gpu_sharedmem_uncoalesced.out", "w");
+  if (!ptr_file) return 1;
+
+  for (int ty=0; ty < Width; ty++){
+      for (int tx=0; tx < Width; tx++) fprintf(ptr_file,"%6.2f ", P[ty * Width + tx]);
+      fprintf(ptr_file,"\n");
+  }
+  fclose(ptr_file);*/
+
 
   // clean up memory
   free(M);
   free(N);
   free(P);
-
   checkCuda( cudaFree(Md) );
   checkCuda( cudaFree(Nd) );
   checkCuda( cudaFree(Pd) );

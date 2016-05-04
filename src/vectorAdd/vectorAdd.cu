@@ -65,14 +65,13 @@ __global__ void vectorAdd(const float* A, const float* B, float* C, int N)
 int main(int argc, char** argv)
 {
 
-    if (argc != 4 ) {
-		fprintf(stderr, "Syntax: %s <Vector size>  <CacheConfL1>  <device>\n", argv[0]);
+    if (argc != 3 ) {
+		fprintf(stderr, "Syntax: %s <Vector size>  <device>\n", argv[0]);
     		return EXIT_FAILURE;
 	}
     
     int N = atoi(argv[1]);
-    int CacheConfL1 = atoi(argv[2]);    
-    int devId = atoi(argv[3]);
+    int devId = atoi(argv[2]);
 
     size_t size = N * sizeof(float);
     
@@ -105,25 +104,13 @@ int main(int argc, char** argv)
     checkCuda(cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice)) ;
     checkCuda(cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice)) ;
 
-	if (CacheConfL1 == 1){
-	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferShared);
-	}
-	else if (CacheConfL1 == 2){
-	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferEqual);
-	}
-	else if (CacheConfL1 == 3){
-	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferL1);
-	}
-	else {
-	cudaFuncSetCacheConfig(vectorAdd, cudaFuncCachePreferNone);
-	}
 
 
     // Invoke kernel
-    int threadsPerBlock = 256;
-    int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
+    int threadsPerBlock = Tile_Width*Tile_Width;
+    int GridSize = (N + threadsPerBlock - 1) / threadsPerBlock;
 //  GpuProfiling::prepareProfiling( blocksPerGrid, threadsPerBlock );
-    vectorAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
+    vectorAdd<<<GridSize, threadsPerBlock>>>(d_A, d_B, d_C, N);
 //  GpuProfiling::addResults("VecAdd");
 //    cutilCheckMsg("kernel launch failure");
 #ifdef _DEBUG

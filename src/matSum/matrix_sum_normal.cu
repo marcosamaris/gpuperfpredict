@@ -42,16 +42,14 @@ void randomInit(float* data, int N) {
 int main(int argc, char* argv[])
 {
 
-  if (argc != 5) {
-    fprintf(stderr, "Syntax: %s <matrix size> < Block_size> <CacheConfL1>  <device> \n", argv[0]);
+  if (argc != 3) {
+    fprintf(stderr, "Syntax: %s <matrix size> <CacheConfL1>  <device> \n", argv[0]);
     return EXIT_FAILURE;
   }
 
 
   int N = atoi(argv[1]);
-  int BlockSize = atoi(argv[2]);
-  int CacheConfL1 = atoi(argv[3]);
-  int devId = atoi(argv[4]);
+  int devId = atoi(argv[2]);
 
   checkCuda( cudaSetDevice(devId) );
   cudaDeviceReset();
@@ -86,23 +84,9 @@ int main(int argc, char* argv[])
   // execute the kernel
   printf("Execute the kernel...\n");
 
-  if (CacheConfL1 == 1){
-    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferShared);
-  }
-  else if (CacheConfL1 == 2){
-    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferEqual);
-  }
-  else if (CacheConfL1 == 3){
-    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferL1);
-  }
-  else {
-    cudaFuncSetCacheConfig(matSum, cudaFuncCachePreferNone);
-  }
-
-  int GridSize = (N + BlockSize-1) / BlockSize;
+  int GridSize = (N + Tile_Width-1) / Tile_Width;
   dim3 gridDim(GridSize, GridSize);
-  dim3 blockDim(BlockSize, BlockSize);
-
+  dim3 blockDim(Tile_Width, Tile_Width);
 
   matSum<<< gridDim, blockDim >>>(dev_S, dev_A, dev_B, N);
 

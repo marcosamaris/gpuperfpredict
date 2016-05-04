@@ -29,11 +29,38 @@ subprocess.check_output("rm -f *.csv",  shell = True)
 
 programs = ["matrix_sum_normal", "matrix_sum_coalesced"]
 
-parameters = [	"512 16 0 " + str(args.Device),                
-                "1024 16 0 " + str(args.Device),
-                "2048 16 0 " + str(args.Device),
-                "4096 16 0 " + str(args.Device),
-                "8192 16 0 " + str(args.Device)]
+parameters = ["256 " + str(args.Device),
+            "512 " + str(args.Device),
+            "768 " + str(args.Device),
+            "1024 " + str(args.Device),
+            "1280 " + str(args.Device),
+            "1536 " + str(args.Device),
+            "1792 " + str(args.Device),
+            "2048 " + str(args.Device),
+            "2304 " + str(args.Device),
+            "2560 " + str(args.Device),
+            "2816 " + str(args.Device),
+            "3072 " + str(args.Device),
+            "3328 " + str(args.Device),
+            "3584 " + str(args.Device),
+            "3840 " + str(args.Device),
+            "4096 " + str(args.Device),
+            "4352 " + str(args.Device),
+            "4608 " + str(args.Device),
+            "4864 " + str(args.Device),
+            "5120 " + str(args.Device),
+            "5376 " + str(args.Device),
+            "5632 " + str(args.Device),
+            "5888 " + str(args.Device),
+            "6144 " + str(args.Device),
+            "6400 " + str(args.Device),
+            "6656 " + str(args.Device),
+            "6912 " + str(args.Device),
+            "7168 " + str(args.Device),
+            "7424 " + str(args.Device),
+            "7680 " + str(args.Device),
+            "7936 " + str(args.Device),
+            "8192 " + str(args.Device)]
 
 kernel = "matSum"
 

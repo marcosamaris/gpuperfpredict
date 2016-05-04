@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include<assert.h>
 
 // Convenience function for checking CUDA runtime API results
 // can be wrapped around any runtime API call. No-op in release builds.
@@ -34,7 +35,7 @@ cudaError_t checkCuda(cudaError_t result)
 
 #define imin(a,b) (a<b?a:b)
 
-const int BlockSize = 256;
+const int BlockSize = Tile_Width*Tile_Width;
 
 __global__ void dotProd( float *a, float *b, float *c, int N ) {
     __shared__ float cache[BlockSize];
@@ -120,6 +121,7 @@ int main(int argc, char* argv[])
 
     #define sum_squares(x)  (x*(x+1)*(2*x+1)/6)
     printf( "Does GPU value %.6g = %.6g?\n", c, 2 * sum_squares( (float)(N - 1) ) );
+
 
     // free memory on the gpu side
     checkCuda( cudaFree( dev_a ) );
