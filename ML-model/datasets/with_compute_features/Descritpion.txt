@@ -1,0 +1,23 @@
+Features:
+	gpu_id: only for identification of GPU, not really a feature
+	num_of_cores 
+	max_clock_rate
+	l1_cache_used 	
+	threads_number	
+	Global Load Transactions	
+	Global Store Transactions	
+	L2 Hit Rate (L1 Reads)	
+	Shared Load Transactions	
+	Shared Store Transactions
+	Instructions Executed
+	Instructions Issued
+	Executed IPC
+	Achieved Occupancy
+
+Output to predict: 
+	Duration: Kernel running time 
+
+GPUs used:
+	For Kepler architecture: Tesla-K40, GTX-680, Titan, Tesla-K20, Quadro
+	For Maxwell Architecture: TitanX, TitanBlack, GTX-980, GTX-970, GTX-750
+	ALL GPUs have do not use L1 Cache
