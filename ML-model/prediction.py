@@ -93,6 +93,9 @@ for i in range(0,appIncludeList.size):
 		def calculateAccuracy(y_true,y_pred):
 			return np.mean( np.divide(y_pred,y_true) );
 
+		def calculateMeanAbsAccuracy(y_true,y_pred):
+			return np.mean (   np.absolute(1 - np.divide(y_pred,y_true) )  );
+
 		def printErrors(lr,modelType):
 			training_error = lr.score(X_std,y);
 			training_error = round(training_error,roundNumber)
@@ -118,6 +121,8 @@ for i in range(0,appIncludeList.size):
 			accuracy =calculateAccuracy(y_true,y_pred);
 			print accuracy
 			shape['Accuracy'][modelType] = accuracy 
+
+			shape['Mean Absolute Accuracy'][modelType] = calculateMeanAbsAccuracy(y_true,y_pred);
 
 			parameterString = "";
 			if (modelType == "random_forest_regressor" or modelType == "support_vector_regression" ):
@@ -212,5 +217,5 @@ for i in range(0,appIncludeList.size):
 		
 		printErrors(clf,"random_forest_regressor");
 
-		shape.to_csv(outputFolder+"results_"+appIncludeList[i]+"_"+architecuteList[j]+".csv");
+		shape.to_csv(outputFolder+"results_"+appIncludeList[i]+"_"+architecuteList[j]+"_new_metric.csv");
 
