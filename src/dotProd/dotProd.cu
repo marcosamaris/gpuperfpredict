@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
     }
 
     int N = atoi(argv[1]);
-    int GridSize = imin( 32, (N+BlockSize-1) / BlockSize );
+    int GridSize = (N+BlockSize-1) / BlockSize ;
     int devId = atoi(argv[2]);
 
     checkCuda( cudaSetDevice(devId) );
