@@ -1,7 +1,5 @@
-library(ggplot2)
-library(reshape2)
 
-cbbPalette <- gray(1:9/ 12)#c("red", "blue", "darkgray", "orange","black","brown", "lightblue","violet")
+
 dirpath <- "~/Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))
 
@@ -31,7 +29,7 @@ for (i in 1:10){
         metricsTemp<- NULL
         eventsTemp <- NULL
         tracesTemp <- NULL
-        for (j in c(32)){
+        for (j in c(8, 16, 32)){
             
             
             if (gpus[i,'compute_version'] == 3){
@@ -45,7 +43,7 @@ for (i in 1:10){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp, tracesTemp , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics3X), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -55,7 +53,7 @@ for (i in 1:10){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp, tracesTemp , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
                     }
 
                 
@@ -71,7 +69,7 @@ for (i in 1:10){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp, tracesTemp , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics5X), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -81,7 +79,7 @@ for (i in 1:10){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp, tracesTemp , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
                 }
                 
                 AppGPUInfoAll5X <- rbind(AppGPUInfoAll5X, GPUAppTemp)
@@ -92,4 +90,6 @@ for (i in 1:10){
         }
     }
 }
+write.csv(AppGPUInfoAll3X, file = "Data-AppGPU3X.csv")
+write.csv(AppGPUInfoAll5X, file = "Data-AppGPU5X.csv")
 
