@@ -55,7 +55,6 @@ for (i in 1:10){
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
                     }
-
                 
                 AppGPUInfoAll3X <- rbind(AppGPUInfoAll3X, GPUAppTemp)
             } else {
@@ -81,7 +80,7 @@ for (i in 1:10){
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
                 }
-                
+                write.csv(AppGPUInfoAll3X, file = paste("Data-AppGPU3X.csv"))
                 AppGPUInfoAll5X <- rbind(AppGPUInfoAll5X, GPUAppTemp)
                 
                 
