@@ -1,0 +1,345 @@
+131072,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+131072,s,s,,,,,,,,B,KB,KB,GB/s,,,,
+131072,2.031167,5.235300e-05,,,,,,,,,,512.000000,9.326710,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+131072,2.031224,9.360000e-05,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+131072,2.031320,2.272000e-06,,,,,,,,,,2.500000,1.049378,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+262144,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+262144,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+262144,2.012460,1.018880e-04,,,,,,,,,,1.000000,9.584666,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+262144,2.012567,1.578890e-04,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+262144,2.012729,2.272000e-06,,,,,,,,,,2.441406e-03,1.049378,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+524288,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+524288,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+524288,2.032201,2.877440e-04,,,,,,,,,,2.000000,6.787718,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+524288,2.032495,3.115850e-04,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+524288,2.032810,2.432000e-06,,,,,,,,,,2.441406e-03,0.980340,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+1048576,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1048576,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+1048576,1.998096,6.607060e-04,,,,,,,,,,4.000000,5.912236,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1048576,1.998763,6.143060e-04,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+1048576,1.999381,2.528000e-06,,,,,,,,,,2.441406e-03,0.943111,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+2097152,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2097152,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+2097152,2.014434,1.520486e-03,,,,,,,,,,8.000000,5.138160,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+2097152,2.015960,1.198501e-03,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+2097152,2.017161,2.432000e-06,,,,,,,,,,2.441406e-03,0.980340,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+4194304,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4194304,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+4194304,2.025683,2.833896e-03,,,,,,,,,,16.000000,5.513611,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+4194304,2.028523,2.384744e-03,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+4194304,2.030910,2.432000e-06,,,,,,,,,,2.441406e-03,0.980340,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+8388608,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8388608,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+8388608,2.004961,5.493995e-03,,,,,,,,,,32.000000,5.688028,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+8388608,2.010461,4.749257e-03,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+8388608,2.015214,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+12582912,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+12582912,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+12582912,2.032313,8.078132e-03,,,,,,,,,,48.000000,5.802703,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+12582912,2.040398,7.127570e-03,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+12582912,2.047529,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+16777216,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+16777216,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+16777216,2.006669,0.010790,,,,,,,,,,64.000000,5.792313,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+16777216,2.017465,9.474832e-03,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+16777216,2.026944,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+20971520,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+20971520,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+20971520,2.016166,0.013470,,,,,,,,,,80.000000,5.799873,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+20971520,2.029642,0.011869,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+20971520,2.041515,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+25165824,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+25165824,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+25165824,2.010773,0.015890,,,,,,,,,,96.000000,5.899953,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+25165824,2.026669,0.014213,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+25165824,2.040886,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+29360128,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+29360128,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+29360128,2.044867,0.018643,,,,,,,,,,112.000000,5.866951,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+29360128,2.063516,0.016557,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+29360128,2.080075,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+33554432,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+33554432,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+33554432,2.046317,0.021235,,,,,,,,,,128.000000,5.886378,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+33554432,2.067559,0.018973,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+33554432,2.086536,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+37748736,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+37748736,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+37748736,2.017378,0.023905,,,,,,,,,,144.000000,5.882557,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+37748736,2.041289,0.021305,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+37748736,2.062597,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+41943040,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+41943040,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+41943040,2.012762,0.026468,,,,,,,,,,160.000000,5.903343,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+41943040,2.039236,0.023676,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+41943040,2.062915,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+46137344,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+46137344,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+46137344,2.043509,0.029243,,,,,,,,,,176.000000,5.877477,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+46137344,2.072758,0.026085,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+46137344,2.098846,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+50331648,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+50331648,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+50331648,2.031199,0.031601,,,,,,,,,,192.000000,5.933393,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+50331648,2.062806,0.028430,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+50331648,2.091240,2.848000e-06,,,,,,,,,,2.441406e-03,0.837144,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+54525952,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+54525952,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+54525952,2.045251,0.034225,,,,,,,,,,208.000000,5.935074,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+54525952,2.079482,0.030782,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+54525952,2.110267,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+58720256,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+58720256,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+58720256,2.045619,0.036900,,,,,,,,,,224.000000,5.928160,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+58720256,2.082525,0.033200,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+58720256,2.115730,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+62914560,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+62914560,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+62914560,2.051394,0.039519,,,,,,,,,,240.000000,5.930620,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+62914560,2.090919,0.035556,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+62914560,2.126479,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+67108864,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+67108864,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+67108864,2.031573,0.042216,,,,,,,,,,256.000000,5.921878,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+67108864,2.073796,0.037952,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+67108864,2.111752,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+71303168,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+71303168,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+71303168,2.025535,0.044514,,,,,,,,,,272.000000,5.967276,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+71303168,2.070055,0.040309,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+71303168,2.110367,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+75497472,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+75497472,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+75497472,2.049796,0.047654,,,,,,,,,,288.000000,5.901898,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+75497472,2.097456,0.042642,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+75497472,2.140103,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+79691776,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+79691776,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+79691776,2.027814,0.050142,,,,,,,,,,304.000000,5.920690,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+79691776,2.077962,0.045046,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+79691776,2.123010,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+83886080,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+83886080,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+83886080,2.036382,0.052485,,,,,,,,,,320.000000,5.954046,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+83886080,2.088874,0.047444,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+83886080,2.136322,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+88080384,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+88080384,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+88080384,2.053760,0.055780,,,,,,,,,,336.000000,5.882486,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+88080384,2.109547,0.049784,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+88080384,2.159334,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+92274688,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+92274688,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+92274688,2.033975,0.058329,,,,,,,,,,352.000000,5.893326,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+92274688,2.092310,0.052153,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+92274688,2.144467,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+96468992,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+96468992,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+96468992,2.041064,0.061190,,,,,,,,,,368.000000,5.873059,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+96468992,2.102261,0.054568,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+96468992,2.156831,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+100663296,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+100663296,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+100663296,2.041918,0.063355,,,,,,,,,,384.000000,5.919004,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+100663296,2.105279,0.057034,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+100663296,2.162317,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+104857600,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+104857600,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+104857600,2.047407,0.066245,,,,,,,,,,400.000000,5.896689,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+104857600,2.113658,0.059288,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+104857600,2.172949,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+109051904,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+109051904,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+109051904,2.035635,0.070464,,,,,,,,,,416.000000,5.765353,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+109051904,2.106105,0.061751,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+109051904,2.167859,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+113246208,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+113246208,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+113246208,2.068995,0.071421,,,,,,,,,,432.000000,5.906909,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+113246208,2.140422,0.064061,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+113246208,2.204487,2.720000e-06,,,,,,,,,,2.441406e-03,0.876539,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+117440512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+117440512,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+117440512,2.053665,0.073841,,,,,,,,,,448.000000,5.924900,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+117440512,2.127513,0.066484,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+117440512,2.194000,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+121634816,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+121634816,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+121634816,2.041166,0.076246,,,,,,,,,,464.000000,5.942920,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+121634816,2.117418,0.068885,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+121634816,2.186307,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+125829120,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+125829120,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+125829120,2.063452,0.078521,,,,,,,,,,480.000000,5.969732,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+125829120,2.141980,0.071366,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+125829120,2.213349,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+130023424,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+130023424,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+130023424,2.045637,0.081594,,,,,,,,,,496.000000,5.936437,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+130023424,2.127237,0.073771,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+130023424,2.201012,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+134217728,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+134217728,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+134217728,2.079485,0.084122,,,,,,,,,,512.000000,5.943733,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+134217728,2.163613,0.076220,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+134217728,2.239837,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+138412032,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+138412032,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+138412032,2.071035,0.087069,,,,,,,,,,528.000000,5.922033,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+138412032,2.158111,0.078571,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+138412032,2.236684,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+142606336,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+142606336,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+142606336,2.056137,0.089891,,,,,,,,,,544.000000,5.909943,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+142606336,2.146035,0.081114,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+142606336,2.227153,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+146800640,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+146800640,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+146800640,2.072812,0.092292,,,,,,,,,,560.000000,5.925484,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+146800640,2.165110,0.083273,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+146800640,2.248386,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+150994944,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+150994944,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+150994944,2.081814,0.094531,,,,,,,,,,576.000000,5.950460,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+150994944,2.176350,0.085798,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+150994944,2.262152,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+155189248,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+155189248,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+155189248,2.086553,0.097429,,,,,,,,,,592.000000,5.933832,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+155189248,2.183988,0.088205,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+155189248,2.272197,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+159383552,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+159383552,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+159383552,2.097961,0.099956,,,,,,,,,,608.000000,5.940110,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+159383552,2.197923,0.090485,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+159383552,2.288411,2.656000e-06,,,,,,,,,,2.441406e-03,0.897660,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+163577856,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+163577856,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+163577856,2.077923,0.104421,,,,,,,,,,624.000000,5.835751,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+163577856,2.182350,0.093150,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+163577856,2.275505,2.720000e-06,,,,,,,,,,2.441406e-03,0.876539,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+167772160,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+167772160,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+167772160,2.065225,0.104729,,,,,,,,,,640.000000,5.967792,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+167772160,2.169960,0.095504,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+167772160,2.265468,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+171966464,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+171966464,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+171966464,2.093092,0.107763,,,,,,,,,,656.000000,5.944776,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+171966464,2.200861,0.098122,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+171966464,2.298986,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+176160768,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+176160768,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+176160768,2.089639,0.110795,,,,,,,,,,672.000000,5.923123,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+176160768,2.200439,0.100303,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+176160768,2.300745,2.688000e-06,,,,,,,,,,2.441406e-03,0.886974,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+180355072,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+180355072,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+180355072,2.091651,0.113652,,,,,,,,,,688.000000,5.911661,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+180355072,2.205310,0.103040,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+180355072,2.308353,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+184549376,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+184549376,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+184549376,2.064765,0.115651,,,,,,,,,,704.000000,5.944599,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+184549376,2.180422,0.105301,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+184549376,2.285727,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+188743680,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+188743680,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+188743680,2.093598,0.118424,,,,,,,,,,720.000000,5.937373,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+188743680,2.212028,0.107521,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+188743680,2.319552,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+192937984,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+192937984,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+192937984,2.089262,0.122473,,,,,,,,,,736.000000,5.868659,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+192937984,2.211741,0.109987,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+192937984,2.321732,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+197132288,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+197132288,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+197132288,2.069523,0.123358,,,,,,,,,,752.000000,5.953187,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+197132288,2.192887,0.112344,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+197132288,2.305234,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+201326592,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+201326592,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+201326592,2.071980,0.125799,,,,,,,,,,768.000000,5.961868,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+201326592,2.197785,0.114672,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+201326592,2.312461,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+205520896,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+205520896,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+205520896,2.110458,0.129286,,,,,,,,,,784.000000,5.921933,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+205520896,2.239750,0.117356,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+205520896,2.357110,2.624000e-06,,,,,,,,,,2.441406e-03,0.908607,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+209715200,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+209715200,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+209715200,2.085210,0.131954,,,,,,,,,,800.000000,5.920604,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+209715200,2.217171,0.119660,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+209715200,2.336834,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+213909504,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+213909504,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+213909504,2.079864,0.134015,,,,,,,,,,816.000000,5.946145,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+213909504,2.213885,0.122341,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+213909504,2.336229,2.560000e-06,,,,,,,,,,2.441406e-03,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+218103808,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+218103808,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+218103808,2.099676,0.136819,,,,,,,,,,832.000000,5.938489,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+218103808,2.236502,0.124481,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+218103808,2.360986,2.784000e-06,,,,,,,,,,2.441406e-03,0.856389,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+222298112,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+222298112,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+222298112,2.080010,0.139397,,,,,,,,,,848.000000,5.940770,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+222298112,2.219413,0.127232,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+222298112,2.346649,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+226492416,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+226492416,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+226492416,2.108087,0.141491,,,,,,,,,,864.000000,5.963278,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+226492416,2.249585,0.129319,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+226492416,2.378907,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+230686720,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+230686720,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+230686720,2.090964,0.144996,,,,,,,,,,880.000000,5.926901,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+230686720,2.235966,0.131999,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+230686720,2.367969,2.912000e-06,,,,,,,,,,2.441406e-03,0.818745,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+234881024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+234881024,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+234881024,2.087169,0.147760,,,,,,,,,,896.000000,5.921756,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+234881024,2.234935,0.134218,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+234881024,2.369157,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+239075328,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+239075328,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+239075328,2.099018,0.149006,,,,,,,,,,912.000000,5.977115,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+239075328,2.248030,0.136888,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+239075328,2.384922,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+243269632,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+243269632,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+243269632,2.094893,0.154125,,,,,,,,,,928.000000,5.879960,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+243269632,2.249025,0.139024,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+243269632,2.388052,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+247463936,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+247463936,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+247463936,2.116553,0.156131,,,,,,,,,,944.000000,5.904514,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+247463936,2.272690,0.141644,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+247463936,2.414337,2.656000e-06,,,,,,,,,,2.441406e-03,0.897660,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+251658240,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+251658240,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+251658240,2.106056,0.158754,,,,,,,,,,960.000000,5.905378,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+251658240,2.264816,0.143858,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+251658240,2.408677,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+255852544,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+255852544,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+255852544,2.116996,0.161240,,,,,,,,,,976.000000,5.911206,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+255852544,2.278242,0.146740,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+255852544,2.424986,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+260046848,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+260046848,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+260046848,2.122432,0.163058,,,,,,,,,,992.000000,5.941150,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+260046848,2.285496,0.149388,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+260046848,2.434887,2.592000e-06,,,,,,,,,,2.441406e-03,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+264241152,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+264241152,s,s,,,,,,,,B,KB,GB,GB/s,,,,
+264241152,2.098291,0.166605,,,,,,,,,,0.984375,5.908439,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+264241152,2.264902,0.152291,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+264241152,2.417197,2.560000e-06,,,,,,,,,,2.384186e-06,0.931323,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
+268435456,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+268435456,s,s,,,,,,,,B,KB,GB,GB/s,,,,
+268435456,2.139741,0.168660,,,,,,,,,,1.000000,5.929098,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+268435456,2.308407,0.154692,32,1,1,128,1,1,25,1.639200e+04,0.000000,,,"Tesla K40c (0)","1","7","subSeqMax(int*, int*, int, int) [102]"
+268435456,2.463103,2.592000e-06,,,,,,,,,,2.384186e-06,0.919825,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
