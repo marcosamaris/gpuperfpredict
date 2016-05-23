@@ -24,13 +24,11 @@ namesEvents52 <- read.csv("./data/eventsNames-5.2.csv", header = T, sep = ",")
 
 namesTraces <- read.csv("./data/tracesNames.csv",header = T, sep = ",")
 
-noSamples <- 10
-
 AppGPUInfoAll30 <- data.frame()
 AppGPUInfoAll35 <- data.frame()
 AppGPUInfoAll50 <- data.frame()
 AppGPUInfoAll52 <- data.frame()
-for (i in 1){
+for (i in 1:10){
     
     for (k in 1:length(apps)){
         GPUAppTemp <- data.frame()
@@ -38,10 +36,9 @@ for (i in 1){
         eventsTemp <- NULL
         tracesTemp <- NULL
         for (j in c(8, 16, 32)){
-            
             if (gpus[i,'compute_version'] == 3.0){
                 if( apps[k] != "subSeqMax"){
-                
+                    
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics30), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     eventsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-events.csv", sep=""), sep=",", header=F,  col.names = names(namesEvents30), 
@@ -50,7 +47,7 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics30), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -60,8 +57,8 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
-                    }
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                }
                 
                 AppGPUInfoAll30 <- rbind(AppGPUInfoAll30, GPUAppTemp)
             } else if (gpus[i,'compute_version'] == 3.5) {
@@ -75,7 +72,7 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics35), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -85,13 +82,13 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 }
                 
                 AppGPUInfoAll35 <- rbind(AppGPUInfoAll35, GPUAppTemp)
                 
                 
-            } if (gpus[i,'compute_version'] == 5.0){
+            } else if (gpus[i,'compute_version'] == 5.0){
                 if( apps[k] != "subSeqMax"){
                     
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics50), 
@@ -102,7 +99,7 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics50), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -112,7 +109,7 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 }
                 
                 AppGPUInfoAll50 <- rbind(AppGPUInfoAll50, GPUAppTemp)
@@ -127,7 +124,7 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics52), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -137,7 +134,7 @@ for (i in 1){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(metricsTemp, eventsTemp[,-1], tracesTemp[,-1] , GpuName=gpus[i,'gpu_name'],  App=apps[k])
+                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 }
                 
                 AppGPUInfoAll52 <- rbind(AppGPUInfoAll52, GPUAppTemp)
@@ -146,14 +143,32 @@ for (i in 1){
         }
     }
 }
+# 
+# drops <- c("Device","Device.1", "Stream", "Stream.1", "Kernel", "Kernel.1")
+# DF[ , !(names(DF) %in% drops)]
+# 
+write.csv(AppGPUInfoAll30, file = "./R-code/Datasets/AppGPU30.csv")
+for (k in 1:length(apps)){
+    write.csv(AppGPUInfoAll30[AppGPUInfoAll30["AppId"] == k], file = paste("./R-code/Datasets/Apps/", apps[k], "-GPU30.csv", sep = ""))
+}
 
-drops <- c("Device","Device.1", "Stream", "Stream.1", "Kernel", "Kernel.1")
-DF[ , !(names(DF) %in% drops)]
+write.csv(AppGPUInfoAll35, file = "./R-code/Datasets/AppGPU35.csv")
+for (k in 1:length(apps)){
+    write.csv(AppGPUInfoAll35[AppGPUInfoAll35["AppId"] == k], file = paste("./R-code/Datasets/Apps/", apps[k], "-GPU35.csv", sep = ""))
+}
 
-write.csv(AppGPUInfoAll3X, file = "AppGPU3X.csv")
-write.csv(AppGPUInfoAll3X[AppGPUInfoAll3X["IdApp"]], file = "AppGPU3X.csv")
+write.csv(AppGPUInfoAll50, file = "./R-code/Datasets/AppGPU50.csv")
+for (k in 1:length(apps)){
+    write.csv(AppGPUInfoAll50[AppGPUInfoAll50["AppId"] == k], file = paste("./R-code/Datasets/Apps/", apps[k], "-GPU50.csv", sep = ""))
+}
 
-
-
-write.csv(AppGPUInfoAll5X, file = "AppGPU5X.csv")
+write.csv(AppGPUInfoAll52, file = "./R-code/Datasets/AppGPU52.csv")
+for (k in 1:length(apps)){
+    write.csv(AppGPUInfoAll52[AppGPUInfoAll52["AppId"] == k], file = paste("./R-code/Datasets/Apps/", apps[k], "-GPU52.csv", sep = ""))
+}
+# write.csv(AppGPUInfoAll3X[AppGPUInfoAll3X["IdApp"]], file = "AppGPU3X.csv")
+# 
+# 
+# 
+# write.csv(AppGPUInfoAll5X, file = "AppGPU5X.csv")
 
