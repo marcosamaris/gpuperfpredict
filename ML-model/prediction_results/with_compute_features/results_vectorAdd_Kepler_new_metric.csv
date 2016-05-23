@@ -1,0 +1,7 @@
+Type,Training error,Test error,Mean absolute error,Mean squared error,Accuracy,Mean Absolute Accuracy,Parameters
+ordinary,0.97404,0.8724,0.002,1e-05,2.66994982767,1.96978019919,N/A
+ridge,0.97365,0.93039,0.00148,0.0,3.67125603094,2.86762254488,Alpha: 0.01
+lasso,0.0,-0.15891,0.00601,5e-05,18.2664378806,17.7926260918,Alpha: 10.0
+elastic_net,0.87544,0.78862,0.00257,1e-05,4.0953763793,3.44271777467,"Alpha: 0.01, l1_ratio: 0.1"
+support_vector_regression,-0.31159,-0.00929,0.0056,4e-05,25.4739774641,24.7573776082,"{'kernel': 'poly', 'C': 0.01, 'degree': 1}"
+random_forest_regressor,0.9985,0.9838,0.00068,0.0,1.15284405558,0.34089994698,"{'max_features': 'auto', 'n_estimators': 64}"
