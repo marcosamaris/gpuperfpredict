@@ -144,10 +144,8 @@ for (i in 1:NoGPU){
     }
     
 }
-# 
-# drops <- c("Device","Device.1", "Stream", "Stream.1", "Kernel", "Kernel.1")
-# DF[ , !(names(DF) %in% drops)]
-# 
+
+
 write.csv(AppGPUInfoAll30, file = "./R-code/Datasets/AppGPU30.csv")
 write.csv(AppGPUInfoAll35, file = "./R-code/Datasets/AppGPU35.csv")
 write.csv(AppGPUInfoAll50, file = "./R-code/Datasets/AppGPU50.csv")
@@ -187,9 +185,14 @@ write.csv(AppGPUInfoAll52[AppGPUInfoAll52["GpuId"] == 8,], file = paste("./R-cod
 write.csv(AppGPUInfoAll52[AppGPUInfoAll52["GpuId"] == 9,], file = paste("./R-code/Datasets/Gpus/", gpus[9,'gpu_name'], ".csv", sep = ""))
 write.csv(AppGPUInfoAll52[AppGPUInfoAll52["GpuId"] == 10,], file = paste("./R-code/Datasets/Gpus/", gpus[10,'gpu_name'], ".csv", sep = ""))
 
-# write.csv(AppGPUInfoAll3X[AppGPUInfoAll3X["IdApp"]], file = "AppGPU3X.csv")
-# 
-# 
-# 
-# write.csv(AppGPUInfoAll5X, file = "AppGPU5X.csv")
+
+
+##### Create Datasets for each Application and each GPU
+for (i in 1:NoGPU){
+    for (k in 1:length(apps)){
+        write.csv(AppGPUInfoAll30[AppGPUInfoAll30["AppId"] == k & AppGPUInfoAll30["GpuId"] == i,], 
+                  file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
+    }
+}
+
 
