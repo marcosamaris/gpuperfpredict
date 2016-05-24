@@ -12,9 +12,14 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
           "dotProd", "vectorAdd",  "subSeqMax")
 
 
-DataAppGPU3X <- read.csv(file = "./R-code/Datasets/Data-App-GPU-3X.csv")
-DataAppGPU5X <- read.csv(file = "./R-code/Datasets/Data-App-GPU-5X.csv")
-DataAppGPU3X5X <- read.csv(file = "./R-code/Datasets/All-Apps-GPUs.csv")
+DataAppGPU30 <- read.csv(file = "./R-code/Datasets/AppGPU30.csv")
+DataAppGPU35 <- read.csv(file = "./R-code/Datasets/AppGPU35.csv")
+DataAppGPU50 <- read.csv(file = "./R-code/Datasets/AppGPU50.csv")
+DataAppGPU52 <- read.csv(file = "./R-code/Datasets/AppGPU50.csv")
+
+
+
+
 
 METRICS_3X <- c(
 "Shared.Memory.Replay.Overhead", "Global.Memory.Replay.Overhead", "Instruction.Replay.Overhead", 
@@ -41,17 +46,6 @@ par3X <- DataAppGPU3X[,c("Achieved.Occupancy", "Executed.IPC", "Global.Store.Tra
                          "Device.Memory.Read.Transactions", "L2.Write.Transactions", "warps_launched", "inst_executed","inst_issued2",
                          "Block.X", "Block.Y", "Grid.X", "Grid.Y", "Registers.Per.Thread", "Static.SMem" )]
 
-
-par5X <- DataAppGPU3X[,c("Achieved.Occupancy", "Executed.IPC", "Global.Store.Transactions.Per.Request", "Global.Store.Transactions", 
-                           "Device.Memory.Read.Transactions", "L2.Write.Transactions", "warps_launched", "inst_executed","inst_issued2",
-                           "Block.X", "Block.Y", "Grid.X", "Grid.Y", "Registers.Per.Thread", "Static.SMem" )]
-
-
-par3X5X <- DataAppGPU3X5X[,c("Achieved.Occupancy", "Executed.IPC", "Global.Store.Transactions.Per.Request", "Global.Store.Transactions", 
-                           "Device.Memory.Read.Transactions", "L2.Write.Transactions", "warps_launched", "inst_executed","inst_issued2",
-                           "Block.X", "Block.Y", "Grid.X", "Grid.Y", "Registers.Per.Thread", "Static.SMem", "Duration")]
-
-par3X5X <- par3X5X[complete.cases(par3X5X),]
 
 
 Duration <- par3X5X[,"Duration"]
