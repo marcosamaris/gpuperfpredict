@@ -189,10 +189,37 @@ write.csv(AppGPUInfoAll52[AppGPUInfoAll52["GpuId"] == 10,], file = paste("./R-co
 
 ##### Create Datasets for each Application and each GPU
 for (i in 1:NoGPU){
-    for (k in 1:length(apps)){
-        write.csv(AppGPUInfoAll30[AppGPUInfoAll30["AppId"] == k & AppGPUInfoAll30["GpuId"] == i,], 
-                  file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
+    if(gpus[i,'compute_version'] == 3.0){
+        for (k in 1:length(apps)){
+            write.csv(AppGPUInfoAll30[AppGPUInfoAll30$AppId == k & AppGPUInfoAll30$GpuId == i,], 
+                      file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
+        }
+    }
+    
+    if(gpus[i,'compute_version'] == 3.5){
+        for (k in 1:length(apps)){
+            write.csv(AppGPUInfoAll35[AppGPUInfoAll30$AppId == k & AppGPUInfoAll35$GpuId == i,], 
+                      file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
+        }
+    }
+    
+    if(gpus[i,'compute_version'] == 5.0){
+        for (k in 1:length(apps)){
+            write.csv(AppGPUInfoAll30[AppGPUInfoAll50$AppId == k & AppGPUInfoAll50$GpuId == i,], 
+                      file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
+        }
+    }
+    
+    if(gpus[i,'compute_version'] == 5.2){
+        for (k in 1:length(apps)){
+            write.csv(AppGPUInfoAll52[AppGPUInfoAll52$AppId == k & AppGPUInfoAll52$GpuId == i,], 
+                      file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
+        }
     }
 }
+
+
+
+
 
 
