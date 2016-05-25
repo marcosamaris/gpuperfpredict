@@ -198,7 +198,7 @@ for (i in 1:NoGPU){
     
     if(gpus[i,'compute_version'] == 3.5){
         for (k in 1:length(apps)){
-            write.csv(AppGPUInfoAll35[AppGPUInfoAll30$AppId == k & AppGPUInfoAll35$GpuId == i,], 
+            write.csv(AppGPUInfoAll35[AppGPUInfoAll35$AppId == k & AppGPUInfoAll35$GpuId == i,], 
                       file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
         }
     }
