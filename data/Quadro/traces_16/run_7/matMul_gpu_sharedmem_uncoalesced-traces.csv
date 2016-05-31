@@ -1,0 +1,160 @@
+256,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+256,s,s,,,,,,,,B,KB,KB,GB/s,,,,
+256,1.374306,4.566500e-05,,,,,,,,,,256.000000,5.346340,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+256,1.374393,4.553700e-05,,,,,,,,,,256.000000,5.361368,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+256,1.374444,5.586650e-04,16,16,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+512,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+512,1.395787,1.735070e-04,,,,,,,,,,1.000000,5.628375,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+512,1.396092,1.812830e-04,,,,,,,,,,1.000000,5.386950,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+512,1.396280,4.335845e-03,32,32,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+768,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+768,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+768,1.405871,3.934790e-04,,,,,,,,,,2.250000,5.584200,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+768,1.406407,3.933820e-04,,,,,,,,,,2.250000,5.585577,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+768,1.406807,0.014727,48,48,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+1024,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1024,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+1024,1.420888,6.946660e-04,,,,,,,,,,4.000000,5.623206,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1024,1.421707,6.946350e-04,,,,,,,,,,4.000000,5.623457,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1024,1.422408,0.034712,64,64,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+1280,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1280,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+1280,1.420979,1.088880e-03,,,,,,,,,,6.250000,5.605315,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1280,1.422185,1.088721e-03,,,,,,,,,,6.250000,5.606134,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1280,1.423281,0.067643,80,80,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+1536,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1536,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+1536,1.451404,1.563543e-03,,,,,,,,,,9.000000,5.621248,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1536,1.453099,1.563383e-03,,,,,,,,,,9.000000,5.621823,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1536,1.454669,0.118055,96,96,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+1792,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1792,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+1792,1.455070,2.130815e-03,,,,,,,,,,12.250000,5.614232,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1792,1.457316,2.130463e-03,,,,,,,,,,12.250000,5.615160,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+1792,1.459453,0.185406,112,112,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+2048,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2048,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+2048,1.473481,2.777448e-03,,,,,,,,,,16.000000,5.625668,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2048,1.476372,2.777096e-03,,,,,,,,,,16.000000,5.626381,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2048,1.479155,0.265264,128,128,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+2304,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2304,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+2304,1.497706,3.519185e-03,,,,,,,,,,20.250000,5.619310,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2304,1.501335,3.519632e-03,,,,,,,,,,20.250000,5.618596,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2304,1.504861,0.361869,144,144,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+2560,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2560,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+2560,1.519233,4.344956e-03,,,,,,,,,,25.000000,5.618944,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2560,1.523698,4.344060e-03,,,,,,,,,,25.000000,5.620103,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2560,1.528049,0.470825,160,160,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+2816,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2816,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+2816,1.555952,5.253160e-03,,,,,,,,,,30.250000,5.623475,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2816,1.561319,5.253671e-03,,,,,,,,,,30.250000,5.622928,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+2816,1.566580,0.594544,176,176,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+3072,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+3072,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+3072,1.548800,6.262197e-03,,,,,,,,,,36.000000,5.614044,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3072,1.555176,6.261653e-03,,,,,,,,,,36.000000,5.614532,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3072,1.561444,0.766671,192,192,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+3328,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+3328,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+3328,1.567866,7.345027e-03,,,,,,,,,,42.250000,5.617374,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3328,1.575323,7.340226e-03,,,,,,,,,,42.250000,5.621048,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3328,1.582670,0.950052,208,208,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+3584,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+3584,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+3584,1.590002,8.516464e-03,,,,,,,,,,49.000000,5.618712,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3584,1.598633,8.516048e-03,,,,,,,,,,49.000000,5.618987,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3584,1.607156,1.215086,224,224,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+3840,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+3840,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+3840,1.621837,9.764511e-03,,,,,,,,,,56.250000,5.625642,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3840,1.631715,9.763518e-03,,,,,,,,,,56.250000,5.626214,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+3840,1.641485,1.465135,240,240,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+4096,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4096,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+4096,1.638295,0.011127,,,,,,,,,,64.000000,5.616923,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4096,1.649533,0.011128,,,,,,,,,,64.000000,5.616325,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4096,1.660667,1.760585,256,256,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+4352,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4352,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+4352,1.686165,0.012561,,,,,,,,,,72.250000,5.617053,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4352,1.698837,0.012560,,,,,,,,,,72.250000,5.617397,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4352,1.711404,2.087396,272,272,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+4608,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4608,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+4608,1.727733,0.014070,,,,,,,,,,81.000000,5.621809,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4608,1.741921,0.014070,,,,,,,,,,81.000000,5.622103,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4608,1.755997,2.492670,288,288,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+4864,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4864,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+4864,1.764934,0.015673,,,,,,,,,,90.250000,5.623428,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4864,1.780720,0.015674,,,,,,,,,,90.250000,5.622923,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+4864,1.796400,2.913255,304,304,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+5120,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+5120,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+5120,1.765939,0.017361,,,,,,,,,,100.000000,5.624948,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5120,1.783411,0.017361,,,,,,,,,,100.000000,5.625114,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5120,1.800778,3.410821,320,320,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+5376,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+5376,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+5376,1.832809,0.019149,,,,,,,,,,110.250000,5.622605,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5376,1.852072,0.019149,,,,,,,,,,110.250000,5.622577,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5376,1.871227,3.895699,336,336,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+5632,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+5632,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+5632,1.822651,0.021023,,,,,,,,,,121.000000,5.620573,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5632,1.843775,0.021028,,,,,,,,,,121.000000,5.619444,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5632,1.864810,4.497132,352,352,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+5888,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+5888,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+5888,1.891131,0.022966,,,,,,,,,,132.250000,5.623601,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5888,1.914210,0.022966,,,,,,,,,,132.250000,5.623507,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+5888,1.937182,5.078712,368,368,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+6144,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+6144,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+6144,1.932958,0.025021,,,,,,,,,,144.000000,5.620321,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6144,1.958099,0.025022,,,,,,,,,,144.000000,5.619954,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6144,1.983129,5.921122,384,384,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+6400,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+6400,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+6400,1.990120,0.027161,,,,,,,,,,156.250000,5.617853,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6400,2.017393,0.027163,,,,,,,,,,156.250000,5.617409,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6400,2.044562,6.531710,400,400,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+6656,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+6656,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+6656,2.008318,0.029333,,,,,,,,,,169.000000,5.626441,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6656,2.037761,0.029333,,,,,,,,,,169.000000,5.626318,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6656,2.067101,7.384348,416,416,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+6912,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+6912,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+6912,2.090288,0.031651,,,,,,,,,,182.250000,5.623163,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6912,2.122050,0.031651,,,,,,,,,,182.250000,5.623162,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+6912,2.153707,8.240180,432,432,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+7168,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+7168,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+7168,2.144895,0.034073,,,,,,,,,,196.000000,5.617528,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7168,2.179077,0.034081,,,,,,,,,,196.000000,5.616183,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7168,2.213165,9.230154,448,448,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+7424,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+7424,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+7424,2.308792,0.036564,,,,,,,,,,210.250000,5.615411,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7424,2.345453,0.036552,,,,,,,,,,210.250000,5.617278,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7424,2.382011,10.172964,464,464,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+7680,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+7680,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+7680,2.241230,0.039114,,,,,,,,,,225.000000,5.617554,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7680,2.280441,0.039110,,,,,,,,,,225.000000,5.618188,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7680,2.319557,11.459594,480,480,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+7936,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+7936,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+7936,2.296284,0.041722,,,,,,,,,,240.250000,5.623324,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7936,2.338103,0.041709,,,,,,,,,,240.250000,5.625145,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+7936,2.379818,12.410697,496,496,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
+8192,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8192,s,s,,,,,,,,B,KB,MB,GB/s,,,,
+8192,2.301807,0.044474,,,,,,,,,,256.000000,5.621203,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+8192,2.346379,0.044474,,,,,,,,,,256.000000,5.621244,"Quadro K5200 (1)","1","7","[CUDA memcpy HtoD]"
+8192,2.390860,13.733661,512,512,1,16,16,1,23,2.048000e+03,0.000000,,,"Quadro K5200 (1)","1","7","matMul(float*, float*, float*, int) [190]"
