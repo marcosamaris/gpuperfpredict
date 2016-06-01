@@ -1,0 +1,345 @@
+131072,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+131072,s,s,,,,,,,,B,B,KB,GB/s,,,,
+131072,0.188705,8.944100e-05,,,,,,,,,,512.000000,5.459255,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+131072,0.188882,8.700900e-05,,,,,,,,,,512.000000,5.611848,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+131072,0.188973,1.225600e-05,128,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+131072,0.188989,8.006500e-05,,,,,,,,,,512.000000,6.098561,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+262144,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+262144,s,s,,,,,,,,B,B,MB,GB/s,,,,
+262144,0.192365,1.748170e-04,,,,,,,,,,1.000000,5.586199,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+262144,0.192707,1.822100e-04,,,,,,,,,,1.000000,5.359544,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+262144,0.192893,2.662400e-05,256,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+262144,0.192923,1.792340e-04,,,,,,,,,,1.000000,5.448534,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+524288,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+524288,s,s,,,,,,,,B,B,MB,GB/s,,,,
+524288,0.198309,3.500510e-04,,,,,,,,,,2.000000,5.579544,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+524288,0.198826,3.523870e-04,,,,,,,,,,2.000000,5.542557,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+524288,0.199183,4.684900e-05,512,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+524288,0.199233,3.480990e-04,,,,,,,,,,2.000000,5.610832,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+1048576,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+1048576,s,s,,,,,,,,B,B,MB,GB/s,,,,
+1048576,0.220410,6.989810e-04,,,,,,,,,,4.000000,5.588492,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+1048576,0.221275,7.029800e-04,,,,,,,,,,4.000000,5.556701,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+1048576,0.221982,8.889700e-05,1024,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+1048576,0.222074,8.303730e-04,,,,,,,,,,4.000000,4.704211,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+2097152,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+2097152,s,s,,,,,,,,B,B,MB,GB/s,,,,
+2097152,0.255046,1.402564e-03,,,,,,,,,,8.000000,5.570156,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+2097152,0.256617,1.425252e-03,,,,,,,,,,8.000000,5.481487,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+2097152,0.258046,1.768970e-04,2048,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+2097152,0.258226,2.216550e-03,,,,,,,,,,8.000000,3.524622,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+4194304,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+4194304,s,s,,,,,,,,B,B,MB,GB/s,,,,
+4194304,0.318207,2.846528e-03,,,,,,,,,,16.000000,5.489143,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+4194304,0.321228,2.813121e-03,,,,,,,,,,16.000000,5.554329,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+4194304,0.324046,3.386880e-04,4096,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+4194304,0.324388,4.785890e-03,,,,,,,,,,16.000000,3.264806,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+8388608,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+8388608,s,s,,,,,,,,B,B,MB,GB/s,,,,
+8388608,0.453110,5.669073e-03,,,,,,,,,,32.000000,5.512365,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+8388608,0.458945,5.705233e-03,,,,,,,,,,32.000000,5.477427,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+8388608,0.464655,6.751980e-04,8192,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+8388608,0.465333,8.839370e-03,,,,,,,,,,32.000000,3.535320,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+12582912,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+12582912,s,s,,,,,,,,B,B,MB,GB/s,,,,
+12582912,0.606181,8.872932e-03,,,,,,,,,,48.000000,5.282921,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+12582912,0.615225,8.616612e-03,,,,,,,,,,48.000000,5.440073,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+12582912,0.623846,1.006973e-03,12288,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+12582912,0.624856,0.013579,,,,,,,,,,48.000000,3.451998,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+16777216,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+16777216,s,s,,,,,,,,B,B,MB,GB/s,,,,
+16777216,0.755203,0.011299,,,,,,,,,,64.000000,5.531479,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+16777216,0.766666,0.011354,,,,,,,,,,64.000000,5.504665,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+16777216,0.778025,1.348635e-03,16384,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+16777216,0.779377,0.018054,,,,,,,,,,64.000000,3.461754,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+20971520,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+20971520,s,s,,,,,,,,B,B,MB,GB/s,,,,
+20971520,0.983532,0.014613,,,,,,,,,,80.000000,5.346399,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+20971520,0.998309,0.014556,,,,,,,,,,80.000000,5.367190,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+20971520,1.012869,1.685337e-03,20480,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+20971520,1.014557,0.022761,,,,,,,,,,80.000000,3.432408,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+25165824,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+25165824,s,s,,,,,,,,B,B,MB,GB/s,,,,
+25165824,1.132153,0.017296,,,,,,,,,,96.000000,5.420302,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+25165824,1.149623,0.016927,,,,,,,,,,96.000000,5.538636,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+25165824,1.166554,2.013303e-03,24576,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+25165824,1.168570,0.028593,,,,,,,,,,96.000000,3.278772,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+29360128,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+29360128,s,s,,,,,,,,B,B,MB,GB/s,,,,
+29360128,1.181857,0.019866,,,,,,,,,,112.000000,5.505685,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+29360128,1.201921,0.020354,,,,,,,,,,112.000000,5.373589,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+29360128,1.222280,2.359221e-03,28672,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+29360128,1.224642,0.033203,,,,,,,,,,112.000000,3.294144,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+33554432,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+33554432,s,s,,,,,,,,B,B,MB,GB/s,,,,
+33554432,1.328086,0.022928,,,,,,,,,,128.000000,5.451897,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+33554432,1.351189,0.023099,,,,,,,,,,128.000000,5.411572,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+33554432,1.374292,2.682452e-03,32768,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+33554432,1.376978,0.036603,,,,,,,,,,128.000000,3.415024,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+37748736,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+37748736,s,s,,,,,,,,B,B,MB,GB/s,,,,
+37748736,1.454314,0.025758,,,,,,,,,,144.000000,5.459430,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+37748736,1.480234,0.025475,,,,,,,,,,144.000000,5.520191,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+37748736,1.505714,3.018098e-03,36864,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+37748736,1.508735,0.040781,,,,,,,,,,144.000000,3.448325,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+41943040,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+41943040,s,s,,,,,,,,B,B,MB,GB/s,,,,
+41943040,1.603420,0.029257,,,,,,,,,,160.000000,5.340693,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+41943040,1.632838,0.028474,,,,,,,,,,160.000000,5.487473,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+41943040,1.661317,3.348849e-03,40960,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+41943040,1.664669,0.045444,,,,,,,,,,160.000000,3.438307,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+46137344,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+46137344,s,s,,,,,,,,B,B,MB,GB/s,,,,
+46137344,1.756149,0.031435,,,,,,,,,,176.000000,5.467701,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+46137344,1.787749,0.031499,,,,,,,,,,176.000000,5.456597,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+46137344,1.819253,3.682190e-03,45056,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+46137344,1.822938,0.050080,,,,,,,,,,176.000000,3.431977,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+50331648,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+50331648,s,s,,,,,,,,B,B,MB,GB/s,,,,
+50331648,1.882850,0.033423,,,,,,,,,,192.000000,5.609930,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+50331648,1.916463,0.034274,,,,,,,,,,192.000000,5.470551,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+50331648,1.950742,4.108684e-03,49152,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+50331648,1.954854,0.053255,,,,,,,,,,192.000000,3.520800,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+54525952,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+54525952,s,s,,,,,,,,B,B,MB,GB/s,,,,
+54525952,2.030480,0.036497,,,,,,,,,,208.000000,5.565452,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+54525952,2.067140,0.036673,,,,,,,,,,208.000000,5.538772,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+54525952,2.103818,4.445290e-03,53248,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+54525952,2.108266,0.058398,,,,,,,,,,208.000000,3.478301,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+58720256,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+58720256,s,s,,,,,,,,B,B,MB,GB/s,,,,
+58720256,2.190263,0.040117,,,,,,,,,,224.000000,5.452755,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+58720256,2.230552,0.040424,,,,,,,,,,224.000000,5.411446,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+58720256,2.270980,4.821960e-03,57344,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+58720256,2.275805,0.064804,,,,,,,,,,224.000000,3.375553,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+62914560,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+62914560,s,s,,,,,,,,B,B,MB,GB/s,,,,
+62914560,2.309490,0.043416,,,,,,,,,,240.000000,5.398359,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+62914560,2.353069,0.042977,,,,,,,,,,240.000000,5.453491,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+62914560,2.396050,5.101830e-03,61440,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+62914560,2.401156,0.068517,,,,,,,,,,240.000000,3.420678,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+67108864,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+67108864,s,s,,,,,,,,B,B,MB,GB/s,,,,
+67108864,2.464923,0.045828,,,,,,,,,,256.000000,5.455223,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+67108864,2.510915,0.046156,,,,,,,,,,256.000000,5.416434,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+67108864,2.557076,5.385061e-03,65536,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+67108864,2.562464,0.073057,,,,,,,,,,256.000000,3.421963,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+71303168,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+71303168,s,s,,,,,,,,B,B,MB,GB/s,,,,
+71303168,2.599180,0.049269,,,,,,,,,,272.000000,5.391269,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+71303168,2.648612,0.048696,,,,,,,,,,272.000000,5.454713,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+71303168,2.697313,5.677699e-03,69632,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+71303168,2.702994,0.077075,,,,,,,,,,272.000000,3.446316,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+75497472,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+75497472,s,s,,,,,,,,B,B,MB,GB/s,,,,
+75497472,2.742586,0.052340,,,,,,,,,,288.000000,5.373566,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+75497472,2.795089,0.051758,,,,,,,,,,288.000000,5.433985,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+75497472,2.846851,6.023106e-03,73728,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+75497472,2.852877,0.080552,,,,,,,,,,288.000000,3.491555,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+79691776,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+79691776,s,s,,,,,,,,B,B,MB,GB/s,,,,
+79691776,2.859426,0.054551,,,,,,,,,,304.000000,5.442131,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+79691776,2.914148,0.054898,,,,,,,,,,304.000000,5.407782,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+79691776,2.969050,6.377440e-03,77824,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+79691776,2.975431,0.087251,,,,,,,,,,304.000000,3.402533,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+83886080,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+83886080,s,s,,,,,,,,B,B,MB,GB/s,,,,
+83886080,3.028447,0.057957,,,,,,,,,,320.000000,5.391906,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+83886080,3.086569,0.057217,,,,,,,,,,320.000000,5.461659,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+83886080,3.143791,6.692350e-03,81920,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+83886080,3.150486,0.092162,,,,,,,,,,320.000000,3.390752,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+88080384,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+88080384,s,s,,,,,,,,B,B,MB,GB/s,,,,
+88080384,3.168373,0.061284,,,,,,,,,,336.000000,5.354181,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+88080384,3.229823,0.060383,,,,,,,,,,336.000000,5.434049,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+88080384,3.290210,7.028765e-03,86016,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+88080384,3.297243,0.093584,,,,,,,,,,336.000000,3.506226,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+92274688,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+92274688,s,s,,,,,,,,B,B,MB,GB/s,,,,
+92274688,3.306817,0.063234,,,,,,,,,,352.000000,5.436187,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+92274688,3.370216,0.064057,,,,,,,,,,352.000000,5.366286,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+92274688,3.434278,7.345210e-03,90112,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+92274688,3.441626,0.098156,,,,,,,,,,352.000000,3.502063,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+96468992,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+96468992,s,s,,,,,,,,B,B,MB,GB/s,,,,
+96468992,3.456070,0.066733,,,,,,,,,,368.000000,5.385280,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+96468992,3.522964,0.066765,,,,,,,,,,368.000000,5.382660,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+96468992,3.589734,7.695320e-03,94208,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+96468992,3.597432,0.104638,,,,,,,,,,368.000000,3.434466,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+100663296,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+100663296,s,s,,,,,,,,B,B,MB,GB/s,,,,
+100663296,3.629163,0.069003,,,,,,,,,,384.000000,5.434566,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+100663296,3.698333,0.068870,,,,,,,,,,384.000000,5.445073,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+100663296,3.767207,7.995383e-03,98304,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+100663296,3.775206,0.108983,,,,,,,,,,384.000000,3.440892,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+104857600,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+104857600,s,s,,,,,,,,B,B,MB,GB/s,,,,
+104857600,3.741009,0.072064,,,,,,,,,,400.000000,5.420540,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+104857600,3.813238,0.071894,,,,,,,,,,400.000000,5.433378,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+104857600,3.885136,8.392820e-03,102400,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+104857600,3.893532,0.112902,,,,,,,,,,400.000000,3.459864,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+109051904,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+109051904,s,s,,,,,,,,B,B,MB,GB/s,,,,
+109051904,3.884740,0.075031,,,,,,,,,,416.000000,5.414396,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+109051904,3.959940,0.075099,,,,,,,,,,416.000000,5.409533,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+109051904,4.035044,8.732019e-03,106496,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+109051904,4.043779,0.117159,,,,,,,,,,416.000000,3.467510,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+113246208,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+113246208,s,s,,,,,,,,B,B,MB,GB/s,,,,
+113246208,4.426670,0.078808,,,,,,,,,,432.000000,5.353204,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+113246208,4.505665,0.079238,,,,,,,,,,432.000000,5.324136,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+113246208,4.584908,9.021745e-03,110592,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+113246208,4.593933,0.121187,,,,,,,,,,432.000000,3.481202,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+117440512,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+117440512,s,s,,,,,,,,B,B,MB,GB/s,,,,
+117440512,4.156809,0.079929,,,,,,,,,,448.000000,5.473619,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+117440512,4.236929,0.080035,,,,,,,,,,448.000000,5.466364,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+117440512,4.316969,9.423247e-03,114688,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+117440512,4.326396,0.129072,,,,,,,,,,448.000000,3.389582,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+121634816,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+121634816,s,s,,,,,,,,B,B,MB,GB/s,,,,
+121634816,4.308645,0.083081,,,,,,,,,,464.000000,5.454025,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+121634816,4.391891,0.083046,,,,,,,,,,464.000000,5.456320,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+121634816,4.474942,9.718989e-03,118784,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+121634816,4.484664,0.130262,,,,,,,,,,464.000000,3.478558,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+125829120,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+125829120,s,s,,,,,,,,B,B,MB,GB/s,,,,
+125829120,4.425661,0.086706,,,,,,,,,,480.000000,5.406229,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+125829120,4.512532,0.086419,,,,,,,,,,480.000000,5.424184,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+125829120,4.598955,0.010059,122880,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+125829120,4.609017,0.136252,,,,,,,,,,480.000000,3.440322,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+130023424,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+130023424,s,s,,,,,,,,B,B,MB,GB/s,,,,
+130023424,4.597867,0.088912,,,,,,,,,,496.000000,5.447778,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+130023424,4.686958,0.089477,,,,,,,,,,496.000000,5.413398,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+130023424,4.776439,0.010346,126976,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+130023424,4.786788,0.139451,,,,,,,,,,496.000000,3.473435,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+134217728,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+134217728,s,s,,,,,,,,B,B,MB,GB/s,,,,
+134217728,4.716550,0.091407,,,,,,,,,,512.000000,5.470046,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+134217728,4.808118,0.091134,,,,,,,,,,512.000000,5.486400,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+134217728,4.899257,0.010728,131072,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+134217728,4.909989,0.143390,,,,,,,,,,512.000000,3.486986,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+138412032,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+138412032,s,s,,,,,,,,B,B,MB,GB/s,,,,
+138412032,5.368393,0.094108,,,,,,,,,,528.000000,5.479091,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+138412032,5.462668,0.093948,,,,,,,,,,528.000000,5.488385,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+138412032,5.556621,0.011019,135168,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+138412032,5.567643,0.157749,,,,,,,,,,528.000000,3.268639,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+142606336,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+142606336,s,s,,,,,,,,B,B,MB,GB/s,,,,
+142606336,5.549138,0.097627,,,,,,,,,,544.000000,5.441619,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+142606336,5.646969,0.098232,,,,,,,,,,544.000000,5.408096,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+142606336,5.745206,0.011379,139264,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+142606336,5.756588,0.152181,,,,,,,,,,544.000000,3.490914,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+146800640,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+146800640,s,s,,,,,,,,B,B,MB,GB/s,,,,
+146800640,5.176597,0.100567,,,,,,,,,,560.000000,5.437900,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+146800640,5.277328,0.101524,,,,,,,,,,560.000000,5.386677,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+146800640,5.378856,0.011992,143360,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+146800640,5.390851,0.160130,,,,,,,,,,560.000000,3.415198,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+150994944,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+150994944,s,s,,,,,,,,B,B,MB,GB/s,,,,
+150994944,5.331550,0.104713,,,,,,,,,,576.000000,5.371823,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+150994944,5.436426,0.103457,,,,,,,,,,576.000000,5.437059,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+150994944,5.539887,0.012004,147456,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+150994944,5.551895,0.161318,,,,,,,,,,576.000000,3.486893,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+155189248,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+155189248,s,s,,,,,,,,B,B,MB,GB/s,,,,
+155189248,5.453855,0.106971,,,,,,,,,,592.000000,5.404508,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+155189248,5.561007,0.106470,,,,,,,,,,592.000000,5.429915,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+155189248,5.667482,0.012425,151552,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+155189248,5.679910,0.166404,,,,,,,,,,592.000000,3.474229,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+159383552,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+159383552,s,s,,,,,,,,B,B,MB,GB/s,,,,
+159383552,5.608113,0.109677,,,,,,,,,,608.000000,5.413622,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+159383552,5.717953,0.109207,,,,,,,,,,608.000000,5.436939,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+159383552,5.827164,0.012680,155648,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+159383552,5.839848,0.172719,,,,,,,,,,608.000000,3.437658,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+163577856,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+163577856,s,s,,,,,,,,B,B,MB,GB/s,,,,
+163577856,5.770142,0.111999,,,,,,,,,,624.000000,5.440910,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+163577856,5.882318,0.112870,,,,,,,,,,624.000000,5.398918,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+163577856,5.995192,0.013078,159744,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+163577856,6.008273,0.176126,,,,,,,,,,624.000000,3.459875,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+167772160,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+167772160,s,s,,,,,,,,B,B,MB,GB/s,,,,
+167772160,5.860030,0.115304,,,,,,,,,,640.000000,5.420445,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+167772160,5.975498,0.115460,,,,,,,,,,640.000000,5.413141,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+167772160,6.091105,0.013378,163840,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+167772160,6.104487,0.180037,,,,,,,,,,640.000000,3.471512,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+171966464,"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+171966464,s,s,,,,,,,,B,B,MB,GB/s,,,,
+171966464,6.031927,0.117982,,,,,,,,,,656.000000,5.429855,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+171966464,6.150072,0.117731,,,,,,,,,,656.000000,5.441421,"GeForce GTX 680 (1)","1","7","[CUDA memcpy HtoD]"
+171966464,6.267808,0.013722,167936,1,1,1024,1,1,10,0,0,,,"GeForce GTX 680 (1)","1","7","vectorAdd(float const *, float const *, float*, int) [189]"
+171966464,6.281533,0.184436,,,,,,,,,,656.000000,3.473420,"GeForce GTX 680 (1)","1","7","[CUDA memcpy DtoH]"
+176160768,==26310== Profiling result:
+176160768,No kernels were profiled.
+176160768,======== Error: Application received signal 134
+180355072,==26327== Profiling result:
+180355072,No kernels were profiled.
+180355072,======== Error: Application received signal 134
+184549376,==26344== Profiling result:
+184549376,No kernels were profiled.
+184549376,======== Error: Application received signal 134
+188743680,==26361== Profiling result:
+188743680,No kernels were profiled.
+188743680,======== Error: Application received signal 134
+192937984,==26378== Profiling result:
+192937984,No kernels were profiled.
+192937984,======== Error: Application received signal 134
+197132288,==26395== Profiling result:
+197132288,No kernels were profiled.
+197132288,======== Error: Application received signal 134
+201326592,==26412== Profiling result:
+201326592,No kernels were profiled.
+201326592,======== Error: Application received signal 134
+205520896,==26429== Profiling result:
+205520896,No kernels were profiled.
+205520896,======== Error: Application received signal 134
+209715200,==26448== Profiling result:
+209715200,No kernels were profiled.
+209715200,======== Error: Application received signal 134
+213909504,==26516== Profiling result:
+213909504,No kernels were profiled.
+213909504,======== Error: Application received signal 134
+218103808,==26542== Profiling result:
+218103808,No kernels were profiled.
+218103808,======== Error: Application received signal 134
+222298112,==26562== Profiling result:
+222298112,No kernels were profiled.
+222298112,======== Error: Application received signal 134
+226492416,==26598== Profiling result:
+226492416,No kernels were profiled.
+226492416,======== Error: Application received signal 134
+230686720,==26620== Profiling result:
+230686720,No kernels were profiled.
+230686720,======== Error: Application received signal 134
+234881024,==26637== Profiling result:
+234881024,No kernels were profiled.
+234881024,======== Error: Application received signal 134
+239075328,==26654== Profiling result:
+239075328,No kernels were profiled.
+239075328,======== Error: Application received signal 134
+243269632,==26671== Profiling result:
+243269632,No kernels were profiled.
+243269632,======== Error: Application received signal 134
+247463936,==26690== Profiling result:
+247463936,No kernels were profiled.
+247463936,======== Error: Application received signal 134
+251658240,==26707== Profiling result:
+251658240,No kernels were profiled.
+251658240,======== Error: Application received signal 134
+255852544,==26724== Profiling result:
+255852544,No kernels were profiled.
+255852544,======== Error: Application received signal 134
+260046848,==26741== Profiling result:
+260046848,No kernels were profiled.
+260046848,======== Error: Application received signal 134
+264241152,==26758== Profiling result:
+264241152,No kernels were profiled.
+264241152,======== Error: Application received signal 134
+268435456,==26775== Profiling result:
+268435456,No kernels were profiled.
+268435456,======== Error: Application received signal 134
