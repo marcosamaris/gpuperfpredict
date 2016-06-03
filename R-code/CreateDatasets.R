@@ -47,7 +47,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics30), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -57,7 +57,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 }
                 
                 AppGPUInfoAll30 <- rbind(AppGPUInfoAll30, GPUAppTemp)
@@ -72,7 +72,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics35), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -82,7 +82,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 }
                 
                 AppGPUInfoAll35 <- rbind(AppGPUInfoAll35, GPUAppTemp)
@@ -99,7 +99,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics50), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -109,7 +109,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 }
                 
                 AppGPUInfoAll50 <- rbind(AppGPUInfoAll50, GPUAppTemp)
@@ -124,7 +124,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics52), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -134,7 +134,7 @@ for (i in 1:NoGPU){
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
-                    GPUAppTemp <- cbind(GpuName=gpus[i,'gpu_name'],  GpuId=gpus[i,'gpu_id'], L2=gpus[i,'L2'],Bus=gpus[i,'bus'], Memoryclock=gpus[i,'memory_clock'],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 }
                 
                 AppGPUInfoAll52 <- rbind(AppGPUInfoAll52, GPUAppTemp)
