@@ -25,7 +25,6 @@ Parameters_5x <- c("gpu_name","gpu_id",	"AppName", "AppId", "Input.Size", "Durat
                    "Executed.Load.Store.Instructions",
                    "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
                    "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   
                    "Floating.Point.Operations.Single.Precision.","Instructions.Issued",
                    "warps_launched","Block.X")
 length(Parameters_3x)
@@ -38,17 +37,15 @@ DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""
 
 
 result <- data.frame()
+# DataAppGPU <- rbind(DataAppGPU30[Parameters_3x], DataAppGPU35[Parameters_3x],DataAppGPU50[Parameters_3x], DataAppGPU52[Parameters_3x])
 # write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
-for (CC in c(3,5)){
-    if (CC == 3 ){
-        DataAppGPU <- rbind(DataAppGPU30[Parameters_3x], DataAppGPU35[Parameters_3x])
-        GPU <- 2
+for (CC in 8:10){
+    if (CC <= 6 ){
+        DataAppGPU <- rbind(DataAppGPU35[Parameters_3x])
     } else {
-        DataAppGPU <- rbind(DataAppGPU50[Parameters_3x], DataAppGPU52[Parameters_5x])
-        GPU <- 2
+        DataAppGPU <- rbind( DataAppGPU52[Parameters_3x])
     }
     for( j in 1:9) {
-        
         
         Data <- subset(DataAppGPU, AppId == j )
         Data <- Data[complete.cases(Data),]
@@ -59,34 +56,16 @@ for (CC in c(3,5)){
         # DataAppGPU35 <- DataAppGPU35[,-(which(colSums(DataAppGPU35) == 0))]
         # 
         
-        if (j < 5) {
-            lowerLimit <- 2048
-            uperLimit <- 4096
-            blockSize <- 16
-        } else if (j >= 5 & j < 7) {
-            lowerLimit <- 4096
-            uperLimit <- 5376
-            blockSize <- 16
-        } else {
-            lowerLimit <- 50331648
-            uperLimit <- 58720256
-            blockSize <- 256
-        }
-        
-        if (j < 9) {
-            trainingSet <- subset(Data, gpu_id != GPU)
-            testSet <- subset(Data, gpu_id == GPU)
-            dim(trainingSet)
-            dim(testSet)
-        } else {
-            trainingSet <- subset(Data, gpu_id != GPU)
-            testSet <- subset(Data, gpu_id == GPU)
-        }
+
+        trainingSet <- subset(Data, gpu_id != CC)
+        testSet <- subset(Data, gpu_id == CC)
+        dim(trainingSet)
+        dim(testSet)
+
         
         
         trainingSet$AppName <- NULL
         trainingSet$gpu_name <- NULL
-        trainingSet$gpu_id <- NULL
         trainingSet$AppId <- NULL
         # trainingDuration <- trainingSet["Duration"]
         # trainingSet$Duration <- NULL
@@ -100,7 +79,6 @@ for (CC in c(3,5)){
         
         testSet$AppName <- NULL
         testSet$gpu_name <- NULL
-        testSet$gpu_id <- NULL
         testSet$Duration <- NULL
         testSet$AppId <- NULL
         dim(testSet)
@@ -129,7 +107,7 @@ for (CC in c(3,5)){
         
     }
 }
-result
+# result
 colnames(result) <-c("Gpus", "Apps", "InputSize", "ThreadBlock" , "Measured", "Predicted",  "accuracy", "Min", "max", "Mean", "Median", "SD", "mse", "mae", "mape")
 write.csv(result, file = "./R-code/Results/RandomForest-4.csv")
 
