@@ -35,7 +35,7 @@ for (i in 1:NoGPU){
         metricsTemp<- NULL
         eventsTemp <- NULL
         tracesTemp <- NULL
-        for (j in c(16)){
+        for (j in c(8, 16, 32)){
             if (gpus[i,'compute_version'] == 3.0){
                 if( apps[k] != "subSeqMax"){
                     
@@ -191,28 +191,28 @@ write.csv(AppGPUInfoAll52[AppGPUInfoAll52["gpu_id"] == 10,], file = paste("./R-c
 for (i in 1:NoGPU){
     if(gpus[i,'compute_version'] == 3.0){
         for (k in 1:length(apps)){
-            write.csv(AppGPUInfoAll30[AppGPUInfoAll30$AppId == k & AppGPUInfoAll30$GpuId == i,], 
+            write.csv(AppGPUInfoAll30[AppGPUInfoAll30$AppId == k & AppGPUInfoAll30$gpu_id == i,], 
                       file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
         }
     }
     
     if(gpus[i,'compute_version'] == 3.5){
         for (k in 1:length(apps)){
-            write.csv(AppGPUInfoAll35[AppGPUInfoAll35$AppId == k & AppGPUInfoAll35$GpuId == i,], 
+            write.csv(AppGPUInfoAll35[AppGPUInfoAll35$AppId == k & AppGPUInfoAll35$gpu_id == i,], 
                       file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
         }
     }
     
     if(gpus[i,'compute_version'] == 5.0){
         for (k in 1:length(apps)){
-            write.csv(AppGPUInfoAll30[AppGPUInfoAll50$AppId == k & AppGPUInfoAll50$GpuId == i,], 
+            write.csv(AppGPUInfoAll30[AppGPUInfoAll50$AppId == k & AppGPUInfoAll50$gpu_id == i,], 
                       file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
         }
     }
     
     if(gpus[i,'compute_version'] == 5.2){
         for (k in 1:length(apps)){
-            write.csv(AppGPUInfoAll52[AppGPUInfoAll52$AppId == k & AppGPUInfoAll52$GpuId == i,], 
+            write.csv(AppGPUInfoAll52[AppGPUInfoAll52$AppId == k & AppGPUInfoAll52$gpu_id == i,], 
                       file = paste("./R-code/Datasets/Apps-Gpus/", apps[k], "-", gpus[i,'gpu_name'], ".csv", sep = ""))
         }
     }

@@ -42,7 +42,6 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
 # DataAppGPU52 <- read.csv(file = "./R-code/Datasets/AppGPU52.csv")
 
 Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
-
                    "Achieved.Occupancy",
                    "Executed.Load.Store.Instructions",
                    "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
@@ -50,7 +49,7 @@ Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Durat
                    "Floating.Point.Operations.Single.Precision.","Instructions.Issued",
                    "warps_launched","Block.X")
 
-Parameters_5x <- c("gpu_name","gpu_id",	"AppName", "AppId", "Input.Size", "Duration", 
+Parameters_5x <- c("gpu_name","gpu_id",	"AppName", "AppId", "Input.Size", "Duration",
                    "Achieved.Occupancy",
                    "Executed.Load.Store.Instructions",
                    "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
@@ -88,14 +87,12 @@ result <- data.frame()
 # write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
 for (CC in c(3,5)){
     if (CC == 3 ){
-        DataAppGPU <- rbind(])
-        GPU <- 2
+        DataAppGPU <- rbind( DataAppGPU35[Parameters_3x])
     } else {
-        DataAppGPU <- rbind(DataAppGPU50[Parameters_3x], DataAppGPU52[Parameters_5x],DataAppGPU30[Parameters_3x], DataAppGPU35[Parameters_3x])
-        GPU <- 7
+        DataAppGPU <- rbind(DataAppGPU52[Parameters_5x])
     }
     for( j in 1:9) {
-        
+    
         
         Data <- subset(DataAppGPU, AppId == j )
         Data <- Data[complete.cases(Data),]
@@ -110,7 +107,7 @@ for (CC in c(3,5)){
             lowerLimit <- 2048
             uperLimit <- 4096
             blockSize <- 16
-        } else if (j >= 5 & j < 7) {
+         } else if (j >= 5 & j < 7) {
             lowerLimit <- 4096
             uperLimit <- 5376
             blockSize <- 16
@@ -119,16 +116,16 @@ for (CC in c(3,5)){
             uperLimit <- 58720256
             blockSize <- 256
         }
-        
-        if (j < 9) {
-            trainingSet <- subset(Data, gpu_id != GPU)
-            testSet <- subset(Data, gpu_id == GPU)
+
+         if (j < 9) {
+            trainingSet <- subset(Data, Input.Size <= lowerLimit | Input.Size >= uperLimit )
+            testSet <- subset(Data, (Input.Size > lowerLimit & Input.Size < uperLimit))
             dim(trainingSet)
             dim(testSet)
-        } else {
-            trainingSet <- subset(Data, gpu_id != GPU)
-            testSet <- subset(Data, gpu_id == GPU)
-        }
+         } else {
+            trainingSet <- subset(Data, Input.Size <= lowerLimit | Input.Size >= uperLimit)
+            testSet <- subset(Data, (Input.Size > lowerLimit & Input.Size < uperLimit))
+         }
         
         trainingSet$AppName <- NULL
         trainingSet$gpu_name <- NULL
@@ -178,7 +175,7 @@ for (CC in c(3,5)){
 }
 # result
 colnames(result) <-c("Gpus", "Apps", "InputSize", "ThreadBlock" , "Measured", "Predicted",  "accuracy", "Min", "max", "Mean", "Median", "SD", "mse", "mae", "mape")
-write.csv(result, file = "./R-code/Results/LinearRegression-4.csv")
+write.csv(result, file = "./R-code/Results/LinearRegression.csv")
 
 Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, Acc, AccMin, AccMax, AccMean, AccMedian, AccSD, mse, mae,mape)
 
@@ -189,7 +186,7 @@ result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=Gpus)) + 
-    geom_boxplot(aes(shape=Gpus,stat="identity")) +
+    geom_boxplot(aes(shape=Gpus)) +
     xlab("GPUs") + 
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(axis.title = element_text(family = "Times", face="bold", size=22)) +
@@ -202,7 +199,7 @@ Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=
     # scale_colour_grey()
 
 # ggsave(paste("./images/ResultLinearRegression.pdf",sep=""), Graph, device = pdf, height=10, width=16)
-ggsave(paste("./images/ResultsLearning/ResultLinearRegression-4.png",sep=""), Graph, height=10, width=16)
+ggsave(paste("./images/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
 
 # pp<-predict(fit, int="p", newdata=testSet)
 # pc<-predict(fit, int="c", newdata=testSet)
