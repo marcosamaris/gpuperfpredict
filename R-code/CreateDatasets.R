@@ -46,6 +46,27 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
+                    temp <- 0; data <- matrix()
+                    for(r in 1:10){
+                            temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                            data[[r]] <- temp
+                    }
+                    
+                    temp <- array();
+                    Tracestemp <- array();
+                    for (s in 1:32){
+                        for(r in 1:10){
+                            temp[[r]] <- data[[r]]["V3"][s,]
+                        }
+                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                        Tracestemp[s] <- temp/10    
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
                 } else if (j == 16) {

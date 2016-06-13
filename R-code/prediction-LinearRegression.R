@@ -43,19 +43,22 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
 
 Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
                    "Achieved.Occupancy",
-                   "Executed.Load.Store.Instructions",
-                   "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
+                   "gld_request",	"gst_request",
+                   "shared_load",	"shared_store",
+                   "inst_issued2",
+                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
                    "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   "Floating.Point.Operations.Single.Precision.","Instructions.Issued",
+                   "Floating.Point.Operations.Single.Precision.",
                    "warps_launched","Block.X")
 
-Parameters_5x <- c("gpu_name","gpu_id",	"AppName", "AppId", "Input.Size", "Duration",
+Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
                    "Achieved.Occupancy",
-                   "Executed.Load.Store.Instructions",
-                   "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
+                   "global_load",	"global_store",
+                   "shared_load",	"shared_store",
+                   "inst_issued2",
+                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
                    "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   
-                   "Floating.Point.Operations.Single.Precision.","Instructions.Issued",
+
                    "warps_launched","Block.X")
 length(Parameters_3x)
 length(Parameters_5x)
@@ -85,51 +88,27 @@ DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""
 
 result <- data.frame()
 # write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
-for (CC in c(3,5)){
-    if (CC == 3 ){
-        DataAppGPU <- rbind( DataAppGPU35[Parameters_3x])
+for (CC in c(1:6, 7:10)){
+    if (CC <= 6 ){
+        DataAppGPU <- rbind(DataAppGPU35[Parameters_3x])
     } else {
-        DataAppGPU <- rbind(DataAppGPU52[Parameters_5x])
+        DataAppGPU <- rbind( DataAppGPU52[Parameters_5x])
     }
     for( j in 1:9) {
-    
         
         Data <- subset(DataAppGPU, AppId == j )
         Data <- Data[complete.cases(Data),]
         dim(Data)
-        # View(Data)
-        # summary(Data)
-        # DataAppGPU35 <- DataAppGPU35[sapply(DataAppGPU35,is.numeric)]
-        # DataAppGPU35 <- DataAppGPU35[,-(which(colSums(DataAppGPU35) == 0))]
-        # 
         
-        if (j < 5) {
-            lowerLimit <- 2048
-            uperLimit <- 4096
-            blockSize <- 16
-         } else if (j >= 5 & j < 7) {
-            lowerLimit <- 4096
-            uperLimit <- 5376
-            blockSize <- 16
-        } else {
-            lowerLimit <- 50331648
-            uperLimit <- 58720256
-            blockSize <- 256
-        }
-
-         if (j < 9) {
-            trainingSet <- subset(Data, Input.Size <= lowerLimit | Input.Size >= uperLimit )
-            testSet <- subset(Data, (Input.Size > lowerLimit & Input.Size < uperLimit))
-            dim(trainingSet)
-            dim(testSet)
-         } else {
-            trainingSet <- subset(Data, Input.Size <= lowerLimit | Input.Size >= uperLimit)
-            testSet <- subset(Data, (Input.Size > lowerLimit & Input.Size < uperLimit))
-         }
+        trainingSet <- subset(Data, gpu_id != CC)
+        testSet <- subset(Data, gpu_id == CC)
+        dim(trainingSet)
+        dim(testSet)
+        
+        
         
         trainingSet$AppName <- NULL
         trainingSet$gpu_name <- NULL
-        trainingSet$gpu_id <- NULL
         trainingSet$AppId <- NULL
         # trainingDuration <- trainingSet["Duration"]
         # trainingSet$Duration <- NULL
@@ -143,7 +122,6 @@ for (CC in c(3,5)){
         
         testSet$AppName <- NULL
         testSet$gpu_name <- NULL
-        testSet$gpu_id <- NULL
         testSet$Duration <- NULL
         testSet$AppId <- NULL
         dim(testSet)
