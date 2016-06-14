@@ -41,7 +41,7 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
 # DataAppGPU50 <- read.csv(file = "./R-code/Datasets/AppGPU50.csv")
 # DataAppGPU52 <- read.csv(file = "./R-code/Datasets/AppGPU52.csv")
 
-Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", "max_clock_rate",	"num_of_cores",	
                    "Achieved.Occupancy",
                    "gld_request",	"gst_request",
                    "shared_load",	"shared_store",
@@ -51,7 +51,7 @@ Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Durat
                    "Floating.Point.Operations.Single.Precision.",
                    "warps_launched","Block.X")
 
-Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", "max_clock_rate",	"num_of_cores",	
                    "Achieved.Occupancy",
                    "global_load",	"global_store",
                    "shared_load",	"shared_store",
@@ -88,7 +88,7 @@ DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""
 
 result <- data.frame()
 # write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
-for (CC in c(1:6, 7:10)){
+for (CC in c(2:6, 8:10)){
     if (CC <= 6 ){
         DataAppGPU <- rbind(DataAppGPU35[Parameters_3x])
     } else {
@@ -164,7 +164,8 @@ result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=Gpus)) + 
-    geom_boxplot(aes(shape=Gpus)) +
+    geom_boxplot(aes(shape=Gpus)) + geom_boxplot(outlier.shape = NA) +
+
     xlab("GPUs") + 
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(axis.title = element_text(family = "Times", face="bold", size=22)) +
@@ -177,7 +178,7 @@ Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=
     # scale_colour_grey()
 
 # ggsave(paste("./images/ResultLinearRegression.pdf",sep=""), Graph, device = pdf, height=10, width=16)
-ggsave(paste("./images/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
+ggsave(paste("./images/ResultsLearning/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
 
 # pp<-predict(fit, int="p", newdata=testSet)
 # pc<-predict(fit, int="c", newdata=testSet)
