@@ -46,23 +46,23 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    temp <- 0; data <- matrix()
-                    for(r in 1:10){
-                            temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                            data[[r]] <- temp
-                    }
-                    
-                    DimTemp <- dim(tracesTemp)[1]
-                    temp <- array();
-                    Durationtemp <- array();
-                    for (s in 1:DimTemp){
-                        for(r in 1:10){
-                            temp[[r]] <- data[[r]]["V3"][s,]
-                        }
-                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
-                        Durationtemp[s] <- sum(temp)/10
-                    }
-                    tracesTemp$Duration <- Durationtemp
+                    # temp <- 0; data <- matrix()
+                    # for(r in 1:10){
+                    #         temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                    #         data[[r]] <- temp
+                    # }
+                    # 
+                    # DimTemp <- dim(tracesTemp)[1]
+                    # temp <- array();
+                    # Durationtemp <- array();
+                    # for (s in 1:DimTemp){
+                    #     for(r in 1:10){
+                    #         temp[[r]] <- data[[r]]["V3"][s,]
+                    #     }
+                    #     print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                    #     Durationtemp[s] <- sum(temp)/10
+                    # }
+                    # tracesTemp$Duration <- Durationtemp
                     
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
@@ -75,23 +75,23 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    temp <- 0; data <- matrix()
-                    for(r in 1:10){
-                        temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                        data[[r]] <- temp
-                    }
-                    
-                    DimTemp <- dim(tracesTemp)[1]
-                    temp <- array();
-                    Durationtemp <- array();
-                    for (s in 1:DimTemp){
-                        for(r in 1:10){
-                            temp[[r]] <- data[[r]]["V3"][s,]
-                        }
-                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
-                        Durationtemp[s] <- sum(temp)/10
-                    }
-                    tracesTemp$Duration <- Durationtemp
+                    # temp <- 0; data <- matrix()
+                    # for(r in 1:10){
+                    #     temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                    #     data[[r]] <- temp
+                    # }
+                    # 
+                    # DimTemp <- dim(tracesTemp)[1]
+                    # temp <- array();
+                    # Durationtemp <- array();
+                    # for (s in 1:DimTemp){
+                    #     for(r in 1:10){
+                    #         temp[[r]] <- data[[r]]["V3"][s,]
+                    #     }
+                    #     print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                    #     Durationtemp[s] <- sum(temp)/10
+                    # }
+                    # tracesTemp$Duration <- Durationtemp
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
@@ -120,23 +120,23 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    temp <- 0; data <- matrix()
-                    for(r in 1:10){
-                        temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                        data[[r]] <- temp
-                    }
-                    
-                    DimTemp <- dim(tracesTemp)[1]
-                    temp <- array();
-                    Durationtemp <- array();
-                    for (s in 1:DimTemp){
-                        for(r in 1:10){
-                            temp[[r]] <- data[[r]]["V3"][s,]
-                        }
-                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
-                        Durationtemp[s] <- sum(temp)/10
-                    }
-                    tracesTemp$Duration <- Durationtemp
+                    # temp <- 0; data <- matrix()
+                    # for(r in 1:10){
+                    #     temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                    #     data[[r]] <- temp
+                    # }
+                    # 
+                    # DimTemp <- dim(tracesTemp)[1]
+                    # temp <- array();
+                    # Durationtemp <- array();
+                    # for (s in 1:DimTemp){
+                    #     for(r in 1:10){
+                    #         temp[[r]] <- data[[r]]["V3"][s,]
+                    #     }
+                    #     print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                    #     Durationtemp[s] <- sum(temp)/10
+                    # }
+                    # tracesTemp$Duration <- Durationtemp
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
@@ -155,23 +155,23 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    temp <- 0; data <- matrix()
-                    for(r in 1:10){
-                        temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                        data[[r]] <- temp
-                    }
-                    
-                    DimTemp <- dim(tracesTemp)[1]
-                    temp <- array();
-                    Durationtemp <- array();
-                    for (s in 1:DimTemp){
-                        for(r in 1:10){
-                            temp[[r]] <- data[[r]]["V3"][s,]
-                        }
-                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
-                        Durationtemp[s] <- sum(temp)/10
-                    }
-                    tracesTemp$Duration <- Durationtemp
+                    # temp <- 0; data <- matrix()
+                    # for(r in 1:10){
+                    #     temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                    #     data[[r]] <- temp
+                    # }
+                    # 
+                    # DimTemp <- dim(tracesTemp)[1]
+                    # temp <- array();
+                    # Durationtemp <- array();
+                    # for (s in 1:DimTemp){
+                    #     for(r in 1:10){
+                    #         temp[[r]] <- data[[r]]["V3"][s,]
+                    #     }
+                    #     print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                    #     Durationtemp[s] <- sum(temp)/10
+                    # }
+                    # tracesTemp$Duration <- Durationtemp
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
@@ -183,23 +183,23 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    temp <- 0; data <- matrix()
-                    for(r in 1:10){
-                        temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                        data[[r]] <- temp
-                    }
-                    
-                    DimTemp <- dim(tracesTemp)[1]
-                    temp <- array();
-                    Durationtemp <- array();
-                    for (s in 1:DimTemp){
-                        for(r in 1:10){
-                            temp[[r]] <- data[[r]]["V3"][s,]
-                        }
-                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
-                        Durationtemp[s] <- sum(temp)/10
-                    }
-                    tracesTemp$Duration <- Durationtemp
+                    # temp <- 0; data <- matrix()
+                    # for(r in 1:10){
+                    #     temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                    #     data[[r]] <- temp
+                    # }
+                    # 
+                    # DimTemp <- dim(tracesTemp)[1]
+                    # temp <- array();
+                    # Durationtemp <- array();
+                    # for (s in 1:DimTemp){
+                    #     for(r in 1:10){
+                    #         temp[[r]] <- data[[r]]["V3"][s,]
+                    #     }
+                    #     print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                    #     Durationtemp[s] <- sum(temp)/10
+                    # }
+                    # tracesTemp$Duration <- Durationtemp
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
@@ -216,23 +216,23 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    temp <- 0; data <- matrix()
-                    for(r in 1:10){
-                        temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                        data[[r]] <- temp
-                    }
-                    
-                    DimTemp <- dim(tracesTemp)[1]
-                    temp <- array();
-                    Durationtemp <- array();
-                    for (s in 1:DimTemp){
-                        for(r in 1:10){
-                            temp[[r]] <- data[[r]]["V3"][s,]
-                        }
-                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
-                        Durationtemp[s] <- sum(temp)/10
-                    }
-                    tracesTemp$Duration <- Durationtemp
+                    # temp <- 0; data <- matrix()
+                    # for(r in 1:10){
+                    #     temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                    #     data[[r]] <- temp
+                    # }
+                    # 
+                    # DimTemp <- dim(tracesTemp)[1]
+                    # temp <- array();
+                    # Durationtemp <- array();
+                    # for (s in 1:DimTemp){
+                    #     for(r in 1:10){
+                    #         temp[[r]] <- data[[r]]["V3"][s,]
+                    #     }
+                    #     print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                    #     Durationtemp[s] <- sum(temp)/10
+                    # }
+                    # tracesTemp$Duration <- Durationtemp
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
@@ -244,23 +244,23 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    temp <- 0; data <- matrix()
-                    for(r in 1:10){
-                        temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                        data[[r]] <- temp
-                    }
-                    
-                    DimTemp <- dim(tracesTemp)[1]
-                    temp <- array();
-                    Durationtemp <- array();
-                    for (s in 1:DimTemp){
-                        for(r in 1:10){
-                            temp[[r]] <- data[[r]]["V3"][s,]
-                        }
-                        print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
-                        Durationtemp[s] <- sum(temp)/10
-                    }
-                    tracesTemp$Duration <- Durationtemp
+                    # temp <- 0; data <- matrix()
+                    # for(r in 1:10){
+                    #     temp <- read.table(paste("./data/", gpus[i,'gpu_name'],"/traces_",j,"/run_", r-1, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
+                    #     data[[r]] <- temp
+                    # }
+                    # 
+                    # DimTemp <- dim(tracesTemp)[1]
+                    # temp <- array();
+                    # Durationtemp <- array();
+                    # for (s in 1:DimTemp){
+                    #     for(r in 1:10){
+                    #         temp[[r]] <- data[[r]]["V3"][s,]
+                    #     }
+                    #     print(try(t.test(temp, alternative = "two.sided", conf.level = 0.95)))
+                    #     Durationtemp[s] <- sum(temp)/10
+                    # }
+                    # tracesTemp$Duration <- Durationtemp
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
@@ -349,6 +349,103 @@ for (i in 1:NoGPU){
 
 
 
+Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+                   "max_clock_rate",	"num_of_cores",	"L2",	"bus",	"memory_clock",	"bandwith",
+                   "Achieved.Occupancy",
+                   "Global.Load.Transactions.Per.Request", "gld_request",
+                   "Global.Store.Transactions.Per.Request", "gst_request",
+                   "shared_load",	"shared_store",
+                   "inst_issued2",
+                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
+                   "warps_launched",
+                   "Grid.X",	"Grid.Y",	"Block.X",	"Block.Y",	"Registers.Per.Thread",	"Static.SMem"
+)
+
+Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+                   "max_clock_rate",	"num_of_cores",	"L2",	"bus",	"memory_clock",	"bandwith",
+                   "Achieved.Occupancy",
+                   "Global.Load.Transactions.Per.Request", "global_load",
+                   "Global.Store.Transactions.Per.Request", "global_store",
+                   "shared_load",	"shared_store",
+                   "inst_issued2",
+                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
+                   "warps_launched",
+                   "Grid.X",	"Grid.Y",	"Block.X",	"Block.Y",	"Registers.Per.Thread",	"Static.SMem"
+)
+length(Parameters_3x)
+length(Parameters_5x)
+
+DataAppGPU30 <- read.csv(file = paste("./R-code/Datasets/AppGPU30.csv", sep = ""))
+DataAppGPU35 <- read.csv(file = paste("./R-code/Datasets/AppGPU35.csv", sep = ""))
+DataAppGPU50 <- read.csv(file = paste("./R-code/Datasets/AppGPU50.csv", sep = ""))
+DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""))
 
 
+DataAppGPU30$Global.Load.Transactions.Per.Request <- na.locf(DataAppGPU30$Global.Load.Transactions.Per.Request)
+DataAppGPU35$Global.Load.Transactions.Per.Request <- na.locf(DataAppGPU35$Global.Load.Transactions.Per.Request)
+DataAppGPU50$Global.Load.Transactions.Per.Request <- na.locf(DataAppGPU50$Global.Load.Transactions.Per.Request)
+DataAppGPU52$Global.Load.Transactions.Per.Request <- na.locf(DataAppGPU52$Global.Load.Transactions.Per.Request)
+
+DataAppGPU30$Achieved.Occupancy <- na.locf(DataAppGPU30$Achieved.Occupancy)
+DataAppGPU35$Achieved.Occupancy <- na.locf(DataAppGPU35$Achieved.Occupancy)
+DataAppGPU50$Achieved.Occupancy <- na.locf(DataAppGPU50$Achieved.Occupancy)
+DataAppGPU52$Achieved.Occupancy <- na.locf(DataAppGPU52$Achieved.Occupancy)
+
+DataAppGPU30 <- DataAppGPU30[c(Parameters_3x,"Floating.Point.Operations.Single.Precision.")]
+DataAppGPU35 <- DataAppGPU35[c(Parameters_3x,"Floating.Point.Operations.Single.Precision.")]
+DataAppGPU50 <- DataAppGPU50[c(Parameters_5x,"Floating.Point.Operations.Single.Precision.")]
+DataAppGPU52 <- DataAppGPU52[c(Parameters_5x,"FP.Instructions.Single.")]
+
+colnames(DataAppGPU50)[which(names(DataAppGPU50) == "global_load")] <- "gld_request"
+colnames(DataAppGPU50)[which(names(DataAppGPU50) == "global_store")] <- "gst_request"
+
+colnames(DataAppGPU52)[which(names(DataAppGPU52) == "global_load")] <- "gld_request"
+colnames(DataAppGPU52)[which(names(DataAppGPU52) == "global_store")] <- "gst_request"
+colnames(DataAppGPU52)[which(names(DataAppGPU52) == "FP.Instructions.Single.")] <- "Floating.Point.Operations.Single.Precision."
+
+DataAppGPU30 <- cbind(DataAppGPU30, 
+                    totalLoadGM=DataAppGPU30$gld_request/DataAppGPU30$Global.Load.Transactions.Per.Request, 
+                    totalStoreGM=DataAppGPU30$gst_request/DataAppGPU30$Global.Store.Transactions.Per.Request,
+                    totalLoadSM=DataAppGPU30$shared_load/DataAppGPU30$Shared.Memory.Load.Transactions.Per.Request,
+                    totalStoreSM=DataAppGPU30$shared_store/DataAppGPU30$Shared.Memory.Store.Transactions.Per.Request,
+                    blockSize=DataAppGPU30$Block.X*DataAppGPU30$Block.Y,
+                    GridSize=DataAppGPU30$Grid.X*DataAppGPU30$Grid.Y,
+                    totalThreads=DataAppGPU30$Block.X*DataAppGPU30$Block.Y*DataAppGPU30$Grid.X*DataAppGPU30$Grid.Y)
+
+DataAppGPU35 <- cbind(DataAppGPU35, 
+                      totalLoadGM=DataAppGPU35$gld_request/DataAppGPU35$Global.Load.Transactions.Per.Request, 
+                      totalStoreGM=DataAppGPU35$gst_request/DataAppGPU35$Global.Store.Transactions.Per.Request,
+                      totalLoadSM=DataAppGPU35$shared_load/DataAppGPU35$Shared.Memory.Load.Transactions.Per.Request,
+                      totalStoreSM=DataAppGPU35$shared_store/DataAppGPU35$Shared.Memory.Store.Transactions.Per.Request,
+                      blockSize=DataAppGPU35$Block.X*DataAppGPU35$Block.Y,
+                      GridSize=DataAppGPU35$Grid.X*DataAppGPU35$Grid.Y,
+                      totalThreads=DataAppGPU35$Block.X*DataAppGPU35$Block.Y*DataAppGPU35$Grid.X*DataAppGPU35$Grid.Y)
+
+
+DataAppGPU50 <- cbind(DataAppGPU50, 
+                      totalLoadGM=DataAppGPU50$gld_request/DataAppGPU50$Global.Load.Transactions.Per.Request, 
+                      totalStoreGM=DataAppGPU50$gst_request/DataAppGPU50$Global.Store.Transactions.Per.Request,
+                      totalLoadSM=DataAppGPU50$shared_load/DataAppGPU50$Shared.Memory.Load.Transactions.Per.Request,
+                      totalStoreSM=DataAppGPU50$shared_store/DataAppGPU50$Shared.Memory.Store.Transactions.Per.Request,
+                      blockSize=DataAppGPU50$Block.X*DataAppGPU50$Block.Y,
+                      GridSize=DataAppGPU50$Grid.X*DataAppGPU50$Grid.Y,
+                      totalThreads=DataAppGPU50$Block.X*DataAppGPU50$Block.Y*DataAppGPU50$Grid.X*DataAppGPU50$Grid.Y)
+
+DataAppGPU52 <- cbind(DataAppGPU52, 
+                      totalLoadGM=DataAppGPU52$gld_request/DataAppGPU52$Global.Load.Transactions.Per.Request, 
+                      totalStoreGM=DataAppGPU52$gst_request/DataAppGPU52$Global.Store.Transactions.Per.Request,
+                      totalLoadSM=DataAppGPU52$shared_load/DataAppGPU52$Shared.Memory.Load.Transactions.Per.Request,
+                      totalStoreSM=DataAppGPU52$shared_store/DataAppGPU52$Shared.Memory.Store.Transactions.Per.Request,
+                      blockSize=DataAppGPU52$Block.X*DataAppGPU52$Block.Y,
+                      GridSize=DataAppGPU52$Grid.X*DataAppGPU52$Grid.Y,
+                      totalThreads=DataAppGPU52$Block.X*DataAppGPU52$Block.Y*DataAppGPU52$Grid.X*DataAppGPU52$Grid.Y)
+
+write.csv(DataAppGPU30, file = "./R-code/Datasets/CleanData/App-GPU-CC-30.csv")
+write.csv(DataAppGPU35, file = "./R-code/Datasets/CleanData/App-GPU-CC-35.csv")
+write.csv(DataAppGPU50, file = "./R-code/Datasets/CleanData/App-GPU-CC-50.csv")
+write.csv(DataAppGPU52, file = "./R-code/Datasets/CleanData/App-GPU-CC-52.csv")
+
+dim(DataAppGPU52)
+
+write.csv(rbind(DataAppGPU30,DataAppGPU35,DataAppGPU50,DataAppGPU52), file = "./R-code/Datasets/CleanData/App-GPU-CC-All.csv")
 

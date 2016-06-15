@@ -12,59 +12,38 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
           "matrix_sum_normal", "matrix_sum_coalesced", 
           "dotProd", "vectorAdd",  "subSeqMax")
 
-Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
-                   "Achieved.Occupancy",
-                   "gld_request",	"gst_request",
-                   "shared_load",	"shared_store",
-                   "inst_issued2",
-                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
-                   "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   "Floating.Point.Operations.Single.Precision.",
-                   "warps_launched","Block.X")
+Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+                "max_clock_rate",	"num_of_cores",	
+                "Achieved.Occupancy",
+                "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
+                "inst_issued2",
+                "blockSize", "GridSize"
+)
 
-Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
-                   "Achieved.Occupancy",
-                   "global_load",	"global_store",
-                   "shared_load",	"shared_store",
-                   "inst_issued2",
-                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
-                   "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   
-                   "warps_launched","Block.X")
-length(Parameters_3x)
-length(Parameters_5x)
-
-DataAppGPU30 <- read.csv(file = paste("./R-code/Datasets/AppGPU30.csv", sep = ""))
-DataAppGPU35 <- read.csv(file = paste("./R-code/Datasets/AppGPU35.csv", sep = ""))
-DataAppGPU50 <- read.csv(file = paste("./R-code/Datasets/AppGPU50.csv", sep = ""))
-DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""))
-
+DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/App-GPU-CC-All.csv", sep = ""))
+DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
 
 result <- data.frame()
-# DataAppGPU <- rbind(DataAppGPU30[Parameters_3x], DataAppGPU35[Parameters_3x],DataAppGPU50[Parameters_3x], DataAppGPU52[Parameters_3x])
-# write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
-for (CC in c(1:6, 7:10)){
-    if (CC <= 6 ){
-        DataAppGPU <- rbind(DataAppGPU35[Parameters_3x])
-    } else {
-        DataAppGPU <- rbind( DataAppGPU52[Parameters_3x])
-    }
-    for( j in 1:9) {
-        
-        Data <- subset(DataAppGPU, AppId == j )
-        Data <- Data[complete.cases(Data),]
-        dim(Data)
 
+for (CC in c(7:10)){
+    for( j in 1:9) {
+        Data <- subset(DataAppGPU, AppId == j )
+        dim(Data)
+        
+        if(j != 3 | j != 4){
+            Data$totalLoadSM <- NULL
+            Data$totalStoreSM <- NULL
+        }
+        
         trainingSet <- subset(Data, gpu_id != CC)
         testSet <- subset(Data, gpu_id == CC)
         dim(trainingSet)
         dim(testSet)
-
-        
         
         trainingSet$AppName <- NULL
         trainingSet$gpu_name <- NULL
         trainingSet$AppId <- NULL
+        trainingSet$gpu_id <- NULL
         # trainingDuration <- trainingSet["Duration"]
         # trainingSet$Duration <- NULL
         dim(trainingSet)
@@ -73,15 +52,16 @@ for (CC in c(1:6, 7:10)){
         Size <- testSet["Input.Size"]
         App <- testSet["AppName"]
         Gpu <- testSet["gpu_name"]
-        Block <- testSet["Block.X"]
+        Block <- testSet["blockSize"]
         
         testSet$AppName <- NULL
         testSet$gpu_name <- NULL
         testSet$Duration <- NULL
         testSet$AppId <- NULL
+        testSet$gpu_id <- NULL
         dim(testSet)
         
-        fit <- randomForest(trainingSet$Duration ~ ., data = trainingSet,mtry = 10, importance = TRUE,do.trace = 100)
+        fit <- randomForest(trainingSet$Duration ~ ., data = trainingSet, importance = TRUE,do.trace = 100)
         print(fit)
         summary(fit)
         predictions <- predict(fit, testSet)

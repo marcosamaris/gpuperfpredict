@@ -11,105 +11,63 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
           "matrix_sum_normal", "matrix_sum_coalesced", 
           "dotProd", "vectorAdd",  "subSeqMax")
 
-# METRICS_3X <- c(
-# "Shared.Memory.Replay.Overhead", "Global.Memory.Replay.Overhead", "Instruction.Replay.Overhead", 
-# "L2.Throughput..L1.Reads.", "L2.Hit.Rate..L1.Reads.", "L2.Read.Transactions", "L2.Write.Transactions", "L2.Throughput..Reads.","L2.Throughput..Writes.", 
-# "L2.Read.Transactions..L1.read.requests.", "L2.Write.Transactions..L1.write.requests.",
-# "Instructions.per.warp", 
-# "Global.Load.Transactions", "Global.Load.Transactions.Per.Request", 
-# "Issued.Control.Flow.Instructions", "Executed.Control.Flow.Instructions", "Issued.Load.Store.Instructions", "Executed.Load.Store.Instructions", 
-# "Floating.Point.Operations.Single.Precision.", "Floating.Point.Operations.Single.Precision.Add.","Floating.Point.Operation.Single.Precision.Mul.","FP.Instructions.Single.",
-# "Floating.Point.Operations.Single.Precision.FMA.","FLOP.Efficiency.Peak.Single.", 
-# "Instructions.Executed",	"Instructions.Issued",	"Issue.Slots", "Control.Flow.Instructions", "Misc.Instructions", "ECC.Transactions")
-# 
-# EVENTS_3X <- c("l2_subp0_total_read_sector_queries",	"l2_subp1_total_read_sector_queries",	"l2_subp2_total_read_sector_queries",	
-#             "l2_subp3_total_read_sector_queries",	"l2_subp0_total_write_sector_queries",	"l2_subp1_total_write_sector_queries",	
-#             "l2_subp2_total_write_sector_queries",	"l2_subp3_total_write_sector_queries",	"elapsed_cycles_sm",	
-#             "gld_inst_8bit",	"gld_inst_16bit",	"gld_inst_32bit",	"gld_inst_64bit",	"gld_inst_128bit",	'gst_inst_8bit',	
-#             "gst_inst_16bit",	"gst_inst_32bit",	"gst_inst_64bit",	"gst_inst_128bit","threads_launched","gld_request",	"gst_request",
-#             "sm_cta_launched", "uncached_global_load_transaction",	"global_store_transaction",
-#             "X__l1_global_load_transactions",	"X__l1_global_store_transactions")
-# 
-# 
-# 
-# par3X <- c("Duration", "Achieved.Occupancy", "Executed.IPC", "Global.Store.Transactions.Per.Request", "Global.Store.Transactions", 
-#                          "Device.Memory.Read.Transactions", "L2.Write.Transactions", "warps_launched", "inst_executed","inst_issued2",
-#                          "Block.X", "Block.Y", "Grid.X", "Grid.Y", "Registers.Per.Thread", "Static.SMem" )
-# 
-# DataAppGPU30 <- read.csv(file = "./R-code/Datasets/AppGPU30.csv")
-# DataAppGPU35 <- read.csv(file = "./R-code/Datasets/AppGPU35.csv")
-# DataAppGPU50 <- read.csv(file = "./R-code/Datasets/AppGPU50.csv")
-# DataAppGPU52 <- read.csv(file = "./R-code/Datasets/AppGPU52.csv")
-
-Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", "max_clock_rate",	"num_of_cores",	
+Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+                   "max_clock_rate",	"num_of_cores",	
                    "Achieved.Occupancy",
-                   "gld_request",	"gst_request",
-                   "shared_load",	"shared_store",
+                    "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
                    "inst_issued2",
-                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
-                   "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   "Floating.Point.Operations.Single.Precision.",
-                   "warps_launched","Block.X")
+                   "blockSize", "GridSize"
+)
 
-Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", "max_clock_rate",	"num_of_cores",	
-                   "Achieved.Occupancy",
-                   "global_load",	"global_store",
-                   "shared_load",	"shared_store",
-                   "inst_issued2",
-                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
-                   "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
+DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/App-GPU-CC-All.csv", sep = ""))
 
-                   "warps_launched","Block.X")
-length(Parameters_3x)
-length(Parameters_5x)
-
-
-
-# Those parameters are always 0 in CC 3.5  and 5.2
-# Local.Memory.Load.Transactions.Per.Request
-# Local.Memory.Store.Transactions.Per.Request
-# Local.Load.Transactions
-# Local.Store.Transactions
-# 
-# Those parameters are not in CC 5.2 or they are always 0
-#     L2.Read.Transactions..L1.read.requests.
-#     L2.Write.Transactions..L1.write.requests.
-#     ECC.Transactions
-#     threads_launched
-#     gld_request
-#     gst_request
-
-
-DataAppGPU30 <- read.csv(file = paste("./R-code/Datasets/AppGPU30.csv", sep = ""))
-DataAppGPU35 <- read.csv(file = paste("./R-code/Datasets/AppGPU35.csv", sep = ""))
-DataAppGPU50 <- read.csv(file = paste("./R-code/Datasets/AppGPU50.csv", sep = ""))
-DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""))
-
+DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
 
 result <- data.frame()
-# write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
-for (CC in c(2:6, 8:10)){
-    if (CC <= 6 ){
-        DataAppGPU <- rbind(DataAppGPU35[Parameters_3x])
-    } else {
-        DataAppGPU <- rbind( DataAppGPU52[Parameters_5x])
-    }
+for (CC in c(1:10)){
     for( j in 1:9) {
-        
         Data <- subset(DataAppGPU, AppId == j )
-        Data <- Data[complete.cases(Data),]
         dim(Data)
+        
+        # Data <- Data[complete.cases(Data),]
+        
+        # if (CC <= 6 ){
+        #     Data[["gld_request"]] <- scale(Data[["gld_request"]], center = FALSE, scale = max(Data["gld_request"], na.rm = TRUE)/100)
+        #     Data[["gst_request"]] <- scale(Data[["gst_request"]], center = FALSE, scale = max(Data["gst_request"], na.rm = TRUE)/100)
+        # } else {
+        #     Data[["global_load"]] <- scale(Data[["global_load"]], center = FALSE, scale = max(Data["global_load"], na.rm = TRUE)/100)
+        #     Data[["global_store"]] <- scale(Data[["global_store"]], center = FALSE, scale = max(Data["global_store"], na.rm = TRUE)/100)
+        # }
+        # 
+        # if(CC <=7 ){
+        #     Data[["Floating.Point.Operations.Single.Precision."]] <- scale(Data[["Floating.Point.Operations.Single.Precision."]], center = FALSE, scale = max(Data["Floating.Point.Operations.Single.Precision."], na.rm = TRUE)/100)
+        # } else {
+        #     Data[["FP.Instructions.Single."]] <- scale(Data[["FP.Instructions.Single."]], center = FALSE, scale = max(Data["FP.Instructions.Single."], na.rm = TRUE)/100)
+        # }
+        # 
+        # 
+        # if (j == 4 | j == 3 | j == 9){
+        #     Data[["shared_load"]] <- scale(Data[["shared_load"]], center = FALSE, scale = max(Data["shared_load"], na.rm = TRUE)/100)
+        #     Data[["shared_store"]] <- scale(Data[["shared_store"]], center = FALSE, scale = max(Data["shared_store"], na.rm = TRUE)/100)
+        # }
+        # Data[["inst_issued2"]] <- scale(Data[["inst_issued2"]], center = FALSE, scale = max(Data["inst_issued2"], na.rm = TRUE)/100)
+        # Data[["warps_launched"]] <- scale(Data[["warps_launched"]], center = FALSE, scale = max(Data["warps_launched"], na.rm = TRUE)/100)
+        
+        
+        if(j != 3 | j != 4){
+            Data$totalLoadSM <- NULL
+            Data$totalStoreSM <- NULL
+        }
         
         trainingSet <- subset(Data, gpu_id != CC)
         testSet <- subset(Data, gpu_id == CC)
         dim(trainingSet)
         dim(testSet)
         
-        
-        
         trainingSet$AppName <- NULL
         trainingSet$gpu_name <- NULL
         trainingSet$AppId <- NULL
+        trainingSet$gpu_id <- NULL
         # trainingDuration <- trainingSet["Duration"]
         # trainingSet$Duration <- NULL
         dim(trainingSet)
@@ -118,12 +76,13 @@ for (CC in c(2:6, 8:10)){
         Size <- testSet["Input.Size"]
         App <- testSet["AppName"]
         Gpu <- testSet["gpu_name"]
-        Block <- testSet["Block.X"]
+        Block <- testSet["blockSize"]
         
         testSet$AppName <- NULL
         testSet$gpu_name <- NULL
         testSet$Duration <- NULL
         testSet$AppId <- NULL
+        testSet$gpu_id <- NULL
         dim(testSet)
         
         base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
@@ -164,8 +123,8 @@ result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=Gpus)) + 
-    geom_boxplot(aes(shape=Gpus)) + geom_boxplot(outlier.shape = NA) +
-
+    geom_boxplot(aes(shape=Gpus),outlier.shape = NA) +
+    scale_y_continuous(limits = c(0.25, 1.5)) +
     xlab("GPUs") + 
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(axis.title = element_text(family = "Times", face="bold", size=22)) +
