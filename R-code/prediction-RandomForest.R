@@ -12,20 +12,24 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
           "matrix_sum_normal", "matrix_sum_coalesced", 
           "dotProd", "vectorAdd",  "subSeqMax")
 
-Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", "max_clock_rate",	"num_of_cores",
+Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
                    "Achieved.Occupancy",
-                   "Executed.Load.Store.Instructions",
-                   "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
+                   "gld_request",	"gst_request",
+                   "shared_load",	"shared_store",
+                   "inst_issued2",
+                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
                    "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   "Floating.Point.Operations.Single.Precision.","Instructions.Issued",
+                   "Floating.Point.Operations.Single.Precision.",
                    "warps_launched","Block.X")
 
-Parameters_5x <- c("gpu_name","gpu_id",	"AppName", "AppId", "Input.Size", "Duration","max_clock_rate",	"num_of_cores",
+Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
                    "Achieved.Occupancy",
-                   "Executed.Load.Store.Instructions",
-                   "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
+                   "global_load",	"global_store",
+                   "shared_load",	"shared_store",
+                   "inst_issued2",
+                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request"	,
                    "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   "Floating.Point.Operations.Single.Precision.","Instructions.Issued",
+                   
                    "warps_launched","Block.X")
 length(Parameters_3x)
 length(Parameters_5x)
@@ -39,7 +43,7 @@ DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""
 result <- data.frame()
 # DataAppGPU <- rbind(DataAppGPU30[Parameters_3x], DataAppGPU35[Parameters_3x],DataAppGPU50[Parameters_3x], DataAppGPU52[Parameters_3x])
 # write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
-for (CC in 8:10){
+for (CC in c(1:6, 7:10)){
     if (CC <= 6 ){
         DataAppGPU <- rbind(DataAppGPU35[Parameters_3x])
     } else {
@@ -50,12 +54,6 @@ for (CC in 8:10){
         Data <- subset(DataAppGPU, AppId == j )
         Data <- Data[complete.cases(Data),]
         dim(Data)
-        # View(Data)
-        # summary(Data)
-        # DataAppGPU35 <- DataAppGPU35[sapply(DataAppGPU35,is.numeric)]
-        # DataAppGPU35 <- DataAppGPU35[,-(which(colSums(DataAppGPU35) == 0))]
-        # 
-        
 
         trainingSet <- subset(Data, gpu_id != CC)
         testSet <- subset(Data, gpu_id == CC)
