@@ -125,7 +125,7 @@ result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=Gpus)) + 
     geom_boxplot(aes(shape=Gpus), size=1.5) +
     xlab("GPUs") + 
-    ggtitle("Linear Regression without Outliers") +
+    ggtitle("Linear Regression with Outliers") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=40)) +
     theme(axis.title = element_text(family = "Times", face="bold", size=30)) +
