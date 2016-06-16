@@ -259,7 +259,7 @@ Graph <- ggplot(data=dataTemp, aes(x=Size, y=Accuracy, group=GPUs, color = GPUs)
     xlab("Size of elements to compute") + 
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(axis.title = element_text(family = "Trebuchet MS", face="bold", size=22)) +
-    theme(axis.text  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
+    theme(axis.text  = element_text(family = "Trebuchet MS", face="bold", size=6)) +
     theme(legend.title  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
     theme(legend.text  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
     facet_wrap(~Apps, ncol=3, scales="free_x") +

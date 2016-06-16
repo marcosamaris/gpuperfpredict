@@ -1,4 +1,4 @@
-
+library(zoo)
 
 dirpath <- "~/Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))

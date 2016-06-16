@@ -19,48 +19,52 @@ Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration
                    "blockSize", "GridSize"
 )
 
-DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/App-GPU-CC-All.csv", sep = ""))
-
+DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/matMul_gpu_sharedmem-All.csv", sep = ""))
 DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
 
 result <- data.frame()
 for (CC in c(1:10)){
-    for( j in 1:9) {
-        Data <- subset(DataAppGPU, AppId == j )
+    for( j in 4) {
+        
+        Data <- subset(DataAppGPU, AppId == j)
+        
+        
+        
+        # Data[["max_clock_rate"]] <- scale(Data[["max_clock_rate"]], center = FALSE, scale = max(Data["totalStoreGM"], na.rm = TRUE))
+        # Data[["num_of_cores"]] <- scale(Data[["num_of_cores"]], center = FALSE, scale = max(Data["num_of_cores"], na.rm = TRUE))
+        # 
+        # Data[["totalLoadGM"]] <- scale(Data[["totalLoadGM"]], center = FALSE, scale = max(Data["totalLoadGM"], na.rm = TRUE))
+        # Data[["totalStoreGM"]] <- scale(Data[["totalStoreGM"]], center = FALSE, scale = max(Data["totalStoreGM"], na.rm = TRUE))
+        # 
+        # if(j == 3 | j == 4 | j == 9){
+        #     # Data[["totalLoadSM"]] <- scale(Data[["totalLoadSM"]], center = FALSE, scale = max(Data["totalLoadSM"], na.rm = TRUE))
+        #     # Data[["totalStoreSM"]] <- scale(Data[["totalStoreSM"]], center = FALSE, scale = max(Data["totalStoreSM"], na.rm = TRUE))
+        # } else {
+        #     Data$totalLoadSM <- NULL
+        #     Data$totalStoreSM <- NULL
+        # }
+        
+        # if(j != 8){
+        #     Data[["inst_issued2"]] <- scale(Data[["inst_issued2"]], center = FALSE, scale = max(Data["inst_issued2"], na.rm = TRUE))
+        # }
+        
+        Data <- Data[complete.cases(Data),]
+        
+        trainingSet <- subset(Data, gpu_id != CC | blockSize != 256)
+        testSet <- subset(Data, gpu_id == CC & blockSize == 256)
+        
+        # if (j <= 6){
+        #     trainingSet <- subset(Data, Input.Size <= 4096 | Input.Size >= 6912 | blockSize != 1024)
+        #     testSet <- subset(Data, (Input.Size > 4096 & Input.Size < 6912) & blockSize == 1024)
+        # } else if(j >  6 & j <9 ){
+        #     trainingSet <- subset(Data, Input.Size <= 71303168 | Input.Size >= 121634816 | blockSize != 256)
+        #     testSet <- subset(Data, (Input.Size > 71303168 & Input.Size < 121634816) & blockSize == 256)
+        # } else {
+        #     trainingSet <- subset(Data, Input.Size <= 163577856 | Input.Size >= 218103808 )
+        #     testSet <- subset(Data, (Input.Size > 163577856 & Input.Size < 218103808) )
+        # }
+        
         dim(Data)
-        
-        # Data <- Data[complete.cases(Data),]
-        
-        # if (CC <= 6 ){
-        #     Data[["gld_request"]] <- scale(Data[["gld_request"]], center = FALSE, scale = max(Data["gld_request"], na.rm = TRUE)/100)
-        #     Data[["gst_request"]] <- scale(Data[["gst_request"]], center = FALSE, scale = max(Data["gst_request"], na.rm = TRUE)/100)
-        # } else {
-        #     Data[["global_load"]] <- scale(Data[["global_load"]], center = FALSE, scale = max(Data["global_load"], na.rm = TRUE)/100)
-        #     Data[["global_store"]] <- scale(Data[["global_store"]], center = FALSE, scale = max(Data["global_store"], na.rm = TRUE)/100)
-        # }
-        # 
-        # if(CC <=7 ){
-        #     Data[["Floating.Point.Operations.Single.Precision."]] <- scale(Data[["Floating.Point.Operations.Single.Precision."]], center = FALSE, scale = max(Data["Floating.Point.Operations.Single.Precision."], na.rm = TRUE)/100)
-        # } else {
-        #     Data[["FP.Instructions.Single."]] <- scale(Data[["FP.Instructions.Single."]], center = FALSE, scale = max(Data["FP.Instructions.Single."], na.rm = TRUE)/100)
-        # }
-        # 
-        # 
-        # if (j == 4 | j == 3 | j == 9){
-        #     Data[["shared_load"]] <- scale(Data[["shared_load"]], center = FALSE, scale = max(Data["shared_load"], na.rm = TRUE)/100)
-        #     Data[["shared_store"]] <- scale(Data[["shared_store"]], center = FALSE, scale = max(Data["shared_store"], na.rm = TRUE)/100)
-        # }
-        # Data[["inst_issued2"]] <- scale(Data[["inst_issued2"]], center = FALSE, scale = max(Data["inst_issued2"], na.rm = TRUE)/100)
-        # Data[["warps_launched"]] <- scale(Data[["warps_launched"]], center = FALSE, scale = max(Data["warps_launched"], na.rm = TRUE)/100)
-        
-        
-        if(j != 3 | j != 4){
-            Data$totalLoadSM <- NULL
-            Data$totalStoreSM <- NULL
-        }
-        
-        trainingSet <- subset(Data, gpu_id != CC)
-        testSet <- subset(Data, gpu_id == CC)
         dim(trainingSet)
         dim(testSet)
         
@@ -68,9 +72,6 @@ for (CC in c(1:10)){
         trainingSet$gpu_name <- NULL
         trainingSet$AppId <- NULL
         trainingSet$gpu_id <- NULL
-        # trainingDuration <- trainingSet["Duration"]
-        # trainingSet$Duration <- NULL
-        dim(trainingSet)
         
         TestDuration <- testSet["Duration"]
         Size <- testSet["Input.Size"]
@@ -83,7 +84,6 @@ for (CC in c(1:10)){
         testSet$Duration <- NULL
         testSet$AppId <- NULL
         testSet$gpu_id <- NULL
-        dim(testSet)
         
         base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
         summary(base)
@@ -105,14 +105,14 @@ for (CC in c(1:10)){
         AccSD <- sd(as.matrix(Acc))
         
         Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, Acc, AccMin, AccMax, AccMean, AccMedian, AccSD,mse, mae,mape)
-
+        
         result <- rbind(result, Tempresult)
         
     }
 }
 # result
 colnames(result) <-c("Gpus", "Apps", "InputSize", "ThreadBlock" , "Measured", "Predicted",  "accuracy", "Min", "max", "Mean", "Median", "SD", "mse", "mae", "mape")
-write.csv(result, file = "./R-code/Results/LinearRegression.csv")
+
 
 Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, Acc, AccMin, AccMax, AccMean, AccMedian, AccSD, mse, mae,mape)
 
@@ -123,29 +123,26 @@ result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=Gpus)) + 
-    geom_boxplot(aes(shape=Gpus),outlier.shape = NA) +
-    scale_y_continuous(limits = c(0.25, 1.5)) +
+    geom_boxplot(aes(shape=Gpus), size=1.5) +
     xlab("GPUs") + 
+    ggtitle("Linear Regression without Outliers") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
-    theme(axis.title = element_text(family = "Times", face="bold", size=22)) +
-    theme(axis.text  = element_text(family = "Times", face="bold", size=10)) +
+    theme(plot.title = element_text(family = "Times", face="bold", size=40)) +
+    theme(axis.title = element_text(family = "Times", face="bold", size=30)) +
+    theme(axis.text  = element_text(family = "Times", face="bold", size=20, colour = "Black")) +
     theme(axis.text.x=element_blank()) +
-    theme(legend.title  = element_text(family = "Times", face="bold", size=16)) +
-    theme(legend.text  = element_text(family = "Times", face="bold", size=16)) +
+    theme(legend.title  = element_text(family = "Times", face="bold", size=0)) +
+    theme(legend.text  = element_text(family = "Times", face="bold", size=20)) +
+    theme(legend.direction = "horizontal", 
+          legend.position = "bottom",
+          legend.key=element_rect(size=5),
+          legend.key.size = unit(5, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
-    facet_wrap(~Apps, ncol=3, scales="free_y") 
-    # scale_colour_grey()
+    facet_wrap(~Apps, ncol=3, scales="free_y") +
+    theme(strip.text = element_text(size=20))+
+    scale_colour_grey()
 
-# ggsave(paste("./images/ResultLinearRegression.pdf",sep=""), Graph, device = pdf, height=10, width=16)
-ggsave(paste("./images/ResultsLearning/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
+ggsave(paste("./images/ResultsLearning/ResultLinearRegression-MSCoalesced-256.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+write.csv(result, file = "./R-code/Results/LinearRegression-MSCoalesced-265.csv")
+# ggsave(paste("./images/ResultsLearning/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
 
-# pp<-predict(fit, int="p", newdata=testSet)
-# pc<-predict(fit, int="c", newdata=testSet)
-# with(testSet, plot(Input.Size, Duration,
-#                    ylim=range(Duration, pp, na.rm=T),
-#                    xlab="Blood glucose", ylab="Short Velocity",
-#                    main="Plot with Confidence and Prediction Bands"))
-# matlines(Size, pc, lty=c(1,2,2), col="black")
-# matlines(Size, pp, lty=c(1,3,3), col="black")
-
-                
