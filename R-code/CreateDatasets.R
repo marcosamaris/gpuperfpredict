@@ -67,6 +67,7 @@ for (i in 1:NoGPU){
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll30 <- rbind(AppGPUInfoAll30, GPUAppTemp)
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics30), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -95,9 +96,10 @@ for (i in 1:NoGPU){
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll30 <- rbind(AppGPUInfoAll30, GPUAppTemp)
                 }
                 
-                AppGPUInfoAll30 <- rbind(AppGPUInfoAll30, GPUAppTemp)
+                
             } else if (gpus[i,'compute_version'] == 3.5) {
                 if(apps[k] != "subSeqMax"){
                     
@@ -108,10 +110,9 @@ for (i in 1:NoGPU){
                     tracesTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-kernel-traces.csv", sep=""), sep=",", header=F,  col.names = names(namesTraces), 
                                            stringsAsFactors = FALSE, strip.white = FALSE, na.strings = c("<OVERFLOW>"))
                     
-                    
-                    
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll35 <- rbind(AppGPUInfoAll35, GPUAppTemp)
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics35), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -140,9 +141,8 @@ for (i in 1:NoGPU){
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll35 <- rbind(AppGPUInfoAll35, GPUAppTemp)
                 }
-                
-                AppGPUInfoAll35 <- rbind(AppGPUInfoAll35, GPUAppTemp)
                 
                 
             } else if (gpus[i,'compute_version'] == 5.0){
@@ -175,6 +175,7 @@ for (i in 1:NoGPU){
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll50 <- rbind(AppGPUInfoAll50, GPUAppTemp)
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics50), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -203,9 +204,9 @@ for (i in 1:NoGPU){
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll50 <- rbind(AppGPUInfoAll50, GPUAppTemp)
                 }
                 
-                AppGPUInfoAll50 <- rbind(AppGPUInfoAll50, GPUAppTemp)
             } else if (gpus[i,'compute_version'] == 5.2) {
                 if(apps[k] != "subSeqMax"){
                     
@@ -236,6 +237,7 @@ for (i in 1:NoGPU){
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll52 <- rbind(AppGPUInfoAll52, GPUAppTemp)
                 } else if (j == 16) {
                     metricsTemp <- read.csv(paste("./data/", gpus[i,'gpu_name'],"/block_", j, "/", apps[k], "-metrics.csv", sep=""), sep=",", header=F, col.names = names(namesMetrics52), 
                                             stringsAsFactors = FALSE,strip.white = FALSE, na.strings = c("<OVERFLOW>"))
@@ -264,14 +266,11 @@ for (i in 1:NoGPU){
                     
                     print(paste(" Loaded ", gpus[i,'gpu_name'], "/", apps[k], ", BlockSize=",j, sep=""))
                     GPUAppTemp <- cbind(gpus[i,],AppName=apps[k], AppId=k, metricsTemp, eventsTemp[,-1], tracesTemp[,-1][1:11])
+                    AppGPUInfoAll52 <- rbind(AppGPUInfoAll52, GPUAppTemp)
                 }
-                
-                AppGPUInfoAll52 <- rbind(AppGPUInfoAll52, GPUAppTemp)
             }
-
         }
     }
-    
 }
 
 
@@ -355,8 +354,9 @@ Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Durat
                    "Global.Load.Transactions.Per.Request", "gld_request",
                    "Global.Store.Transactions.Per.Request", "gst_request",
                    "shared_load",	"shared_store",
-                   "inst_issued2",
                    "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
+                   "inst_issued2",
+                   "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions",	"L2.Read.Transactions",	"L2.Write.Transactions",
                    "warps_launched",
                    "Grid.X",	"Grid.Y",	"Block.X",	"Block.Y",	"Registers.Per.Thread",	"Static.SMem"
 )
@@ -367,8 +367,9 @@ Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Durat
                    "Global.Load.Transactions.Per.Request", "global_load",
                    "Global.Store.Transactions.Per.Request", "global_store",
                    "shared_load",	"shared_store",
-                   "inst_issued2",
                    "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
+                   "inst_issued2",
+                   "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions",	"L2.Read.Transactions",	"L2.Write.Transactions",
                    "warps_launched",
                    "Grid.X",	"Grid.Y",	"Block.X",	"Block.Y",	"Registers.Per.Thread",	"Static.SMem"
 )

@@ -110,8 +110,9 @@ Parameters_3x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Durat
                    "Global.Load.Transactions.Per.Request", "gld_request",
                    "Global.Store.Transactions.Per.Request", "gst_request",
                    "shared_load",	"shared_store",
-                   "inst_issued2",
                    "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
+                   "inst_issued2",
+                   "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions",	"L2.Read.Transactions",	"L2.Write.Transactions",
                    "warps_launched",
                    "Grid.X",	"Grid.Y",	"Block.X",	"Block.Y",	"Registers.Per.Thread",	"Static.SMem"
 )
@@ -122,8 +123,9 @@ Parameters_5x <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Durat
                    "Global.Load.Transactions.Per.Request", "global_load",
                    "Global.Store.Transactions.Per.Request", "global_store",
                    "shared_load",	"shared_store",
-                   "inst_issued2",
                    "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
+                   "inst_issued2",
+                   "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions",	"L2.Read.Transactions",	"L2.Write.Transactions",
                    "warps_launched",
                    "Grid.X",	"Grid.Y",	"Block.X",	"Block.Y",	"Registers.Per.Thread",	"Static.SMem"
 )

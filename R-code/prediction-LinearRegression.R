@@ -15,7 +15,7 @@ Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration
                    "max_clock_rate",	"num_of_cores",	
                    "Achieved.Occupancy",
                     "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
-                   "inst_issued2",
+                    "L2.Read.Transactions",	"L2.Write.Transactions",
                    "blockSize", "GridSize"
 )
 
@@ -25,44 +25,30 @@ DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
 result <- data.frame()
 for (CC in c(1:10)){
     for( j in 4) {
-        
-        Data <- subset(DataAppGPU, AppId == j)
-        
-        
-        
-        # Data[["max_clock_rate"]] <- scale(Data[["max_clock_rate"]], center = FALSE, scale = max(Data["totalStoreGM"], na.rm = TRUE))
-        # Data[["num_of_cores"]] <- scale(Data[["num_of_cores"]], center = FALSE, scale = max(Data["num_of_cores"], na.rm = TRUE))
-        # 
-        # Data[["totalLoadGM"]] <- scale(Data[["totalLoadGM"]], center = FALSE, scale = max(Data["totalLoadGM"], na.rm = TRUE))
-        # Data[["totalStoreGM"]] <- scale(Data[["totalStoreGM"]], center = FALSE, scale = max(Data["totalStoreGM"], na.rm = TRUE))
-        # 
-        # if(j == 3 | j == 4 | j == 9){
-        #     # Data[["totalLoadSM"]] <- scale(Data[["totalLoadSM"]], center = FALSE, scale = max(Data["totalLoadSM"], na.rm = TRUE))
-        #     # Data[["totalStoreSM"]] <- scale(Data[["totalStoreSM"]], center = FALSE, scale = max(Data["totalStoreSM"], na.rm = TRUE))
-        # } else {
-        #     Data$totalLoadSM <- NULL
-        #     Data$totalStoreSM <- NULL
+        # if (CC <= 6){
+        #     Data <- subset(DataAppGPU, AppId == j & gpu_id <= 6 & gpu_id > 1 & blockSize == 256)
+        # } else{
+        #     Data <- subset(DataAppGPU, AppId == j & gpu_id > 7 & blockSize == 256)
         # }
+            
         
-        # if(j != 8){
-        #     Data[["inst_issued2"]] <- scale(Data[["inst_issued2"]], center = FALSE, scale = max(Data["inst_issued2"], na.rm = TRUE))
-        # }
-        
+        Data <- subset(DataAppGPU, AppId == j )
         Data <- Data[complete.cases(Data),]
+        # Data[["max_clock_rate"]] <- scale(Data[["max_clock_rate"]], center = FALSE, scale = max(Data["totalStoreGM"], na.rm = TRUE))
         
-        trainingSet <- subset(Data, gpu_id != CC | blockSize != 256)
-        testSet <- subset(Data, gpu_id == CC & blockSize == 256)
+        # trainingSet <- subset(Data, gpu_id != CC | blockSize != 256)
+        # testSet <- subset(Data, gpu_id == CC & blockSize == 256)
         
-        # if (j <= 6){
-        #     trainingSet <- subset(Data, Input.Size <= 4096 | Input.Size >= 6912 | blockSize != 1024)
-        #     testSet <- subset(Data, (Input.Size > 4096 & Input.Size < 6912) & blockSize == 1024)
-        # } else if(j >  6 & j <9 ){
-        #     trainingSet <- subset(Data, Input.Size <= 71303168 | Input.Size >= 121634816 | blockSize != 256)
-        #     testSet <- subset(Data, (Input.Size > 71303168 & Input.Size < 121634816) & blockSize == 256)
-        # } else {
-        #     trainingSet <- subset(Data, Input.Size <= 163577856 | Input.Size >= 218103808 )
-        #     testSet <- subset(Data, (Input.Size > 163577856 & Input.Size < 218103808) )
-        # }
+        if (j <= 6){
+            trainingSet <- subset(Data, Input.Size <= 4096 | Input.Size >= 6912 | blockSize != 1024)
+            testSet <- subset(Data, (Input.Size > 4096 & Input.Size < 6912) & blockSize == 1024)
+        } else if(j >  6 & j <9 ){
+            trainingSet <- subset(Data, Input.Size <= 71303168 | Input.Size >= 121634816 | blockSize != 256)
+            testSet <- subset(Data, (Input.Size > 71303168 & Input.Size < 121634816) & blockSize == 256)
+        } else {
+            trainingSet <- subset(Data, Input.Size <= 163577856 | Input.Size >= 218103808 )
+            testSet <- subset(Data, (Input.Size > 163577856 & Input.Size < 218103808) )
+        }
         
         dim(Data)
         dim(trainingSet)
@@ -73,17 +59,39 @@ for (CC in c(1:10)){
         trainingSet$AppId <- NULL
         trainingSet$gpu_id <- NULL
         
+        trainingSet$max_clock_rate <- NULL
+        trainingSet$num_of_cores <- NULL 
+        trainingSet$Achieved.Occupancy <- NULL
+        trainingSet$blockSize <- NULL
+        trainingSet$GridSize <- NULL
+        
+        
+        
         TestDuration <- testSet["Duration"]
         Size <- testSet["Input.Size"]
         App <- testSet["AppName"]
         Gpu <- testSet["gpu_name"]
         Block <- testSet["blockSize"]
         
+        # "gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+        # "max_clock_rate",	"num_of_cores",	
+        # "Achieved.Occupancy",
+        # "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
+        # "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions",	"L2.Read.Transactions",	"L2.Write.Transactions",
+        # "inst_issued2",
+        # "blockSize", "GridSize"
+        
         testSet$AppName <- NULL
         testSet$gpu_name <- NULL
         testSet$Duration <- NULL
         testSet$AppId <- NULL
         testSet$gpu_id <- NULL
+
+        testSet$max_clock_rate <- NULL
+        testSet$num_of_cores <- NULL 
+        testSet$Achieved.Occupancy <- NULL
+        testSet$blockSize <- NULL
+        testSet$GridSize <- NULL
         
         base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
         summary(base)
