@@ -1,5 +1,6 @@
 library(e1071)
 library(ggplot2)
+library(plyr)
 
 dirpath <- "~/Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))
@@ -12,43 +13,37 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
           "dotProd", "vectorAdd",  "subSeqMax")
 
 Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
-                   "max_clock_rate",	"num_of_cores",	
+                   "max_clock_rate",	"num_of_cores",	"bandwith",
                    "Achieved.Occupancy",
                     "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
-                    "L2.Read.Transactions",	"L2.Write.Transactions",
-                   "blockSize", "GridSize"
+                "Floating.Point.Operations.Single.Precision.",
+                "L2.Read.Transactions",	"L2.Write.Transactions",
+                   "blockSize", "GridSize", "totalThreads"
 )
 
-DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/matMul_gpu_sharedmem-All.csv", sep = ""))
+DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/App-GPU-CC-All.csv", sep = ""))
 DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
 
 result <- data.frame()
-for (CC in c(1:10)){
-    for( j in 4) {
-        # if (CC <= 6){
-        #     Data <- subset(DataAppGPU, AppId == j & gpu_id <= 6 & gpu_id > 1 & blockSize == 256)
-        # } else{
-        #     Data <- subset(DataAppGPU, AppId == j & gpu_id > 7 & blockSize == 256)
-        # }
-            
+for (CC in c(1:6, 8:10)){
+    for( j in 1:9) {
         
-        Data <- subset(DataAppGPU, AppId == j )
-        Data <- Data[complete.cases(Data),]
-        # Data[["max_clock_rate"]] <- scale(Data[["max_clock_rate"]], center = FALSE, scale = max(Data["totalStoreGM"], na.rm = TRUE))
+        Data <- subset(DataAppGPU, AppId == j)
         
-        # trainingSet <- subset(Data, gpu_id != CC | blockSize != 256)
-        # testSet <- subset(Data, gpu_id == CC & blockSize == 256)
-        
-        if (j <= 6){
-            trainingSet <- subset(Data, Input.Size <= 4096 | Input.Size >= 6912 | blockSize != 1024)
-            testSet <- subset(Data, (Input.Size > 4096 & Input.Size < 6912) & blockSize == 1024)
-        } else if(j >  6 & j <9 ){
-            trainingSet <- subset(Data, Input.Size <= 71303168 | Input.Size >= 121634816 | blockSize != 256)
-            testSet <- subset(Data, (Input.Size > 71303168 & Input.Size < 121634816) & blockSize == 256)
+        if (j == 3 | j == 4 ){
+            print(j)
+        } else if (j == 9){
+            Data$Floating.Point.Operations.Single.Precision. <- NULL
         } else {
-            trainingSet <- subset(Data, Input.Size <= 163577856 | Input.Size >= 218103808 )
-            testSet <- subset(Data, (Input.Size > 163577856 & Input.Size < 218103808) )
+            Data$totalLoadSM <- NULL
+            Data$totalStoreSM <- NULL
         }
+        Data <- Data[complete.cases(Data),]
+        Data$bandwith <- Data$bandwith
+        Data$num_of_cores <- Data$num_of_cores
+        
+        trainingSet <- subset(Data, gpu_id != CC)
+        testSet <- subset(Data, gpu_id == CC )
         
         dim(Data)
         dim(trainingSet)
@@ -59,45 +54,52 @@ for (CC in c(1:10)){
         trainingSet$AppId <- NULL
         trainingSet$gpu_id <- NULL
         
-        trainingSet$max_clock_rate <- NULL
-        trainingSet$num_of_cores <- NULL 
-        trainingSet$Achieved.Occupancy <- NULL
-        trainingSet$blockSize <- NULL
-        trainingSet$GridSize <- NULL
-        
-        
-        
+        # trainingSet$max_clock_rate <- NULL
+        # trainingSet$num_of_cores <- NULL
+        # trainingSet$Achieved.Occupancy <- NULL
+        # trainingSet$blockSize <- NULL
+        # trainingSet$GridSize <- NULL
+        # trainingSet$totalThreads <- NULL
+        # trainingSet$inst_issued2 <- NULL
+        trainingSet$L2.Read.Transactions <- NULL
+        trainingSet$L2.Write.Transactions <- NULL
+        # trainingSet$totalStoreGM <- NULL
+
         TestDuration <- testSet["Duration"]
         Size <- testSet["Input.Size"]
         App <- testSet["AppName"]
         Gpu <- testSet["gpu_name"]
         Block <- testSet["blockSize"]
-        
-        # "gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
-        # "max_clock_rate",	"num_of_cores",	
-        # "Achieved.Occupancy",
-        # "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
-        # "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions",	"L2.Read.Transactions",	"L2.Write.Transactions",
-        # "inst_issued2",
-        # "blockSize", "GridSize"
-        
+
         testSet$AppName <- NULL
         testSet$gpu_name <- NULL
         testSet$Duration <- NULL
         testSet$AppId <- NULL
         testSet$gpu_id <- NULL
 
-        testSet$max_clock_rate <- NULL
-        testSet$num_of_cores <- NULL 
-        testSet$Achieved.Occupancy <- NULL
-        testSet$blockSize <- NULL
-        testSet$GridSize <- NULL
+        # testSet$max_clock_rate <- NULL
+        # testSet$num_of_cores <- NULL
+        # testSet$Achieved.Occupancy <- NULL
+        # testSet$blockSize <- NULL
+        # testSet$GridSize <- NULL
+        # testSet$totalThreads <- NULL
+        # testSet$inst_issued2 <- NULL
+        testSet$L2.Read.Transactions <- NULL
+        testSet$L2.Write.Transactions <- NULL
+        # testSet$totalStoreGM <- NULL
+        
+        trainingSet <- log(trainingSet,3)
+        testSet <- log(testSet,3)
         
         base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
         summary(base)
         fit <- step(base, direction = "both")
-        summary(fit)
+        # summary(fit)
+        # print( gpus[CC,'gpu_name'])
+        # print( apps[j])
+        # print(fit)
         predictions <- predict(fit, testSet)
+        predictions <- 3^predictions
         
         mse <- mean((as.matrix(TestDuration)  - predictions)^2)
         mae <- mean(abs(as.matrix(TestDuration)  - predictions))
@@ -128,12 +130,20 @@ result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_
                                                "matrix_sum_normal", "matrix_sum_coalesced", 
                                                "dotProd", "vectorAdd",  "subSeqMax"))
 
+result$Apps <- revalue(result$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoalesced", "matMul_gpu"="matMul_GM_coalesced", 
+                                          "matMul_gpu_sharedmem_uncoalesced"="matMul_SM_uncoalesced", "matMul_gpu_sharedmem"="matMul_SM_coalesced",
+                                          "matrix_sum_normal"="matrix_sum_uncoalesced"))
+
+
+result$Gpus <- factor(result$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
+
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
-Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=Gpus)) + 
-    geom_boxplot(aes(shape=Gpus), size=1.5) +
+Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
+    geom_boxplot( size=1.5, outlier.size = 2.5) + #scale_y_continuous(limits =  c(0, 3.5)) +
+    stat_boxplot(geom ='errorbar') +
     xlab("GPUs") + 
-    ggtitle("Linear Regression with Outliers") +
+    ggtitle("Linear Regression") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=40)) +
     theme(axis.title = element_text(family = "Times", face="bold", size=30)) +
@@ -150,7 +160,7 @@ Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, shape=Gpus,col=
     theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 
-ggsave(paste("./images/ResultsLearning/ResultLinearRegression-MSCoalesced-256.pdf",sep=""), Graph, device = pdf, height=10, width=16)
-write.csv(result, file = "./R-code/Results/LinearRegression-MSCoalesced-265.csv")
+ggsave(paste("./images/ResultsLearning/ResultLinearRegression.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+write.csv(result, file = "./R-code/Results/LinearRegression.csv")
 # ggsave(paste("./images/ResultsLearning/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
 

@@ -1,5 +1,7 @@
+
 library(ggplot2)
 library(reshape2)
+library(plyr)
 
 cbbPalette <- gray(1:9/ 12)#c("red", "blue", "darkgray", "orange","black","brown", "lightblue","violet")
 dirpath <- "~/Doctorate/svm-gpuperf/"
@@ -47,7 +49,7 @@ lambda[10,] <- lambdaGTX750
 dataGPUsApps <- data.frame()
 
 noSamples <- 10
-for (k in 5:6){
+for (k in 1:10){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
@@ -142,7 +144,7 @@ for (k in 5:6){
     timeKernelVecOp <- list()
     for (i in 7:9){
         if (gpus[k,'gpu_name'] == "GTX-750"){
-            nN <- 18:27
+            nN <- 18:26
             N <- 2^nN
         }
         else {
@@ -220,8 +222,14 @@ for (k in 5:6){
     matVecOp <- array(unlist(SpeedupVecOp,use.names = T))
     TkVecop <- array(unlist(timeKernelVecOp,use.names = T))
     
-    nN <- 18:27
-    N <- 2^nN
+    if (gpus[k,'gpu_name'] == "GTX-750"){
+        nN <- 18:26
+        N <- 2^nN
+    }
+    else {
+        nN <- 18:27
+        N <- 2^nN
+    }
     
     namesVecOp <-c(rep("dotProd",length(N)), rep("vectorAdd",length(N)),  rep("subSeqMax",length(N)))
     dfVecOp <- cbind(matVecOp, TkVecop, namesVecOp,N)
@@ -246,6 +254,13 @@ dataTemp$Apps <- factor(dataTemp$Apps, levels =  c("matMul_gpu_uncoalesced","mat
                                                    "matrix_sum_normal", "matrix_sum_coalesced", 
                                                  "dotProd", "vectorAdd",  "subSeqMax"))
 
+dataTemp$Apps <- revalue(dataTemp$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoalesced", "matMul_gpu"="matMul_GM_coalesced", 
+                         "matMul_gpu_sharedmem_uncoalesced"="matMul_SM_uncoalesced", "matMul_gpu_sharedmem"="matMul_SM_coalesced",
+                         "matrix_sum_normal"="matrix_sum_uncoalesced"))
+                         
+ # levels(x)[levels(x)=="beta"] <- "two
+
+
 dataTemp$GPUs <- factor(dataTemp$GPUs, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
 print(levels(dataTemp$Apps))
 
@@ -254,18 +269,41 @@ dataTemp$Accuracy <- as.numeric(as.character(dataTemp$Accuracy))
 
 #View(dataTemp)
 
-Graph <- ggplot(data=dataTemp, aes(x=Size, y=Accuracy, group=GPUs, color = GPUs)) + 
-    geom_line(size=1) +
-    xlab("Size of elements to compute") + 
+# Graph <- ggplot(data=dataTemp, aes(x=Size, y=Accuracy, group=GPUs, color = GPUs)) + 
+#     geom_line(size=1) +
+#     xlab("Size of elements to compute") + 
+#     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
+#     theme(axis.title = element_text(family = "Trebuchet MS", face="bold", size=22)) +
+#     theme(axis.text  = element_text(family = "Trebuchet MS", face="bold", size=6)) +
+#     theme(legend.title  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
+#     theme(legend.text  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
+#     facet_wrap(~Apps, ncol=3, scales="free_x") +
+#     theme(strip.text.x = element_text(size = 18, colour = "Black")) +
+#     scale_colour_grey()
+
+
+
+Graph <- ggplot(data=dataTemp, aes(x=GPUs, y=Accuracy, group=GPUs, col=GPUs)) + 
+    geom_boxplot(size=1.5, outlier.size = 2.5) + #scale_y_continuous(limits =  c(0.5, 2)) +
+    stat_boxplot(geom ='errorbar') +
+    ggtitle("Accuracy of the BSP-based Analytical model") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
-    theme(axis.title = element_text(family = "Trebuchet MS", face="bold", size=22)) +
-    theme(axis.text  = element_text(family = "Trebuchet MS", face="bold", size=6)) +
-    theme(legend.title  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
-    theme(legend.text  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
-    facet_wrap(~Apps, ncol=3, scales="free_x") +
-    theme(strip.text.x = element_text(size = 18, colour = "Black")) +
+    theme(plot.title = element_text(family = "Times", face="bold", size=30)) +
+    theme(axis.title = element_text(family = "Times", face="bold", size=20)) +
+    theme(axis.text  = element_text(family = "Times", face="bold", size=20, colour = "Black")) +
+    theme(axis.text.x=element_blank()) +
+    theme(legend.title  = element_text(family = "Times", face="bold", size=0)) +
+    theme(legend.text  = element_text(family = "Times", face="bold", size=20)) +
+    theme(legend.direction = "horizontal", 
+          legend.position = "bottom",
+          legend.key=element_rect(size=5),
+          legend.key.size = unit(3, "lines")) +
+    # facet_grid(.~Apps, scales="fixed") 
+    facet_wrap(~Apps, ncol=3, scales="free_y") +
+    theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 
 Graph
-ggsave(paste("./images/Graph-No-GTX680-Quadro.png",sep=""), Graph,height=10, width=16)
+ggsave(paste("./images/ResultModel/ResutAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+# ggsave(paste("./images/ResultModel/ResutAnalyticalModel.png",sep=""), Graph,height=10, width=16)
 

@@ -4,6 +4,8 @@ require(nnet)
 library(ggplot2)
 library(caret)
 
+library(plyr)
+
 dirpath <- "~/Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))
 
@@ -14,179 +16,172 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
           "matrix_sum_normal", "matrix_sum_coalesced", 
           "dotProd", "vectorAdd",  "subSeqMax")
 
-# METRICS_3X <- c(
-# "Shared.Memory.Replay.Overhead", "Global.Memory.Replay.Overhead", "Instruction.Replay.Overhead", 
-# "L2.Throughput..L1.Reads.", "L2.Hit.Rate..L1.Reads.", "L2.Read.Transactions", "L2.Write.Transactions", "L2.Throughput..Reads.","L2.Throughput..Writes.", 
-# "L2.Read.Transactions..L1.read.requests.", "L2.Write.Transactions..L1.write.requests.",
-# "Instructions.per.warp", 
-# "Global.Load.Transactions", "Global.Load.Transactions.Per.Request", 
-# "Issued.Control.Flow.Instructions", "Executed.Control.Flow.Instructions", "Issued.Load.Store.Instructions", "Executed.Load.Store.Instructions", 
-# "Floating.Point.Operations.Single.Precision.", "Floating.Point.Operations.Single.Precision.Add.","Floating.Point.Operation.Single.Precision.Mul.","FP.Instructions.Single.",
-# "Floating.Point.Operations.Single.Precision.FMA.","FLOP.Efficiency.Peak.Single.", 
-# "Instructions.Executed",	"Instructions.Issued",	"Issue.Slots", "Control.Flow.Instructions", "Misc.Instructions", "ECC.Transactions")
-# 
-# EVENTS_3X <- c("l2_subp0_total_read_sector_queries",	"l2_subp1_total_read_sector_queries",	"l2_subp2_total_read_sector_queries",	
-#             "l2_subp3_total_read_sector_queries",	"l2_subp0_total_write_sector_queries",	"l2_subp1_total_write_sector_queries",	
-#             "l2_subp2_total_write_sector_queries",	"l2_subp3_total_write_sector_queries",	"elapsed_cycles_sm",	
-#             "gld_inst_8bit",	"gld_inst_16bit",	"gld_inst_32bit",	"gld_inst_64bit",	"gld_inst_128bit",	'gst_inst_8bit',	
-#             "gst_inst_16bit",	"gst_inst_32bit",	"gst_inst_64bit",	"gst_inst_128bit","threads_launched","gld_request",	"gst_request",
-#             "sm_cta_launched", "uncached_global_load_transaction",	"global_store_transaction",
-#             "X__l1_global_load_transactions",	"X__l1_global_store_transactions")
-# 
-# 
-# 
-# par3X <- c("Duration", "Achieved.Occupancy", "Executed.IPC", "Global.Store.Transactions.Per.Request", "Global.Store.Transactions", 
-#                          "Device.Memory.Read.Transactions", "L2.Write.Transactions", "warps_launched", "inst_executed","inst_issued2",
-#                          "Block.X", "Block.Y", "Grid.X", "Grid.Y", "Registers.Per.Thread", "Static.SMem" )
-# 
-# DataAppGPU30 <- read.csv(file = "./R-code/Datasets/AppGPU30.csv")
-# DataAppGPU35 <- read.csv(file = "./R-code/Datasets/AppGPU35.csv")
-# DataAppGPU50 <- read.csv(file = "./R-code/Datasets/AppGPU50.csv")
-# DataAppGPU52 <- read.csv(file = "./R-code/Datasets/AppGPU52.csv")
+Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration", 
+                "max_clock_rate",	"num_of_cores",	
+                "Achieved.Occupancy",
+                "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
+                "Floating.Point.Operations.Single.Precision.",
+                "L2.Read.Transactions",	"L2.Write.Transactions",
+                "blockSize", "GridSize", "totalThreads"
+)
 
-Parameters_3x <- c("GpuName","GpuId", "L2", "Bus", "Memoryclock", "AppName", "AppId",  "Input.Size","Duration","Issued.IPC",	"Instructions.per.warp",	"Issue.Slot.Utilization",
-                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
-                   "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
-                   "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions", "L2.Read.Transactions",	"L2.Write.Transactions",
-                   "Issued.Control.Flow.Instructions",	"Executed.Control.Flow.Instructions",	"Issued.Load.Store.Instructions",	"Executed.Load.Store.Instructions",
-                   "Floating.Point.Operations.Single.Precision.", "Floating.Point.Operations.Single.Precision.FMA.","Instructions.Executed",	"Instructions.Issued",
-                   "Issue.Slots","FP.Instructions.Single.", "Control.Flow.Instructions", "Misc.Instructions", "L2.Read.Transactions..L1.read.requests.", "L2.Write.Transactions..L1.write.requests.",
-                   "ECC.Transactions", "Eligible.Warps.Per.Active.Cycle", "FLOP.Efficiency.Peak.Single.","fb_subp0_read_sectors",	"fb_subp1_read_sectors",	"fb_subp0_write_sectors",	"fb_subp1_write_sectors", "warps_launched",	
-                   "threads_launched",	"inst_executed",	"inst_issued1",	"inst_issued2","gld_inst_32bit", "gst_inst_32bit", "gld_request",	"gst_request", "Grid.X", "Block.X")
-
-Parameters_5x <- c("GpuName","GpuId", "L2", "Bus", "Memoryclock", "AppName", "AppId", "Input.Size", "Duration","Issued.IPC",	"Instructions.per.warp",	"Issue.Slot.Utilization",
-                   "Shared.Memory.Load.Transactions.Per.Request",	"Shared.Memory.Store.Transactions.Per.Request",
-                   "Global.Load.Transactions.Per.Request",	"Global.Store.Transactions.Per.Request",
-                   "Shared.Load.Transactions",	"Shared.Store.Transactions", "Global.Load.Transactions",	"Global.Store.Transactions",
-                   "Device.Memory.Read.Transactions",	"Device.Memory.Write.Transactions", "L2.Read.Transactions",	"L2.Write.Transactions",
-                   "Global.Hit.Rate",
-                   "Issued.Control.Flow.Instructions",	"Executed.Control.Flow.Instructions",	"Issued.Load.Store.Instructions",	"Executed.Load.Store.Instructions",
-                   "Floating.Point.Operations.Single.Precision.", "Floating.Point.Operations.Single.Precision.FMA.","Instructions.Executed",	"Instructions.Issued",
-                   "Issue.Slots","FP.Instructions.Single.", "Control.Flow.Instructions", "Misc.Instructions",
-                   "Eligible.Warps.Per.Active.Cycle", "FLOP.Efficiency.Peak.Single.","fb_subp0_read_sectors",	"fb_subp1_read_sectors",	"fb_subp0_write_sectors",	"fb_subp1_write_sectors", "warps_launched",	
-                   "inst_executed",	"inst_issued1",	"inst_issued2","gld_inst_32bit", "gst_inst_32bit", "Grid.X", "Block.X")
-
-# Those parameters are always 0 in CC 3.5  and 5.2
-# Local.Memory.Load.Transactions.Per.Request
-# Local.Memory.Store.Transactions.Per.Request
-# Local.Load.Transactions
-# Local.Store.Transactions
-# 
-# Those parameters are not in CC 5.2 or they are always 0
-#     L2.Read.Transactions..L1.read.requests.
-#     L2.Write.Transactions..L1.write.requests.
-#     ECC.Transactions
-#     threads_launched
-#     gld_request
-#     gst_request
+DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/App-GPU-CC-All.csv", sep = ""))
+DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
 
 result <- data.frame()
-    DataAppGPU30 <- read.csv(file = paste("./R-code/Datasets/AppGPU30.csv", sep = ""))
-    DataAppGPU35 <- read.csv(file = paste("./R-code/Datasets/AppGPU35.csv", sep = ""))
-    DataAppGPU50 <- read.csv(file = paste("./R-code/Datasets/AppGPU50.csv", sep = ""))
-    DataAppGPU52 <- read.csv(file = paste("./R-code/Datasets/AppGPU52.csv", sep = ""))
-    
-    DataAppGPU <- rbind(DataAppGPU30[Parameters_3x], DataAppGPU35[Parameters_3x])
-    Data <- rbind(DataAppGPU50[Parameters_5x],DataAppGPU52[Parameters_5x])
-    
-     write.csv(Data, file = "./R-code/Datasets/CleanData/App-GPU-CC-5X.csv")
+for (CC in c(1:10)){
     for( j in 1:9) {
-    
+        # if (CC <= 6){
+        #     Data <- subset(DataAppGPU, AppId == j & gpu_id <= 6  & blockSize >= 256)
+        # } else{
+        #     Data <- subset(DataAppGPU, AppId == j & gpu_id > 7 & blockSize >= 256)
+        # }
         
-        Data <- subset(DataAppGPU, AppId == j )
-        Data <- Data[complete.cases(Data),]
-        dim(Data)
-        # View(Data)
-        # summary(Data)
-        # DataAppGPU35 <- DataAppGPU35[sapply(DataAppGPU35,is.numeric)]
-        # DataAppGPU35 <- DataAppGPU35[,-(which(colSums(DataAppGPU35) == 0))]
-        # 
-        
-        if (j < 7) {
-            lowerLimit <- 2048
-            uperLimit <- 2560
-            blockSize <- 16
-         } else {
-            lowerLimit <- 16777216
-            uperLimit <- 50331648
-            blockSize <- 256
+        if (j <= 4){
+            Data <- subset(DataAppGPU, AppId == j & Input.Size >= 4096 )
+        } else if (j > 4 & j < 7) {
+            Data <- subset(DataAppGPU, AppId == j & Input.Size >= 4096 )
+        } else{
+            Data <- subset(DataAppGPU, AppId == j  & Input.Size >= 71303168)
         }
-
-         if (j < 9) {
-            trainingSet <- subset(Data, Input.Size <= lowerLimit | Input.Size >= uperLimit | Block.X != blockSize)
-            testSet <- subset(Data, (Input.Size > lowerLimit & Input.Size < uperLimit) & Block.X == blockSize)
-            dim(trainingSet)
-            dim(testSet)
-         } else {
-            trainingSet <- subset(Data, Input.Size <= lowerLimit | Input.Size >= uperLimit)
-            testSet <- subset(Data, (Input.Size > lowerLimit & Input.Size < uperLimit))
-         }
+        
+        
+        if (j == 3 | j == 4 | j == 9){
+            print(j)
+        } else {
+            Data$totalLoadSM <- NULL
+            Data$totalStoreSM <- NULL
+        }
+        
+        Data <- Data[complete.cases(Data),]
+        # Data[["max_clock_rate"]] <- scale(Data[["max_clock_rate"]], center = FALSE, scale = max(Data["totalStoreGM"], na.rm = TRUE))
+        
+        trainingSet <- subset(Data, gpu_id != CC)
+        testSet <- subset(Data, gpu_id == CC )
+        
+        # if (j <= 6){
+        #     trainingSet <- subset(Data, Input.Size <= 4096 | Input.Size >= 6912 | blockSize != 1024)
+        #     testSet <- subset(Data, (Input.Size > 4096 & Input.Size < 6912) & blockSize == 1024)
+        # } else if(j >  6 & j <9 ){
+        #     trainingSet <- subset(Data, Input.Size <= 71303168 | Input.Size >= 121634816 | blockSize != 256)
+        #     testSet <- subset(Data, (Input.Size > 71303168 & Input.Size < 121634816) & blockSize == 256)
+        # } else {
+        #     trainingSet <- subset(Data, Input.Size <= 163577856 | Input.Size >= 218103808 )
+        #     testSet <- subset(Data, (Input.Size > 163577856 & Input.Size < 218103808) )
+        # }
+        
+        dim(Data)
+        dim(trainingSet)
+        names(testSet)
         
         trainingSet$AppName <- NULL
-        trainingSet$GpuName <- NULL
-        trainingSet$GpuId <- NULL
-        # trainingDuration <- trainingSet["Duration"]
-        # trainingSet$Duration <- NULL
-        dim(trainingSet)
+        trainingSet$gpu_name <- NULL
+        trainingSet$AppId <- NULL
+        trainingSet$gpu_id <- NULL
+        
+        trainingSet$max_clock_rate <- NULL
+        trainingSet$num_of_cores <- NULL
+        trainingSet$Achieved.Occupancy <- NULL
+        trainingSet$blockSize <- NULL
+        # trainingSet$GridSize <- NULL
+        # trainingSet$totalThreads <- NULL
+        trainingSet$inst_issued2 <- NULL
+        trainingSet$L2.Read.Transactions <- NULL
+        trainingSet$L2.Write.Transactions <- NULL
+        trainingSet$totalStoreGM <- NULL
         
         TestDuration <- testSet["Duration"]
         Size <- testSet["Input.Size"]
         App <- testSet["AppName"]
-        Gpu <- testSet["GpuName"]
-        Block <- testSet["Block.X"]
+        Gpu <- testSet["gpu_name"]
+        Block <- testSet["blockSize"]
         
         testSet$AppName <- NULL
-        testSet$GpuName <- NULL
-        testSet$GpuId <- NULL
+        testSet$gpu_name <- NULL
         testSet$Duration <- NULL
-        dim(testSet)
+        testSet$AppId <- NULL
+        testSet$gpu_id <- NULL
+        
+        testSet$max_clock_rate <- NULL
+        testSet$num_of_cores <- NULL
+        testSet$Achieved.Occupancy <- NULL
+        testSet$blockSize <- NULL
+        # testSet$GridSize <- NULL
+        # testSet$totalThreads <- NULL
+        testSet$inst_issued2 <- NULL
+        testSet$L2.Read.Transactions <- NULL
+        testSet$L2.Write.Transactions <- NULL
+        testSet$totalStoreGM <- NULL
         
         
         mygrid <- expand.grid(.decay=c(0.5, 0.1), .size=c(4,5,6))
-        nnetfit <- train(trainingSet$Duration ~ ., data=trainingSet, method="nnet", maxit=1000, tuneGrid=mygrid, trace=F) 
+        nnetfit <- train(trainingSet$Duration ~ ., data=trainingSet, method="nnet", maxit=100, tuneGrid=mygrid, trace=F) 
         
-        fit <- nnet(trainingSet$Duration ~ ., data=trainingSet, size=10, tuneGrid=mygrid,linout=TRUE, skip=TRUE, MaxNWts=10, trace=FALSE, maxit=100)
+        fit <- nnet(trainingSet$Duration ~ ., data=trainingSet, size=10, tuneGrid=mygrid,linout=TRUE, skip=TRUE, MaxNWts=100, trace=FALSE, maxit=100)
         summary(fit)
         
         predictions <- predict(fit, testSet)
-        rmse <- mean((TestDuration  - predictions)^2)
-        print(rmse)
+        mse <- mean((as.matrix(TestDuration)  - predictions)^2)
+        mae <- mean(abs(as.matrix(TestDuration)  - predictions))
+        mape <- mean(abs(as.matrix(TestDuration)  - predictions/predictions))
+        # mpe <- mean(as.matrix(TestDuration)  - predictions/predictions)
+        # smape = mean((abs(as.matrix(predictions)  -TestDuration)/ (abs(TestDuration) + abs(predictions))/2 ))
         
-        Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, predictions/TestDuration)
-
+        Acc <- predictions/TestDuration
+        AccMin <- min(Acc)
+        AccMean <- mean(as.matrix(Acc))
+        AccMedian <- median(as.matrix(Acc))
+        AccMax <- max(Acc)
+        AccSD <- sd(as.matrix(Acc))
+        
+        Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, Acc, AccMin, AccMax, AccMean, AccMedian, AccSD,mse, mae,mape)
+        
         result <- rbind(result, Tempresult)
         
-        }
-    result
-    
-    
-colnames(result) <-c("Gpus", "Apps", "InputSize", "ThreadBlock" , "Measured", "Predicted",  "accuracy")
+    }
+}
+# result
+colnames(result) <-c("Gpus", "Apps", "InputSize", "ThreadBlock" , "Measured", "Predicted",  "accuracy", "Min", "max", "Mean", "Median", "SD", "mse", "mae", "mape")
+
+
+Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, Acc, AccMin, AccMax, AccMean, AccMedian, AccSD, mse, mae,mape)
+
 result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
                                                "matrix_sum_normal", "matrix_sum_coalesced", 
                                                "dotProd", "vectorAdd",  "subSeqMax"))
 
-Graph <- ggplot(data=result, aes(x=InputSize, y=accuracy, group=Gpus, shape=Gpus,col=Gpus))  + geom_line(aes(shape=Gpus)) + 
-    geom_point(aes(shape=Gpus)) +
-    xlab("Size of elements to compute") + 
+result$Apps <- revalue(result$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoalesced", "matMul_gpu"="matMul_GM_coalesced", 
+                                      "matMul_gpu_sharedmem_uncoalesced"="matMul_SM_uncoalesced", "matMul_gpu_sharedmem"="matMul_SM_coalesced",
+                                      "matrix_sum_normal"="matrix_sum_uncoalesced"))
+
+
+# result$Gpus <- factor(dataTemp$GPUs, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
+
+
+# result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
+
+Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
+    geom_boxplot( size=1.5, outlier.size = 2.5) + #scale_y_continuous(limits =  c(0, 3)) +
+    stat_boxplot(geom ='errorbar') +
+    xlab("GPUs") + 
+    ggtitle("Artificial Neural Networks") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
-    theme(axis.title = element_text(family = "Times", face="bold", size=22)) +
-    theme(axis.text  = element_text(family = "Times", face="bold", size=16)) +
-    theme(legend.title  = element_text(family = "Times", face="bold", size=16)) +
-    theme(legend.text  = element_text(family = "Times", face="bold", size=16)) +
-    facet_grid(.~Apps, scales="fixed") 
-    # facet_wrap(~Apps, ncol=2, scales="fixed") 
-Graph
-ggsave(paste("./images/Matmul-CC-35-new.pdf",sep=""), Graph, device = pdf, height=10, width=16)
-ggsave(paste("./images/Matmul-CC-35-new.png",sep=""), Graph, height=10, width=16)
+    theme(plot.title = element_text(family = "Times", face="bold", size=40)) +
+    theme(axis.title = element_text(family = "Times", face="bold", size=30)) +
+    theme(axis.text  = element_text(family = "Times", face="bold", size=20, colour = "Black")) +
+    theme(axis.text.x=element_blank()) +
+    theme(legend.title  = element_text(family = "Times", face="bold", size=0)) +
+    theme(legend.text  = element_text(family = "Times", face="bold", size=20)) +
+    theme(legend.direction = "horizontal", 
+          legend.position = "bottom",
+          legend.key=element_rect(size=5),
+          legend.key.size = unit(5, "lines")) +
+    # facet_grid(.~Apps, scales="fixed") 
+    facet_wrap(~Apps, ncol=3, scales="free_y") +
+    theme(strip.text = element_text(size=20))+
+    scale_colour_grey()
 
-# pp<-predict(fit, int="p", newdata=testSet)
-# pc<-predict(fit, int="c", newdata=testSet)
-# with(testSet, plot(Input.Size, Duration,
-#                    ylim=range(Duration, pp, na.rm=T),
-#                    xlab="Blood glucose", ylab="Short Velocity",
-#                    main="Plot with Confidence and Prediction Bands"))
-# matlines(Size, pc, lty=c(1,2,2), col="black")
-# matlines(Size, pp, lty=c(1,3,3), col="black")
+ggsave(paste("./images/ResultsLearning/ResultArtificialNeuralNetworks.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+write.csv(result, file = "./R-code/Results/ANN.csv")
+# ggsave(paste("./images/ResultsLearning/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
 
-                
