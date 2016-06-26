@@ -25,7 +25,7 @@ DataAppGPU <- read.csv(file = paste("./R-code/Datasets/CleanData/matMul_gpu_shar
 DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
 
 result <- data.frame()
-for (CC in c(1:10)){
+for (CC in c(1:6, 8:10)){
     for( j in 4) {
         # if (CC <= 6){
         #     Data <- subset(DataAppGPU, AppId == j & gpu_id <= 6  & blockSize >= 256)
@@ -99,13 +99,14 @@ for (CC in c(1:10)){
         testSet <- log(testSet,2)
         
         
-        base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
+        fit <- svm(trainingSet$Duration ~ ., data = trainingSet, kernel="linear", scale=FALSE) 
+        
         summary(base)
         # fit <- step(base, direction = "forward")
         # summary(fit)
         # print( gpus[CC,'gpu_name'])
         # print(fit)
-        predictions <- predict(base, testSet)
+        predictions <- predict(fit, testSet)
         predictions <- 2^predictions
         
         mse <- mean((as.matrix(TestDuration)  - predictions)^2)
@@ -150,25 +151,26 @@ result$Apps <- revalue(result$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoal
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
     geom_boxplot( size=1.5, outlier.size = 5) + #scale_y_continuous(limits =  c(0.5, 2)) +
     stat_boxplot(geom ='errorbar') +
-    xlab("GPUs") + 
-    ggtitle("Linear Regression of matMul_SM_Coalesced") +
+    xlab(" ") + 
+    ggtitle("SVM of matMul_SM_Coalesced") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=40)) +
     theme(axis.title = element_text(family = "Times", face="bold", size=40)) +
     theme(axis.text  = element_text(family = "Times", face="bold", size=40, colour = "Black")) +
     theme(axis.text.x=element_blank()) +
     theme(legend.title  = element_text(family = "Times", face="bold", size=0)) +
-    theme(legend.text  = element_text(family = "Times", face="bold", size=30)) +
-    theme(legend.direction = "horizontal", 
-          legend.position = "bottom",
-          legend.key=element_rect(size=5),
-          legend.key.size = unit(5, "lines")) +
+    # theme(legend.text  = element_text(family = "Times", face="bold", size=30)) +
+    theme(legend.position = "none") +
+#     theme(legend.direction = "horizontal", 
+#           legend.position = "bottom",
+#           legend.key=element_rect(size=5),
+#           legend.key.size = unit(5, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
     facet_wrap(~Apps, ncol=3, scales="free_y") +
     theme(strip.text = element_text(size=0))+
     scale_colour_grey()
 
-ggsave(paste("./images/ResultsLearning/ResultLinearRegression-MSCoalesced.pdf",sep=""), Graph, device = pdf, height=10, width=16)
-write.csv(result, file = "./R-code/Results/LinearRegression-MSCoalesced.csv")
+ggsave(paste("./images/ResultsLearning/ResultLinearRegression-MSCoalesced-SVM.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+write.csv(result, file = "./R-code/Results/LinearRegression-MSCoalesced-SVM.csv")
 # ggsave(paste("./images/ResultsLearning/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
 
