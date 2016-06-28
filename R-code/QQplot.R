@@ -1,6 +1,6 @@
 library(e1071)
 library(ggplot2)
-library(plyr)
+library(car)
 
 dirpath <- "~/Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))
@@ -85,12 +85,22 @@ testSet$L2.Read.Transactions <- NULL
 testSet$L2.Write.Transactions <- NULL
 # testSet$totalStoreGM <- NULL
 
+
+
+
+
+
+
+
+
+pdf("./images/ResultsLearning/QQplot.pdf", height=10, width=8)
+par(mfrow=c(1,2))
+base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
+qqPlot(base, main="Original Data Input", ylab="Studentized Residual (Fitted Model)", cex.lab = 2)
+
 trainingSet <- log(trainingSet,2)
 testSet <- log(testSet,2)
-
-
 base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
+qqPlot(base, main="Data in Logarithmic Scale", ylab="Studentized Residual (Fitted Model)",cex.lab = 2)
+dev.off()
 
-# par(mfrow=c(1,2))
-# qqPlot(base, main="Trained Model without transformation")
-qqPlot(base, main="Trained Model with Logaritmic Scale")

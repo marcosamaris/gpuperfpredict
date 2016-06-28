@@ -77,29 +77,17 @@ for (CC in c(1:6, 8:10)){
         testSet$AppId <- NULL
         testSet$gpu_id <- NULL
 
-        # testSet$max_clock_rate <- NULL
-        # testSet$num_of_cores <- NULL
-        # testSet$Achieved.Occupancy <- NULL
-        # testSet$blockSize <- NULL
-        # testSet$GridSize <- NULL
-        # testSet$totalThreads <- NULL
-        # testSet$inst_issued2 <- NULL
         testSet$L2.Read.Transactions <- NULL
         testSet$L2.Write.Transactions <- NULL
-        # testSet$totalStoreGM <- NULL
         
-        trainingSet <- log(trainingSet,3)
-        testSet <- log(testSet,3)
+        trainingSet <- log(trainingSet,2)
+        testSet <- log(testSet,2)
         
-        base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
+        base <- cv.lm(trainingSet$Duration ~ ., data = trainingSet) 
         summary(base)
-        fit <- step(base, direction = "both")
-        # summary(fit)
-        # print( gpus[CC,'gpu_name'])
-        # print( apps[j])
-        # print(fit)
-        predictions <- predict(fit, testSet)
-        predictions <- 3^predictions
+
+        predictions <- predict(base, testSet)
+        predictions <- 2^predictions
         
         mse <- mean((as.matrix(TestDuration)  - predictions)^2)
         mae <- mean(abs(as.matrix(TestDuration)  - predictions))

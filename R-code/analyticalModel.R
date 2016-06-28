@@ -49,7 +49,7 @@ lambda[10,] <- lambdaGTX750
 dataGPUsApps <- data.frame()
 
 noSamples <- 10
-for (k in 1:10){
+for (k in c(1:6, 8:10)){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
@@ -303,7 +303,7 @@ Graph <- ggplot(data=dataTemp, aes(x=GPUs, y=Accuracy, group=GPUs, col=GPUs)) +
     theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 
-Graph
+# Graph
 ggsave(paste("./images/ResultModel/ResutAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
 # ggsave(paste("./images/ResultModel/ResutAnalyticalModel.png",sep=""), Graph,height=10, width=16)
 

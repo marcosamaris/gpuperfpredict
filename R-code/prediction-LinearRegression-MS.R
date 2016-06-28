@@ -1,4 +1,4 @@
-library(e1071)
+library(randomForest)
 library(ggplot2)
 library(plyr)
 
@@ -59,7 +59,7 @@ for (CC in c(1:6, 8:10)){
         testSet <- log(testSet,2)
         
         ptm <- proc.time()
-        fit <- randomForest(trainingSet$Duration ~ ., data = trainingSet, importance = TRUE,proximity=TRUE, corr.bias=FALSE, mtry=5, ntree=50)
+        fit <- randomForest(trainingSet$Duration ~ ., data = trainingSet, mtry=5,ntree=50)
         timeMod[[CC]] <- proc.time() - ptm
         
         ptm <- proc.time()
@@ -120,7 +120,7 @@ Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) +
     theme(legend.text  = element_text(family = "Times", face="bold", size=30)) +
     # theme(legend.position = "none") +
     theme(legend.direction = "horizontal",
-          legend.position = "bottom",
+    legend.position = "bottom",
           legend.key=element_rect(size=5),
           legend.key.size = unit(5, "lines")) +
     guides(col = guide_legend(nrow = 2)) +
