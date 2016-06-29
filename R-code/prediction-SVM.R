@@ -136,10 +136,12 @@ result$Apps <- revalue(result$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoal
 
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
+Result_SVM <- result
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
-    geom_boxplot( size=1.5, outlier.size = 2.5) + #scale_y_continuous(limits =  c(0, 3)) +
+    geom_boxplot( size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2.5)) +
     stat_boxplot(geom ='errorbar') +
-    xlab("GPUs") + 
+    xlab(" ") + 
+    theme_bw() +
     ggtitle("Support Vector Machines") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=40)) +

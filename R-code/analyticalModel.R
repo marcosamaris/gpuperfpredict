@@ -49,7 +49,7 @@ lambda[10,] <- lambdaGTX750
 dataGPUsApps <- data.frame()
 
 noSamples <- 10
-for (k in c(1:6, 8:10)){
+for (k in c(1:9)){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
@@ -236,12 +236,12 @@ for (k in c(1:6, 8:10)){
     
     allApp = rbind(dfmatMul,dfmatSum,dfVecOp)
     
-    dfAllApp <- data.frame(Accuracy=allApp[,1], Tk=allApp[,2], Duration= array(unlist(TimeApp,use.names = F)), Apps=allApp[,3], Size=allApp[,4], GPUs=gpus[k,'gpu_name'], CC= gpus[k,'compute_version'])
+    dfAllApp <- data.frame(Gpus=gpus[k,'gpu_name'], Apps=allApp[,3], InputSize=allApp[,4], ThreadBlock=0, Measured= array(unlist(TimeApp,use.names = F)), Predicted=allApp[,2], accuracy=allApp[,1], Min=0, max=0, Mean=0, Median=0, SD=0, mse=0, mae=0, mape=0)
     
     dataGPUsApps <- rbind(dfAllApp, dataGPUsApps)
     
 }
-#View(dataGPUsApps)
+# View(dataGPUsApps)
 dataTemp <- data.frame()
 
 dataTemp <- dataGPUsApps
@@ -261,11 +261,11 @@ dataTemp$Apps <- revalue(dataTemp$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_un
  # levels(x)[levels(x)=="beta"] <- "two
 
 
-dataTemp$GPUs <- factor(dataTemp$GPUs, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
-print(levels(dataTemp$Apps))
+dataTemp$Gpus <- factor(dataTemp$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
+# print(levels(dataTemp$Apps))
 
-dataTemp$Size <- as.numeric(as.character(dataTemp$Size))
-dataTemp$Accuracy <- as.numeric(as.character(dataTemp$Accuracy))
+dataTemp$InputSize <- as.numeric(as.character(dataTemp$InputSize))
+dataTemp$accuracy <- as.numeric(as.character(dataTemp$accuracy))
 
 #View(dataTemp)
 
@@ -282,10 +282,12 @@ dataTemp$Accuracy <- as.numeric(as.character(dataTemp$Accuracy))
 #     scale_colour_grey()
 
 
-
-Graph <- ggplot(data=dataTemp, aes(x=GPUs, y=Accuracy, group=GPUs, col=GPUs)) + 
-    geom_boxplot(size=1.5, outlier.size = 2.5) + #scale_y_continuous(limits =  c(0.5, 2)) +
+Result_AM <- dataTemp
+Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
+    geom_boxplot(size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2.5)) +
     stat_boxplot(geom ='errorbar') +
+    xlab(" ") + 
+    theme_bw() +
     ggtitle("Accuracy of the BSP-based Analytical model") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=30)) +
@@ -299,7 +301,7 @@ Graph <- ggplot(data=dataTemp, aes(x=GPUs, y=Accuracy, group=GPUs, col=GPUs)) +
           legend.key=element_rect(size=5),
           legend.key.size = unit(3, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
-    facet_wrap(~Apps, ncol=3, scales="free_y") +
+    facet_wrap(~Apps, ncol=3, scales="fixed") +
     theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 

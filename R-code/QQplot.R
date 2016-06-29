@@ -86,13 +86,6 @@ testSet$L2.Write.Transactions <- NULL
 # testSet$totalStoreGM <- NULL
 
 
-
-
-
-
-
-
-
 pdf("./images/ResultsLearning/QQplot.pdf", height=10, width=8)
 par(mfrow=c(1,2))
 base <- lm(trainingSet$Duration ~ ., data = trainingSet) 

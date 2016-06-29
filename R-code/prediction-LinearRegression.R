@@ -17,7 +17,6 @@ Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "Input.Size", "Duration
                    "Achieved.Occupancy",
                     "totalLoadGM", "totalStoreGM", "totalLoadSM", "totalStoreSM",
                 "Floating.Point.Operations.Single.Precision.",
-                "L2.Read.Transactions",	"L2.Write.Transactions",
                    "blockSize", "GridSize", "totalThreads"
 )
 
@@ -53,17 +52,6 @@ for (CC in c(1:6, 8:10)){
         trainingSet$gpu_name <- NULL
         trainingSet$AppId <- NULL
         trainingSet$gpu_id <- NULL
-        
-        # trainingSet$max_clock_rate <- NULL
-        # trainingSet$num_of_cores <- NULL
-        # trainingSet$Achieved.Occupancy <- NULL
-        # trainingSet$blockSize <- NULL
-        # trainingSet$GridSize <- NULL
-        # trainingSet$totalThreads <- NULL
-        # trainingSet$inst_issued2 <- NULL
-        trainingSet$L2.Read.Transactions <- NULL
-        trainingSet$L2.Write.Transactions <- NULL
-        # trainingSet$totalStoreGM <- NULL
 
         TestDuration <- testSet["Duration"]
         Size <- testSet["Input.Size"]
@@ -83,7 +71,7 @@ for (CC in c(1:6, 8:10)){
         trainingSet <- log(trainingSet,2)
         testSet <- log(testSet,2)
         
-        base <- cv.lm(trainingSet$Duration ~ ., data = trainingSet) 
+        base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
         summary(base)
 
         predictions <- predict(base, testSet)
@@ -127,10 +115,12 @@ result$Gpus <- factor(result$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro
 
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
+Result_LM <- result
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
-    geom_boxplot( size=1.5, outlier.size = 2.5) + #scale_y_continuous(limits =  c(0, 3.5)) +
+    geom_boxplot( size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2.5)) +
     stat_boxplot(geom ='errorbar') +
-    xlab("GPUs") + 
+    xlab(" ") + 
+    theme_bw() +
     ggtitle("Linear Regression") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=40)) +
@@ -144,7 +134,7 @@ Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) +
           legend.key=element_rect(size=5),
           legend.key.size = unit(5, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
-    facet_wrap(~Apps, ncol=3, scales="free_y") +
+    facet_wrap(~Apps, ncol=3, scales="fixed") +
     theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 

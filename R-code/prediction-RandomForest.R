@@ -1,6 +1,6 @@
 library(randomForest)
 library(ggplot2)
-
+library(plyr)
 
 dirpath <- "~/Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))
@@ -95,7 +95,7 @@ for (CC in c(1:6, 8:10)){
         trainingSet <- log(trainingSet,3)
         testSet <- log(testSet,3)
         
-        fit <- randomForest(trainingSet$Duration ~ ., data = trainingSet, importance = TRUE,proximity=TRUE, corr.bias=TRUE, ntree=500)
+        fit <- randomForest(trainingSet$Duration ~ ., data = trainingSet, mtry=5,ntree=50)
         print(fit)
         summary(fit)
         predictions <- predict(fit, testSet)
@@ -130,6 +130,7 @@ result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_
                                                "matrix_sum_normal", "matrix_sum_coalesced", 
                                                "dotProd", "vectorAdd",  "subSeqMax"))
 
+
 result$Apps <- revalue(result$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoalesced", "matMul_gpu"="matMul_GM_coalesced", 
                                       "matMul_gpu_sharedmem_uncoalesced"="matMul_SM_uncoalesced", "matMul_gpu_sharedmem"="matMul_SM_coalesced",
                                       "matrix_sum_normal"="matrix_sum_uncoalesced"))
@@ -137,11 +138,12 @@ result$Apps <- revalue(result$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoal
 result$Gpus <- factor(result$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
 
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
-
+Result_RF <- result
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
-    geom_boxplot( size=1.5, outlier.size = 2.5) +# scale_y_continuous(limits =  c(0, 6)) +
+    geom_boxplot( size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2.5)) +
     stat_boxplot(geom ='errorbar') +
-    xlab("GPUs") + 
+    xlab(" ") + 
+    theme_bw() +
     ggtitle("Random Forest") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=40)) +

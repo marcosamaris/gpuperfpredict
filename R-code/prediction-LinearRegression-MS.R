@@ -107,29 +107,32 @@ result$Gpus <- factor(result$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro
 # result[result$Apps %in% "matrix_sum_normal" & result$Gpus %in% c("Quadro", "TitanX"),]
 
 Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
-    geom_boxplot( size=1.5, outlier.size = 5) + #scale_y_continuous(limits =  c(0.5, 2)) +
+    geom_boxplot( size=1.5, outlier.size = 5) + scale_y_continuous(limits =  c(0, 2.5)) +
     stat_boxplot(geom ='errorbar') +
     xlab(" ") + 
-    ggtitle("Random Forest of matMul_SM_Coalesced") +
+    theme_bw() +
+    ggtitle("Ranfom Forest of MMSC") +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
-    theme(plot.title = element_text(family = "Times", face="bold", size=40)) +
-    theme(axis.title = element_text(family = "Times", face="bold", size=40)) +
-    theme(axis.text  = element_text(family = "Times", face="bold", size=40, colour = "Black")) +
+    theme(plot.title = element_text(family = "Times", face="bold", size=50)) +
+    theme(axis.title = element_text(family = "Times", face="bold", size=50)) +
+    theme(axis.text  = element_text(family = "Times", face="bold", size=50, colour = "Black")) +
     theme(axis.text.x=element_blank()) +
     theme(legend.title  = element_text(family = "Times", face="bold", size=0)) +
-    theme(legend.text  = element_text(family = "Times", face="bold", size=30)) +
-    # theme(legend.position = "none") +
-    theme(legend.direction = "horizontal",
-    legend.position = "bottom",
-          legend.key=element_rect(size=5),
-          legend.key.size = unit(5, "lines")) +
-    guides(col = guide_legend(nrow = 2)) +
+    theme(legend.text  = element_text(family = "Times", face="bold", size=40)) +
+    theme(legend.position = "none") +
+    # theme(legend.key.size = unit(5, "cm")) +
+    # theme(legend.direction = "horizontal",
+    # legend.position = "bottom",
+    #       legend.key=element_rect(size=0),
+    #       legend.key.size = unit(10, "lines")) +
+    # guides(col = guide_legend(nrow = 3)) +
     # facet_grid(.~Apps, scales="fixed") 
     # facet_wrap(~Apps, ncol=3, scales="free_y") +
     theme(strip.text = element_text(size=0))+
-    scale_colour_grey()
+    scale_colour_grey() 
+    
 
-ggsave(paste("./images/ResultsLearning/MSCoalesced-RF.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+ggsave(paste("./images/ResultsLearning/MSCoalesced-legend.pdf",sep=""), Graph, device = pdf, height=10, width=16)
 write.csv(result, file = "./R-code/Results/MSCoalesced-RF.csv")
 # ggsave(paste("./images/ResultsLearning/ResultLinearRegression.png",sep=""), Graph, height=10, width=16)
 
