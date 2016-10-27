@@ -86,14 +86,20 @@ testSet$L2.Write.Transactions <- NULL
 # testSet$totalStoreGM <- NULL
 
 
-pdf("./images/ResultsLearning/QQplot.pdf", height=10, width=8)
-par(mfrow=c(1,2))
-base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
-qqPlot(base, main="Original Data Input", ylab="Studentized Residual (Fitted Model)", cex.lab = 2)
+cairo_pdf("./images/ResultsLearning/QQplot.pdf", height=8, width=16)
+par(family = "Times", mfrow=c(1,2), mai = c(1, 1, 0.5, 0.5))
+base <- rstandard(lm(trainingSet$Duration ~ ., data = trainingSet))
+qqnorm(base, ylab="Studentized Residual (Fitted Model)", 
+            xlab="t Quantiles", 
+            main="Original Data Input", cex.lab = 2.5, cex.main=2.5,cex=1.5,cex.axis=2)
+qqline(base, col = 2,lwd=5)
 
 trainingSet <- log(trainingSet,2)
 testSet <- log(testSet,2)
-base <- lm(trainingSet$Duration ~ ., data = trainingSet) 
-qqPlot(base, main="Data in Logarithmic Scale", ylab="Studentized Residual (Fitted Model)",cex.lab = 2)
+base <- rstandard(lm(trainingSet$Duration ~ ., data = trainingSet))
+qqnorm(base, ylab="Studentized Residual (Fitted Model)", 
+       xlab="t Quantiles", 
+       main="Data in Log Scale", cex.lab = 2.5, cex.main=2.5,cex=1.75, cex.axis=2)
+qqline(base, col = 2,lwd=5)
 dev.off()
 

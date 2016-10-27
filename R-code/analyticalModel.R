@@ -4,10 +4,10 @@ library(reshape2)
 library(plyr)
 
 cbbPalette <- gray(1:9/ 12)#c("red", "blue", "darkgray", "orange","black","brown", "lightblue","violet")
-dirpath <- "~/Doctorate/svm-gpuperf/"
+dirpath <- "~/Dropbox/Doctorate/svm-gpuperf/"
 setwd(paste(dirpath, sep=""))
 
-gpus <- read.table("./ML-model/deviceInfo_L1disabled.csv", sep=",", header=T)
+gpus <- read.table("./R-code/deviceInfo.csv", sep=",", header=T)
 NoGPU <- dim(gpus)[1]
 
 apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
@@ -31,25 +31,21 @@ lambdaGTX980 <- c(13,   44,   46,   120, 3.25,  9.5,  9,  9.5, 1.5)
 lambdaGTX970 <- c(7,  26,  24, 80,   1.75,   10,  7,   6.5,   1.15)
 lambdaGTX750 <- c(10,   52,   40,  138, 3.5, 14, 25, 15, 2)
 
-lambda[1,] <- lambdaK40
-lambda[2,] <- lambdaGTX680
-lambda[3,] <- lambdaTitan
-lambda[4,] <- lambdaK20
-lambda[5,] <- lambdaQ
-lambda[6,] <- lambdaTitanX
-lambda[7,] <- lambdaTitanBlack
-lambda[8,] <- lambdaGTX980
-lambda[9,] <- lambdaGTX970
-lambda[10,] <- lambdaGTX750
-
-#library(xtable)
-#dflambda <- data.frame(lambda)
-#xtable(lambda[1:10,])
+lambda[1,] <- lambdaGTX680
+lambda[2,] <- lambdaK40
+lambda[3,] <- lambdaK20
+lambda[4,] <- lambdaTitanBlack
+lambda[5,] <- lambdaTitan
+lambda[6,] <- lambdaQ
+lambda[7,] <- lambdaGTX750
+lambda[8,] <- lambdaTitanX
+lambda[9,] <- lambdaGTX980
+lambda[10,] <- lambdaGTX970
 
 dataGPUsApps <- data.frame()
 
 noSamples <- 10
-for (k in c(1:9)){
+for (k in c(1:6, 8:10)){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
@@ -91,19 +87,7 @@ for (k in c(1:9)){
         L2Effect <- 0
         
         CommGM <- ((numberthreads*N*2 - L1Effect - L2Effect + numberthreads)*latencyGlobalMemory + L1Effect*latencyL1 + L2Effect*latencyL2);
-#         if (apps[i] == "matMul_gpu_uncoalesced" & lambda[k,i] == 0 ){
-#             lambda[k,i] <- 13
-#         }
-#         if (apps[i] == "matMul_gpu" & lambda[k,i] == 0 ){
-#             lambda[k,i] <- 42
-#         }
-#         if (apps[i] == "matMul_gpu_sharedmem_uncoalesced" & lambda[k,i] == 0 ){
-#             lambda[k,i] <- 38
-#         }
-#         if (apps[i] == "matMul_gpu_sharedmem" & lambda[k,i] == 0 ){
-#             lambda[k,i] <- 120
-#         }
-
+        
         timeKernel <- ( lambda[k,i]^-1*(timeComputationKernel + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
         timeKernelMatMul[[apps[i]]] <- timeKernel
         SpeedupMatMul[[apps[i]]] <- timeKernel[1:length(TimeApp[[apps[i]]])]/TimeApp[[apps[i]]];
@@ -126,13 +110,6 @@ for (k in c(1:9)){
         reads <- numberthreads*2
         tempOperationcycles <- ((numberMultiplication * 10) ) * numberthreads;
         CommGM <- ((numberthreads*2 - L1Effect - L2Effect + numberthreads)*latencyGlobalMemory + L1Effect*latencyL1 + L2Effect*latencyL2);
-        
-#         if(apps[i] == "matrix_sum_normal" & lambda[k,i] == 0 ){
-#             lambda[k,i] <- 3.5
-#         }
-#         if(apps[i] ==  "matrix_sum_coalesced" & lambda[k,i] == 0 ){
-#             lambda[k,i] <- 14
-#         }
         
         timeKernel <- ( lambda[k,i]^-1*(tempOperationcycles + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
         timeKernelMatSum[[apps[i]]] <- timeKernel
@@ -164,13 +141,6 @@ for (k in c(1:9)){
             tempOperationcycles <- ((numberMultiplication * 20) ) * numberthreads;
             CommGM <- ((numberthreads*2 - L1Effect - L2Effect + numberthreads)*latencyGlobalMemory + L1Effect*latencyL1 + L2Effect*latencyL2);
             
-#             if(apps[i] == "dotProd" & lambda[k,i] == 0 ){
-#                 lambda[k,i] <- 22
-#             }
-#             if(apps[i] == "vectorAdd" & lambda[k,i] == 0 ){
-#                 lambda[k,i] <- 15
-#             }
-            
         } else {
             
             gridsize <- 32;
@@ -188,9 +158,6 @@ for (k in c(1:9)){
             CommGM <- ((numberthreads*N_perThread - L1Effect - L2Effect + numberthreads*5)*latencyGlobalMemory + L1Effect*latencyL1 + L2Effect*latencyL2);
             CommSM <- (numberthreads*N_perThread + numberthreads*5)*latencySharedMemory
             
-#             if(apps[i] == "subSeqMax" & lambda[k,i] == 0 ){
-#                 lambda[k,i] <- 2.17
-#             }
         }
         timeKernel <- ( lambda[k,i]^-1*(tempOperationcycles + CommGM)/(flopsTheoreticalPeak[k,]*10^6));
         timeKernelVecOp[[apps[i]]] <- timeKernel
@@ -241,14 +208,10 @@ for (k in c(1:9)){
     dataGPUsApps <- rbind(dfAllApp, dataGPUsApps)
     
 }
-# View(dataGPUsApps)
+
 dataTemp <- data.frame()
 
 dataTemp <- dataGPUsApps
-
-# dataTemp <- dataTemp[dataTemp$GPUs != "GTX-680" & dataTemp$GPUs != "Quadro",]
-#dataTemp <- dataGPUsApps[(dataGPUsApps$Apps != "matrix_sum_normal")]
-#dataTemp$apps <- dataTemp[dataTemp$Apps != "matrix_sum_normal",]
 
 dataTemp$Apps <- factor(dataTemp$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
                                                    "matrix_sum_normal", "matrix_sum_coalesced", 
@@ -257,30 +220,11 @@ dataTemp$Apps <- factor(dataTemp$Apps, levels =  c("matMul_gpu_uncoalesced","mat
 dataTemp$Apps <- revalue(dataTemp$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoalesced", "matMul_gpu"="matMul_GM_coalesced", 
                          "matMul_gpu_sharedmem_uncoalesced"="matMul_SM_uncoalesced", "matMul_gpu_sharedmem"="matMul_SM_coalesced",
                          "matrix_sum_normal"="matrix_sum_uncoalesced"))
-                         
- # levels(x)[levels(x)=="beta"] <- "two
-
 
 dataTemp$Gpus <- factor(dataTemp$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
-# print(levels(dataTemp$Apps))
 
 dataTemp$InputSize <- as.numeric(as.character(dataTemp$InputSize))
 dataTemp$accuracy <- as.numeric(as.character(dataTemp$accuracy))
-
-#View(dataTemp)
-
-# Graph <- ggplot(data=dataTemp, aes(x=Size, y=Accuracy, group=GPUs, color = GPUs)) + 
-#     geom_line(size=1) +
-#     xlab("Size of elements to compute") + 
-#     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
-#     theme(axis.title = element_text(family = "Trebuchet MS", face="bold", size=22)) +
-#     theme(axis.text  = element_text(family = "Trebuchet MS", face="bold", size=6)) +
-#     theme(legend.title  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
-#     theme(legend.text  = element_text(family = "Trebuchet MS", face="bold", size=16)) +
-#     facet_wrap(~Apps, ncol=3, scales="free_x") +
-#     theme(strip.text.x = element_text(size = 18, colour = "Black")) +
-#     scale_colour_grey()
-
 
 Result_AM <- dataTemp
 Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
@@ -305,7 +249,36 @@ Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) +
     theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 
-# Graph
+
 ggsave(paste("./images/ResultModel/ResutAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
 # ggsave(paste("./images/ResultModel/ResutAnalyticalModel.png",sep=""), Graph,height=10, width=16)
 
+
+lambda <- data.frame(lambda)
+colnames(lambda) <- apps
+lambda[-c(7), ]
+lambdaT <- data.frame()
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("MMGU"), lambdas=lambda$matMul_gpu_uncoalesced))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("MMGC"), lambdas=lambda$matMul_gpu))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("MMSU"), lambdas=lambda$matMul_gpu_sharedmem_uncoalesced))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("MMSC"), lambdas=lambda$matMul_gpu_sharedmem))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("MAU"), lambdas=lambda$matrix_sum_normal))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("MAC"), lambdas=lambda$matrix_sum_coalesced))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("dotP"), lambdas=lambda$dotProd))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("vAdd"), lambdas=lambda$vectorAdd))
+lambdaT <- rbind(lambdaT,data.frame(apps=rep("MSA"), lambdas=lambda$subSeqMax))
+
+Graph <- ggplot(data=lambdaT, aes(x=apps, y=lambdas, group=apps, col=apps)) + 
+    scale_y_continuous(breaks = round(seq(0, max(lambdaT$lambdas), by = 10),1)) +
+    geom_boxplot(size=1.5, outlier.size = 2.5) + 
+    stat_boxplot(geom ='errorbar') +
+    xlab("Applications ") + 
+    ggtitle("Lambda Values of each one of the Applications") +
+    ylab("Lambda Values") +
+    theme(plot.title = element_text(family = "Times", face="bold", size=30)) +
+    theme(axis.title = element_text(family = "Times", face="bold", size=20)) +
+    theme(axis.text  = element_text(family = "Times", face="bold", size=20, colour = "Black")) +
+    theme(legend.position = "none") +
+    theme(strip.text = element_text(size=20))
+# Graph
+ggsave(paste("./images/ResultModel/LambdaAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)

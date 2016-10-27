@@ -84,6 +84,7 @@ int main(int argc, char* argv[])
     int devId = atoi(argv[2]);
 
     checkCuda( cudaSetDevice(devId) );
+    checkCuda(   cudaDeviceReset() );
 
     float   *a, *b, c, *partial_c;
     float   *dev_a, *dev_b, *dev_partial_c;

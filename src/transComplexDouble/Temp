@@ -1,8 +1,0 @@
-==26738== NVPROF is profiling process 26738, command: ./transComplexDouble 268435456 0
-==26738== Profiling application: ./transComplexDouble 268435456 0
-==26738== Profiling result:
-"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
-s,s,,,,,,,,B,B,GB,GB/s,,,,
-18.248832,0.690115,,,,,,,,,,4.000000,5.796139,"Tesla K40c (0)","2","14","[CUDA memcpy HtoD]"
-18.939269,4.169765e-03,1048576,1,1,256,1,1,8,0,0,,,"Tesla K40c (0)","2","14","transComplexDouble(double2*, int) [99]"
-18.943442,0.721547,,,,,,,,,,4.000000,5.543646,"Tesla K40c (0)","2","14","[CUDA memcpy DtoH]"
