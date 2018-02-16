@@ -4,10 +4,10 @@ library(reshape2)
 library(plyr)
 
 cbbPalette <- gray(1:9/ 12)#c("red", "blue", "darkgray", "orange","black","brown", "lightblue","violet")
-dirpath <- "~/Dropbox/Doctorate/svm-gpuperf/"
+dirpath <- "~/GIT/MLvsAMgpuperf/"
 setwd(paste(dirpath, sep=""))
 
-gpus <- read.table("./R-code/deviceInfo.csv", sep=",", header=T)
+gpus <- read.table("./Datasets/deviceInfo.csv", sep=",", header=T)
 NoGPU <- dim(gpus)[1]
 
 apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
@@ -30,33 +30,31 @@ lambdaTitanBlackL1 <- c(2.25,   17,   18,   52, 2,  7.5,  7.25,  8.5, 0.35)
 lambdaGTX980 <- c(13,   44,   46,   120, 3.25,  9.5,  9,  9.5, 1.5)
 lambdaGTX970 <- c(7,  26,  24, 80,   1.75,   10,  7,   6.5,   1.15)
 lambdaGTX750 <- c(10,   52,   40,  138, 3.5, 14, 25, 15, 2)
+lambdaP100 <- c(10,   52,   40,  138, 3.5, 14, 25, 15, 2)
 
 lambda[1,] <- lambdaGTX680
 lambda[2,] <- lambdaK40
 lambda[3,] <- lambdaK20
-lambda[4,] <- lambdaTitanBlack
-lambda[5,] <- lambdaTitan
-lambda[6,] <- lambdaQ
-lambda[7,] <- lambdaGTX750
-lambda[8,] <- lambdaTitanX
-lambda[9,] <- lambdaGTX980
-lambda[10,] <- lambdaGTX970
+lambda[4,] <- lambdaTitan
+lambda[5,] <- lambdaQ
+lambda[6,] <- lambdaTitanX
+lambda[7] <- lambdaGTX970
+lambda[8,] <- lambdaGTX980
+lambda[9,] <- lambdaP100
+
 
 dataGPUsApps <- data.frame()
 
 noSamples <- 10
-for (k in c(1:6, 8:10)){
+for (k in c(1:4, 6:8)){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
         data <- 0; Temp <- 0
         print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], sep=""))
-            for (j in 1:noSamples){
-                temp <- read.table(paste("./data/", gpus[k,'gpu_name'],"/traces/run_", j, "/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)["V3"]
-                data <- data + temp
-            }
-        
-      TimeApp[apps[i]] <- data/noSamples
+                temp <- read.table(paste("./data/", gpus[k,'gpu_name'],"/block_16/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
+                
+      TimeApp[apps[i]] <- temp
     }
     
     latencySharedMemory <- 5; #Cycles per processor
@@ -69,7 +67,7 @@ for (k in c(1:6, 8:10)){
     timeKernelMatMul <- list()
     for (i in 1:4){
         nN <- 9:13
-        N <- 2^nN
+        N <- seq(256,8192, 256)
         
         numberMultiplication <- N;
         
@@ -99,7 +97,7 @@ for (k in c(1:6, 8:10)){
     for (i in 5:6){
         
         nN <- 9:13
-        N <- 2^nN
+        N <- seq(256,8192,256)
         
         
         gridsizes <- as.integer((N +  tileWidth -1)/tileWidth);
@@ -229,7 +227,7 @@ dataTemp$accuracy <- as.numeric(as.character(dataTemp$accuracy))
 Result_AM <- dataTemp
 Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
     geom_boxplot(size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2.5)) +
-    stat_boxplot(geom ='errorbar') +
+    stat_boxplot(geom ='errorbar')  +
     xlab(" ") + 
     theme_bw() +
     ggtitle("Accuracy of the BSP-based Analytical model") +
@@ -250,7 +248,7 @@ Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) +
     scale_colour_grey()
 
 
-ggsave(paste("./images/ResultModel/ResutAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+ggsave(paste("./images/ResutAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
 # ggsave(paste("./images/ResultModel/ResutAnalyticalModel.png",sep=""), Graph,height=10, width=16)
 
 
@@ -281,4 +279,4 @@ Graph <- ggplot(data=lambdaT, aes(x=apps, y=lambdas, group=apps, col=apps)) +
     theme(legend.position = "none") +
     theme(strip.text = element_text(size=20))
 # Graph
-ggsave(paste("./images/ResultModel/LambdaAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+ggsave(paste("./images/LambdaAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
