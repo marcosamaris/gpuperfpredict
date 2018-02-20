@@ -29,7 +29,7 @@ events:
 traces: 
 	cd matSum; make traces
 	cd dotProd; make traces
-#	cd subSeqMax; make traces
+	cd subSeqMax; make traces
 	cd matMul; make traces
 	cd vectorAdd; make traces
 

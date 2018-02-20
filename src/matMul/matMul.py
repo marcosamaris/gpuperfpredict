@@ -26,44 +26,41 @@ common = imp.load_source("common", "../common/common.py")
 
 subprocess.check_output("rm -f *.csv",  shell = True)
 
-programs = [ "matMul_gpu_sharedmem"]
+programs = [ "matMul_gpu_uncoalesced", "matMul_gpu_uncoalesced", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem"]
 
-parameters = [
-            "240 " + str(args.Device),
-            "480 " + str(args.Device),
-            "720 " + str(args.Device),
-            "960 " + str(args.Device),
-            "1200 " + str(args.Device),
-            "1440 " + str(args.Device),
-            "1680 " + str(args.Device),
-            "1920 " + str(args.Device),
-            "2160 " + str(args.Device),
-            "2400 " + str(args.Device),
-            "2640 " + str(args.Device),
-            "2880 " + str(args.Device),
-            "3120 " + str(args.Device),
-            "3360 " + str(args.Device),
-            "3600 " + str(args.Device),
+
+parameters = ["256 " + str(args.Device),
+            "512 " + str(args.Device),
+            "768 " + str(args.Device),
+            "1024 " + str(args.Device),
+            "1280 " + str(args.Device),
+            "1536 " + str(args.Device),
+            "1792 " + str(args.Device),
+            "2048 " + str(args.Device),
+            "2304 " + str(args.Device),
+            "2560 " + str(args.Device),
+            "2816 " + str(args.Device),
+            "3072 " + str(args.Device),
+            "3328 " + str(args.Device),
+            "3584 " + str(args.Device),
             "3840 " + str(args.Device),
-            "4080 " + str(args.Device),
-            "4320 " + str(args.Device),
-            "4560 " + str(args.Device),
-            "4800 " + str(args.Device),
-            "5040 " + str(args.Device),
-            "5280 " + str(args.Device),
-            "5520 " + str(args.Device),
-            "5760 " + str(args.Device),
-            "6000 " + str(args.Device),
-            "6240 " + str(args.Device),
-            "6480 " + str(args.Device),
-            "6720 " + str(args.Device),
-            "6960 " + str(args.Device),
-            "7200 " + str(args.Device),
-            "7440 " + str(args.Device),
+            "4096 " + str(args.Device),
+            "4352 " + str(args.Device),
+            "4608 " + str(args.Device),
+            "4864 " + str(args.Device),
+            "5120 " + str(args.Device),
+            "5376 " + str(args.Device),
+            "5632 " + str(args.Device),
+            "5888 " + str(args.Device),
+            "6144 " + str(args.Device),
+            "6400 " + str(args.Device),
+            "6656 " + str(args.Device),
+            "6912 " + str(args.Device),
+            "7168 " + str(args.Device),
+            "7424 " + str(args.Device),
             "7680 " + str(args.Device),
-            "7920 " + str(args.Device),
-            "8160 " + str(args.Device)
-]
+            "7936 " + str(args.Device),
+            "8192 " + str(args.Device)]
 
 kernel = "matMul"
 

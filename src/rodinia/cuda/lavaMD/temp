@@ -1,0 +1,11 @@
+==4254== NVPROF is profiling process 4254, command: ././lavaMD -boxes1d 100
+==4254== Profiling application: ././lavaMD -boxes1d 100
+==4254== Profiling result:
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+s,s,,,,,,,,B,KB,GB,GB/s,,,,
+10.045805,0.105001,,,,,,,,,,0.610948,5.818480,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+10.150940,0.510271,,,,,,,,,,2.980232,5.840489,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+10.661334,0.126556,,,,,,,,,,0.745058,5.887180,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+10.788012,0.511472,,,,,,,,,,2.980232,5.826772,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+11.299490,21.107912,1000000,1,1,128,1,1,58,7.200000e+03,0.000000,,,"Tesla K40c (0)","1","7","kernel_gpu_cuda(par_str, dim_str, box_str*, FOUR_VECTOR*, double*, FOUR_VECTOR*) [108]"
+32.407440,0.521879,,,,,,,,,,2.980232,5.710585,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"

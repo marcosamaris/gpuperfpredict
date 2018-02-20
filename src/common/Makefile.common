@@ -1,4 +1,4 @@
 CC=nvcc
-CFLAGS=-lm -O3 -w -ccbin g++-4.8 -D Tile_Width=X -arch sm_XX
+CFLAGS=-lm -O22 -w -ccbin g++-4.8 -D Tile_Width=16 -arch sm_35
 DEVICE_ID=0
 

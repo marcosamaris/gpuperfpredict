@@ -5,7 +5,7 @@ import subprocess
 import argparse
 
 gpu = "Tesla"
-experiment = 1                    
+experiment = 10                    
 
 def run_traces(programs, parameters, kernel, traces):
 
@@ -15,7 +15,8 @@ def run_traces(programs, parameters, kernel, traces):
             for program in programs:
                 for param in parameters:
                     cmd = "nvprof"
-                    cmd += " --normalized-time-unit s"
+                    cmd += "  --unified-memory-profiling off"
+                    cmd += " --normalized-time-unit ns"
                     cmd += " --print-gpu-trace "
                     cmd += " --csv " 
                     
