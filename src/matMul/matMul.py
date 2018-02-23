@@ -26,7 +26,7 @@ common = imp.load_source("common", "../common/common.py")
 
 subprocess.check_output("rm -f *.csv",  shell = True)
 
-programs = [ "matMul_gpu_uncoalesced", "matMul_gpu_uncoalesced", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem"]
+programs = [ "matMul_gpu_uncoalesced", "matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem"]
 
 
 parameters = ["256 " + str(args.Device),
