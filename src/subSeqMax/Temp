@@ -1,0 +1,6 @@
+==17733== NVPROF is profiling process 17733, command: ./subSeqMax 131072 0 0
+subSeqMax: subSeqMax.cu:240: void subSeqMaxFinal(int*, int): Assertion `t_M == 964' failed.
+==17733== Profiling application: ./subSeqMax 131072 0 0
+==17733== Profiling result:
+No kernels were profiled.
+======== Error: Application received signal 134

@@ -2,7 +2,7 @@
 
 gpu=Tesla
 
-declare -a apps=( gaussian heartwall hotspot lavaMD lud nw )
+declare -a apps=( lud nw )
 
 
 declare -A execApps

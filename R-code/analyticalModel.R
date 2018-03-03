@@ -4,7 +4,7 @@ library(reshape2)
 library(plyr)
 
 cbbPalette <- gray(1:9/ 12)#c("red", "blue", "darkgray", "orange","black","brown", "lightblue","violet")
-dirpath <- "~/GIT/MLvsAMgpuperf/"
+dirpath <- "~/Dropbox/Doctorate/Theses/gpuperfpredict/"
 setwd(paste(dirpath, sep=""))
 
 gpus <- read.table("./Datasets/deviceInfo.csv", sep=",", header=T)
@@ -17,19 +17,14 @@ apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesc
 flopsTheoreticalPeak <- gpus['max_clock_rate']*gpus['num_of_cores']
 lambda <- matrix(nrow = NoGPU, ncol = length(apps), 0, dimnames = gpus['gpu_name'])
 
-lambdaK40 <- c(4.30, 20, 19, 65 ,  2.50,  9.50,  9 , 10,  0.48)
-lambdaK40L1 <- c(3.5,   20, 19,   65, 2.75,  9.5,    9,   10, 0.48)
-lambdaGTX680 <- c(4.5,   19,   20,   68, 1.5,  9.25, 14, 11, 0.68)
-lambdaTitan <- c(4.25,  21,   17,  50, 2.5, 10,  9.5,   12, 0.48)
-lambdaK20 <- c(4.5,   21,   18,   52, 2.5,  9,  10, 10, 0.55)
-lambdaQ <- c(4.75,   20,   20,   64, 1,  8.25, 11,  9.5, 0.55)
-lambdaQL1 <- c(3.35, 20 , 25 , 64,  1.75,  8.5, 11 ,  9.50,  0.5)
+lambdaGTX680 <- c(4.5,   19,   20,   68, 1.5,  9.25, 14, 11, 0.6)
+lambdaK20 <- c(4.75,   21,   18,   55, 2.5,  9,  6, 10, 0.55)
+lambdaK40 <- c(4.75, 20, 19, 65 ,  2.50,  9.50,  5.5 , 10,  0.5)
+lambdaTitan <- c(4.5,  21,   17,  55, 2.5, 10,  5.5,   12, 0.5)
+lambdaQ <- c(4.75,   20,   20,   64, 1,  8.25, 6,  9.5, 0.55)
 lambdaTitanX <- c(9.5,   36,   36,  110, 3,  9.50,  8,  9.75, 0.95)
-lambdaTitanBlack <- c(3.5,   17,   17,   52, 1.75,  7.5,  7.25,  8.5, 0.35)
-lambdaTitanBlackL1 <- c(2.25,   17,   18,   52, 2,  7.5,  7.25,  8.5, 0.35)
-lambdaGTX980 <- c(13,   44,   46,   120, 3.25,  9.5,  9,  9.5, 1.5)
-lambdaGTX970 <- c(7,  26,  24, 80,   1.75,   10,  7,   6.5,   1.15)
-lambdaGTX750 <- c(10,   52,   40,  138, 3.5, 14, 25, 15, 2)
+lambdaGTX970 <- c(13.5,   50,   46,   140, 3.25,  9.5,  7,  10.5, 2.25)
+lambdaGTX980 <- c(13.5,   44,   40,   120, 3,  8.5,  7,  8.5, 1.65)
 lambdaP100 <- c(10,   52,   40,  138, 3.5, 14, 25, 15, 2)
 
 lambda[1,] <- lambdaGTX680
@@ -38,7 +33,7 @@ lambda[3,] <- lambdaK20
 lambda[4,] <- lambdaTitan
 lambda[5,] <- lambdaQ
 lambda[6,] <- lambdaTitanX
-lambda[7] <- lambdaGTX970
+lambda[7,] <- lambdaGTX970
 lambda[8,] <- lambdaGTX980
 lambda[9,] <- lambdaP100
 
@@ -46,13 +41,13 @@ lambda[9,] <- lambdaP100
 dataGPUsApps <- data.frame()
 
 noSamples <- 10
-for (k in c(1:4, 6:8)){
+for (k in c(2:4, 7:8)){
 
     TimeApp <- list()
     for (i in 1:length(apps)){
         data <- 0; Temp <- 0
         print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], sep=""))
-                temp <- read.table(paste("./data/", gpus[k,'gpu_name'],"/block_16/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=F)
+                temp <- read.table(paste("./data/", gpus[k,'gpu_name'],"/block_16/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=FALSE)["V3"]
                 
       TimeApp[apps[i]] <- temp
     }
@@ -118,14 +113,13 @@ for (k in c(1:4, 6:8)){
     SpeedupVecOp <- list()
     timeKernelVecOp <- list()
     for (i in 7:9){
-        if (gpus[k,'gpu_name'] == "GTX-750"){
-            nN <- 18:26
-            N <- 2^nN
-        }
-        else {
-            nN <- 18:27
-            N <- 2^nN
-        }
+      if (gpus[k,'gpu_name'] == "GTX-680" ){
+        nN <- 17:21
+        N <- c(2^nN, seq(2^22, 167772160, 2^22))
+      } else {
+        nN <- 17:21
+        N <- c(2^nN, seq(2^22, 268435456, 2^22))
+      }
         if (apps[i] != "subSeqMax"){
             
             BlockSize <- tileWidth*tileWidth
@@ -161,14 +155,16 @@ for (k in c(1:4, 6:8)){
         timeKernelVecOp[[apps[i]]] <- timeKernel
         SpeedupVecOp[[apps[i]]] <- timeKernel[1:length(TimeApp[[apps[i]]])]/TimeApp[[apps[i]]];
         
+        # SpeedupVecOp[[apps[i]]] <- na.omit(SpeedupVecOp[[apps[i]]])
+        
     }
     SpeedupVecOp
+    
     
     matMul <- array(unlist(SpeedupMatMul,use.names = T))
     TkmatMul <- array(unlist(timeKernelMatMul,use.names = T))
     
-    nN <- 9:13
-    N <- 2^nN
+    N <- seq(256,8192,256)
     
     namesMatMul <- c(rep("matMul_gpu_uncoalesced",length(N)), rep("matMul_gpu",length(N)),
                      rep("matMul_gpu_sharedmem_uncoalesced",length(N)), rep("matMul_gpu_sharedmem",length(N)))
@@ -177,8 +173,8 @@ for (k in c(1:4, 6:8)){
 
     matSum <- array(unlist(SpeedupMatSum,use.names = T))
     TkmatSum <- array(unlist(timeKernelMatSum,use.names = T))
-    nN <- 9:13
-    N <- 2^nN
+    
+    N <- seq(256,8192,256)
     
     namesmatSum <- c(rep("matrix_sum_normal",length(N)), rep("matrix_sum_coalesced",length(N)))
     
@@ -187,17 +183,16 @@ for (k in c(1:4, 6:8)){
     matVecOp <- array(unlist(SpeedupVecOp,use.names = T))
     TkVecop <- array(unlist(timeKernelVecOp,use.names = T))
     
-    if (gpus[k,'gpu_name'] == "GTX-750"){
-        nN <- 18:26
-        N <- 2^nN
-    }
-    else {
-        nN <- 18:27
-        N <- 2^nN
+    if (gpus[k,'gpu_name'] == "GTX-680" ){
+      nN <- 17:21
+      N <- c(2^nN, seq(2^22, 167772160, 2^22))
+    } else {
+      nN <- 17:21
+      N <- c(2^nN, seq(2^22, 268435456, 2^22))
     }
     
     namesVecOp <-c(rep("dotProd",length(N)), rep("vectorAdd",length(N)),  rep("subSeqMax",length(N)))
-    dfVecOp <- cbind(matVecOp, TkVecop, namesVecOp,N)
+    dfVecOp <- cbind(matVecOp, TkVecop, namesVecOp, N)
     
     allApp = rbind(dfmatMul,dfmatSum,dfVecOp)
     
@@ -215,22 +210,25 @@ dataTemp$Apps <- factor(dataTemp$Apps, levels =  c("matMul_gpu_uncoalesced","mat
                                                    "matrix_sum_normal", "matrix_sum_coalesced", 
                                                  "dotProd", "vectorAdd",  "subSeqMax"))
 
-dataTemp$Apps <- revalue(dataTemp$Apps, c("matMul_gpu_uncoalesced"="matMul_GM_uncoalesced", "matMul_gpu"="matMul_GM_coalesced", 
-                         "matMul_gpu_sharedmem_uncoalesced"="matMul_SM_uncoalesced", "matMul_gpu_sharedmem"="matMul_SM_coalesced",
-                         "matrix_sum_normal"="matrix_sum_uncoalesced"))
+dataTemp$Apps <- revalue(dataTemp$Apps, c("matMul_gpu_uncoalesced"="MMGU", "matMul_gpu"="MMGC", 
+                         "matMul_gpu_sharedmem_uncoalesced"="MMSU", "matMul_gpu_sharedmem"="MMSC",
+                         "matrix_sum_normal"="MAU", "matrix_sum_coalesced"="MAC", "dotProd" = "dotP", "vectorAdd" = "vAdd", "subSeqMax" = "MSA"))
 
-dataTemp$Gpus <- factor(dataTemp$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-980",    "GTX-970",    "GTX-750"))
+dataTemp$Gpus <- factor(dataTemp$Gpus, levels = c("Tesla-K20", "Tesla-K40", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680", "GTX-970", "GTX-980",        "GTX-750"))
 
 dataTemp$InputSize <- as.numeric(as.character(dataTemp$InputSize))
 dataTemp$accuracy <- as.numeric(as.character(dataTemp$accuracy))
 
+dataTemp$mape <- mean(abs(dataTemp$Predicted - dataTemp$Measured)/abs(dataTemp$Measured))*100
+
 Result_AM <- dataTemp
 Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
-    geom_boxplot(size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2.5)) +
+    geom_boxplot(size=2, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2)) +
     stat_boxplot(geom ='errorbar')  +
     xlab(" ") + 
     theme_bw() +
-    ggtitle("Accuracy of the BSP-based Analytical model") +
+    ggtitle("Accuracy Vector/Matrix Kernels of the BSP-based Analytical model") +
+    theme(plot.title = element_text(hjust = 0.5)) +
     ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
     theme(plot.title = element_text(family = "Times", face="bold", size=30)) +
     theme(axis.title = element_text(family = "Times", face="bold", size=20)) +
@@ -241,7 +239,7 @@ Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) +
     theme(legend.direction = "horizontal", 
           legend.position = "bottom",
           legend.key=element_rect(size=5),
-          legend.key.size = unit(3, "lines")) +
+          legend.key.size = unit(5, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
     facet_wrap(~Apps, ncol=3, scales="fixed") +
     theme(strip.text = element_text(size=20))+
@@ -269,14 +267,19 @@ lambdaT <- rbind(lambdaT,data.frame(apps=rep("MSA"), lambdas=lambda$subSeqMax))
 Graph <- ggplot(data=lambdaT, aes(x=apps, y=lambdas, group=apps, col=apps)) + 
     scale_y_continuous(breaks = round(seq(0, max(lambdaT$lambdas), by = 10),1)) +
     geom_boxplot(size=1.5, outlier.size = 2.5) + 
+    theme_bw() +
     stat_boxplot(geom ='errorbar') +
-    xlab("Applications ") + 
+    xlab(" ") + 
     ggtitle("Lambda Values of each one of the Applications") +
+    theme(plot.title = element_text(hjust = 0.5)) +
     ylab("Lambda Values") +
     theme(plot.title = element_text(family = "Times", face="bold", size=30)) +
-    theme(axis.title = element_text(family = "Times", face="bold", size=20)) +
+    theme(axis.title = element_text(family = "Times", face="bold", size=30)) +
     theme(axis.text  = element_text(family = "Times", face="bold", size=20, colour = "Black")) +
     theme(legend.position = "none") +
-    theme(strip.text = element_text(size=20))
+    theme(strip.text = element_text(size=20))+
+    scale_colour_grey()
 # Graph
-ggsave(paste("./images/LambdaAnalyticalModel.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+ggsave(paste("./images/LambdaAnalyticalModel-NCA.pdf",sep=""), Graph, device = pdf, height=10, width=16)
+
+write.csv(dataTemp, file = paste("./Results/BSP-based-model-NCA.csv", sep=""))

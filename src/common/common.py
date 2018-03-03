@@ -10,7 +10,7 @@ experiment = 10
 def run_traces(programs, parameters, kernel, traces):
 
     for i in range(0, experiment):
-        os.system("mkdir -p ../logs/run_" + str(i))    
+        os.system("mkdir -p ../traces/")    
         for trace in traces:
             for program in programs:
                 for param in parameters:
@@ -28,7 +28,10 @@ def run_traces(programs, parameters, kernel, traces):
                         cmd += " 2> Temp; cat Temp | awk '{print "+ str(size[0]) + "\",\" $0}' | tail -n +4 >>  ../logs/run_" + str(i) + "/"  + program + "-traces.csv"
                         print(cmd)
                         output = subprocess.check_output(cmd,  shell = True)
-                        output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep " + kernel + " > ../logs/run_" + str(i) + "/" + program + "-kernel-traces.csv", shell = True)
+                        output = subprocess.check_output("cat ../traces/" + program + "-traces-" + str(i) + ".csv | grep " + kernel + " > ../traces/" + program + "-kernel-traces-" + str(i) + ".csv", shell = True)
+
+                        output = subprocess.check_output("cat ../traces/" + program + "-traces-" + str(i) + ".csv | grep HtoD  > ../traces/" + program + "-HtoD-traces-" + str(i) + ".csv", shell = True)
+                        output = subprocess.check_output("cat ../traces/" + program + "-traces-" + str(i) + ".csv | grep DtoH  > ../traces/" + program + "-DtoH-traces-" + str(i) + ".csv", shell = True)
                         #output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep HtoD > ../logs/run_" + str(i) + "/" + program + "-HtoD-traces.csv", shell = True)
                         #output = subprocess.check_output("cat ../logs/run_" + str(i) + "/" + program + "-traces.csv | grep DtoH > ../logs/run_" + str(i) + "/" + program + "-DtoH-traces.csv", shell = True)
                     elif trace == "--metrics all":

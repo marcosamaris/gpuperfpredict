@@ -2,11 +2,11 @@ all: subSeqMax
 
 include ../common/Makefile.common
 
-subSeqMax.o: subSeqMax.cu
-	$(CC) $(CFLAGS) -c subSeqMax.cu
+#subSeqMax.o: subSeqMax.cu
+#	$(CC) $(CFLAGS) -D_FORCE_INLINES -c subSeqMax.cu
 
-subSeqMax: subSeqMax.o
-	$(CC) $(CFLAGS) subSeqMax.o -o subSeqMax
+subSeqMax: subSeqMax
+	$(CC) $(CFLAGS)  subSeqMax.cu -o subSeqMax
 
 tests: subSeqMax
 	python ./subSeqMax.py --Device $(DEVICE_ID)

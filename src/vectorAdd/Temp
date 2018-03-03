@@ -1,0 +1,9 @@
+==17419== NVPROF is profiling process 17419, command: ./vectorAdd 268435456 0
+==17419== Profiling application: ./vectorAdd 268435456 0
+==17419== Profiling result:
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+ns,ns,,,,,,,,B,B,GB,GB/s,,,,
+8317375408.000000,195202034.000000,,,,,,,,,,1.000000,5.122897,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+8512704675.000000,190486077.000000,,,,,,,,,,1.000000,5.249728,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+8703243104.000000,18171856.000000,1048576,1,1,256,1,1,10,0,0,,,"Tesla K40c (0)","1","7","vectorAdd(float const *, float const *, float*, int) [109]"
+8721418768.000000,380820055.000000,,,,,,,,,,1.000000,2.625912,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"

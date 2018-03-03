@@ -1,0 +1,8 @@
+==15178== NVPROF is profiling process 15178, command: ./matMul_gpu_sharedmem 8192 0
+==15178== Profiling application: ./matMul_gpu_sharedmem 8192 0
+==15178== Profiling result:
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+ns,ns,,,,,,,,KB,B,MB,GB/s,,,,
+1196733620.000000,51583481.000000,,,,,,,,,,256.000000,4.846513,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1248445583.000000,51376919.000000,,,,,,,,,,256.000000,4.865998,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1299879399.000000,4118663323.000000,512,512,1,16,16,1,23,2.000000,0,,,"Tesla K40c (0)","1","7","matMul(float*, float*, float*, int) [110]"

@@ -1,0 +1,9 @@
+==9472== NVPROF is profiling process 9472, command: ./matrix_sum_coalesced 8192 0
+==9472== Profiling application: ./matrix_sum_coalesced 8192 0
+==9472== Profiling result:
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","Device","Context","Stream","Name"
+ns,ns,,,,,,,,B,B,MB,GB/s,,,,
+1550353050.000000,48542830.000000,,,,,,,,,,256.000000,5.150091,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1599026450.000000,47610790.000000,,,,,,,,,,256.000000,5.250911,"Tesla K40c (0)","1","7","[CUDA memcpy HtoD]"
+1646685884.000000,4692878.000000,512,512,1,16,16,1,10,0,0,,,"Tesla K40c (0)","1","7","matSum(float*, float*, float*, int) [109]"
+1651384363.000000,93890564.000000,,,,,,,,,,256.000000,2.662674,"Tesla K40c (0)","1","7","[CUDA memcpy DtoH]"
