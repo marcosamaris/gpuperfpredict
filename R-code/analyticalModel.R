@@ -7,7 +7,7 @@ cbbPalette <- gray(1:9/ 12)#c("red", "blue", "darkgray", "orange","black","brown
 dirpath <- "~/Dropbox/Doctorate/Theses/gpuperfpredict/"
 setwd(paste(dirpath, sep=""))
 
-gpus <- read.table("./Datasets/deviceInfo.csv", sep=",", header=T)
+gpus <- read.table("./datasets/deviceInfo.csv", sep=",", header=T)
 NoGPU <- dim(gpus)[1]
 
 apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
@@ -47,7 +47,7 @@ for (k in c(2:4, 7:8)){
     for (i in 1:length(apps)){
         data <- 0; Temp <- 0
         print(paste(" Loaded ", gpus[k,'gpu_name'], "/", apps[i], sep=""))
-                temp <- read.table(paste("./data/", gpus[k,'gpu_name'],"/block_16/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=FALSE)["V3"]
+                temp <- read.table(paste("~/GIT/BSyncGPGPU/data/", gpus[k,'gpu_name'],"/block_16/", apps[i], "-kernel-traces.csv", sep=""), sep=",", header=FALSE)["V3"]
                 
       TimeApp[apps[i]] <- temp
     }
@@ -196,7 +196,7 @@ for (k in c(2:4, 7:8)){
     
     allApp = rbind(dfmatMul,dfmatSum,dfVecOp)
     
-    dfAllApp <- data.frame(Gpus=gpus[k,'gpu_name'], Apps=allApp[,3], InputSize=allApp[,4], ThreadBlock=0, Measured= array(unlist(TimeApp,use.names = F)), Predicted=allApp[,2], accuracy=allApp[,1], Min=0, max=0, Mean=0, Median=0, SD=0, mse=0, mae=0, mape=0)
+    dfAllApp <- data.frame(gpus=gpus[k,'gpu_name'], apps=allApp[,3], InputSize=allApp[,4], ThreadBlock=0, measured= array(unlist(TimeApp,use.names = F)), predicted=allApp[,2], accuracy=allApp[,1], Min=0, max=0, Mean=0, Median=0, SD=0, mse=0, mae=0, mape=0)
     
     dataGPUsApps <- rbind(dfAllApp, dataGPUsApps)
     
@@ -206,23 +206,24 @@ dataTemp <- data.frame()
 
 dataTemp <- dataGPUsApps
 
-dataTemp$Apps <- factor(dataTemp$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
+dataTemp$apps <- factor(dataTemp$apps, levels =  c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
                                                    "matrix_sum_normal", "matrix_sum_coalesced", 
                                                  "dotProd", "vectorAdd",  "subSeqMax"))
 
-dataTemp$Apps <- revalue(dataTemp$Apps, c("matMul_gpu_uncoalesced"="MMGU", "matMul_gpu"="MMGC", 
+dataTemp$apps <- revalue(dataTemp$apps, c("matMul_gpu_uncoalesced"="MMGU", "matMul_gpu"="MMGC", 
                          "matMul_gpu_sharedmem_uncoalesced"="MMSU", "matMul_gpu_sharedmem"="MMSC",
                          "matrix_sum_normal"="MAU", "matrix_sum_coalesced"="MAC", "dotProd" = "dotP", "vectorAdd" = "vAdd", "subSeqMax" = "MSA"))
 
-dataTemp$Gpus <- factor(dataTemp$Gpus, levels = c("Tesla-K20", "Tesla-K40", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680", "GTX-970", "GTX-980",        "GTX-750"))
+dataTemp$gpus <- factor(dataTemp$gpus, levels = c("Tesla-K20", "Tesla-K40", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680", "GTX-970", "GTX-980",        "GTX-750"))
 
 dataTemp$InputSize <- as.numeric(as.character(dataTemp$InputSize))
 dataTemp$accuracy <- as.numeric(as.character(dataTemp$accuracy))
 
-dataTemp$mape <- mean(abs(dataTemp$Predicted - dataTemp$Measured)/abs(dataTemp$Measured))*100
+
+
 
 Result_AM <- dataTemp
-Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
+Graph <- ggplot(data=dataTemp, aes(x=gpus, y=accuracy, group=gpus, col=gpus)) + 
     geom_boxplot(size=2, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2)) +
     stat_boxplot(geom ='errorbar')  +
     xlab(" ") + 
@@ -241,7 +242,7 @@ Graph <- ggplot(data=dataTemp, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) +
           legend.key=element_rect(size=5),
           legend.key.size = unit(5, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
-    facet_wrap(~Apps, ncol=3, scales="fixed") +
+    facet_wrap(~apps, ncol=3, scales="fixed") +
     theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 
@@ -282,4 +283,4 @@ Graph <- ggplot(data=lambdaT, aes(x=apps, y=lambdas, group=apps, col=apps)) +
 # Graph
 ggsave(paste("./images/LambdaAnalyticalModel-NCA.pdf",sep=""), Graph, device = pdf, height=10, width=16)
 
-write.csv(dataTemp, file = paste("./Results/BSP-based-model-NCA.csv", sep=""))
+write.csv(dataTemp, file = paste("./results/BSP-based-model-NCA.csv", sep=""))

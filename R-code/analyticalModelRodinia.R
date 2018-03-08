@@ -1,6 +1,7 @@
 # library("data.table")
 # library("ff")
 library("ggplot2")
+library("plyr")
 
 dirpath <- "~/Dropbox/Doctorate/Theses/gpuperfpredict/"
 setwd(paste(dirpath, sep = ""))
@@ -10,13 +11,13 @@ source("./R-code/include/sharedFunctions.R")
 
 set.seed(5)
 
-namesTraces <- read.csv("./data/tracesNames.csv",header = T, sep = ",")
+namesTraces <- read.csv("./datasets/new_tracesNames.csv",header = T, sep = ",")
 
 tempFeatures <- data.frame()
-for (kernelApp in c(6)) {
+for (kernelApp in c(1:6)) {
     tempApps <- data.frame()
-    for (gpu in c(2:4, 8:9)) {
-        tempAppGpu <- read.csv(paste("./Datasets/", names(kernelsDict[kernelApp]), "-", gpus[gpu,'gpu_name'], ".csv", sep=""))
+    for (gpu in c(1:9)) {
+        tempAppGpu <- read.csv(paste("./datasets/", names(kernelsDict[kernelApp]), "-", gpus[gpu,'gpu_name'], ".csv", sep=""))
         tempAppGpu[1] <- tempAppGpu$input.size.1
         tempAppGpu[2] <- tempAppGpu$input.size.2
         tempAppGpu[3] <- tempAppGpu$duration
@@ -54,27 +55,30 @@ lambda[,6] <- c(8, 14, 14.5, 14, 8, 7, 8, 7, 25)
 # lambda[,7] <- c(8.5,12, 12, 12, 12, 4, 7.5, 6.25, 7.5)
 
 # lambda[,7] <- NULL
-print(xtable(lambda, type = "latex"))
+# print(xtable(lambda, type = "latex"))
 
 includeFile <- "~/Dropbox/Doctorate/Theses/gpuperfpredict/R-code/include/"
 appAllKernel <- data.frame()
 for (gpu in c(2:4, 8:9)) {
-    # source(file = paste(includeFile, "Back-Propagation.R", sep = ""))
-    # source(file = paste(includeFile, "Gaussian.R", sep = ""))
-    # source(file = paste(includeFile, "Hearthwall.R", sep = ""))
+    source(file = paste(includeFile, "Back-Propagation.R", sep = ""))
+    source(file = paste(includeFile, "Gaussian.R", sep = ""))
+    source(file = paste(includeFile, "Hearthwall.R", sep = ""))
     source(file = paste(includeFile, "Hotspot.R", sep = ""))
     # source(file = paste(includeFile, "Hotspot_3D.R", sep = ""))
 }
 
-appAllKernel$gpu <- factor(appAllKernel$gpu, levels = c("GTX-680", "Tesla-K40",  "Tesla-K20", "Titan", "Quadro",  "TitanX", "GTX-970", "GTX-980", "Tesla-P100"))
+colnames(appAllKernel) <- c("GPUs", "CUDAKernels", "measured", "predicted", "accuracy","mape" )
+
+appAllKernel$CUDAKernels <- revalue(appAllKernel$CUDAKernels, c("bpnn_layerforward_CUDA"="BCK-K1", "bpnn_adjust_weights_cuda"="BCK-K2", 
+                                                    "Fan1"="GAU-K1", "Fan2"="GAU-K2",
+                                                    "kernel"="HTW", "calculate_temp"="HOT", 
+                                                    "lud_diagonal"="LUD-K1", "lud_internal"="LUD-K2", "lud_perimeter"="LUD-K3", 
+                                                    "needle_cuda_shared_1"="NDL-K1", "needle_cuda_shared_2"="NDL-K2"))
+
+appAllKernel$GPUs <- factor(appAllKernel$GPUs, levels = c("GTX-680", "Tesla-K40",  "Tesla-K20", "Titan", "Quadro",  "TitanX", "GTX-970", "GTX-980", "Tesla-P100"))
 
 
-appAllKernel$kernels <- revalue(appAllKernel$kernels, c("bpnn_layerforward_CUDA"="BCK-1", "bpnn_adjust_weights_cuda"="BCK-2", 
-                                          "Fan1"="GAU-1", "Fan2"="GAU-2",
-                                          "kernel"="HTW", "calculate_temp"="HOT"))
-
-
-Graph <- ggplot(data=appAllKernel, aes(x=gpu, y=accuracy, group=gpu, col=gpu)) + 
+Graph <- ggplot(data=appAllKernel, aes(x=GPUs, y=accuracy, group=GPUs, col=GPUs)) + 
     geom_boxplot(size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2)) +
     stat_boxplot(geom ='errorbar')  +
     xlab(" ") + 
@@ -93,45 +97,25 @@ Graph <- ggplot(data=appAllKernel, aes(x=gpu, y=accuracy, group=gpu, col=gpu)) +
           legend.key=element_rect(size=5),
           legend.key.size = unit(5, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
-    facet_wrap(~kernels, ncol=3, scales="fixed") +
+    facet_wrap(~CUDAKernels, ncol=3, scales="fixed") +
     theme(strip.text = element_text(size=20))+
     scale_colour_grey()
 figureFile <- includeFile <- "~/Dropbox/Doctorate/Theses/gpuperfpredict/"
 ggsave(paste(figureFile, "./images/ResutAnalyticalModelRodinia.pdf",sep=""), Graph, device = pdf, height=10, width=16)
     
-    Graph <- ggplot(data=appAllKernel, aes(x=gpu, y=accuracy, group=gpu, col=gpu)) +
-      geom_line()   +
-      xlab(" ") +
-      theme_bw() +
-      ggtitle("Analytical Model") +
-      ylab(expression(paste("Accuracy ",T[k]/T[m] ))) +
-      theme(plot.title = element_text(family = "Times", face="bold", size=10)) +
-      theme(axis.title = element_text(family = "Times", face="bold", size=10)) +
-      theme(axis.text  = element_text(family = "Times", face="bold", size=10, colour = "Black")) +
-      theme(axis.text.x=element_blank()) +
-      theme(legend.title  = element_text(family = "Times", face="bold", size=0)) +
-      theme(legend.text  = element_text(family = "Times", face="bold", size=10)) +
-      theme(legend.direction = "horizontal",
-            legend.position = "bottom",
-            legend.key=element_rect(size=1),
-            legend.key.size = unit(1, "lines")) +
-      facet_wrap(~kernels, ncol=1, scales="free")
-    # theme(strip.text = element_text(size=20))
-    ggsave(paste("./images/Analyticalmodel-Lines.pdf",sep=""), Graph, height=40, width=20, units="cm")
-    
     
     lambda <- data.frame(lambda)
     colnames(lambda) <- names(kernelsDict)[1:6]
-    lambda[-c(6), ]
-    lambdaT <- data.frame()
-    lambdaT <- rbind(lambdaT,data.frame(apps=rep("BCK-1"), lambdas=lambda$bpnn_layerforward_CUDA))
-    lambdaT <- rbind(lambdaT,data.frame(apps=rep("BCK-2"), lambdas=lambda$bpnn_adjust_weights_cuda))
-    lambdaT <- rbind(lambdaT,data.frame(apps=rep("GAU-1"), lambdas=lambda$Fan1))
-    lambdaT <- rbind(lambdaT,data.frame(apps=rep("GAU-2"), lambdas=lambda$Fan2))
-    lambdaT <- rbind(lambdaT,data.frame(apps=rep("HHWL"), lambdas=lambda$kernel))
-    lambdaT <- rbind(lambdaT,data.frame(apps=rep("HOT"), lambdas=lambda$calculate_temp))
     
-    Graph <- ggplot(data=lambdaT, aes(x=apps, y=lambdas, group=apps, col=apps)) + 
+    lambdaT <- data.frame()
+    lambdaT <- rbind(lambdaT,data.frame(CUDAKernels=rep("BCK-1"), lambdas=lambda$bpnn_layerforward_CUDA))
+    lambdaT <- rbind(lambdaT,data.frame(CUDAKernels=rep("BCK-2"), lambdas=lambda$bpnn_adjust_weights_cuda))
+    lambdaT <- rbind(lambdaT,data.frame(CUDAKernels=rep("GAU-1"), lambdas=lambda$Fan1))
+    lambdaT <- rbind(lambdaT,data.frame(CUDAKernels=rep("GAU-2"), lambdas=lambda$Fan2))
+    lambdaT <- rbind(lambdaT,data.frame(CUDAKernels=rep("HHWL"), lambdas=lambda$kernel))
+    lambdaT <- rbind(lambdaT,data.frame(CUDAKernels=rep("HOT"), lambdas=lambda$calculate_temp))
+    
+    Graph <- ggplot(data=lambdaT, aes(x=CUDAKernels, y=lambdas, group=CUDAKernels, col=CUDAKernels)) + 
         scale_y_continuous(breaks = round(seq(0, max(lambdaT$lambdas), by = 10),1)) +
         geom_boxplot(size=1.5, outlier.size = 2.5) + 
         theme_bw() +
@@ -149,5 +133,5 @@ ggsave(paste(figureFile, "./images/ResutAnalyticalModelRodinia.pdf",sep=""), Gra
     # Graph
     ggsave(paste("./images/LambdaAnalyticalModel-Rodinia.pdf",sep=""), Graph, device = pdf, height=10, width=16)
     
-    write.csv(appAllKernel, file = paste("./Results/BSP-based-model-Rodinia.csv", sep=""))
+    write.csv(appAllKernel, file = paste("./results/BSP-based-model-Rodinia.csv", sep=""))
     

@@ -10,9 +10,13 @@ NMultiplication <- 150000
 NFMA <- 50000
 
 Comp <- NMultiplication*50 + NFMA*2
+gmRead <- 2
+gmStore <- 1
+smRead <- 2
+smStore <-1
 
-CommGM <- ((9000 - L1 - L2)*gGM + L1*gL1 + L2*gL2);
-CommSM <- 500000
+CommGM <- (gmStore + gmRead - L1 - L2)*gGM + L1*gL1 + L2*gL2
+CommSM <- (smStore + smRead)*gSM
 
 timeKernel <- numberthreads*(Comp + CommGM + CommSM)/((FlopsTh[gpu,]*10^6)*lambda[gpu, 5]);
 # predicted <- timeKernel[-1]

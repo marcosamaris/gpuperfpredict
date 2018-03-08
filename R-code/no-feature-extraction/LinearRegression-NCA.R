@@ -5,7 +5,7 @@ library(plyr)
 dirpath <- "~/Dropbox/Doctorate/Theses/gpuperfpredict/"
 setwd(paste(dirpath, sep=""))
 
-gpus <- read.table("./Datasets/deviceInfo.csv", sep=",", header=T)
+gpus <- read.table("./datasets/deviceInfo.csv", sep=",", header=T)
 NoGPU <- dim(gpus)[1]
 
 apps <- c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
@@ -19,17 +19,15 @@ Parameters <- c("gpu_name","gpu_id", "AppName", "AppId", "input_size", "duration
                 "shared_load_transactions", "shared_store_transactions",
                 "floating_point_operations.single_precision.", "warps_launched", "block_x")
 
-DataAppGPU <- read.csv(file = paste("./Datasets/All-App-GPU.csv", sep = ""))
-DataAppGPU <- rbind(DataAppGPU[c(Parameters)])
+DataAppGPU <- read.csv(file = paste("./datasets/All-App-GPU.csv", sep = ""))
+DataAppGPU <- DataAppGPU[c(Parameters)]
 
 DataAppGPU <- na.omit(DataAppGPU)
 
 result <- data.frame()
 for (CC in c(1:8)){
     for( j in 1:9) {
-        
         Data <- subset(DataAppGPU, AppId == j)
-        
         if (j == 3 | j == 4 ){
             print(j)
         } else if (j == 9){
@@ -54,69 +52,52 @@ for (CC in c(1:8)){
         trainingSet$AppId <- NULL
         trainingSet$gpu_id <- NULL
 
-        TestDuration <- testSet["duration"]
-        Size <- testSet["input_size"]
-        App <- testSet["AppName"]
-        Gpu <- testSet["gpu_name"]
-        Block <- testSet["block_x"]
-
+        TestDuration <- testSet$duration
+        App <- testSet$AppName
+        Gpu <- testSet$gpu_name
+        
         testSet$AppName <- NULL
         testSet$gpu_name <- NULL
         testSet$duration <- NULL
         testSet$AppId <- NULL
         testSet$gpu_id <- NULL
 
-        testSet$L2.Read.Transactions <- NULL
-        testSet$L2.Write.Transactions <- NULL
-        
-        trainingSet <- log(trainingSet,2)
-        testSet <- log(testSet,2)
+        trainingSet <- log(trainingSet+ 0.0000000001, 2)
+        testSet <- log(testSet+ 0.0000000001, 2)
         
         base <- lm(trainingSet$duration ~ ., data = trainingSet) 
-        summary(base)
 
         predictions <- predict(base, testSet)
-        predictions <- 2^predictions
+        predictions <- as.matrix(2^predictions) - 0.0000000001
         
-        mse <- mean((predictions/TestDuration - 1)^2)
-        mae <- mean(abs(as.matrix(TestDuration)  - predictions))
-        mape <- mean(abs(as.matrix(TestDuration)  - predictions/predictions))
-
-        Acc <- predictions/TestDuration
-        AccMin <- min(Acc)
-        AccMean <- mean(as.matrix(Acc))
-        AccMedian <- median(as.matrix(Acc))
-        AccMax <- max(Acc)
-        AccSD <- sd(as.matrix(Acc))
+        acc <- predictions/TestDuration
         
-        Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, Acc, AccMin, AccMax, AccMean, AccMedian, AccSD,mse, mae,mape)
+        mape <- mean(abs(TestDuration  - predictions)/abs(predictions))*(100)
         
+        Tempresult <- data.frame(Gpu, App, TestDuration, predictions, acc, mape)
         result <- rbind(result, Tempresult)
         
     }
 }
 # result
-colnames(result) <-c("Gpus", "Apps", "InputSize", "ThreadBlock" , "Measured", "Predicted",  "accuracy", "Min", "max", "Mean", "Median", "SD", "mse", "mae", "mape")
+colnames(result) <-c("gpus", "apps", "measured", "predicted",  "accuracy", "mape")
 
-
-Tempresult <- data.frame(Gpu, App, Size, Block, TestDuration, predictions, Acc, AccMin, AccMax, AccMean, AccMedian, AccSD, mse, mae,mape)
-
-result$Apps <- factor(result$Apps, levels =  c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
+result$apps <- factor(result$apps, levels =  c("matMul_gpu_uncoalesced","matMul_gpu", "matMul_gpu_sharedmem_uncoalesced", "matMul_gpu_sharedmem",
                                                "matrix_sum_normal", "matrix_sum_coalesced", 
                                                "dotProd", "vectorAdd",  "subSeqMax"))
 
-result$Apps <- revalue(result$Apps, c("matMul_gpu_uncoalesced"="MMGU", "matMul_gpu"="MMGC", 
+result$apps <- revalue(result$apps, c("matMul_gpu_uncoalesced"="MMGU", "matMul_gpu"="MMGC", 
                                           "matMul_gpu_sharedmem_uncoalesced"="MMSU", "matMul_gpu_sharedmem"="MMSC",
                                           "matrix_sum_normal"="MAU", "matrix_sum_coalesced"="MAC", "dotProd" = "dotP", "vectorAdd" = "vAdd", "subSeqMax" = "MSA"))
 
 
-result$Gpus <- factor(result$Gpus, levels = c("Tesla-K40",  "Tesla-K20", "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-680","GTX-970",    "GTX-980",    "GTX-750"))
+result$gpus <- factor(result$gpus, levels = c( "GTX-680", "Tesla-K20", "Tesla-K40",  "Quadro", "Titan", "TitanBlack", "TitanX", "GTX-970",    "GTX-980",    "GTX-750"))
 
-result <- result[result$Gpus %in% c("Tesla-K40",  "Tesla-K20", "Titan", "GTX-980",    "GTX-970"),]
+result <- result[result$gpus %in% c("Tesla-K20", "Tesla-K40", "Titan", "GTX-980",    "GTX-970"),]
 
 
 Result_LM <- result
-Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) + 
+Graph <- ggplot(data=result, aes(x=gpus, y=accuracy, group=gpus, col=gpus)) + 
     geom_boxplot( size=1.5, outlier.size = 2.5) + scale_y_continuous(limits =  c(0, 2)) +
     stat_boxplot(geom ='errorbar') +
     xlab(" ") + 
@@ -135,11 +116,11 @@ Graph <- ggplot(data=result, aes(x=Gpus, y=accuracy, group=Gpus, col=Gpus)) +
           legend.key=element_rect(size=5),
           legend.key.size = unit(5, "lines")) +
     # facet_grid(.~Apps, scales="fixed") 
-    facet_wrap(~Apps, ncol=3, scales="free") +
+    facet_wrap(~apps, ncol=3, scales="free") +
     theme(strip.text = element_text(size=20)) +
     scale_colour_grey()
 
 ggsave(paste("./images/LinearRegression-fair.pdf",sep=""), Graph, device = pdf, height=10, width=16)
-write.csv(result, file = "./Results/LinearRegression-fair.csv")
+write.csv(result, file = "./results/LinearRegression-NCA-fair.csv")
 
 
