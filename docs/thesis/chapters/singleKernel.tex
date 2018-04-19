@@ -1,0 +1,18 @@
+\chapter{Simple BSP-based model to predict CUDA kernels}\label{chap:BSPmodel}
+Models are useful to represent abstractions of software and hardware processes. The Bulk Synchronous Parallel (BSP) is a bridging model for parallel computation that allows algorithmic analysis of programs on parallel computers using performance modeling. The main idea of the BSP model is the treatment of communication and computation as abstractions of a parallel system.
+
+In this chapter, we present a simple and intuitive BSP-based model for predicting the CUDA application execution times on GPUs. The model is based on the number of computations and memory accesses of the GPU, with additional information from profiling. Scalability, divergence, effect of optimizations and differences of architectures are adjusted by a single parameter.
+
+The structure of this chapter is organized as follow,  in Section~\ref{sec:BackgroundModel} we mention the most important parallel models of the literature, in Section \ref{sec:proposeModel}, we describe the propose parallel BSP-based model to predict execution time of GPU applications, in Section~\ref{sec:methodModel} we describe the methodology and the use cases, in Section~\ref{sec:resultModel} we show some experimental results and  finally in Section~\ref{sec:relatedModel} we show the main relate works of this model.
+
+
+
+
+
+
+
+\input{sections/models.tex}
+\input{sections/bsp-gpu-model.tex}
+\input{sections/method-model.tex}
+\input{sections/result-model.tex}
+\input{sections/related-works-model.tex}

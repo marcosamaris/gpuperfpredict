@@ -1,0 +1,40 @@
+\section[BSP-based model to predict execution time of CUDA Kernels]{A Simple BSP-based model to predict execution time of CUDA Kernels}\label{sec:proposeModel}
+
+In this section we propose a novel simple BSP-model to predict execution time of CUDA kernels executed over GPUs. Similarly to the BSP model, our model is mainly based on the number of computational and communication steps used by the application. These values are multiplied by parameters that describe the number of cores, threads and the clock rate of the processors. Differently from the BSP model, we did not include the synchronization step of the BSP model, since global synchronizations in GPUs occur only at the end of the kernel. This model takes into account the main physical properties and optimizations of GPU architectures. The performance prediction is based on the cost of communication and computation, which are determined independently. The execution time is split between computation and data transferring to and from global and shared memories. 
+
+\begin{equation}\label{ec:BSPGPU}
+t_k = \frac{t \cdot (Comp + Comm_{GM} + Comm_{SM})}{R \cdot P \cdot \lambda}
+\end{equation} 
+
+In Equation~\ref{ec:BSPGPU}, $t_k$ is the approximated execution time of a kernel function with $t$ threads. It sums the computational cost ($Comp$) with the communication cost of global memory ($Comm_{GM}$) and shared memory ($Comm_{SM}$) accesses, performed by each thread. This cost is multiplied by the number of threads $t$ and divided by the clock rate $R$ times the number of cores $P$ available in the GPU. The parameter $\lambda$ is used to model the effects of application optimizations, such as divergence, shared bank conflicts and coalesced global memory accesses.
+
+The computational time used by each thread in a kernel is denoted by $Comp$. It is determined by the number of cycles that each thread spends in its computation. FMA operations can be included in $Comp$ by reading the source code of the kernel and verifying this possibility with profiling tools. 
+
+Communication is evaluated at two levels: global and shared memory. The execution time for communication in global and shared memory per thread are given by $Comm_{GM}$ and $Comm_{SM}$, respectively. These are defined as the sum of load and write transactions over the global memory and shared memory. This information can be extracted directly from the source code. %Shared memory is on chip in each multiprocessor and has a very small latency in this memory level on chip has zero-overhead.
+
+Additionally, to account the effects of cache memories on recent GPU architectures, the number of L1 and L2 cache hits are subtracted from the number of loads over the global memory. We have used metrics and events to confirm information about the number of L1 and L2 cache hits. Their contribution to the execution time is calculated separately, multiplying them by their latency times~\citep{GPU:BenchMark, Bench:GPU}. This model allows an easy parametrization, well-suited for any GPU applications in practice. For simplification, we do not consider  constant and texture memories nor differences between the latency of load and store transactions. $Comm_{SM}$ and $Comm_{GM}$ are defined as:
+
+\begin{equation}\label{ec:SM}
+Comm_{SM} = \left(ld_{0} + st_{0} \right) \cdot g_{SM}
+\end{equation}
+
+
+\begin{equation}\label{ec:GM-cache}
+Comm_{GM} = \left(ld_{1} + st_{1} - L1 - L2 \right) \cdot g_{GM} + L1\cdot g_{L1} + L2\cdot g_{L2} 
+\end{equation}
+
+$g_{GM}$, $g_{SM}$, $g_{L1}$ and $g_{L2}$ represent the latency in communication over global, shared, L1 cache and L2 cache memory, respectively. Some typical values are $5$ cycles for $g_{SM}$ and $g_{L1}$, $500$ cycles for $g_{GM}$ \citep{CUDA:Best}, and 250 cycles for $g_{L2}$. When the L1 and/or L2 caches are enabled for catching. 
+
+When the application reaches a stable access on L2 cache and L1 cache is disabled for catching the equation~\ref{ec:GM-cache} can be expressed for the equation~\ref{ec:GM}. When the executions are stables, the cache utilization keeps regular with the problem size of the application. 
+
+\begin{equation}\label{ec:GM}
+Comm_{GM}  = \left(ld_{1} + st_{1} \right) \cdot g_{GM} 
+\end{equation}
+
+$ld_{0}$ and $st_{0}$ represent the total number of load and stores performed by all threads in the shared memory, and $ld_{1}$ and $st_{1}$ represent the loads and stores for global memory. The number of loads and stores to global and shared memory are determined by analyzing the CUDA source code. $L1$ and $L2$ are determined executing an application execution profile and taking the number of hits over each one of these memory levels. 
+
+Aspects about optimization of CUDA kernels, such as coalesced accesses, shared bank conflicts and divergence are important to define the performance of a kernel~\citep{Wu:2013:Coalesced}. We consider the effects of those optimizations using the $\lambda$ factor.  It is estimated as the ratio between the predicted execution time of the kernel with the actual measured execution time. The $\lambda$ factor is important since it permits the adjustment of application performance with the implemented CUDA optimizations and GPU architectures. Finally, intra-block synchronization is not computed, since it does not affect processing time~\citep{CUDA:Best,GpuNOsynchronize}. Intra-block synchronization is very fast, and did not need to be included. Nevertheless, we maintained the inspiration on the BSP-model because the extended version of the model considering host memory needs global synchronizations.
+
+Consequently, except for the value of $\lambda$ and effects on caches L1 and L2, all other parameters are constants. The effect of usage of caches L1 and L2 must be confirmed by profiling. $\lambda$ performs the adjustment of application performance with the implemented CUDA optimizations. Once defined for the application, the same relative value should work for other similar GPUs and input sizes of the application. 
+
+Next section will show how each one of the parameters were obtained from each one of the CUDA kernels of the testbed.

@@ -1,0 +1,30 @@
+%% ------------------------------------------------------------------------- %%
+\chapter{Fundaments and Background}\label{chap:background}
+\lettrine[findent=2pt]{\textbf{T}}{}he first digital computers were built using the architecture model created by von Neumann. The machine proposed by von Neumann has the following components: a memory; an arithmetic-logic unit (ALU); a central processing unit (CPU), composed of several registers; and a control unit. New technologies and computational models began to be developed simultaneously with the evolution of the von Neumann model. In 1972, Michael Flynn proposed a classification of parallel computing architectures~\citep{flynn1996parallel}. This classification distinguishes the number of instructions and the number of data that can be used by the instructions in parallel. It is presented in the Table \ref{tab:taxFlynn}.
+
+\begin{table}[htpb]
+\begin{center}
+\begin{tabular}{|r|c|c|}
+\hline
+& \bf Single Instruction & \bf Multiple Instruction\\\hline 
+\bf Single Data & SISD & MISD \\\hline 
+\bf Multiple Data & SIMD & MIMD \\\hline 
+\end{tabular}
+\end{center}
+\caption{Classification of parallel architectures proposed by Michael Flynn (1972).} 
+\label{tab:taxFlynn}
+\end{table}
+
+We can ilustrate the table above as follows. A von Neumann model machine that has only one processing core fits the SISD (Single Instruction; Single Data) classification; a machine with a processor and multiple processing cores can be classified as MIMD; GPUs are based on the SIMD architecture, where each thread takes index to perform vectorial computations, for this SIMT (Single Instruction; Multiple Threads) is named the programming model of CUDA.
+
+In this chapter, the  most important models of parallel computing are illustrated in Section \ref{sec:MCP}, the main architectures and characteristics of the GPUs and the CUDA programming model are presented in Section \ref{sec:GPUs}, the techniques of features extraction and the machine lerning algorithms are shown in the Section \ref{sec:ML}, the most relevant related works of this research are discussed in Section \ref{sec:relWorks}.
+
+\input{./chapters/sections/models}
+
+\input{./chapters/sections/gpucuda}
+
+\input{./chapters/sections/machineLearning}
+
+\input{./chapters/sections/relatedworks}
+
+In this chapter, in Section \ref{sec:MCP}, the models PRAM, BSP, CGM and LogP were presented; in the Section \ref{sec:GPUs}, hardware characteristics of the main architectures of NVIDIA were described, these are Fermi, Kepler and Maxwell, in this same section, the CUDA platform and its programming model were explained; in Section \ref{sec:ML}, notions of the techniques for features extractions were explained, techniques like correlations matrix, principal components analysis, linear least square were introduced, also in the same section the algoritms of linear regression, generalized linear regression, support vector machine, random forest and Artificial Neural Networks were briely presented. In the section \ref{sec:relWorks} the related works related of this research were reviewed.

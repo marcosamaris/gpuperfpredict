@@ -1,0 +1,31 @@
+%% ------------------------------------------------------------------------- %%
+\chapter{Conclusions}
+\label{chap:conclusion}
+
+In this work, we proposed a BSP-based model for predicting the performance of GPU applications. The BSP model offers a solution to tackle parallel problems in massively parallel architectures. We used the model to predict the performance of matrix multiplication with four different optimization levels and a coarse grained solution of subsequence maximum problem. All the applications were developed in CUDA and they were executed on 6 different GPU boards.
+
+We performed a comparison between analytical model and three different machine learning techniques, this comparison was done following two different methodologies. First, Machine learning techniques and analytical model use similar parameters and second, a step of features extraction was done. This second methodologies was implemented in two different contexts. In the first context the dataset is grouped by GPUs and in the second context the dataset is grouped by CUDA kernels.
+
+
+\section{Contributions} 
+
+By considering two levels of memory, shared and global memories, we could accurately model the performance of these applications using several GPU models and problem sizes. The usage of two adaptable parameters $\lambda$ was sufficient to model the effect of data coalescing during read and write operations to the global memory. A similar set of parameters also model the effects of cache hits, computation and communication process of any GPU application. In the majority of the scenarios, the time measured were around $0.8$ to $1.2$ times the model predicted execution time.
+
+The Analytical model provides relatively better prediction accuracy than machine learning approaches, but it requires calculations to be performed for each application. Furthermore, the value of $\lambda$ has to be calculated for each application executing on each GPU.
+
+Machine learning could predict execution time with less accuracy than the analytical model, but this approach provides more flexibility because performing specific calculations is not needed as in the analytical model. A machine learning approach is more generalizable for different applications and GPU architectures than an analytical approach.
+
+
+We showed that predictions with high accuracy of running time of GPU applications are possible with an optimum statistical process of feature extraction. We implemented a automated approach for feature extraction based on correlation analysis and hierarchical clustering. We evaluated two scenarios, on which we extract 5 and 10 application features, using three different machine learning techniques: Linear Regression Models, Support Vector Machines and Random Forests. Each machine learning technique was tested over two different contexts, one on which we predict the execution times over previously unseen GPUs and over unseen CUDA kernels. 
+
+Over the two contexts evaluated, we have obtained a high precision of the predictions, mostly between 0.9 and 1.1 of the measured execution time. Moreover, in the first context, with the linear regression, \todoMT{To update the MAPE}we obtained a mean absolute percentage error (MAPE) of 1.37\% with 10 application features and 1.65\% with 5 features, in addition to the 2 GPU parameters. On average, we obtained an global error of 1.5\% over all tested ML algorithms. In the second context, we got a error of 2.71\% with SVM and an global average error of 3.17\%. Regarding GPU parameters, we showed that using only the number of cores and the amount of L2 cache was sufficient to characterize the GPU for the applications and GPU architecture that we used.
+
+
+
+%------------------------------------------------------
+\section{Future Works} 
+As future work, we will consider the scenario of multiple kernels and multiple GPUs, where global synchronization among kernels and one extra memory level, the CPU RAM, need to be considered. We presented a simple analytical model to predict performance of GPUs applications with optimal accuracy. 
+
+
+Also, we will evaluate the usage of this approach of feature extraction implemented over text mining. We also intend to apply these predictions to online scheduling heuristics, to evaluate the gains that these predictions can generate on scheduling performance. A recently emerged significant measure of GPU kernels is power consumption, we can use machine learning to predict power consumption or performance and utilize this information for our heuristic.
+

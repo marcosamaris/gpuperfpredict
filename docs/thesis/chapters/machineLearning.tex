@@ -1,0 +1,17 @@
+\chapter{Machine Learning Techniques  to predict CUDA kernels} \label{Chap:ML}
+
+\lettrine[findent=2pt]{\textbf{T}}{}he methods developed in the area of \textbf{big data} (especially machine learning) can be used to predict running times of GPU applications. Information about profiling and traces of heterogeneous parallel applications can be used to improve current Job Managment Systems, which require a better knowledge about the applications~\citep{JMR:Ruiz:2014}. To predict execution times in heterogeneous applications is a great challenge, for this reason, it always is meritorious to research more effective mechanisms to obtain a better performance prediction. Machine learning techniques can learn to capture these interactions without manual intervention, but may require large training sets. 
+
+In this chapter, we compare three different machine learning approaches: linear regression, support vector machines and random forests with a BSP-based analytical model, to predict the execution time of GPU applications. Comparison between these two approaches will be presented using the Mean Average Percentage Error (MAPE). Two different methodologies with machine learning techniques were followed, first a fair comparison is done using the same parameters than analytical model, and second a step of features extraction was performed. In this second process a correlation analysis and hierarchical clustering is done. Profile information was collected of each application over each GPU to use as data input for those ML algorithms.
+
+The rest of this chapter is organized as follows. In Section~\ref{sec:backgroundML} we present background concepts on machine learning techniques and feature extraction. In Section~\ref{sec:method-ML} we describe our experiments and methodology. Section~\ref{sec:resultML} presents the experimental results. Finally, in Section~\ref{sec:relatedWorksML} we review the related works about performance prediction using machine learning techniques.
+
+
+\input{sections/machine-learning.tex}
+
+\input{sections/method-ml.tex}
+
+\input{sections/result-ml.tex}
+
+\input{sections/related-works-ml.tex}
+

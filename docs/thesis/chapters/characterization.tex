@@ -1,0 +1,46 @@
+\chapter{Characterization of CUDA kernels}\label{chap:characterization}
+\section{Introduction}
+\label{sec:IntroGPU}
+\lettrine[findent=2pt]{\textbf{G}}{}PUs initially had only graphical function, but their potential as co-processors and accelerators was quickly perceived and new computing platforms evolved to support and take advance of these devices. Different industries, e.g, video games, design 3D, image rendering and computer simulation required more computational features and, as a result of this need, new GPU architectures became more flexible and powerful. Nowadays, we can find on the market, GPUs with thousands of processors for general purpose computing that are used in numerous and different fields. 
+
+The two major GPU manufacturers today are NVIDIA and AMD, which produce GPUs that operate in conjunction with standard CPUs. The main programming environments for GPUs are CUDA~\citep{CUDAGuide} and OpenCL~\citep{khronos:opencl}. OpenCL is considerably more recent than CUDA. One of the main dilemma of OpenCL is to maintain performance while preserving portability between distinct devices~\citep{Du2012391}. 
+%The most widely used GPUs are those produced by NVIDIA, together with the CUDA platform. Considering that the GPGPU market has been taken by NVIDIA graphics cards, our models and experimentation are done on GPUs manufactured by NVIDIA.
+
+%The architecture of these GPUs is built with a set of Streaming Multiprocessors (SMs), each containing several cores called Scalar Processors (SPs), a set of Special Function Units (SFUs) and a number of load/store units. The multiprocessors execute asynchronously, in parallel. The SM schedules threads in groups of 32 parallel threads called warps, which can use load/store units concurrently, allowing simultaneous reads from memory for these threads. 
+
+This chapter is organized in four sections, Section~\ref{sec:GPUsCUDA} discuss relevant advances in GPU architectures and their development platform CUDA, Section~\ref{sec:methodChar} shows the GPU test bed and the different benchmark that were selected in order to perform our experiments. Finally, Section~\ref{sec:commOpt} shows the main communication optimizations of CUDA applications and other different optimization to be performed by CUDA applications
+%  we explain how different streams work in a GPU in Section~\ref{sec:StreamGPU}.
+
+\input{sections/gpucuda}
+
+\input{sections/use-cases.tex}
+
+\input{sections/characterization}
+
+% \input{sections/streams}
+
+
+
+
+
+
+
+
+% \subsection{Throughput of Communications and Computation}
+
+% \subsection{Scalability Parameters}
+
+
+
+
+
+
+% \section{Runtime and Simulators of Heterogeneous applications}
+
+% \subsection{Simulator GEM5-GPU}
+
+% \subsection{Runtime StarPU + GridSim}
+
+% \subsection{Runtime Darts}
+
+

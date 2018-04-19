@@ -1,0 +1,533 @@
+% Arquivo LaTeX de exemplo de disserta��o/tese a ser apresentados � CPG do IME-USP
+% 
+% Vers�o 5: Sex Mar  9 18:05:40 BRT 2012
+%
+% Cria��o: Jes�s P. Mena-Chalco
+% Revis�o: Fabio Kon e Paulo Feofiloff
+%  
+% Obs: Leia previamente o texto do arquivo README.txt
+
+\documentclass[openany,11pt,twoside,a4paper]{book}
+
+% ---------------------------------------------------------------------------- %
+% packages
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+
+\usepackage[pdftex]{graphicx}           % usamos arquivos pdf/png como figuras
+\usepackage{setspace}                   % espa�amento flex�vel
+\usepackage{indentfirst}                % indenta��o do primeiro par�grafo
+\usepackage{makeidx}                    % �ndice remissivo
+\usepackage[nottoc]{tocbibind}          % acrescentamos a bibliografia/indice/conteudo no Table of Contents
+\usepackage{booktabs}
+% \usepackage{courier}                    % usa o Adobe Courier no lugar de Computer Modern Typewriter
+\usepackage{type1cm}                    % fontes realmente escal�veis
+\usepackage{listings}                   % para formatar c�digo-fonte (ex. em Java)
+\usepackage{titletoc}
+\usepackage[bf,small,compact]{titlesec} % cabe�alhos dos t�tulos: menores e compactos
+\usepackage{amssymb}
+% \usepackage[fixlanguage]{babelbib}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage[a4paper,top=2.54cm,bottom=2.0cm,left=2.0cm,right=2.54cm]{geometry} % margens
+% \usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,filecolor=black,bookmarksopen=true]{hyperref} % links em preto
+\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=green,bookmarksopen=true]{hyperref} % links coloridos
+\usepackage[all]{hypcap}                    % soluciona o problema com o hyperref e capitulos
+\usepackage[round,sort,nonamebreak]{natbib} % cita��o bibliogr�fica textual(plainnat-ime.bst)
+\bibpunct{(}{)}{;}{a}{\hspace{-0.7ex},}{,} % estilo de cita��o. Veja alguns exemplos em http://merkel.zoneo.net/Latex/natbib.php
+\usepackage[acronym]{glossaries}
+\makeglossaries
+ 
+ \usepackage{booktabs}
+\usepackage{multirow}
+% \usepackage{hyperref}
+\usepackage[export]{adjustbox} 
+\usepackage{float}
+\newcommand{\specialcell}[1]{\begin{minipage}[m]{0.55\columnwidth}\centering#1\end{minipage}}
+ \usepackage{lettrine}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{bibentry}
+\usepackage{epstopdf}
+\usepackage{colortbl}
+\usepackage{pdfpages}
+
+
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
+ 
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\Large\itshape} % format
+{\Huge Chapter \thechapter.} % label
+{0.5cm} % sep
+{
+    \rule{\textwidth}{2pt}
+    \vspace{.25cm}
+    \centering
+} % before-code
+[
+\vspace{-.5cm}%
+\rule{\textwidth}{2pt}
+] % after-code 
+% 
+% \titleformat{\section}[display]
+% {\normalfont\bfseries}
+% {\thesection.}{0.5em}{}
+% 
+% \titleformat{\subsection}[display]
+% {\normalfont\bfseries}
+% {\thesubsection.}{0.5em}{}
+ 
+
+
+ \usepackage[disable]{todonotes}
+% \usepackage{todonotes}
+
+\newcommand{\todoGold}[1]{\todo[author=AG, inline,color=green!40]{#1}}
+\newcommand{\todoRaph}[1]{\todo[author=RYC, inline,color=blue!40]{#1}}
+\newcommand{\todoMT}[1]{\todo[author=MT, inline,color=yellow!40]{#1}}
+
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsthm}
+% \usepackage{algorithm}
+% \usepackage[noend]{algorithmic} 
+% \usepackage{mathptmx} % font = times
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{comment}
+\usepackage{tikz}
+\usepackage{slashbox}
+\usepackage{multirow}
+\usepackage{diagbox}
+
+\usepackage[font=small,labelfont=bf]{caption}
+% \usepackage[toc,page]{appendix}
+\usepackage[titletoc,title]{appendix}
+
+% ---------------------------------------------------------------------------- %
+% Cabe�alhos similares ao TAOCP de Donald E. Knuth
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}
+\renewcommand{\headrulewidth}{0pt}
+
+% ---------------------------------------------------------------------------- %
+\graphicspath{{./images/}}             % caminho das figuras (recomend�vel)
+\frenchspacing                          % arruma o espa�o: id est (i.e.) e exempli gratia (e.g.) 
+\urlstyle{same}                         % URL com o mesmo estilo do texto e n�o mono-spaced
+\makeindex                              % para o �ndice remissivo
+\raggedbottom                           % para n�o permitir espa�os extra no texto
+\fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
+\cleardoublepage
+\normalsize
+
+
+% ---------------------------------------------------------------------------- %
+% Corpo do texto
+\begin{document}
+\frontmatter 
+% cabe�alho para as p�ginas das se��es anteriores ao cap�tulo 1 (frontmatter)
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+\setcounter{tocdepth}{2}
+\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
+\fancyhead[RE,LO]{}
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+
+\onehalfspacing  % espa�amento
+
+% ---------------------------------------------------------------------------- %
+% CAPA
+% Nota: O t�tulo para as disserta��es/teses do IME-USP devem caber em um 
+% orif�cio de 10,7cm de largura x 6,0cm de altura que h� na capa fornecida pela SPG.
+\thispagestyle{empty}
+\begin{center}
+    \vspace*{2.5cm}
+    \bf
+    \textbf{\Large{Analytical Model and Machine Learning Techniques to predict performance of Applications Executed on GPUs}}\\
+    
+    \vspace*{2.5cm}
+    \Large{Marcos Tulio Amar\'{i}s Gonz\'{a}lez}
+    
+    \vskip 2cm
+    \textsc{
+    Thesis presented\\[-0.25cm] 
+    to the\\[-0.25cm]
+    Institute of Mathematics and Statistics\\[-0.25cm]
+    of the\\[-0.25cm]
+    University of S\~{a}o Paulo\\[-0.25cm]
+    to\\[-0.25cm]
+    Obtain the title\\[-0.25cm]
+    of\\[-0.25cm]
+    Doctor in Computer Science}
+    
+    \vskip 1.5cm    
+    Supervisor: Prof. Dr. Alfredo Goldman vel Lejbmann\\
+    Co-supervisor: Prof. Dr. Raphael Yokoingawa de Camargo
+    
+    \vskip 1.5cm
+    \normalsize{During the development of this work the author received 
+a financial grant from FAPESP Proccess No. 2012/23300-7}
+    
+    \vskip 1.5cm
+    \normalsize{S\~{a}o Paulo, March 2018}
+\end{center}
+
+% ---------------------------------------------------------------------------- %
+% P�gina de rosto (S� PARA A VERS�O DEPOSITADA - ANTES DA DEFESA)
+% Resolu��o CoPGr 5890 (20/12/2010)
+%
+% IMPORTANTE:
+%   Coloque um '%' em todas as linhas
+%   desta p�gina antes de compilar a vers�o
+%   final, corrigida, do trabalho
+%
+%
+\newpage
+\thispagestyle{empty}
+    \begin{center}
+        \vspace*{2.3 cm}
+        \textbf{\Large{Analytical Modeling and Machine Learning Techniques to predict performance in GPU Applications}}\\
+        \vspace*{2 cm}
+    \end{center}
+
+    \vskip 2cm
+
+    \begin{flushright}
+	This is an original version of the thesis made for the\\
+	candidate Marcos Tulio Amarís González, such as \\
+	it was submitted to the Jury.
+    \end{flushright}
+
+\pagebreak
+
+
+% ---------------------------------------------------------------------------- %
+% P�gina de rosto (S� PARA A VERS�O CORRIGIDA - AP�S DEFESA)
+% Resolu��o CoPGr 5890 (20/12/2010)
+%
+% Nota: O t�tulo para as disserta��es/teses do IME-USP devem caber em um 
+% orif�cio de 10,7cm de largura x 6,0cm de altura que h� na capa fornecida pela SPG.
+%
+% IMPORTANTE:
+%   Coloque um '%' em todas as linhas desta
+%   p�gina antes de compilar a vers�o do trabalho que ser� entregue
+%   � Comiss�o Julgadora antes da defesa
+%
+%
+% \newpage
+% \thispagestyle{empty}
+%     \begin{center}
+%         \vspace*{2.3 cm}
+%         \textbf{\Large{Analytical model and Machine Learning Techniques to predict performance in GPU Applications}}\\
+%         \vspace*{2 cm}
+%     \end{center}
+% 
+%     \vskip 2cm
+% 
+%     \begin{flushright}
+% 	This version of this these has the corrections and modifications
+% suggested\\
+% for the jury during the defense of the original version of the work,\\
+% realized in XXX 15/12/2018 XXX. A copy of the original version is available in 
+% the\\
+% Institute of Mathematics and statistics of the University of S�o Paulo.
+% 
+%     \vskip 2cm
+% 
+%     \end{flushright}
+%     \vskip 4.2cm
+% 
+%     \begin{quote}
+%     \noindent Examining Committee:
+%     
+%     \begin{itemize}
+% 	Prof. Dr. Alfredo Goldman (Supervisor - President) - Fico de fora se o Raphael quiser
+% Prof. Dr. Philipe Navaux - UFRGS
+% Prof. Dr. Alba Cristina Magalhães de Melo - UnB
+% Prof. Dr. Emilio de Camargo Francesquini (UFABC)  - Prefiro o Hermes Senger (UFSCAR) - Alfredo
+% Prof. Dr. Arnaud Legrand - LIG
+% Prof. Dr. Liria Matsumoto Sato - (EP-USP)
+
+% Prof. Dr. Jean-Luc Gaudiot - UCI (Mudar)
+% Prof. Dr. Raphael Camargo (Vice-President)
+% Prof. Dr. Lucas Schnorr
+% Prof. Dr. Daniel Angelis Cordeiro - USP - EACH (Mudar)
+% Prof. Dr. Marco Gubitoso - IME-USP
+% Prof. Dr. Denise Stringini - UNIFESP
+%     \end{itemize}
+%       
+%     \end{quote}
+% \pagebreak
+
+
+\pagenumbering{roman}     % come�amos a numerar 
+
+% ---------------------------------------------------------------------------- %
+% Agradecimentos:
+% Se o candidato n�o quer fazer agradecimentos, deve simplesmente eliminar esta p�gina 
+% \chapter*{Acknowledgment}
+% First to all, thanks to that, which us, human beings have named of God. It has put in my way  all the good people that I will mention below. 
+
+% Thank to my supervisor, Alfredo Goldman for his advices as advisor and friend, because it did it possible. 
+
+% Thanks to my Co-supervisor Prof. Dr. Raphael Yokoingawa de Camargo for all his technical advices and guide during all my PhD 
+
+% Special thankful to Professor Dr. Denis Trystram,
+
+
+
+% Thank to the members of the laboratory in the CCSL in the IME. Special thanksful to Nelson Lago, Emilio Francesquini, Pedro Bruel, Rodrigo Siqueira, Graziela Tonin,   ...
+
+
+% Thanks to the member of the POLARIS and DATAMOVE in the Institute of Technology of Grenoble.
+
+% Thanks to the member of the PASCAL group in the the University of California Irvine, specially to Tongsheng and Nazanin and their advisor Prof. Dr Jean-luc Gaudiot.
+
+% Thanks to my counsins Tito and Rafita, because they invite me to think that this PhD might be possible 12 years ago more or less.
+
+
+% ---------------------------------------------------------------------------- %
+% Resumo
+\chapter*{Resumo}
+
+\noindent Amar\'{i}s, M. \textbf{Modelo Anal\'{i}tico e Aprendizado de M\'{a}quina para predizer desempenho de aplica\c{c}\~{o}es executadas em Unidades de Processamento Gr\'{a}fico} 
+2017. 60 páginas.
+\todoMT{Update the page number on each one of the abstracts}
+Tese (Doutorado) - Instituto de Matem\'{a}tica e Estat\'{i}stica, Universidade de S\~{a}o Paulo, SP-Brasil, Março 2018.\\
+%Hoje, a maioria das plataformas de computa\c{c}\~{a}o de alto desempenho (HPC - High Performance Computing) possuem recursos heterog\'{e}neos de hardware (CPUs, GPUs, FPGAs, armazenamento, etc.). As Unidades de processamento gráfico (GPU - Graphic Processing Units) s\~{a}o coprocessadores especializados para acelerar opera\c{c}\~{o}es vetoriais em paralelo. 
+As GPUs tem um alto grau de paralelismo e conseguem executar milhares ou milhões de \emph{threads} conconrrentemente e ocultar a latencia do escalonador. Elas tem uma profunda hierarquia de mem\'{o}ria de diferentes tipos e também uma profunda configuração da memória hierarqiuica. 
+%A predi\c{c}\~{o} dos tempos de execu\c{c}\~{a}o de aplica\c{c}\~{o}es que s\~{a}o executadas em GPUs \'{e} um grande desafio e \'{e} essencial para o uso eficiente dos recursos computacionais de m\~{a}quinas com esses co-processadores. 
+
+%Existem diferentes abordagens para fazer essa predi\c{c}\~{a}o, como t\'{e}cnicas de modelagem anal\'{a}tica e aprendizado de m\'{a}quina. Os modelos anal\'{a}ticos preditivos s\~{a}o \'{u}teis, mas requerem inclus\~{a}o manual das intera\c{c}\~{o}es entre arquitetura e software e as vezes fazer um analise profundo das intera\c{c}\~{o}es complexas das arquiteturas das GPUs. As t\'{e}cnicas de aprendizado de m\'{a}quina podem capturar essas intera\c{c}\~{o}es complexas sem interven\c{c}\~{a}o manual, mas podem exigir grandes conjuntos de treinamento.
+
+Nessa tese, nós apresentamos uma analise e caracterização do desempenho de aplicações executadas em Unidades de Processamento Gráfico de propósito geral. Nós propomos um simples e intuitivo modelo baseado no modelo BSP para predizer a execução de aplicações em CUDA sobre diferentes GPUs. O modelo está baseado no número de computações e acessos à memória da GPU, com informação adicional do uso das memórias caché obtidas do prcesso de profiling. Logo, nós comparamos três diferentes enfoques de máquinas de aprendizado: regressão linear, máquinas de vetores de suporte e florestas aleatorias com o nosso modelo analítico proposto. Nós mostramos o desenho de um processo de extração de caracteristicas, usando analisis de correlação e agrupamento hierarquizado. Finalmente, Nós descrebemos a geração de um benchmark de aplicações baseadas em tarefas executadas sobre máquinas heterogéneas, o qual está disponível livremente em formato padrão de workload (SWF segundo sua abreviação em inglês). O benchmak consiste de cinco aplicações de algebra linear de matrices densas do software Chameleon e uma aplicação \emph{fork-join} gerada usando o software GGen. O objetivo é incentivar um banco da dados de workloads para a experimentação e pesquisa de escalonadores em recursos computationais hetérogeneos.\\
+
+\noindent \textbf{Palavras-chaves:} Predi\c{c}\~{a}o de Desempenho, M\'{a}quinas de Aprendizado,  Modelo BSP, Unidades de Processamento Gráfico, CUDA.
+% ---------------------------------------------------------------------------- %
+% Abstract
+\chapter*{Abstract}
+\noindent Amar\'{i}s, M. \textbf{Analytical Model and Machine Learning Techniques to predict performance of Applications Executed on GPUs}. 
+2017. 60 pages.
+Thesis (Doctorate - Institute of Mathematics and Statistics, University of S\~{a}o Paulo, SP-Brazil, March 2018.
+\\
+%Today, most High Performance Computing (HPC) platforms have heterogeneous hardware resources (CPUs, GPUs, storage, etc.) Graphics Processing Units (GPU) are specialized co-processor in accelerating vector operations in parallel. 
+GPUs have a high degree of parallelism and can execute thousands or millions of threads concurrently and hide the latency of the scheduler. They have a deep hierarchical memory of different types and also have a deep hierarchical memory configuration.
+
+%The prediction of application execution times over these devices is a great challenge and is essential for efficient job scheduling. 
+%There are different approaches to do this, such as analytical modeling and machine learning techniques. Analytic predictive models are useful, but require the manual inclusion of interactions between architecture and software, and may not capture the complex interactions in GPU architectures. Machine learning techniques can learn to capture these interactions without manual intervention but may require large training sets.  
+
+In this thesis, we present an analysis and characterization of the performance of applications executed on General-purpose Graphic Processing Units.
+We propose a simple and intuitive BSP-based model for predicting the CUDA application execution times on different GPUs. The model is based on the number of computations and memory accesses of the GPU, with additional information on cache usage obtained from profiling. After, we compare three different machine learning approaches: linear regression, support vector machines and random forests with the propose BSP-based analytical model. We show the design of a process of feature extractions, using correlation analysis and hierarchical clustering. Finally, we describe the generation of a benchmark of task-based applications executed on heterogeneous resources, which is freely available in Standard Workload Format (SWF). This benchmark consists of five applications of dense linear algebra from the Chameleon software and a \emph{fork-join} application generated using the software GGen. The objective is to encourage a database of workloads for the experimentation and research of scheduler of heterogeneous computing resources. \\
+
+\noindent \textbf{Keywords:} Performance~Prediction, Machine~Learning,  BSP~model, GPU~Architectures, CUDA.
+
+% ---------------------------------------------------------------------------- %
+% Sum�rio
+\tableofcontents
+
+% ---------------------------------------------------------------------------- %
+ 
+\chapter{List of Abbreviations}
+\begin{tabular}{ll}
+        $API$       & Application Programming Interface\\
+        $BS$        & Block size\\
+        $BSP$       & Buk Synchronous Parallel Model\\
+        $CGM$       & Coarse Grain Multi-computer Model\\
+        $CPU$       & Central Processing Unit\\
+        $CUDA$      & Compute Unified Device Architecture\\
+        $ECC$       & Error-correcting code \\
+        $GPC$       & Graphic Processing Cluster\\
+        $GPGPU$     & General Purpose Computing on GPUs\\
+        $GPU$       & Graphic Processing Unit\\
+        $GS$        & Grid Size\\
+        $JMS$       & Job Management System\\
+        $LD/ST$     & Load/Store\\
+        $NVCC$      & NVIDIA's CUDA Compiler\\
+        $NVPROF$    & NVIDIA's CUDA Profiler\\
+        $OpenCL$    & Open Computing Language\\
+        $PRAM$      & Parallel Random Access Machine Model\\
+        $PTX$	    & Parallel Thread eXecution\\
+        $RF$        & Random Forest\\  
+        $SFU$       & Special Function Unit\\
+        $SP$        & Streaming Processor\\
+        $SM$        & Streaming Multi-processor\\
+        $SVM$       & Support Vector Machine\\
+        $TPC$       & Texture Processing Clusters
+\end{tabular}
+% ---------------------------------------------------------------------------- %
+\chapter{Lists of Symbols}
+\begin{tabular}{ll}
+        
+        $comp$      & Computation done by a single thread\\
+        $comm_{GM}$      & Communication done by a single thread on the global memory\\
+        $comm_{SM}$      & Communication done by a single thread over the shared memory\\
+        $g_{GM}$      & Communication latency of the global memory\\
+        $g_{SM}$      & Communication latency of the shared memory\\
+        $g_{L1}$      & Communication latency of the L1 cache\\
+        $g_{L2}$      & Communication latency of the L2 cache\\
+        $L1$      & \\
+        $L2$      & \\
+        $ld_{0}$      & Load instructions done over shared memory by a  single thread\\
+        $ld_{1}$      & Load instructions done on global memory by a  single thread\\
+        $st_{0}$      & Store instructions done over shared memory by a single thread\\
+        $st_{1}$      & Store instructions done on global memory by a  single thread\\
+        $t_k$    & predicted execution time of a kernel\\
+        $\lambda$    & Parameter of adjust of the simple BSP-based GPU model
+\end{tabular}
+
+% ---------------------------------------------------------------------------- %
+% Listas de figuras e tabelas criadas automaticamente
+\listoffigures %\addcontentsline{toc}{chapter}{\listfigurename}       
+\listoftables %\addcontentsline{toc}{chapter}{\listtablename}          
+
+% ---------------------------------------------------------------------------- %
+% Cap�tulos do trabalho
+\mainmatter
+
+% cabe�alho para as p�ginas de todos os cap�tulos
+\fancyhead[RE,LO]{\thesection}
+
+% \singlespacing              % espa�amento simples
+% \onehalfspacing            % espa�amento um e meio
+
+\input{chapters/introduction}
+
+\input{chapters/characterization}
+
+\input{chapters/singleKernel}         
+
+\input{chapters/machineLearning}         
+
+\input{chapters/conclusions} 
+
+% cabeçalho para os apéndices
+% \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
+
+\fancyhead[RE,LO]{}
+
+\newpage\pagebreak
+
+
+ 
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\Large\itshape} % format
+{\Huge Appendix~ \thechapter.} % label
+{0.5cm} % sep
+{
+    \rule{\textwidth}{2pt}
+    \vspace{.25cm}
+    \centering
+} % before-code
+[
+\vspace{-.5cm}%
+\rule{\textwidth}{2pt}
+] % after-code 
+
+% \renewcommand{\thechapter}{\Alph{chapter}.}
+
+\begin{appendices}
+
+  
+
+\input{chapters/benchmark}       
+
+% \chapter{Papers related with Some Open Research Directions}\label{app:papers}
+
+% \section{A Simple BSP-based Model to Predict Execution Time in GPU Applications}
+% \begin{center}
+% {\bf Abstract}    
+% \end{center}
+% Models are useful to represent abstractions of software and hardware processes. The Bulk Synchronous Parallel (BSP) is a bridging model for parallel computation that allows algorithmic analysis of programs on parallel computers using performance modeling. The main idea of BSP model is the treatment of communication and computation as abstractions of a parallel system. Meanwhile, the use of GPU devices are becoming more widespread and they are currently capable of performing efficient parallel computation for applications that can be decomposed on thousands of simple threads. However, few models for predicting application execution time on GPUs have been proposed.
+
+% In this work we present a simple and intuitive BSP-based model for predicting the CUDA application execution times on GPUs. The model is based on the number of computations and memory accesses of the GPU, with additional information on cache usage obtained from profiling. Scalability, divergence, effect of optimizations and differences of architectures are adjusted by a single parameter.
+
+% We evaluated our model using two applications and six different boards. We showed by using profile information for a single board, that the model is general enough to predict the execution time of an application with different input sizes and on different boards with the same architecture. Our model predictions were within $0.8$ to $1.2$ times the measured execution times, which are reasonable for such a simple model. These results indicate that the model is good enough to generalize the predictions for different problem sizes and GPU configurations.
+% \includepdf[pages={1-10}]{papers/BSP-basedModel.pdf}
+
+
+% \section{A Comparison of GPU Execution Time Prediction using Machine Learning and Analytical Modeling}
+% \begin{center}
+% {\bf Abstract}    
+% \end{center}
+% Today, most high-performance computing (HPC) platforms have heterogeneous hardware resources (CPUs, GPUs, storage, etc.) A Graphics Processing Unit (GPU) is a parallel computing coprocessor specialized in accelerating vector operations. The prediction of application execution times over these devices is a great challenge and is essential for efficient job scheduling. There are different approaches to do this, such as analytical modeling and machine learning techniques. Analytic predictive models are useful, but require manual inclusion of interactions between architecture and software, and may not capture the complex interactions in GPU architectures. Machine learning techniques can learn to capture these interactions without manual intervention, but may require large training sets.  
+
+% In this paper, we compare three different machine learning approaches: linear regression, support vector machines and random forests with a BSP-based analytical model, to predict the execution time of GPU applications. As input to the machine learning algorithms, we use profiling information from 9 applications executed over 9 different GPUs. We show that machine learning approaches provide reasonable predictions for different cases. Although the predictions were inferior to the analytical model, they required no detailed knowledge of application code, hardware characteristics or explicit modeling. Consequently, whenever a database with profile information is available or can be generated, machine learning techniques can be useful for deploying automated on-line performance prediction for scheduling applications on heterogeneous architectures containing GPUs.
+% \includepdf[pages={1-8}]{papers/MLGPUPerformance.pdf}
+
+
+% \section{Generic algorithms for scheduling applications on hybrid multi-core machines}
+% \begin{center}
+% {\bf Abstract}    
+% \end{center}
+% We study the problem of executing an application represented by a precedence task graph on a multi-core machine composed of standard computing cores and accelerators.
+% Contrary to most existing approaches, we distinguish the allocation and the scheduling phases and we mainly focus on the allocation part of the problem: choose the more appropriate type of computing unit for each task.
+% We address both off-line and on-line settings.
+% In the first case, we establish strong lower bounds on the worst-case performance of a known approach based on Linear Programming for solving the allocation problem.
+% Then, we refine the scheduling phase and we replace the greedy list scheduling policy used in this approach by a better ordering of the tasks.
+% Although this modification leads to the same approximability guarantees, it performs much better in practice.
+% We also extend this algorithm to more types of heterogeneous cores, achieving an approximation ratio which depends on the number of different types.
+% In the on-line case, we assume that the tasks arrive in any, not known in advance, order which respects the precedence relations and the scheduler has to take irrevocable decisions about their allocation and execution.
+% In this setting, we propose the first scheduling algorithm with precedences based on adequate rules for selecting the type of processor where to allocate the tasks.
+% This algorithm achieves a constant factor approximation guarantee if the ratio of the number of CPUs over the number of GPUs is bounded.
+% Finally, all the previous algorithms have been experimented on a large number of simulations built upon actual libraries.
+% These simulations assess the good practical behavior of the algorithms with respect to the state-of-the-art solutions whenever these exist or baseline algorithms.
+% \includepdf[pages={1-13}]{papers/IPDPS___Improvements_HLP.pdf}
+
+
+% \section{Generic algorithms for scheduling applications on heterogeneous multi-core platforms}
+% \begin{center}
+% {\bf Abstract}    
+% \end{center}
+% We study the problem of executing an application represented by a precedence task graph on a parallel machine composed of standard computing cores and accelerators.
+% Both off-line and on-line settings are addressed by proposing generic scheduling approaches.
+% In the first case, we establish strong lower bounds on the worst-case performance of a known approach based on Linear Programming and replace the greedy List Scheduling policy used in this approach by a better task ordering.
+% Although this modification leads to the same approximability guarantees, it performs much better in practice.
+% We also extend this algorithm to more types of computing units, achieving an approximation ratio which depends on the number of different types.
+% In the on-line case, tasks arrive in any order which respects the precedence relations and the scheduler has to take irrevocable decisions about their allocation and execution.
+% We propose the first on-line scheduling algorithm taking into account precedences which is based on adequate rules for selecting the type of processor where to allocate the tasks.
+% Finally, all the previous algorithms have been experimented on a large number of simulations built on actual libraries, assessing their good practical behavior with respect to the state-of-the-art solutions and baseline algorithms.
+\includepdf[pages={1-29}]{papers/CCPE___Improvements_HLP.pdf}
+
+% \section{Profile-based Dynamic Adaptive Workload Balance on Heterogeneous Architectures}
+% \begin{center}
+% {\bf Abstract}    
+% \end{center}
+% While High Performance Computing (HPC) systems are increasingly based on heterogeneous cores, the effectiveness of these heterogeneous systems depends on how well the scheduler can allocate workload onto appropriate computing devices and how communications or computations can be overlapped. With different types of resources integrated into one system, GPUs and CPUs, the complexity of the scheduler correspondingly increases. Moreover, for applications with varying problem sizes on different heterogeneous resources, the optimal scheduling approach may vary accordingly.     
+
+% This paper presents a profile-based dynamic adaptive workload balance scheduling approach to efficiently utilize heterogeneous systems. Our approach follows two phases: first, we build up a dynamic adaptive workload balance algorithm. It can adaptively adjust a workload based on available heterogeneous resources and real time situation. Second, we establish a profile-based device-specific estimation model to optimize the scheduling algorithm. Our scheduling approach is tested on a standard 2D 5-point stencil computation in our Extended DARTS\ platform\footnote{We replaced the real name of the runtime for double-blind review.}. Experimental results show that when the problem size allows the working set to remain within the available GPU memory, our scheduler can obtain speedups up to $8.75\times$ compared to the sequential version, $7\times$ compared to the pure multi-CPU version, and stays on-par with pure GPU version. When the problem size causes the working to no longer fit in the available GPU memory, our scheduler can obtain up to $6\times$ compared to the sequential version, $1.6\times$ compared to the pure multi-CPU version, and $4.8\times$ compared to the pure GPU version. 
+\includepdf[pages={1-10}]{papers/adaptive-workload-gpu.pdf}
+
+
+\end{appendices}
+
+% ---------------------------------------------------------------------------- %
+% Bibliografia
+\backmatter 
+
+\bibliographystyle{plainnat-ime} % cita��o bibliogr�fica textual
+\bibliography{bibliografia}  % associado ao arquivo: 'bibliografia.bib'
+
+% ---------------------------------------------------------------------------- %
+% �ndice remissivo
+% \index{TBP|see{periodicidade regi�o codificante}}
+% \index{DSP|see{processamento digital de sinais}}
+% \index{STFT|see{transformada de Fourier de tempo reduzido}}
+% \index{DFT|see{transformada discreta de Fourier}}
+% \index{Fourier!transformada|see{transformada de Fourier}}
+% 
+% \printindex   % imprime o �ndice remissivo no documento 
+
+\end{document}
